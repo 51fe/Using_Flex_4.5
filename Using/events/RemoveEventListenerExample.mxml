@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- events/RemoveEventListenerExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="createHandler(event)">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+
+        private function createHandler(e:Event):void {
+            b1.addEventListener(MouseEvent.CLICK, myClickHandler);
+        }
+
+        private function removeMyHandlers(e:Event):void {
+            /* Remove listener for b1's click event because it was added
+            with the addEventListener() method. */
+            b1.removeEventListener(MouseEvent.CLICK, myClickHandler);
+
+            /* Does NOT remove the listener for b2's click event because it
+            was added inline in an MXML tag. */           
+            b2.removeEventListener(MouseEvent.CLICK, myClickHandler);
+        }
+
+        private function myClickHandler(e:Event):void {
+            Alert.show("The button was clicked.");
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Click Me"/>
+    <s:Button label="Click Me Too" id="b2" click="myClickHandler(event)"/>
+    <s:Button label="Remove Event Listeners" id="b3" click="removeMyHandlers(event)"/>
+
+</s:Application>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/ComplexDataTypeSender.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     <s:layout> 
+      <s:HorizontalLayout/> 
+     </s:layout>
+  <fx:Script><![CDATA[
+     import flash.external.*;
+  
+     public function callWrapper():void {
+        var s:String;
+        if (ExternalInterface.available) {
+           var o:Object = new Object();
+           o.fname = "Nick";
+           o.lname = "Danger";
+           o.b = new Array("DdW","E&T","LotR:TS");
+           var wrapperFunction:String = "receiveComplexDataTypes";
+           s = ExternalInterface.call(wrapperFunction, o);
+        } else {
+           s = "Wrapper not available";
+        }
+        trace(s); 
+     }
+  ]]></fx:Script>
+  
+  <s:Button label="Send" click="callWrapper()"/>
+</s:Application>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkDataGroupContainerFunction.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            
+            import myComponents.MySimpleItemRendererFunction;
+            import spark.skins.spark.DefaultItemRenderer;
+        
+            private function selectRenderer(item:Object):ClassFactory {
+                var classFactory:ClassFactory;
+                if (item is String) {
+                    // If the item is a String, use DefaultItemRenderer.
+                    classFactory = new ClassFactory(DefaultItemRenderer);
+                }
+                else {
+                    // If the item is an Object, use MySimpleItemRendererFunction.
+                    classFactory = new ClassFactory(MySimpleItemRendererFunction); 
+                }
+                return classFactory;
+            }
+        ]]>  
+    </fx:Script>
+
+    <s:DataGroup itemRendererFunction="selectRenderer"> 
+        <s:layout>
+            <s:TileLayout requestedColumnCount="3"/>
+        </s:layout>
+        <mx:ArrayList>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:String>617-555-1212</fx:String>
+            <fx:String>Newton</fx:String>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:String>617-555-5555</fx:String>
+            <fx:String>Newton</fx:String>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:String>617-555-6666</fx:String>
+            <fx:String>Newton</fx:String>
+        </mx:ArrayList>            
+    </s:DataGroup> 
+</s:Application>

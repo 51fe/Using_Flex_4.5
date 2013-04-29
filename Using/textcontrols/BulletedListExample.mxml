@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- textcontrols/BulletedListExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:Text>
+     <mx:htmlText >
+        <![CDATA[
+           <p>This is a bulleted list:<li>First Item</li><li>Second Item</li></p>
+        ]]>
+     </mx:htmlText>
+  </mx:Text>
+</s:Application>

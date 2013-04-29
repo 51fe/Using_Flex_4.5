@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- modules/MySimpleModuleLoader.mxml -->
+<s:ModuleLoader 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[        
+            private function clickHandler():void {
+                if (!url) { 
+                    url="ColumnChartModule.swf"; 
+                } 
+                loadModule();
+            }        
+        ]]>
+    </fx:Script>
+
+    <mx:ProgressBar id="progress" width="100%" source="{this}"/>
+    <s:HGroup width="100%">
+      <s:Button id="load" label="Load" click="clickHandler()"/>
+      <s:Button id="unload" label="Unload" click="unloadModule()"/>
+      <s:Button id="reload" label="Reload" click="unloadModule();loadModule();"/>
+    </s:HGroup>
+</s:ModuleLoader>

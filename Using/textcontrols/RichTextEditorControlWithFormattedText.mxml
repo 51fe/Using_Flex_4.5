@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- textcontrols/RichTextEditorControlWithFormattedText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <!-- The HTML text string used to populate the RichTextEditor control's
+     TextArea subcomponent. The text is on a single line. -->
+  <fx:Script><![CDATA[
+     [Bindable]
+     public var htmlData:String="<textformat leading='2'><p align='center'><b><font size='20'>HTML Formatted Text</font></b></p></textformat><br><textformat leading='2'><p align='left'><font face='_sans' size='12' color='#000000'>This paragraph contains<b>bold</b>, <i>italic</i>, <u>underlined</u>, and <b><i><u>bold italic underlined </u></i></b>text.</font></p></textformat><br><p><u><font face='arial' size='14' color='#ff0000'>This a red underlined 14-point arial font with no alignment set.</font></u></p><p align='right'><font face='verdana' size='12' color='#006666'><b>This a teal bold 12-pt.' Verdana font with alignment set to right.</b></font></p><br><li>This is bulleted text.</li><li><font face='arial' size='12' color='#0000ff'><u> <a href='http://www.adobe.com'>This is a bulleted link with underline and blue color set.</a></u></font></li>";
+  ]]></fx:Script>
+
+  <!-- The RichTextEditor control. To reference a subcomponent prefix its ID with the RichTextEditor control ID. -->
+  <mx:RichTextEditor id="rte1" 
+     backgroundColor="#ccffcc" 
+     width="500"
+     headerColors="[#88bb88, #bbeebb]" 
+     footerColors="[#bbeebb, #88bb88]" 
+     title="Rich Text Editor" 
+     htmlText="{htmlData}" 
+     initialize="rte1.textArea.setStyle('backgroundColor', '0xeeffee')"
+  />
+</s:Application>

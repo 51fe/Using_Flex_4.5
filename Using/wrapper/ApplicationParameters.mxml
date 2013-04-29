@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/ApplicationParameters.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="initVars()">
+     <s:layout> 
+          <s:VerticalLayout/> 
+     </s:layout>
+     
+       <fx:Script><![CDATA[
+          import mx.core.FlexGlobals;
+       
+          /* Declare bindable properties in Application scope. */
+          [Bindable]
+          public var myName:String;
+          [Bindable]
+          public var myHometown:String;
+           
+          /* Assign values to new properties. */
+          private function initVars():void {
+               myName = FlexGlobals.topLevelApplication.parameters.myName;
+               myHometown = FlexGlobals.topLevelApplication.parameters.myHometown;
+          }
+     ]]></fx:Script>
+       
+     <s:HGroup>
+          <s:Label text="Name: "/>
+          <s:Label text="{myName}" fontWeight="bold"/>
+     </s:HGroup>
+     
+     <s:HGroup>
+           <s:Label text="Hometown: "/>
+           <s:Label text="{myHometown}" fontWeight="bold"/>
+     </s:HGroup>
+</s:Application>

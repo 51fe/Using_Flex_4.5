@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- charts/StandardEffectTriggers.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+
+
+          <!-- Define the effects -->
+          <mx:Parallel id="showEffects">
+             <mx:WipeRight duration="2000"/>
+             <mx:Fade alphaFrom="0" alphaTo="1" duration="4000"/>
+          </mx:Parallel>
+
+          <mx:Parallel id="hideEffects">
+             <mx:Fade alphaFrom="1" alphaTo="0" duration="2500"/>
+             <mx:WipeLeft duration="3000"/>
+          </mx:Parallel>
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Area Chart with Effects">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:AreaChart id="myChart"
+        dataProvider="{srv.lastResult.data.result}"
+        creationCompleteEffect="showEffects"
+        hideEffect="hideEffects"
+        showEffect="showEffects">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:AreaSeries yField="profit" displayName="Profit"/>
+           <mx:AreaSeries yField="expenses" displayName="Expenses"/>
+        </mx:series>
+     </mx:AreaChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+
+  <s:Button label="Toggle visibility" 
+    click="myChart.visible=!myChart.visible"/>
+</s:Application>

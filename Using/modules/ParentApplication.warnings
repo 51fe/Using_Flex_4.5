@@ -1,0 +1,1 @@
+Warning: ChildModule1 is a module or application that is directly referenced. This will cause ChildModule1 and all of its dependencies to be linked in with ParentApplication. Using an interface is the recommended practice to avoid this.

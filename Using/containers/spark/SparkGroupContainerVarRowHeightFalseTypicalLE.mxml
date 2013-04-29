@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkGroupContainerVarRowHeightFalseTypicalLE.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Group>
+        <s:layout>
+            <s:VerticalLayout variableRowHeight="false"
+                typicalLayoutElement="{b3}"/> 
+        </s:layout>
+        <s:Button id="b1" label="Button 1"/>
+        <s:Button id="b2" label="Button 2"/>
+        <s:Button id="b3" label="Button 3" fontSize="36"/>
+        <s:Button id="b4" label="Button 4" fontSize="24"/>
+    </s:Group>
+</s:Application>

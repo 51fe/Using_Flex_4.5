@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- containers\spark\SparkFormValidation.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Declarations>
+        <mx:PhoneFormatter
+            id="pnf"
+            areaCode="-1"
+            areaCodeFormat="(###)"
+            formatString="(###) ###-####"
+            validPatternChars="+()#-. "/>
+        <mx:ZipCodeValidator
+            id="zcv"
+            source="{ti_zip}"
+            property="text"/>
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            [Bindable]
+            public var statesDP:ArrayCollection = new ArrayCollection
+                    (["Arizona","California","Kansas","New Mexico","Texas","Wyoming"]);
+           
+            import mx.events.ValidationResultEvent;
+            private var vResult:ValidationResultEvent;
+            // Event handler to validate and format input.
+            private function format():void {
+                ti_phone.text = pnf.format(ti_phone.text);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Form width="500" height="600" backgroundColor="0xeeeeee">
+        <s:Label fontSize="16" text="My Spark Form"/>
+        <s:FormItem label="Address" sequenceLabel="1.">
+            <s:TextInput width="100%"/>
+            <s:TextInput width="100%"/>
+            <s:TextInput width="100%"/>
+            <s:helpContent>
+                <s:Label text="(ex. 123 Main Street)" baseline="24" />
+                <s:Button label="?" width="30" baseline="24" x="120"/>
+            </s:helpContent>
+        </s:FormItem>
+        <s:FormItem label="City" sequenceLabel="2.">
+            <s:TextInput width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="State" sequenceLabel="3.">
+            <s:ComboBox dataProvider="{statesDP}" width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="ZipCode" sequenceLabel="4." required="true">
+            <s:TextInput widthInChars="4" restrict="0123456789"/>
+            <s:helpContent>
+                <s:Label text="Will appear in your profile" left="0" right="0" baseline="24" />
+            </s:helpContent>
+        </s:FormItem>
+        <s:FormItem id="phoneZipItem" label="Phone and Zip" sequenceLabel="5.">
+            <s:TextInput id="ti_phone" width="100%" focusOut="format()"/>
+            <s:TextInput id="ti_zip" widthInChars="4" restrict="0123456789"/>
+            <s:helpContent>
+                <s:Label text="(xxx)-xxx-xxxx" left="0" right="0" baseline="24" />
+            </s:helpContent>
+        </s:FormItem>
+        <s:Label text="PhoneZip ErrorString : {phoneZipItem.elementErrorStrings}"/>
+    </s:Form>
+</s:Application>

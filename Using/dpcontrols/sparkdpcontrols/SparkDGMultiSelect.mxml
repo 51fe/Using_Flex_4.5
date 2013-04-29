@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGMultiSelect.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.events.KeyboardEvent;
+            import flash.system.System;
+            import spark.components.gridClasses.CellPosition;
+            import flash.ui.Keyboard;
+            
+            // Event handler to recognize when Ctrl-C is pressed,
+            // and copy the selected cells to the system clipboard. 
+            private function myKeyUpHandler(event:KeyboardEvent):void
+            {
+                if (event.ctrlKey && event.keyCode == Keyboard.C)
+                {
+                    // Separator used between Strings sent to clipboard
+                    // to separate selected cells.
+                    const separator:String = ",";
+                    // The String sent to the clipboard
+                    var dataString:String = "";
+                    
+                    // Loop over the selectedCells property.
+                    // Data in selectedCells is ordered so that 
+                    // the last selected cell is at the head of the list.
+                    const selectedCells:Vector.<CellPosition> = event.currentTarget.selectedCells;
+                    const n:int = selectedCells.length;
+                    for (var i:int = 0; i < n; i++)
+                    {
+                        // Get the cell position.
+                        var cell:CellPosition = selectedCells[i];
+                        
+                        // Get the row for the selected cell.
+                        var data:Object = 
+                            event.currentTarget.grid.dataProvider[cell.rowIndex];
+                        
+                        // Get the name of the field for the selected cell.
+                        var dataField:String = 
+                            event.currentTarget.grid.columns[cell.columnIndex].dataField;
+                        
+                        // Get the cell data using the field name.
+                        dataString = data[dataField] + separator + dataString;
+                    }
+                    
+                    // Remove trailing separator.
+                    dataString = 
+                        dataString.substr(0, dataString.length - separator.length);
+                    
+                    // Write dataString to the clipboard.
+                    System.setClipboard(dataString);
+                }
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:DataGrid
+        selectionMode="multipleCells"
+        keyUp="myKeyUpHandler(event);">
+        <s:ArrayCollection> 
+            <fx:Object> 
+                <fx:Artist>Pavement</fx:Artist> 
+                <fx:Price>11.99</fx:Price> 
+                <fx:Album>Slanted and Enchanted</fx:Album> 
+            </fx:Object> 
+            <fx:Object> 
+                <fx:Artist>Pavement</fx:Artist> 
+                <fx:Album>Brighten the Corners</fx:Album> 
+                <fx:Price>11.99</fx:Price> 
+            </fx:Object> 
+        </s:ArrayCollection> 
+        <s:columns>
+            <s:ArrayCollection>
+                <s:GridColumn dataField="Artist"/>
+                <s:GridColumn dataField="Album"/>
+                <s:GridColumn dataField="Price"/>
+            </s:ArrayCollection>
+        </s:columns>
+    </s:DataGrid> 
+    
+    <s:TextArea id="myTA" text="Paste selected cells here ..."/>
+</s:Application>

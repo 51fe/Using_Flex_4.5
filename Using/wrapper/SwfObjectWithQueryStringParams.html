@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>wrapper/SwfObjectWithFlashVars.html</title>
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+            var swfVersionStr = "0";
+            var xiSwfUrlStr = "";
+            var flashvars = {};
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            var attributes = {};
+            attributes.id = "FlashVarTest";
+            attributes.name = "FlashVarTest";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "FlashVarTest.swf?firstname=Nick&lastname=Danger",
+                "flashContent", "100%", "100%",
+                swfVersionStr, xiSwfUrlStr,
+                flashvars, params, attributes);
+        </script>
+    </head>
+    <body>
+        <div id="flashContent"/>
+   </body>
+</html>

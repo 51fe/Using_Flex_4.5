@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- events/CustomListenerFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp(event)">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private var specialParam1:String;
+            private var specialParam2:String = "42";
+
+            private function initApp(e:Event):void {
+                assignSpecialParam(e);
+                
+                /* Change the value of specialParam whenever the user changes it 
+                   in the TextInput and clicks the button. */
+                ti1.addEventListener("focusOut", assignSpecialParam);
+                
+                /* Define the pass-through method in the addEventListener() method call.
+                   You can add any number of parameters, as long as teh target method's 
+                   signature agrees. */
+                myButton.addEventListener(MouseEvent.CLICK, function (e:MouseEvent):void {
+                        myClickListener(e, specialParam1, specialParam2);
+                    }
+                );          
+            }
+            
+            private function assignSpecialParam(e:Event):void {
+                specialParam1 = ti1.text;
+            }
+            
+            /* This method acts as the event listener, and it has any 
+             number of parameters that we defined in the addEventListener() call. */
+            private function myClickListener(e:MouseEvent, s1:String, s2:String) : void {
+                myButton.label = s1 + " " + s2;
+            }           
+        ]]>
+    </fx:Script> 
+
+    <s:Button id="myButton" label="Click Me"/>
+    <s:TextInput id="ti1" text="Enter a custom String here." width="250"/>
+
+</s:Application>

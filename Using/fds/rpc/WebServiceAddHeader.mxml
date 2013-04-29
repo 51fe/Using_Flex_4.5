@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\WebServiceAddHeader.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" height="600">
+    <mx:WebService id="ws" wsdl="http://myserver:8500/flexapp/app1.cfc?wsdl" load="headers();"/>
+    <mx:Script>
+        <![CDATA[
+            import mx.rpc.soap.SOAPHeader;
+            private var header1:SOAPHeader;     
+            private var header2:SOAPHeader;     
+
+            public function headers():void {
+
+            // Create QName and SOAPHeader objects.
+            var q1:QName=new QName("http://soapinterop.org/xsd", "Header1");
+            header1=new SOAPHeader(q1, {string:"bologna",int:"123"});
+            header2=new SOAPHeader(q1, {string:"salami",int:"321"});
+
+
+            // Add the header1 SOAP Header to all web service requests. 
+            ws.addHeader(header1);
+
+            // Add the header2 SOAP Header to the getSomething operation.
+            ws.getSomething.addHeader(header2);
+
+            // Within the addSimpleHeader method,
+            // which adds a SOAP header to web
+            //service requests, create SOAPHeader and QName objects. 
+            ws.addSimpleHeader
+                ("header3", "http://soapinterop.org/xsd", "foo","bar");
+            }
+        ]]>
+    </mx:Script>
+</mx:Application>

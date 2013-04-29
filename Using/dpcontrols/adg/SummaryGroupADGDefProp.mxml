@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SummaryGroupADGDefProp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+                  
+            include "SimpleFlatData.as"
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid id="myADG" 
+        width="100%" height="100%" 
+        initialize="gc.refresh();">        
+        <mx:dataProvider>
+            <mx:GroupingCollection2 id="gc" source="{dpFlat}">
+                <mx:Grouping label="Region">
+                    <mx:GroupingField name="Region">
+                          <mx:SummaryRow summaryPlacement="group">
+                                <mx:SummaryField2 summaryOperation="MIN" 
+                                    dataField="Actual" label="Min Actual"/>
+                                <mx:SummaryField2 summaryOperation="MAX" 
+                                    dataField="Actual" label="Max Actual"/>
+                          </mx:SummaryRow>
+                    </mx:GroupingField>
+                    <mx:GroupingField name="Territory">
+                          <mx:SummaryRow summaryPlacement="group">
+                                <mx:SummaryField2 summaryOperation="MIN" 
+                                    dataField="Actual" label="Min Actual"/>
+                                <mx:SummaryField2 summaryOperation="MAX" 
+                                    dataField="Actual" label="Max Actual"/>
+                          </mx:SummaryRow>
+                    </mx:GroupingField>
+                </mx:Grouping>
+            </mx:GroupingCollection2>
+        </mx:dataProvider>        
+        
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Region"/>
+            <mx:AdvancedDataGridColumn dataField="Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Estimate"/>
+            <mx:AdvancedDataGridColumn dataField="Min Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Max Actual"/>
+        </mx:columns>
+   </mx:AdvancedDataGrid>
+</s:Application>

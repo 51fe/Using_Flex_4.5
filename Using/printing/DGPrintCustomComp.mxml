@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!-- printing\DGPrintCustomComp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="450" width="600">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.printing.FlexPrintJob;
+            import myComponents.MyPrintView;
+
+            public function doPrint():void {
+                // Create a FlexPrintJob instance.
+                var printJob:FlexPrintJob = new FlexPrintJob();
+    
+                // Start the print job.
+                if(printJob.start()) {
+                    // Create a MyPrintView control as a child 
+                    // of the current view.
+                    var formPrintView:MyPrintView = new MyPrintView();
+                    addElement(formPrintView);
+    
+                    // Populate the print control's contact label 
+                    // with the text from the form's name, 
+                    // phone, and e-mail controls.
+                    formPrintView.contact.text = 
+                        "Contact: " + custName.text + "  " +
+                        custPhone.text + "  " + custEmail.text;
+    
+                    // Set the print control's data grid data provider to be 
+                    // the displayed data grid's data provider.
+                    formPrintView.myDataGrid.dataProvider = 
+                        myDataGrid.dataProvider;
+    
+                    // Add the SimplePrintview control to the print job.
+                    // For comparison, try setting the 
+                    // second parameter to "none".
+                    printJob.addObject(formPrintView);
+    
+                    // Send the job to the printer.
+                    printJob.send();
+    
+                    // Remove the print-specific control to free memory.
+                    removeElement(formPrintView);
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <!-- The form to display-->
+    <mx:Form id="myForm">
+        <mx:FormHeading label="Contact Information"/>
+        <mx:FormItem label="Name: ">
+            <mx:TextInput id="custName" 
+                width="200" 
+                text="Samuel Smith"
+                fontWeight="bold"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone: ">
+            <mx:TextInput id="custPhone" 
+                width="200" 
+                text="617-555-1212"
+                fontWeight="bold"/>
+        </mx:FormItem>
+        <mx:FormItem label="Email: ">
+            <mx:TextInput id="custEmail" 
+                width="200" 
+                text="sam@sam.com"
+                fontWeight="bold"/>
+        </mx:FormItem>
+
+        <mx:FormHeading label="Product Information"/>
+        <mx:DataGrid id="myDataGrid" width="300">
+            <mx:dataProvider>
+                <fx:Object Product="Flash" Code="1000"/>
+                <fx:Object Product="Flex" Code="2000"/>
+                <fx:Object Product="ColdFusion" Code="3000"/>
+                <fx:Object Product="JRun" Code="4000"/>
+            </mx:dataProvider>
+        </mx:DataGrid>
+        <mx:Button id="myButton" 
+            label="Print" 
+            click="doPrint();"/>
+    </mx:Form>
+</s:Application>

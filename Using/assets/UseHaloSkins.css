@@ -1,0 +1,31 @@
+/* assets/UseHaloSkins.css */
+
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+mx|RadioButton {
+    /* 
+        Shown here for illustrative purposes. 
+    */
+    disabledIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    downIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    overIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedDisabledIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedDownIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedOverIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedUpIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    upIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+}
+
+mx|CheckBox {
+    /* 
+        Applies the RadioButtonIcon skin to the CheckBox component's states.
+    */
+    disabledIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    downIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    overIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedDownIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedDisabledIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedOverIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    selectedUpIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+    upIcon: ClassReference("mx.skins.halo.RadioButtonIcon");
+}

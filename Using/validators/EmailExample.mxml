@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- validators\EmailExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+
+    <s:Form id="contactForm">
+        <s:FormItem id="homePhoneItem" label="Home Phone">
+            <s:TextInput id="homePhoneInput"/>
+        </s:FormItem>
+        <s:FormItem id="cellPhoneItem" label="Cell Phone">
+            <s:TextInput id="cellPhoneInput"/>
+        </s:FormItem>
+        <s:FormItem id="emailItem" label="Email">
+            <s:TextInput id="emailInput"/> 
+        </s:FormItem>
+    </s:Form>
+
+    <fx:Declarations>
+        <mx:PhoneNumberValidator id="pnVHome" 
+            source="{homePhoneInput}" property="text"/>
+        <mx:PhoneNumberValidator id="pnVCell" 
+            source="{cellPhoneInput}" property="text"/>
+        <mx:EmailValidator id="emV" 
+            source="{emailInput}" property="text"/>
+    </fx:Declarations>
+</s:Application>

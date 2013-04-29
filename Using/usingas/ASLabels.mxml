@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- usingas/ASLabels.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initLabels()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Label;
+
+        public var label1:Label;
+        public var label2:Label;
+
+        // Objects must be declared in the application scope. Adds the names to
+        // the application's properties array.
+
+        public function initLabels():void {
+            label1 = new Label();
+            label1.text = "Change Me";
+
+            label2 = new Label();
+            label2.text = "Change Me";
+
+            addElement(label1);
+            addElement(label2);
+        }
+
+        public function changeLabel(s:String):void {
+            // Create a String that matches the name of the Label control.
+            s = "label" + s;
+            // Get a reference to the label control using the 
+            // application's properties array.
+            this[s].text = "Changed";
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" click="changeLabel('2')" label="Change Other Label"/>
+    <s:Button id="b2" click="changeLabel('1')" label="Change Other Label"/>
+
+</s:Application>

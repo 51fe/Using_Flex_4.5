@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToolTipFieldExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:ButtonBar toolTipField="myToolTip">
+    <mx:dataProvider>
+     <fx:Object label="OK" myToolTip="OK Button TooTip"/>
+     <fx:Object label="Cancel" myToolTip="Cancel Button ToolTip"/>
+    </mx:dataProvider>
+  </mx:ButtonBar>
+
+</s:Application>

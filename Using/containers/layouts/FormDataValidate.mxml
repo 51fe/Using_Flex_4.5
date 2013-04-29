@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataValidate.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            private function processValues():void {
+                var inputZip:String = zipCode.text;
+                var inputPhone:String = phoneNumber.text;
+                // Perform any additional validation.
+                // Process data.
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:ZipCodeValidator id="zcVal"
+            source="{zipCode}" property="text" 
+            domain="US or Canada"/>
+        <mx:PhoneNumberValidator id="pnVal" 
+            source="{phoneNumber}" property="text"/>
+    </fx:Declarations>
+        
+    <mx:Form id="myForm" defaultButton="{mySubmitButton}">
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zipCode"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone Number">
+            <mx:TextInput id="phoneNumber"/>
+        </mx:FormItem>
+    
+        <mx:FormItem>
+            <mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues();"/>
+        </mx:FormItem>
+    </mx:Form>
+</s:Application>

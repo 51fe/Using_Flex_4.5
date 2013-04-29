@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- containers\spark\SparkMainArrayEntryForm.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayList;
+            import mx.managers.PopUpManager;
+            import myComponents.ArrayEntryForm;
+            
+            public function displayForm():void {
+                /* ArrayList with data for the custom control ComboBox control. */
+                var doctypes:ArrayList = new ArrayList(["*.as", "*.mxml", "*.swc"]);
+                
+                /* Create the pop-up and cast the 
+                   return value of the createPopUp()
+                   method to the ArrayEntryForm custom component. */
+                var pop1:ArrayEntryForm = ArrayEntryForm(
+                    PopUpManager.createPopUp(this, ArrayEntryForm, true));
+                
+                /* Set TitleWindow properties. */
+                pop1.title="Select File Type";
+    
+                /* Set properties of the ArrayEntryForm custom component. */
+                pop1.targetComponent = ti1;
+                pop1.myArray = doctypes;
+                PopUpManager.centerPopUp(pop1);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextInput id="ti1" text=""/>
+    <s:Button id="b1" label="Select File Type" 
+        click="displayForm();"/>
+</s:Application>

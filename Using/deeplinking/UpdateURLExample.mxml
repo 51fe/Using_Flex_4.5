@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/UpdateURLExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();">   
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.events.BrowserChangeEvent;
+        import mx.managers.IBrowserManager;
+        import mx.managers.BrowserManager;
+        import mx.utils.URLUtil;
+
+        private var browserManager:IBrowserManager;
+
+        private function init():void {
+            browserManager = BrowserManager.getInstance();
+            browserManager.addEventListener(BrowserChangeEvent.APPLICATION_URL_CHANGE, 
+                logURLChange);
+            browserManager.init("", "Welcome!");
+        }
+
+        public function updateTitle(e:Event):void {
+            browserManager.setTitle("Welcome " + ti1.text + " from " + ti2.text + "!");
+        }
+
+        private function updateURL(event:Event):void {
+            var s:String = "panel=" + event.currentTarget.selectedIndex;
+            browserManager.setFragment(s);
+        }
+
+        private function logURLChange(event:BrowserChangeEvent):void {
+            ta1.text += "APPLICATION_URL_CHANGE event:\n";
+            ta1.text += " url: " + event.url + "\n"; // Current URL in the browser.
+            ta1.text += " prev: " + event.lastURL + "\n"; // Previous URL.
+        }
+    ]]>
+    </fx:Script>
+
+    <mx:TabNavigator id="tn" width="300" change="updateURL(event)">
+            <mx:Panel label="Personal Data">
+                <mx:Form>
+                    <mx:FormItem label="Name:">
+                        <mx:TextInput id="ti1"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="Hometown:">
+                        <mx:TextInput id="ti2"/>
+                    </mx:FormItem>
+                    <mx:Button id="b1" click="updateTitle(event)" label="Submit"/>
+                </mx:Form>
+            </mx:Panel>
+            <mx:Panel label="Credit Card Info">
+                <mx:Form>
+                    <mx:FormItem label="Type:">
+                        <mx:ComboBox>
+                            <mx:dataProvider>
+                                <fx:String>Visa</fx:String>
+                                <fx:String>MasterCard</fx:String>
+                                <fx:String>American Express</fx:String>
+                            </mx:dataProvider>
+                        </mx:ComboBox>
+                    </mx:FormItem>
+                    <mx:FormItem label="Number:">
+                        <mx:TextInput id="ccnumber"/>
+                    </mx:FormItem>
+                </mx:Form>
+            </mx:Panel>
+            <mx:Panel label="Check Out">
+                <mx:TextArea id="ta2" text="You must agree to all the following conditions..."/>
+                <mx:CheckBox label="Agree"/>
+            </mx:Panel>            
+    </mx:TabNavigator>
+    <mx:TextArea id="ta1" width="580" height="400"/>
+
+</s:Application>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- behaviorExamples\SparkResizeEasing.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="750">
+
+    <fx:Declarations>
+        <s:Sine id="sineEasing"
+            easeInFraction="0.3"/>
+        <s:Power id="powerEasing"
+            exponent="4"/>
+        <s:Move id="moveRight" 
+            target="{myImage}"
+            xBy="500"
+            duration="2000"
+            easer="{powerEasing}"/>
+        <s:Move id="moveLeft" 
+            target="{myImage}"
+            xBy="-500"
+            duration="2000"
+            easer="{sineEasing}"/>
+    </fx:Declarations>
+
+    <s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/>
+    <s:Button label="Move Right"
+         x="0" y="100" 
+        click="moveRight.end();moveRight.play();"/>
+    <s:Button label="Move Left" 
+         x="0" y="125"
+        click="moveLeft.end();moveLeft.play();"/>
+</s:Application>

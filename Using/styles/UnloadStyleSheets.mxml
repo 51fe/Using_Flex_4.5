@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<!-- styles/UnloadStyleSheets.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+  <s:layout>
+     <s:VerticalLayout/>
+  </s:layout>
+
+    <fx:Script> 
+        <![CDATA[
+        public function toggleStyleSheet():void {
+            if (cb1.selected == true) {
+                styleManager.loadStyleDeclarations("assets/ButtonStyles.swf", true);
+                styleManager.loadStyleDeclarations("assets/LabelStyles.swf", true);
+            } else {
+                styleManager.unloadStyleDeclarations("assets/ButtonStyles.swf", true);
+                styleManager.unloadStyleDeclarations("assets/LabelStyles.swf", true);
+            }                       
+        }
+        ]]>
+    </fx:Script>    
+
+    <s:Button id="b1" label="Submit"/>
+    
+    <s:Label id="l1" text="This is a Label control."/>
+    
+    <s:CheckBox id="cb1" label="Load style sheet" 
+        click="toggleStyleSheet()" selected="false"/>
+</s:Application>

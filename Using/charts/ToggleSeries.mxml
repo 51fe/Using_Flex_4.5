@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- charts/ToggleSeries.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initApp();"
+    height="600">
+
+  <fx:Script><![CDATA[
+     [Bindable]
+     public var dataSet:Array;
+     public var myStates:Array =
+        ["Wisconsin","Ohio","Arizona","Penn"];
+     public var curSeries:String;
+     public function initApp():void {
+        var newData:Array = [];
+        for(var i:int=0;i<myStates.length;i++) {
+           newData[i] = {
+             Apples: Math.floor(Math.random()*150),
+             Oranges: Math.floor(Math.random()*150),
+             myState: myStates[i]
+           }
+        }
+        dataSet = newData;
+        curSeries = "apples";
+     }
+     public function changeData():void {
+        var series:Object = myChart.series[0];
+        if (curSeries == "apples") {
+           curSeries="oranges";
+           series.yField = "Oranges";
+           series.displayName = "Oranges";
+           series.setStyle("fill",0xFF9933);
+        } else {
+           curSeries="apples";
+           series.yField = "Apples";
+           series.displayName = "Apples";
+           series.setStyle("fill",0xFF0000);
+        }
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart"
+            dataProvider="{dataSet}" showDataTips="true">
+            <mx:horizontalAxis>
+                <mx:CategoryAxis dataProvider="{dataSet}"
+                    categoryField="myState"/>
+            </mx:horizontalAxis>
+            <mx:series>
+                <mx:ColumnSeries yField="Apples" displayName="Apples">
+                    <mx:fill>
+                        <mx:SolidColor color="0xFF0000"/>
+                    </mx:fill>
+                </mx:ColumnSeries>
+            </mx:series>
+        </mx:ColumnChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+
+    <s:Button id="b1" label="Toggle Series" click="changeData()"/>
+
+</s:Application>

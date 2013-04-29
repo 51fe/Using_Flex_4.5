@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\events\ComplexDGEditorReturnObject.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"  
+    width="700">
+    
+    <fx:Script>
+        <![CDATA[
+
+            import mx.events.DataGridEvent;
+            import mx.events.DataGridEventReason;
+            import mx.collections.ArrayCollection;
+            import myComponents.CityStateEditor;
+                        
+            [Bindable]
+            public var initDG:ArrayCollection = new ArrayCollection([
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', City: 'Boston', State: 'MA'},
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', City: 'SanFrancisco', State: 'CA'} 
+             ]);
+                
+            // Define the event listener.
+            public function processData(event:DataGridEvent):void {
+                // Check the reason for the event.
+                if (event.reason == DataGridEventReason.CANCELLED){
+                    // Do not update cell.
+                    return;
+                }           
+
+                if(event.dataField == "City and State")
+                {
+                    // Disable copying data back to the control.
+                    event.preventDefault();
+
+                    // Get new city from editor.
+                    myGrid.editedItemRenderer.data.City = CityStateEditor(DataGrid(event.target).itemEditorInstance).setCity.text;
+
+                    // Get new state from editor.
+                    myGrid.editedItemRenderer.data.State = CityStateEditor(DataGrid(event.target).itemEditorInstance).pickState.selectedItem;
+
+                    // Close the cell editor.
+                    myGrid.destroyItemEditor();
+
+                    // Notify the list control to update its display.
+                    myGrid.dataProvider.itemUpdated(event.itemRenderer.data);
+                }
+            }           
+        ]]>
+    </fx:Script>
+    
+    <mx:DataGrid id="myGrid" 
+        rowHeight="75" 
+        dataProvider="{initDG}" 
+        editable="true" 
+        itemEditEnd="processData(event);">  
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="City and State" width="150"
+                    itemEditor="myComponents.CityStateEditor">
+                <mx:itemRenderer>
+                    <fx:Component>
+                        <mx:Text selectable="false" width="100%" 
+                            text="{data.City}, {data.State}"/>
+                    </fx:Component>
+                </mx:itemRenderer>
+            </mx:DataGridColumn>
+        </mx:columns>       
+    </mx:DataGrid>      
+</s:Application>

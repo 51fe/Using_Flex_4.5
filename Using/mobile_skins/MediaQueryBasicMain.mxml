@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/MediaQueryValuesMain.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+     xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="320">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        s|Button {
+            fontSize: 12;
+        }
+
+        @media (os-platform: "Android") and (application-dpi: 240) {
+            s|Button {
+                fontSize: 10;
+            }
+        }
+
+    </fx:Style>
+    
+</s:ViewNavigatorApplication>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- mobile_skins/ShowCheckBoxSkins.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:skins160="spark.skins.mobile160.assets.*"
+    xmlns:skins240="spark.skins.mobile240.assets.*"
+    xmlns:skins320="spark.skins.mobile320.assets.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <!-- 
+    NOTE: You must add the mobile theme directory to source path 
+    to compile this example.
+    
+    For example: 
+    mxmlc -source-path+=\frameworks\projects\mobiletheme\src\ ShowCheckBoxSkins.mxml
+    -->
+
+    <s:Label text="160 DPI" fontSize="24" fontWeight="bold"/>
+    <s:HGroup>
+        <skins160:CheckBox_down/>
+        <skins160:CheckBox_downSymbol/>
+        <skins160:CheckBox_downSymbolSelected/>
+        <skins160:CheckBox_up/>
+        <skins160:CheckBox_upSymbol/>
+        <skins160:CheckBox_upSymbolSelected/>
+    </s:HGroup>
+
+    <mx:Spacer height="30"/>
+
+    <s:Label text="240 DPI" fontSize="24" fontWeight="bold"/>
+    <s:HGroup>
+        <skins240:CheckBox_down/>
+        <skins240:CheckBox_downSymbol/>
+        <skins240:CheckBox_downSymbolSelected/>
+        <skins240:CheckBox_up/>
+        <skins240:CheckBox_upSymbol/>
+        <skins240:CheckBox_upSymbolSelected/>
+    </s:HGroup>
+
+    <mx:Spacer height="30"/>
+
+    <s:Label text="320 DPI" fontSize="24" fontWeight="bold"/>
+    <s:HGroup>
+        <skins320:CheckBox_down/>
+        <skins320:CheckBox_downSymbol/>
+        <skins320:CheckBox_downSymbolSelected/>
+        <skins320:CheckBox_up/>
+        <skins320:CheckBox_upSymbol/>
+        <skins320:CheckBox_upSymbolSelected/>
+    </s:HGroup>
+
+    <s:Label text="down, downSymbol, downSymbolSelected, up, upSymbol, upSymbolSelected"/>
+
+</s:Application>

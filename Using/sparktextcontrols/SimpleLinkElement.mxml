@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SimpleLinkElement.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+        <s:RichEditableText id="richTxt" 
+            editable="false" 
+            focusEnabled="false">
+            <s:textFlow>
+                <s:TextFlow>
+                    <s:p>
+                        The following link takes you to: <s:a href="http://www.adobe.com">Adobe.com</s:a>
+                    </s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+
+        <s:RichEditableText id="richTxt2" 
+            editable="true" 
+            focusEnabled="false">
+            <s:textFlow>
+                <s:TextFlow>
+                    <s:p>
+                        Hold CTRL key down when using the following link: <s:a href="http://www.adobe.com">Adobe.com</s:a>
+                    </s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+        
+</s:Application>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/StylingPrompts.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        s|TextInput:normalWithPrompt {
+            color: #CCCCFF;
+            fontStyle: italic;
+        }
+
+        s|TextArea:normalWithPrompt {
+            color: #CCCCFF;
+            fontStyle: italic;
+        }
+
+        s|TextInput:disabledWithPrompt {
+            color: #CCFFFF;
+            fontStyle: italic;
+        }
+
+        s|TextArea:disabledWithPrompt {
+            color: #CCFFFF;
+            fontStyle: italic;
+        }
+
+    </fx:Style>
+    
+  <fx:Script>  
+    <![CDATA[  
+        private function resetPrompts():void {
+            myTextInput.text = "";
+            myTextArea.text = "";
+        }
+        
+        /* Disabling the controls causes the disabledWithPrompt pseudo selector to be used
+            instead of the normalWithPrompt pseudo selector. */
+        private function disableControls():void {
+            if (myTextInput.enabled) {
+                myTextInput.enabled = false;
+                myTextArea.enabled = false;
+            } else {
+                myTextInput.enabled = true;
+                myTextArea.enabled = true;
+            }           
+        }
+      ]]>  
+  </fx:Script>  
+  
+    <s:TextInput id="myTextInput" prompt="Enter name..."/>
+    <s:TextArea id="myTextArea" prompt="Enter details..."/>
+    
+    <s:HGroup>
+        <s:Button label="Reset" click="resetPrompts()"/>
+        <s:Button label="Toggle Enabled/Disabled" click="disableControls()"/>
+    </s:HGroup>
+
+</s:Application>

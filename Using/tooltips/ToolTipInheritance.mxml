@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToolTipInheritance.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:VGroup toolTip="VGroup ToolTip">
+        <s:Button id="b1" label="Button 1" toolTip="Button ToolTip"/>
+        <s:Button id="b2" label="Button 2"/>
+    </s:VGroup>
+ 
+</s:Application>

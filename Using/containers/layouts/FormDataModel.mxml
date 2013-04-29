@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataModel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <!-- Define the submit function that validates and 
+        processes the data. -->
+    <fx:Script>
+        <![CDATA[
+            private function processValues():void {
+                var inputZip:String = myFormModel.zipCodeModel;
+                var inputPhone:String = myFormModel.phoneNumberModel;
+                // Process data.
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Define data model. -->
+        <fx:Model id="myFormModel">
+            <info>
+                <zipCodeModel>{zipCode.text}</zipCodeModel>
+                <phoneNumberModel>{phoneNumber.text}</phoneNumberModel>
+            </info>
+        </fx:Model>
+    </fx:Declarations>
+
+    <!-- Define the form. -->
+    <mx:Form borderStyle="solid">
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zipCode"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone Number">
+            <mx:TextInput id="phoneNumber"/>
+        </mx:FormItem>
+        <mx:FormItem>
+            <mx:Button id="b1" 
+                label="Submit" 
+                click="processValues();"/>
+        </mx:FormItem>
+    </mx:Form>
+</s:Application>

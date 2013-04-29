@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- controls\date\ProgrammaticDateChooserSelector.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init()">
+    <fx:Script>
+        <![CDATA[
+            private function init():void {
+                dc1.displayedMonth = 1;
+                dc1.displayedYear = 2008;
+            }           
+            
+            public function displayDates():void {
+                var dateRanges:Array = [];
+                for (var i:int=0; i<shows.show.length(); i++) { 
+                    var cDate:Date = 
+                        new Date(shows.show[i].showDate.toString());           
+                    var cDateObject:Object = 
+                        {rangeStart:cDate, rangeEnd:cDate};
+                    dateRanges.push(cDateObject);
+                }
+                dc1.selectedRanges = dateRanges;
+            }           
+        ]]>
+    </fx:Script>
+
+    <!-- Define the data for the DateChooser -->    
+    <fx:Declarations>
+    <fx:XML id="shows" format="e4x">
+        <data>
+            <show>
+               <showID>1</showID>
+                <showDate>02/28/2008</showDate>
+                <showTime>10:45am/11:15am</showTime>
+            </show>
+            <show>
+                <showID>2</showID>
+                <showDate>02/23/2008</showDate>
+                <showTime>7:00pm</showTime>
+            </show>
+        </data>
+    </fx:XML>
+    </fx:Declarations>
+ 
+    <mx:DateChooser id="dc1" 
+        showToday="false" 
+        creationComplete="displayDates();"/>
+    
+</s:Application>

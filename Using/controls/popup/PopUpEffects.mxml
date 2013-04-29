@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx">
+    <fx:Style>
+        .popUpBox
+        {
+            backgroundColor : #e9e9e9; 
+            borderStyle : "solid";
+            paddingTop : 2;
+            paddingBottom : 2; 
+            paddingLeft : 2; 
+            paddingRight : 2;
+        }
+    </fx:Style>
+    
+    <fx:Declarations>
+        <mx:Sequence id="hideSearch">
+            <s:Scale target="{searchPopUp.popUp}" 
+                     scaleXFrom="1" 
+                     scaleXTo=".1" 
+                     duration="250"/>
+            <mx:SetPropertyAction target="{searchPopUp}" 
+                                  name="displayPopUp" 
+                                  value="false"/>
+        </mx:Sequence>
+        
+        <mx:Sequence id="showSearch">
+            <mx:SetPropertyAction target="{searchPopUp}" 
+                                  name="displayPopUp" 
+                                  value="true"/>
+            <s:Scale target="{searchPopUp.popUp}" 
+                     scaleXFrom=".1" 
+                     scaleXTo="1" 
+                     duration="200"/>
+        </mx:Sequence>
+    </fx:Declarations>
+    
+    <s:HGroup>
+        <s:Button label="Search database" click="showSearch.play() "/>
+        <s:PopUpAnchor id="searchPopUp" 
+                       left="0" right="0" 
+                       popUpPosition="right" 
+                       styleName="popUpBox">
+            <s:HGroup>
+                <s:TextInput id="searchField"
+                             width="80" />
+                <s:Button label="Find now" 
+                          click="hideSearch.play();"/>
+            </s:HGroup>
+        </s:PopUpAnchor>
+    </s:HGroup>
+</s:Application>

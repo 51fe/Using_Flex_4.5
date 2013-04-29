@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- events/ConditionalTargetHandler.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+    
+        public function initApp():void {
+            button1.addEventListener(MouseEvent.CLICK, myEventHandler);
+            cb1.addEventListener(MouseEvent.CLICK, myEventHandler);
+        }
+
+        public function myEventHandler(event:Event):void {
+            switch (event.currentTarget.className) {
+                case "Button":
+                    // Process Button click.
+                    Alert.show("You clicked the Button control.");
+                    break;
+                case "CheckBox":
+                    // Process CheckBox click.
+                    Alert.show("You clicked the CheckBox control.");
+                    break;
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button label="Click Me" id="button1"/>
+    <s:CheckBox label="Select Me" id="cb1"/>
+
+</s:Application>

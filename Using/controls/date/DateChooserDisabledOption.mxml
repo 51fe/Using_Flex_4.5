@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- controls\date\DateChooserDisabledOption.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <!-- Use tags.-->
+    <mx:DateField>
+            <mx:disabledDays>
+                <fx:Number>0</fx:Number>
+                <fx:Number>6</fx:Number>
+            </mx:disabledDays>
+    </mx:DateField>     
+
+    <!-- Use tag attributes.-->
+    <mx:DateField disabledDays="[0,6]"/>
+</s:Application>

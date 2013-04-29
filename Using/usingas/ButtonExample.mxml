@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- usingas/ButtonExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        private function setLabel():void {
+            if (myButton.label=="Click Me") { 
+                myButton.label = "Clicked";
+            } else {                
+                myButton.label = "Click Me";                
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton" label="Click Me" click="setLabel();"/>
+    
+</s:Application>

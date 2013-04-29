@@ -1,0 +1,22 @@
+<?xml version="1.0"?> 
+<!-- asAdvanced/MainBottomVBox.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*" >
+
+  <MyComp:BottomUpVBox>  
+    <mx:Label text="Label 1"/>
+    <mx:Button label="Button 1"/>
+
+    <mx:Label text="Label 2"/>
+    <mx:Button label="Button 2"/>
+    
+    <mx:Label text="Label 3"/>
+    <mx:Button label="Button 3"/>
+
+    <mx:Label text="Label 4"/>
+    <mx:Button label="Button 4"/>
+
+  </MyComp:BottomUpVBox>  
+</s:Application>

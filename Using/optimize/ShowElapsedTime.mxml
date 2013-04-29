@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- optimize/ShowElapsedTime.mxml -->
+<s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="init()"
+    height="750">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+        
+        [Bindable]
+        public var dp:ArrayCollection = new ArrayCollection ([
+            {food:"apple", type:"fruit", color:"red"}, 
+            {food:"potato", type:"vegetable", color:"brown"}, 
+            {food:"pear", type:"fruit", color:"green"},
+            {food:"orange", type:"fruit", color:"orange"},
+            {food:"spinach", type:"vegetable", color:"green"},
+            {food:"beet", type:"vegetable", color:"red"}
+        ]);
+
+        public var sTime:Number;
+        public var eTime:Number;
+        public var pTime:Number;
+
+        private function init():void {
+            f1.addEventListener("preinitialize", logPreInitTime, true);
+            f1.addEventListener("creationComplete", logCreationCompTime, true);
+        }
+
+        private var isFirst:Boolean = true;
+
+        private function logPreInitTime(e:Event):void {
+            // Get the time when the preinitialize event is dispatched.
+            sTime = getTimer();
+            
+            trace("Preinitialize time for " + e.target + ": " + sTime.toString());            
+        }
+
+        private function logCreationCompTime(e:Event):void {
+            // Get the time when the creationComplete event is dispatched.
+            eTime = getTimer();
+    
+            /* Use target rather than currentTarget because these events are
+               triggered by each child of the Form control during the capture
+               phase. */
+            trace("CreationComplete time for " + e.target + ": " + eTime.toString());
+        }
+    
+    ]]></fx:Script>
+
+    <s:Form id="f1">
+        <s:FormHeading label="Sample Form" id="fh1"/>
+        <s:FormItem label="List Control" id="fi1">
+            <s:List dataProvider="{dp}" labelField="food" id="list1"/>
+        </s:FormItem>
+        <s:FormItem label="DataGrid control" id="fi2">
+            <s:DataGrid width="200" dataProvider="{dp}" id="dg1"/>
+        </s:FormItem>
+        <s:FormItem label="Date controls" id="fi3">
+            <mx:DateChooser id="dc"/>
+            <mx:DateField id="df"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

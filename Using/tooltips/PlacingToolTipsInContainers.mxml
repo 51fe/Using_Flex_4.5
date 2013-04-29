@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- tooltips/PlacingToolTipsInContainers.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="400" width="600"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script> 
+        <![CDATA[
+            import mx.controls.ToolTip;
+            import mx.managers.ToolTipManager;
+            import mx.core.IUIComponent;
+
+            private var tip:ToolTip;
+            private var s:String;
+               
+            private function showTipA(event:Object):void {
+                s="My Tip A";
+                tip = ToolTipManager.createToolTip(s, 
+                    event.currentTarget.x + event.currentTarget.width + 10, 
+                    event.currentTarget.y) as ToolTip;
+            }
+
+            private function showTipB(event:Object):void {
+                s="My Tip B";
+                var pt:Point = new Point(0,0);
+                
+                /* Call this method to convert the object's
+                   coordinates inside its container to the stage's 
+                   global coordinates. */
+                pt = event.currentTarget.contentToGlobal(pt);
+                
+                tip = ToolTipManager.createToolTip(s, 
+                    pt.x + event.currentTarget.width + 10, pt.y, null,
+                    IUIComponent(event.currentTarget)) as ToolTip;
+            }
+
+            private function destroyTip(event:Object):void {
+                 ToolTipManager.destroyToolTip(tip);               
+            }            
+        ]]>
+    </fx:Script>
+
+    <!-- A ToolTip at the top level. -->
+    <!-- The event handler for this ToolTip does not use any special 
+    logic to account for whether the ToolTip is inside a container. 
+    But this ToolTip is not inside a container so it positions itself 
+    normally. -->
+    <s:TextInput id="a"
+        text="Good ToolTip placement"
+        width="175" 
+        focusIn="showTipA(event)" 
+        focusOut="destroyTip(event)"/>
+
+    <s:VGroup>
+        <!-- A ToolTip inside a container. -->
+        <!-- The event handler for this ToolTip accounts for the control 
+        being inside a container and positions the ToolTip using the 
+        contentToGlobal() method. -->
+        <s:TextInput id="b" 
+            text="Good ToolTip placement"
+            width="175" 
+            focusIn="showTipB(event)" 
+            focusOut="destroyTip(event)"/>  
+
+        <!-- A ToolTip inside a container. -->
+        <!-- The event handler for this ToolTip does not use any special 
+        logic to account for whether the ToolTip is inside a container. 
+        As a result, it positions itself using coordinates that are relative
+        to the container, but that are not converted to global coordinates. -->
+        
+        <s:TextInput id="c" 
+            text="Bad ToolTip placement"
+            width="175" 
+            focusIn="showTipA(event)" 
+            focusOut="destroyTip(event)"/>  
+
+    </s:VGroup>
+</s:Application>

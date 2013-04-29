@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/FSComboBoxSimple.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script> 
+        <![CDATA[ 
+            import flash.filesystem.File; 
+             
+            private function init():void { 
+                fcb.directory = File.desktopDirectory; 
+                fcbIndent.directory = File.desktopDirectory; 
+                fcbNoIcons.directory = File.desktopDirectory; 
+                fcbChange.directory = File.desktopDirectory; 
+            } 
+             
+            private function setOutput():void { 
+                output.text = fcbChange.directory.nativePath; 
+            } 
+        ]]> 
+    </fx:Script>
+     
+    <mx:FileSystemComboBox id="fcb"/> 
+    <mx:FileSystemComboBox id="fcbNoIcons" 
+        showIcons="false"/> 
+    <mx:FileSystemComboBox id="fcbIndent" 
+        indent="20"/> 
+    <mx:FileSystemComboBox id="fcbChange" 
+        directoryChange="setOutput();"/> 
+    <s:TextArea id="output" 
+        width="200" height="50"/> 
+</s:WindowedApplication>

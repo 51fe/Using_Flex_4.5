@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- mxml/myComponents/boxes/CustomBox.mxml -->
+<mx:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <mx:dataProvider>    
+        <fx:String>AK</fx:String>
+        <fx:String>AL</fx:String>
+        <!-- Add all other states. -->
+    </mx:dataProvider>
+</mx:ComboBox>

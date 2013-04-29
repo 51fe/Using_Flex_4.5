@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- fonts/MultipleFaces.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFont;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        /* Note the different filename for boldface. */
+        src:url("../assets/MyriadWebPro-Bold.ttf");
+        fontFamily: myFont; /* Notice that this is the same alias. */
+        fontWeight: bold;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        /* Note the different filename for italic face. */
+        src:url("../assets/MyriadWebPro-Italic.ttf");
+        fontFamily: myFont; /* Notice that this is the same alias. */
+        fontStyle: italic;
+        embedAsCFF: true;
+     }
+     
+     .myPlainStyle {
+        fontSize: 32;
+        fontFamily: myFont;
+     }
+     
+     .myBoldStyle {
+        fontSize: 32;
+        fontFamily: myFont;
+        fontWeight: bold;
+     }
+
+     .myItalicStyle {
+        fontSize: 32;
+        fontFamily: myFont;
+        fontStyle: italic;
+     }
+  </fx:Style>
+
+  <s:VGroup> 
+     <s:Label text="Plain Text" styleName="myPlainStyle"/> 
+     <s:Label text="Italic Text" styleName="myItalicStyle"/> 
+     <s:Label text="Bold Text" styleName="myBoldStyle"/> 
+  </s:VGroup>
+
+</s:Application>

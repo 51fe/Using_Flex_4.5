@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/TextComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <RichText>
+       <content>Hello World!</content>
+    </RichText>
+</Graphic>

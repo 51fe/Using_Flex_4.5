@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- states\StatesAddRelativeMultipleAlt.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:states>
+        <mx:State name="NewVBox">
+            <mx:AddChild relativeTo="{v1}">
+                <mx:VBox id="v2"/>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{v2}">
+                <mx:Button id="buttonNew1" label="New Button"/>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{v2}">
+                <mx:Button id="buttonNew2" label="New Button"/>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{v2}">
+                <mx:Button id="buttonNew3" label="New Button"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+    
+    <mx:VBox id="v1">
+      <mx:Button label="Change State" 
+        click=
+          "currentState = currentState=='NewVBox' ? '':'NewVBox';"/>          
+    </mx:VBox>    
+</mx:Application>

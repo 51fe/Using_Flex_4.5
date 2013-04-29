@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/FormattingExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)" 
+    chromeColor="{resourceManager.getUint('FormattingValues', 'CHROMECOLOR')}"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Declarations>
+        <s:DateTimeFormatter id="dateFormatter" 
+            dateTimePattern="{resourceManager.getString('FormattingValues', 'DATE_FORMAT')}"/>
+        <s:DateTimeFormatter id="timeFormatter"
+            dateTimePattern="{resourceManager.getString('FormattingValues', 'TIME_FORMAT')}"/>    
+        <s:CurrencyFormatter id="currencyFormatter"
+            useCurrencySymbol="true"
+            useGrouping="true"
+            currencySymbol="{resourceManager.getString('FormattingValues', 'CURRENCY_SYMBOL')}"
+            groupingSeparator="{resourceManager.getString('FormattingValues', 'THOUSANDS_SEPARATOR')}"
+            decimalSeparator="{resourceManager.getString('FormattingValues', 'DECIMAL_SEPARATOR')}"/>        
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        import mx.resources.ResourceBundle;
+
+        [Bindable]
+        private var locales:Array = [ "en_US","es_ES"];
+
+        [Bindable]
+        private var dateValue:String;
+        [Bindable]
+        private var timeValue:String;           
+        [Bindable]
+        private var currencyValue:String;           
+
+        private var d:Date = new Date();
+
+        private function initApp(e:Event):void {
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]);            
+            applyFormats(e);            
+            
+            // Updating the localeChain does not reapply formatters. As a result, you must
+            // apply them whenever the ResourceManager's change event is triggered.
+            resourceManager.addEventListener(Event.CHANGE, applyFormats);
+            
+        }
+
+        private function comboChangeHandler():void {
+            // Changing the localeChain property triggers a change event, so the
+            // applyFormats() method will be called whenever you select a new locale.
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];            
+        }
+        
+        private function applyFormats(e:Event):void {
+            dateValue = dateFormatter.format(d);
+            timeValue = timeFormatter.format(d); 
+            currencyValue = currencyFormatter.format(1000);         
+        }
+    ]]></fx:Script>
+
+    <fx:Metadata>
+        [ResourceBundle("FormattingValues")]
+    </fx:Metadata> 
+
+    <mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}"
+        change="comboChangeHandler()"/>
+        
+    <s:Form>
+        <s:FormItem label="Date">
+            <s:TextInput id="ti1" text="{dateValue}"/>
+        </s:FormItem>
+        <s:FormItem label="Time">
+            <s:TextInput text="{timeValue}"/>
+        </s:FormItem>
+        <s:FormItem label="Currency">
+            <s:TextInput text="{currencyValue}"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

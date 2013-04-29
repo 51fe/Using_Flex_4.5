@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- states\AddBlurApp.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    xmlns:myOverride="myOverrides.*">
+
+    <mx:states>
+        <mx:State name="State1">
+            <myOverride:AddBlur target="{b1}"/> 
+        </mx:State>       
+    </mx:states>
+
+    <mx:Button id="b1" 
+        label="Click Me: Base State"/>
+    
+    <mx:Button  
+        label="Set State 1" 
+        click="currentState='State1';"/>
+
+    <mx:Button 
+        label="Set Base State" 
+        click="currentState='';"/>
+</mx:Application>

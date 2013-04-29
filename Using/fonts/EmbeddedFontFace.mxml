@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- fonts/EmbeddedFontFace.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFontFamily;
+        embedAsCFF: true;
+     }
+     
+     s|VGroup {
+        fontFamily: myFontFamily;
+        fontSize: 15;
+     }     
+  </fx:Style>
+
+  <s:Panel title="Embedded Font Applied With Type Selector">
+     <s:VGroup>
+        <!-- This MX button tries to use a system font. -->
+        <mx:Button label="Click Me"/>
+
+        <!-- This Spark button uses the font of the VGroup container. -->
+        <s:Button label="Click Me"/>
+        <s:Label text="This is a Label control."/> 
+        <s:RichText width="250">
+            <s:text>
+                The text in this RichText control uses the 
+                font set on the VGroup.
+            </s:text>
+        </s:RichText>
+     </s:VGroup>
+  </s:Panel>
+
+  <!-- This button uses the default font because it is not in the VGroup. -->
+  <s:Button label="Click Me"/>
+    
+</s:Application>

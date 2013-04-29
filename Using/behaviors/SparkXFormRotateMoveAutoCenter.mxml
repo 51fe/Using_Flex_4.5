@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkXFormRotateMoveAutoCenter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Parallel id="parallelRMForward"
+            target="{myImage}">
+            <s:Rotate
+                angleBy="180"
+                autoCenterTransform="true"/>
+            <s:Move
+                xBy="100"
+                yBy="100"
+                autoCenterTransform="true"/>
+        </s:Parallel>
+        <s:Parallel id="parallelRMBack"
+            target="{myImage}">
+            <s:Rotate
+                angleBy="180"
+                autoCenterTransform="true"/>
+            <s:Move
+                xBy="-100"
+                yBy="-100"
+                autoCenterTransform="true"/>
+        </s:Parallel>
+    </fx:Declarations>
+
+    <s:Button label="Play Effect Forward" 
+        x="10" y="10"
+        click="parallelRMForward.end();parallelRMForward.play();"/>
+    <s:Button label="Play Effect Backward" 
+        x="150" y="10"
+        click="parallelRMBack.end();parallelRMBack.play();" />
+    <s:Image id="myImage" 
+        x="10" y="50"
+        source="@Embed(source='assets/logo.jpg')"/>
+</s:Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\list\MainListStateRenderer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="700" width="700">
+
+    <mx:List id="myList" 
+        height="180" width="250" 
+        variableRowHeight="true" 
+        itemRenderer="myComponents.RendererState"> 
+        <mx:dataProvider>
+            <fx:Object label="Alaska" 
+                data="Juneau" 
+                webPage="http://www.state.ak.us/"/>
+            <fx:Object label="Alabama" 
+                data="Montgomery" 
+                webPage="http://www.alabama.gov/" />
+            <fx:Object label="Arkansas" 
+                data="Little Rock" 
+                webPage="http://www.state.ar.us/"/>                  
+        </mx:dataProvider>
+    </mx:List>
+</s:Application>

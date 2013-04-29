@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- styles/GetStyleInline.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script><![CDATA[
+        private function readStyle():void {
+            myLabel.text = "Label style is: " + myLabel.getStyle("fontStyle");
+        }
+    ]]></fx:Script>
+    
+    <s:VGroup width="500" height="200">  
+        <s:Button id="b1" click="readStyle()" label="Get Style"/>
+        <s:Label id="myLabel" fontStyle="italic"/>
+    </s:VGroup>
+
+</s:Application>

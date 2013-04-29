@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\ModifyDataGridData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="500" height="600" >
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.*;
+            import mx.collections.*;
+    
+            // Add event information to a log (displayed in the TextArea).
+            public function collectionEventHandler(event:CollectionEvent):void {
+                switch(event.kind) {
+                    case CollectionEventKind.ADD:
+                        addLog("Item "+ event.location + " added");
+                        break;
+                    case CollectionEventKind.REMOVE:
+                        addLog("Item "+ event.location + " removed");
+                        break;
+                    case CollectionEventKind.REPLACE:
+                        addLog("Item "+ event.location + " Replaced");
+                        break;
+                    case CollectionEventKind.UPDATE:
+                        addLog("Item updated");
+                        break;
+                }
+            }
+            // Helper function for adding information to the log.
+            public function addLog(str:String):void {
+                log.text += str + "\n";
+            }
+    
+            // Add a person to the ArrayCollection.
+            public function addPerson():void {
+                ac.addItem({first:firstInput.text, last:lastInput.text,
+                    email:emailInput.text});
+                    clearInputs();
+            }
+    
+            // Remove a person from the ArrayCollection.
+            public function removePerson():void {
+                // Make sure an item is selected.
+                if (dg.selectedIndex >= 0) {
+                    ac.removeItemAt(dg.selectedIndex);
+            }
+        }
+    
+        // Update an existing person in the ArrayCollection.
+        public function updatePerson():void {
+            // Make sure an item is selected.
+            if (dg.selectedItem !== null) {
+                ac.setItemAt({first:firstInput.text, last:lastInput.text,
+                    email:emailInput.text}, dg.selectedIndex);
+            }
+        }
+    
+        // The change event listener for the DataGrid.
+        // Clears the text input controls and updates them with the contents
+        // of the selected item.
+        public function dgChangeHandler():void {
+            clearInputs();
+            firstInput.text = dg.selectedItem.first;
+            lastInput.text = dg.selectedItem.last;
+            emailInput.text = dg.selectedItem.email;
+        }
+    
+        // Clear the text from the input controls.
+        public function clearInputs():void {
+            firstInput.text = "";
+            lastInput.text = "";
+            emailInput.text = "";
+        }
+
+        // The labelFunction for the ComboBox;
+        // Puts first and last names in the ComboBox.
+        public function myLabelFunc(item:Object):String {
+            return item.first + " " + item.last;
+        }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <!-- The ArrayCollection used by the DataGrid and ComboBox. -->
+        <mx:ArrayCollection id="ac"
+            collectionChange="collectionEventHandler(event)">
+            <mx:source>
+                <fx:Object first="Matt" last="Matthews" email="matt@myco.com"/>
+                <fx:Object first="Sue" last="Sanderson" email="sue@myco.com"/>
+                <fx:Object first="Harry" last="Harrison" email="harry@myco.com"/>
+            </mx:source>
+        </mx:ArrayCollection>
+    </fx:Declarations>
+
+    <mx:DataGrid width="450" id="dg" dataProvider="{ac}"
+            change="dgChangeHandler()">
+        <mx:columns>
+            <mx:DataGridColumn dataField="first" headerText="First Name"/>
+            <mx:DataGridColumn dataField="last" headerText="Last Name"/>
+            <mx:DataGridColumn dataField="email" headerText="Email"/> 
+        </mx:columns>
+    </mx:DataGrid>
+
+    <!-- The ComboBox and DataGrid controls share an ArrayCollection as their
+        data provider.
+        The ComboBox control uses the labelFunction property to construct the
+        labels from the dataProvider fields. -->
+    <s:ComboBox id="cb" dataProvider="{ac}" labelFunction="myLabelFunc"/>
+    
+    <!-- Form for data to add or change in the ArrayCollection. -->
+    <s:Form>
+       <s:FormItem label="First Name">
+            <s:TextInput id="firstInput"/>
+       </s:FormItem>
+       <s:FormItem label="Last Name">
+            <s:TextInput id="lastInput"/>
+       </s:FormItem>
+       <s:FormItem label="Email">
+            <s:TextInput id="emailInput"/>
+       </s:FormItem>
+    </s:Form>
+    
+    <s:HGroup>
+        <!-- Buttons to initiate operations on the collection. -->
+        <s:Button label="Add New" click="addPerson()"/>
+        <s:Button label="Update Selected" click="updatePerson()"/>
+        <s:Button label="Remove Selected" click="removePerson()"/>
+        <!-- Clear the text input fields. -->
+        <s:Button label="Clear" click="clearInputs()"/>
+    </s:HGroup>
+    
+    <!-- The application displays event information here -->
+    <s:Label text="Log"/>
+    <s:TextArea id="log" width="100" height="100%"/>
+</s:Application>

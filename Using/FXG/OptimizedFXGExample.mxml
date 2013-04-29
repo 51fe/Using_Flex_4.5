@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/OptimizedFXGExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="*"
+    width="500" height="300">
+
+    <s:Group>
+        <comps:star height="100" width="100" x="50" y="50"/>
+        <comps:star rotationX="20" height="70" width="70" x="150" y="50" alpha=".75"/>
+        <comps:star rotationX="40" height="50" width="50" x="220" y="50" alpha=".5"/>
+        <comps:star rotationX="60" height="30" width="30" x="270" y="50" alpha=".3"/>
+        <comps:star rotationX="80" height="10" width="10" x="300" y="50" alpha=".1"/>
+    </s:Group>
+
+</s:Application> 

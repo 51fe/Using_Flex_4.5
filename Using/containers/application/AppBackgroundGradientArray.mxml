@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppBackgroundGradientArray.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    backgroundGradientColors="[0x0000FF, 0xCCCCCC]">
+    
+    <!-- ... -->
+</mx:Application>

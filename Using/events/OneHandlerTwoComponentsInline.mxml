@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- events/OneHandlerTwoComponentsInline.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+
+        private function submitForm(e:Event):void {
+            // Handle event here.
+            Alert.show("Current Target: " + e.currentTarget.id);
+        }
+
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" 
+        label="Click Me"
+        click="submitForm(event)"/>
+
+    <s:Button id="b2" 
+        label="Click Me, Too"
+        click="submitForm(event)"/>
+        
+</s:Application>

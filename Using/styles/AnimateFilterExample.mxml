@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/AnimateFilterExample.mxml -->
+<s:Application backgroundColor="0xFFFFFF" 
+     xmlns:fx="http://ns.adobe.com/mxml/2009" 
+     xmlns:mx="library://ns.adobe.com/flex/mx" 
+     xmlns:s="library://ns.adobe.com/flex/spark" 
+     creationComplete="initApp();">
+     <fx:Script>
+          <![CDATA[
+               import spark.effects.*;
+               import spark.filters.BlurFilter;               
+               import spark.effects.animation.*;
+               
+               private var blurFilter:BlurFilter;
+               private var blurAnim:AnimateFilter;
+               private var smpX:SimpleMotionPath;
+               private var smpY:SimpleMotionPath;
+               
+               private function initApp():void {
+                    blurFilter = new BlurFilter();
+                    blurAnim = new AnimateFilter(btn1, blurFilter);
+
+                    smpX = new SimpleMotionPath("blurX",0,20);
+                    smpY = new SimpleMotionPath("blurY",0,20);
+                    blurAnim.motionPaths = Vector.<MotionPath>([smpX,smpY]);
+               }
+               
+               private function doBlurSample():void {                
+                    blurAnim.repeatCount = 0;
+                    blurAnim.repeatBehavior = RepeatBehavior.REVERSE;
+                    blurAnim.play();
+               }
+               
+               private function stopAnimation():void {
+                    blurAnim.stop();
+               }
+          ]]>
+     </fx:Script>
+
+      <s:Button id="btn1" label="Blur" 
+           mouseOver="doBlurSample();" 
+           mouseOut="stopAnimation();"/>
+</s:Application>

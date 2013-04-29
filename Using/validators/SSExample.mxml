@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- validators\SSExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+
+    <s:Form id="identityForm">
+        <s:FormItem id="ssnItem" label="Social Security Number">
+            <s:TextInput id="ssnField"/>
+        </s:FormItem>
+        <s:FormItem id="licenseItem" label="Driver's License Number">
+            <s:TextInput id="licenseInput"/> <!-- Not validated -->
+        </s:FormItem>
+    </s:Form>
+
+    <fx:Declarations>
+        <mx:SocialSecurityValidator id="ssV" 
+            source="{ssnField}" property="text"/>
+    </fx:Declarations>
+</s:Application>

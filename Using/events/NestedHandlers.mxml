@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- events/NestedHandlers.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        public function disableControl(event:MouseEvent):void {
+            // Use this same logic for all events.
+            event.currentTarget.enabled = false;
+        }
+
+        public function doSomething(event:MouseEvent):void {
+            b1.label = "clicked";
+            ta1.text += "Something happened.";
+        }
+
+        public function doSomethingElse(event:MouseEvent):void {
+            b2.label = "clicked";
+            ta1.text += "Something happened again.";
+        }
+    ]]></fx:Script>
+
+    <s:HGroup id="hb1" height="200" click="disableControl(event)">
+        <s:Button id='b1' label="Click Me" click="doSomething(event)"/>
+        <s:Button id='b2' label="Click Me" click="doSomethingElse(event)"/>
+        <s:TextArea id="ta1"/>
+    </s:HGroup>
+
+    <s:Button id="resetButton" 
+        label="Reset" 
+        click="hb1.enabled=true;b1.enabled=true;b2.enabled=true;b1.label='Click Me';b2.label='Click Me';"/>
+
+</s:Application>

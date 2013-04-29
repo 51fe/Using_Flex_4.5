@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- charts/PieLabelFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/budget-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/budget.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import spark.formatters.*;
+
+     public function display(
+        data:Object,
+        field:String,
+        index:Number,
+        percentValue:Number):String
+     {
+            return data.item + "\n$" + data.amount +
+            "\n(" + round(percentValue,2) + "%)";
+     }
+     // Rounds to 2 places:
+     public function round(num:Number, precision:Number):Number {
+        var result:String;
+        var f:NumberFormatter = new NumberFormatter();
+        f.fractionalDigits = precision;
+        result = f.format(num);
+        return Number(result);
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Expenditures for FY '09">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PieChart id="chart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="false">
+        <mx:series>
+           <mx:PieSeries
+                labelPosition="callout"
+                field="amount"
+                labelFunction="display"
+                nameField="item"/>
+        </mx:series>
+     </mx:PieChart>
+     <mx:Legend dataProvider="{chart}"/>          
+  </s:Panel>
+</s:Application>

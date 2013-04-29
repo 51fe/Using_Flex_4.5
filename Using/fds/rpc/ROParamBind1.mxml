@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\ROParamBind1.mxml. --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:RemoteObject
+        id="ro"
+        destination="roDest">
+
+        <mx:method name="setData">
+            <mx:arguments>
+                <arg1>{text1.text}</arg1>
+                <arg2>{text2.text}</arg2>
+            </mx:arguments>
+        </mx:method>
+    </mx:RemoteObject>
+    <mx:TextInput id="text1"/>
+    <mx:TextInput id="text2"/>
+
+    <mx:PhoneNumberValidator source="{ro.setData.arguments}" property="arg1"/>
+</mx:Application>

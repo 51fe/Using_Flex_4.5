@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- styles/ArrayOfColorsMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+      <fx:Array id="myDepthColors">
+         <fx:Object>0xFFCC33</fx:Object>
+         <fx:Object>0xFFCC99</fx:Object>
+         <fx:Object>0xCC9900</fx:Object>
+      </fx:Array>
+
+      <fx:Array id="myAlternatingRowColors">
+         <fx:Object>red</fx:Object>
+         <fx:Object>green</fx:Object>
+      </fx:Array>
+
+      <fx:XMLList id="treeData">
+         <node label="Mail Box">
+            <node label="Inbox">
+               <node label="Marketing"/>
+               <node label="Product Management"/>
+               <node label="Personal"/>
+            </node>
+            <node label="Outbox">
+               <node label="Professional"/>
+               <node label="Personal"/>
+            </node>
+            <node label="Spam"/>
+            <node label="Sent"/>
+         </node>    
+      </fx:XMLList>
+    </fx:Declarations>
+
+  <s:Panel title="Tree Control Example" width="50%">
+        <mx:Tree id="myTree" 
+           width="100%" 
+           labelField="@label" 
+           dataProvider="{treeData}"
+           depthColors="{myDepthColors}" 
+           alternatingItemColors="{myAlternatingRowColors}"/>
+  </s:Panel>
+</s:Application>

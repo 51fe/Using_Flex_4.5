@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- repeater\RefRepeatedChildComponents.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        
+            public function labelTrace():void {
+                for (var i:int = 0; i < nameLabel.length; i++)
+                    trace(nameLabel[i].text);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:Model id="catalog" source="../assets/repeater/catalog.xml"/>
+    </fx:Declarations>
+    
+    <s:Label id="title" text="Products:"/>
+
+    <mx:VBox>
+        <mx:Repeater id="r" dataProvider="{catalog.product}" 
+                startingIndex="1">
+            <mx:VBox id="vb">
+                <mx:Label id="nameLabel"
+                    text="{r.currentItem.name}: ${r.currentItem.price}"
+                    width="200"/>
+                <mx:Label id="shipLabel" 
+                    text="Free shipping: {r.currentItem.freeship}"/>
+                <mx:Spacer/>
+            </mx:VBox>
+        </mx:Repeater>
+    </mx:VBox>
+
+    <s:Button label="Trace" click="labelTrace();"/>
+
+</s:Application>

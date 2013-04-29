@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- modules/ChartChildModuleLoader.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[    
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            public var expenses:ArrayCollection = new ArrayCollection([
+                {Month:"Jan", Profit:2000, Expenses:1500},
+                {Month:"Feb", Profit:1000, Expenses:200},
+                {Month:"Mar", Profit:1500, Expenses:500}
+            ]);
+
+            public function getNewData():ArrayCollection {
+                return new ArrayCollection([
+                    {Month:"Apr", Profit:1000, Expenses:1100},
+                    {Month:"May", Profit:1300, Expenses:500},
+                    {Month:"Jun", Profit:1200, Expenses:600}
+                ]);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:ModuleLoader url="ChartChildModule.swf" id="m1"/>
+
+</s:Application>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<!-- dpcontrols/TreeEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+   <fx:Script>
+      <![CDATA[
+         import flash.events.*;
+         import mx.events.*;
+         import mx.controls.*;
+
+         private function changeEvt(event:Event):void {
+            var theData:String = ""
+            if (event.currentTarget.selectedItem.@data) {
+               theData = " Data: " + event.currentTarget.selectedItem.@data;
+            }
+            forChange.text = event.currentTarget.selectedItem.@label + theData; 
+         }
+
+      private function itemOpenEvt(event:TreeEvent):void {
+         forOpen.text = event.item.@label;
+      }
+   ]]>
+   </fx:Script>
+
+   <mx:Tree id="XMLTree1" width="150" height="170"
+          labelField="@label" itemOpen="itemOpenEvt(event);" 
+          change="changeEvt(event);">
+      <mx:XMLListCollection id="MailBox">
+         <fx:XMLList>
+            <node label="Mail" data="100">
+               <node label="Inbox" data="70"/>
+               <node label="Personal Folder" data="10">
+                  <node label="Business" data="2"/>
+                  <node label="Demo" data="3"/>
+                  <node label="Personal" data="0" isBranch="true" />
+                  <node label="Saved Mail" data="5" />
+               </node>
+               <node label="Sent" data="15"/>
+               <node label="Trash" data="5"/>
+            </node>
+         </fx:XMLList>
+      </mx:XMLListCollection>
+   </mx:Tree>
+
+    <s:Form>
+        <s:FormItem label="Change Event:">
+            <s:Label id="forChange" width="150"/>          
+        </s:FormItem>
+        <s:FormItem label="Open Event:">
+            <s:Label id="forOpen" width="150"/>            
+        </s:FormItem>
+    </s:Form>
+</s:Application>

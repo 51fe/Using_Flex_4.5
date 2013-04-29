@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- behaviors\WipeDuration.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:WipeLeft id="SlowWipe" duration="2000"/>
+    <mx:WipeLeft id="ReallySlowWipe" duration="8000"/>
+
+    <mx:Button label="Slow Wipe" 
+        mouseDownEffect="{SlowWipe}"/>
+    <mx:Button label="Really Slow Wipe" 
+        mouseDownEffect="{ReallySlowWipe}"/>
+</mx:Application>

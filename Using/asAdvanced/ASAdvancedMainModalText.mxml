@@ -1,0 +1,10 @@
+<?xml version="1.0"?> 
+<!-- asAdvanced/ASAdvancedMainModalText.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*" >
+
+    <MyComp:ModalText textPlacement="left" height="40"/>
+
+</s:Application>

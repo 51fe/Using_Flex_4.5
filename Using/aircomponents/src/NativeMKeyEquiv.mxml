@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMKeyEquiv.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:menu> 
+        <mx:FlexNativeMenu dataProvider="{menuData}"  
+            labelField="@label"  
+            keyEquivalentField="@keyEquivalent"  
+            showRoot="false"  
+            itemClick="trace('click:', event.label);"/> 
+    </s:menu> 
+
+    <fx:Declarations>
+        <fx:XML format="e4x" id="menuData"> 
+            <root> 
+                <menuitem label="File"> 
+                    <menuitem label="New" keyEquivalent="n" controlKey="true"/> 
+                    <menuitem label="Open" keyEquivalent="o" controlKey="true"/> 
+                    <menuitem label="Save" keyEquivalent="s" controlKey="true"/> 
+                    <menuitem label="Save As..." keyEquivalent="s" controlKey="true" shiftKey="true"/> 
+                    <menuitem label="Close" keyEquivalent="w" controlKey="true"/> 
+                </menuitem> 
+                <menuitem label="Edit"> 
+                    <menuitem label="Cut" keyEquivalent="x" controlKey="true"/> 
+                    <menuitem label="Copy" keyEquivalent="c" controlKey="true"/> 
+                    <menuitem label="Paste" keyEquivalent="v" controlKey="true"/> 
+                </menuitem> 
+            </root> 
+        </fx:XML>
+    </fx:Declarations>
+</s:WindowedApplication>

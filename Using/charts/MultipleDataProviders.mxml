@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- charts/MultipleDataProviders.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+  
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+     [Bindable]
+     public var profit04:ArrayCollection = new ArrayCollection([
+        {Month:"Jan", Profit:2000},
+        {Month:"Feb", Profit:1000},
+        {Month:"Mar", Profit:1500}
+     ]);
+     [Bindable]
+     public var profit05:ArrayCollection = new ArrayCollection([
+        {Month:"Jan", Profit:2200},
+        {Month:"Feb", Profit:1200},
+        {Month:"Mar", Profit:1700}
+     ]);
+     [Bindable]
+     public var profit06:ArrayCollection = new ArrayCollection([
+        {Month:"Jan", Profit:2400},
+        {Month:"Feb", Profit:1400},
+        {Month:"Mar", Profit:1900}
+     ]);
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="myChart" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis dataProvider="{profit04}" categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                dataProvider="{profit04}" 
+                yField="Profit"
+                xField="Month" 
+                displayName="2004"/>
+           <mx:ColumnSeries 
+                dataProvider="{profit05}" 
+                yField="Profit"
+                xField="Month" 
+                displayName="2005"/>
+           <mx:ColumnSeries 
+                dataProvider="{profit06}" 
+                yField="Profit"
+                xField="Month" 
+                displayName="2006"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

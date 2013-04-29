@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- textcontrols/comps/ArrowAbsolute.fxg -->
+<fxg:Graphic xmlns:fxg="http://ns.adobe.com/fxg/2008" version="1">    
+    <!-- Use Use compact syntax with absolute coordinates. -->
+    <fxg:Path data="
+         M 20 0 
+         C 50 0 50 35 20 35
+         L 15 35 
+         L 15 45 
+         L 0 32 
+         L 15 19 
+         L 15 29 
+         L 20 29 
+         C 44 29 44 6 20 6
+    ">
+         <!-- Define the border color of the arrow. -->
+         <fxg:stroke>
+              <fxg:SolidColorStroke color="#888888"/>
+         </fxg:stroke>
+         <!-- Define the fill for the arrow. -->
+         <fxg:fill>
+              <fxg:LinearGradient rotation="90">
+                   <fxg:GradientEntry color="#000000" alpha="0.8"/>
+                   <fxg:GradientEntry color="#FFFFFF" alpha="0.8"/>
+              </fxg:LinearGradient>
+         </fxg:fill>
+    </fxg:Path>
+</fxg:Graphic>

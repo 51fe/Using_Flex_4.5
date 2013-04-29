@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- createcomps_effects/MainMyButton.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" >
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Define two fade effects for darkening and brightening target. -->
+        <mx:Fade id="FadeOut" 
+            duration="1000" 
+            alphaFrom="1.00" alphaTo=".20"/>
+        <mx:Fade id="FadeIn" 
+            duration="1000" 
+            alphaFrom=".20" alphaTo="1.00"/>
+    </fx:Declarations>
+
+    <!-- Define custom button that defines the 
+        darkenEffect and brightenEffect. -->
+    <MyComp:MyButton 
+        label="MyButton" id="btn" 
+        darkenEffect="{FadeOut}" 
+        brightenEffect="{FadeIn}" 
+        darken="debugW.text='got darken event';" 
+        brighten="debugW.text='got brighten event';"/>
+  
+    <!-- Define button that triggers darken event. -->
+    <mx:Button 
+        label="set bright to false" 
+        click="btn.bright = false; myTA.text=String(btn.bright);"/> 
+    
+    <!-- Define button that triggers brighten event. -->
+    <mx:Button 
+        label="set bright to true" 
+        click="btn.bright = true; myTA.text=String(btn.bright);"/> 
+    
+    <!-- TextArea displays the current value of bright. --> 
+    <mx:TextArea id="myTA" />
+    
+    <!-- TextArea displays event messages. -->  
+    <mx:TextArea id="debugW" />
+
+    <!-- Define button to make sure effects working. -->
+    <MyComp:MyButton id="btn2" label="test effects" 
+        mouseDownEffect="{FadeOut}" 
+        mouseUpEffect="{FadeIn}"/>
+</s:Application>

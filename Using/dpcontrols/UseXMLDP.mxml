@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\UseXMLDP.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="650">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Declarations>
+        <fx:XML id="capitals">
+            <root>
+                <Capitals label="U.S. State Capitals">
+                    <capital label="AL" value="Montgomery"/>
+                    <capital label="AK" value="Juneau"/>
+                    <capital label="AR" value="Little Rock"/>
+                    <capital label="AZ" value="Phoenix"/>       
+                </Capitals>
+                <Capitals label="Canadian Province Capitals">
+                    <capital label="AB" value="Edmonton"/>
+                    <capital label="BC" value="Victoria"/>
+                    <capital label="MB" value="Winnipeg"/>
+                    <capital label="NB" value="Fredericton"/>
+                </Capitals>
+            </root>
+        </fx:XML>
+
+        <!-- Create an XMLListCollection representing the Tree nodes.
+             capitals.Capitals is an XMLList with both Capitals elements. -->
+        <mx:XMLListCollection id="capitalColl" source="{capitals.Capitals}"/>
+    </fx:Declarations>
+
+    <s:Label text="These two Tree controls appear identical, although their data sources are different."/>
+
+    <s:HGroup>
+        <!-- When you use an XML-based data provider with a tree
+             you must specify the label field, even if it
+             is "label". The XML object includes the root,
+             so you must set showRoot="false". Remember that
+             the Tree will not, by default, reflect dynamic changes
+             to the XML object. -->
+        <mx:Tree id="Tree1" dataProvider="{capitals}" labelField="@label"
+            showRoot="false" width="300"/> 
+        
+        <!-- The XMLListCollection does not include the XML root. -->
+        <mx:Tree id="Tree2" dataProvider="{capitalColl}" labelField="@label" 
+            width="300"/>       
+    </s:HGroup>
+</s:Application>

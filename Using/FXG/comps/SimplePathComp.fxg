@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/SimplePathComp.fxg -->
+<fx:Graphic xmlns:fx="http://ns.adobe.com/fxg/2008" version="2">    
+    <!-- Use shorthand syntax to draw the rectangle. -->
+    <fx:Path data="M 0 0 L 0 100 L 100 100 L 100 0 L 0 0">
+         <!-- Define the border color of the rectangle. -->
+         <fx:stroke>
+              <fx:SolidColorStroke color="#888888"/>
+         </fx:stroke>
+    </fx:Path>
+</fx:Graphic>

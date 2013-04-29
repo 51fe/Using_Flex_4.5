@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/NavigateWithGetMethod.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     <s:layout> 
+      <s:HorizontalLayout/> 
+     </s:layout>
+  <fx:Script><![CDATA[
+     import flash.net.*;
+     public function openNewWindow(event:MouseEvent):void {
+        var url:URLRequest = new URLRequest("http://aspexamples.adobe.com/chart_examples/stocks.aspx");
+        var uv:URLVariables = new URLVariables();
+        url.method = "GET";
+        uv.tickerSymbol = ti1.text;
+        url.data = uv;
+        navigateToURL(url,"_blank");
+     }
+  ]]></fx:Script>
+  <mx:TextInput id="ti1" text="STRK"/>
+    
+  <s:Button label="Open New Window" click="openNewWindow(event)"/>
+</s:Application>

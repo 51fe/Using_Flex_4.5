@@ -1,0 +1,8 @@
+/* ../assets/CustomComponentStyles.css */
+.specialStyle {
+    fontSize:    24;
+    color: #FF9933;
+    upSkin: Embed(source="SubmitButtonSkins.swf", symbol="MyUpSkin");
+    overSkin: Embed(source="SubmitButtonSkins.swf", symbol="MyOverSkin");
+    downSkin: Embed(source="SubmitButtonSkins.swf", symbol="MyDownSkin");
+}

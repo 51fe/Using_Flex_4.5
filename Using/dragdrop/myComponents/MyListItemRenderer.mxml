@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dragdrop\myComponents\MyListItemRenderer.mxml -->
+<s:ItemRenderer focusEnabled="false" 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+   
+    <s:states>
+        <s:State name="normal" />            
+        <s:State name="hovered" />
+        <s:State name="selected" />
+        <s:State name="normalAndShowsCaret"/>
+        <s:State name="hoveredAndShowsCaret"/>
+        <s:State name="selectedAndShowsCaret"/>
+        <s:State name="dragging"/>
+    </s:states>
+    
+    <s:Rect left="0" right="0" top="0" bottom="0">
+        <s:stroke.normalAndShowsCaret>
+            <s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/>
+        </s:stroke.normalAndShowsCaret>
+        <s:stroke.hoveredAndShowsCaret>
+            <s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/>
+        </s:stroke.hoveredAndShowsCaret>
+        <s:stroke.selectedAndShowsCaret>
+            <s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/>
+        </s:stroke.selectedAndShowsCaret>
+        <s:fill>
+            <s:SolidColor 
+                color.normal="0xFFFFFF"
+                color.normalAndShowsCaret="0xFFFFFF"
+                color.hovered="{getStyle('rollOverColor')}"	
+                color.hoveredAndShowsCaret="{getStyle('rollOverColor')}"
+                color.selected="{getStyle('selectionColor')}"
+                color.selectedAndShowsCaret="{getStyle('selectionColor')}"
+                color.dragging="0xFFFFFF"/>
+        </s:fill>
+    </s:Rect>
+    <s:Label id="labelDisplay" verticalCenter="0" left="3" right="3" top="6" bottom="4"
+        fontStyle.dragging="italic" fontWeight.dragging="bold" color.dragging="blue"/>
+</s:ItemRenderer>

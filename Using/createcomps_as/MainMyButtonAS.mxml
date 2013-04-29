@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- createcomps_as/MainMyButtonAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">  
+  
+    <fx:Script> 
+        <![CDATA[ 
+  
+            import flash.events.Event; 
+  
+            private function handleClick(eventObj:Event):void { 
+                // Define event listener. 
+            } 
+  
+            private function handleCreationComplete(eventObj:Event):void { 
+                // Define event listener. 
+            } 
+  
+        ]]> 
+    </fx:Script> 
+  
+    <MyComp:MyButton  
+        click="handleClick(event);" 
+        creationComplete="handleCreationComplete(event);"/> 
+</s:Application>

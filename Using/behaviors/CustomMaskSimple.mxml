@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- behaviors\CustomMaskSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            // Import the effect class.
+            import mx.effects.*; 
+        
+            public function createLargeMask(targ:Object, 
+                    bounds:Rectangle):Shape {
+                // Create the Shape object.
+                var largeMask:Shape = new Shape();
+
+                // Access the Graphics object of the 
+                // Shape object to draw the mask.
+                largeMask.graphics.beginFill(0x00FFFF, 0.5);
+                largeMask.graphics.drawRoundRect(0, 0, bounds.width + 10, 
+                    bounds.height - 10, 3);   
+                largeMask.graphics.endFill();
+
+                // Return the mask.
+                return largeMask;
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:WipeLeft id="customWL" 
+            createMaskFunction="createLargeMask" 
+            showTarget="false"/>
+    
+        <mx:WipeLeft id="standardWL" 
+            showTarget="false"/>
+    </fx:Declarations>
+
+    <mx:HBox borderStyle="solid" 
+        paddingLeft="10" paddingRight="10" 
+        paddingTop="10" paddingBottom="10">
+
+        <mx:Button label="Custom Mask" 
+            mouseDownEffect="{customWL}" 
+            height="100" width="150"/>
+    </mx:HBox>
+</s:Application>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- components\LabelInit.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            private function initDate():void {
+                label1.text += new Date();
+            }
+        ]]> 
+    </fx:Script>
+
+    <s:VGroup>
+        <s:Label id="label1" 
+            text="Today's Date: "
+            initialize="initDate();"/>
+    </s:VGroup>
+</s:Application>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/TreeSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+   <mx:Tree id="tree1" 
+       labelField="@label" 
+       showRoot="true" 
+       width="160">
+      <mx:XMLListCollection id="MailBox">
+         <fx:XMLList>
+            <folder label="Mail">
+               <folder label="INBOX"/>
+               <folder label="Personal Folder">
+                  <Pfolder label="Business" />
+                  <Pfolder label="Demo" /> 
+                     <Pfolder label="Personal" isBranch="true" /> 
+                     <Pfolder label="Saved Mail" /> 
+                  </folder>
+                  <folder label="Sent" />
+                  <folder label="Trash" />
+            </folder>
+         </fx:XMLList>
+      </mx:XMLListCollection>
+   </mx:Tree>
+</s:Application>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- charts/DateTimeAxisSample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+    
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection
+     [Bindable]
+     public var deck:ArrayCollection = new ArrayCollection([
+        {date:"08/01/2005", close:42.71},
+        {date:"08/02/2005", close:42.99},
+        {date:"08/03/2005", close:42.65}
+     ]);
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Sample DateTimeAxis">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:LineChart id="myChart" 
+        dataProvider="{deck}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis dataUnits="days"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:LineSeries 
+                yField="close" 
+                xField="date" 
+                displayName="DECK"/>
+        </mx:series>
+     </mx:LineChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

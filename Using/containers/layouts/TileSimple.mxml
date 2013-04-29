@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\TileSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Tile id="myFlow" 
+        direction="horizontal" 
+        borderStyle="solid"
+        paddingTop="10" paddingBottom="10" 
+        paddingRight="10" paddingLeft="10" 
+        verticalGap="15" horizontalGap="10">
+        
+        <mx:TextInput id="text1" text="1" height="50" width="75"/>
+        <mx:TextInput id="text2" text="2" height="50" width="100"/>
+        <mx:TextInput id="text3" text="3" height="50" width="75"/>
+        <mx:TextInput id="text4" text="4" height="50" width="75"/>
+        <mx:TextInput id="text5" text="5" height="50" width="75"/>
+    </mx:Tile>
+</s:Application>

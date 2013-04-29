@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToolTipNewlines.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="doSomething(event)">
+    
+    <fx:Script>
+        <![CDATA[
+            public function doSomething(event:Event):void {
+                // Use the \n to force a line break in ActionScript.
+                b1.toolTip = "Click this button \nto clear the form.";
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Clear" width="100"/>
+    
+    <!-- Use &#13; to force a line break in MXML tags. -->
+    <s:Button id="b2" label="Submit" width="100" 
+        toolTip="Click this button &#13;to submit the form."/>
+
+</s:Application>

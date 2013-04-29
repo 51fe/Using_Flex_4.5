@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- behaviors\ButtonResize.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" >
+
+    <mx:Resize id="myResizeUp" 
+        widthBy="50" heightBy="50" 
+        duration="200"
+    />
+    
+    <mx:Resize id="myResizeDown" 
+        widthBy="-50" heightBy="-50" 
+        duration="200"
+    />
+    
+    <mx:Button id="myButton" 
+        label="Click Me"
+        mouseDownEffect="{myResizeUp}" 
+        mouseUpEffect="{myResizeDown}"
+    />
+    
+</mx:Application>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!-- charts/AddLabelsWithLines.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+    
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script><![CDATA[
+    import mx.charts.series.items.ColumnSeriesItem;
+    import mx.charts.ChartItem;
+
+     private function connectTwoPoints(month1:String, 
+        value1:Number, 
+        month2:String, 
+        value2:Number
+     ):void {
+        canvas.clear();
+        canvas.lineStyle(4, 
+            0xCCCCCC, 
+            .75, 
+            true, 
+            LineScaleMode.NORMAL, 
+            CapsStyle.ROUND, 
+            JointStyle.MITER, 
+            2
+        );
+        canvas.moveTo(month1, value1);
+        canvas.lineTo(month2, value2);
+        
+        l1.text = "Month: " + month1;
+        l2.text = "Profit: " + value1;
+        l3.text = "Month: " + month2;
+        l4.text = "Profit: " + value2;
+
+        chartHasLine = true;
+     }
+
+    private var s1:String = new String();
+    private var s2:String = new String();
+    private var v1:Number = new Number();
+    private var v2:Number = new Number();
+
+    // Set this to true initially so that the chart doesn't
+    // draw a line when the first item is clicked.
+    private var chartHasLine:Boolean = true;
+
+    private function handleChange(event:Event):void {
+
+        var sci:ColumnSeriesItem = 
+            ColumnSeriesItem(myChart.selectedChartItem);
+
+        if (chartHasLine) {
+            canvas.clear();
+
+            s1 = sci.item.month;
+            v1 = sci.item.profit;        
+
+            addLabelsToColumn(s1,v1);
+    
+            chartHasLine = false;
+        } else {
+            s2 = sci.item.month;
+            v2 = sci.item.profit;
+
+            addLabelsToColumn(s2,v2);
+    
+            connectTwoPoints(s1, v1, s2, v2);        
+        }
+    }
+
+    [Bindable]
+    public var columnLabel:Label;
+    
+    private function addLabelsToColumn(s:String, n:Number):void {
+        columnLabel = new Label();
+        columnLabel.setStyle("fontWeight", "bold");
+        columnLabel.setStyle("color", "0x660000");
+        columnLabel.text = s + ": " + "$" + n;
+        
+        // This adds any DisplayObject as child to current canvas.        
+        canvas.addDataChild(columnLabel, s, n);
+    }
+
+  ]]></fx:Script>
+  <s:Panel title="Column Chart">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        selectionMode="single" 
+        change="handleChange(event)">
+        <mx:annotationElements>
+            <mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
+        </mx:annotationElements>
+
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+
+        <mx:series>
+           <mx:ColumnSeries 
+                id="series1"
+                xField="month" 
+                yField="profit" 
+                displayName="Profit"
+                selectable="true"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+     
+     <s:Button id="b1" label="Connect Two Points" 
+        click="connectTwoPoints('Jan', 2000, 'Mar', 1500);"/>
+     
+     <s:HGroup>
+         <s:VGroup>
+             <s:Label text="First Item"/>
+             <s:Label id="l1"/>
+             <s:Label id="l2"/>
+         </s:VGroup>
+
+         <s:VGroup>
+             <s:Label text="Second Item"/>
+             <s:Label id="l3"/>
+             <s:Label id="l4"/>
+         </s:VGroup>
+     </s:HGroup>
+     
+  </s:Panel>
+</s:Application>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- tooltips/BasicToolTipActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+     public function createNewButton(event:MouseEvent):void {
+        var myButton:Button = new Button();
+        myButton.label = "Create Another Button";
+        myButton.toolTip = "Click this new button to create another button.";
+        myButton.addEventListener(MouseEvent.CLICK, createNewButton);
+        addElement(myButton);
+     }
+    ]]>
+  </fx:Script>
+  
+  <s:Button id="b1" label="Create Another Button"
+        toolTip="Click this button to create another button."
+        click="createNewButton(event);"/>
+
+</s:Application>

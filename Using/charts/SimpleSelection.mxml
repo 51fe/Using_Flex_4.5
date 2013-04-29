@@ -1,0 +1,149 @@
+<?xml version="1.0" ?> 
+<!--  charts/SimpleSelection.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_budget.send();srv_medals.send();srv_expenses.send()"
+    height="950" width="750">
+
+    <fx:Declarations>
+        <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv_medals" url="http://aspexamples.adobe.com/chart_examples/medals-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/medals.aspx -->  
+
+        <mx:HTTPService id="srv_budget" url="http://aspexamples.adobe.com/chart_examples/budget-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/budget.aspx -->  
+
+        <mx:HTTPService id="srv_expenses" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.collections.ArrayCollection;
+
+        private function handleChange(event:Event, ta:spark.components.TextArea):void {
+            var allSeries:Array = event.currentTarget.series;
+            ta.text = "";
+            for (var i:int=0; i<allSeries.length; i++) {
+                ta.text += "\n" + allSeries[i].id + 
+                    " Selected Items: " + allSeries[i].selectedIndices;
+            }
+        }
+    ]]> 
+    </fx:Script>
+    
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Bar Chart" width="100%">
+         <s:layout>
+             <s:HorizontalLayout/>
+         </s:layout>
+         <s:VGroup>
+			 <mx:BarChart id="myBarChart" 
+				 height="225" 
+				 showDataTips="true" 
+				 dataProvider="{srv_medals.lastResult.data.result}" 
+				 selectionMode="multiple" 
+				 change="handleChange(event, textArea1)">
+				 <mx:verticalAxis>
+					 <mx:CategoryAxis categoryField="country"/> 
+				 </mx:verticalAxis>
+				 <mx:series>
+					 <mx:BarSeries id="barSeries1" 
+						 yField="country" 
+						 xField="gold" 
+						 displayName="Gold" 
+						 selectable="true"/> 
+					 <mx:BarSeries id="barSeries2" 
+						 yField="country" 
+						 xField="silver" 
+						 displayName="Silver" 
+						 selectable="true"/> 
+					 <mx:BarSeries id="barSeries3" 
+						 yField="country" 
+						 xField="bronze" 
+						 displayName="Bronze" 
+						 selectable="true"/> 
+				 </mx:series>
+			 </mx:BarChart>
+			 <mx:Legend dataProvider="{myBarChart}" direction="horizontal"/> 
+         </s:VGroup>
+         <s:VGroup width="250" height="200">
+               <s:Label text="Click a chart's item to select it."/> 
+               <s:Label text="Click and drag to select multiple items."/> 
+               <s:Label text="Selection Changed Event:"/> 
+               <s:TextArea id="textArea1" height="100" width="213"/> 
+           </s:VGroup>
+    </s:Panel>
+
+    <s:Panel title="Pie Chart" width="100%">
+         <s:layout>
+             <s:HorizontalLayout/>
+         </s:layout>
+         <s:VGroup>
+			 <mx:PieChart id="myPieChart" 
+				 height="225"
+				 dataProvider="{srv_budget.lastResult.data.result}" 
+				 showDataTips="true"
+				 selectionMode="multiple" 
+				 change="handleChange(event, textArea2)">
+				 <mx:series>
+					 <mx:PieSeries id="pieSeries1"
+						 field="amount" 
+						 nameField="item" 
+						 labelPosition="callout"/>
+				 </mx:series>
+			 </mx:PieChart>
+	         <mx:Legend dataProvider="{myPieChart}" direction="horizontal"/>
+         </s:VGroup>
+         <s:VGroup width="250" height="200">
+            <s:Label text="Click a chart's item to select it."/> 
+            <s:Label text="Click and drag to select multiple items."/> 
+            <s:Label text="Selection Changed Event:"/> 
+            <s:TextArea id="textArea2" height="100" width="213"/> 
+         </s:VGroup>
+    </s:Panel>    
+
+    <s:Panel title="Plot Chart" width="100%">
+         <s:layout>
+             <s:HorizontalLayout/>
+         </s:layout>
+         <s:VGroup>
+			 <mx:PlotChart id="myPlotChart" 
+				 height="225" 
+				 showDataTips="true" 
+				 dataProvider="{srv_expenses.lastResult.data.result}" 
+				 selectionMode="multiple" 
+				 change="handleChange(event, textArea3)">
+				 <mx:series>
+					 <mx:PlotSeries id="plotSeries1" 
+						 xField="expenses" 
+						 yField="profit" 
+						 displayName="Expenses/Profit" 
+						 selectable="true"/> 
+					 <mx:PlotSeries id="plotSeries2" 
+						 xField="amount" 
+						 yField="expenses" 
+						 displayName="Amount/Expenses" 
+						 selectable="true"/> 
+					 <mx:PlotSeries id="plotSeries3" 
+						 xField="profit" 
+						 yField="amount" 
+						 displayName="Profit/Amount" 
+						 selectable="true"/> 
+				 </mx:series>
+			 </mx:PlotChart>
+	         <mx:Legend dataProvider="{myPlotChart}" direction="horizontal"/> 
+          </s:VGroup>
+          <s:VGroup width="250" height="200">
+               <s:Label text="Click a chart's item to select it."/> 
+               <s:Label text="Click and drag to select multiple items."/> 
+               <s:Label text="Selection Changed Event:" /> 
+               <s:TextArea id="textArea3" height="100" width="213"/> 
+          </s:VGroup>
+    </s:Panel>
+</s:Application>

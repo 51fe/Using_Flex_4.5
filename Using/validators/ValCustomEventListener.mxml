@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- validators\ValCustomEventListener -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            // Import event class.
+            import flash.events.Event;
+            
+            // Define vars for storing text colors.
+            private var errorTextColor:Object = "red";
+            private var currentTextColor:Object;
+    
+            // Initialization event handler for getting default text color.  
+            private function myCreationComplete(eventObj:Event):void {           
+                currentTextColor = getStyle('color');
+            }
+    
+            // For an invalid event, change the text color. 
+            private function handleInvalidVal(eventObject:Event):void {
+                setStyle('color', errorTextColor);
+            }
+
+            // For a valid event, restore the text color.   
+            private function handleValidVal(eventObject:Event):void {
+                setStyle('color', currentTextColor);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:PhoneNumberValidator source="{phoneInput}" property="text"/>
+    </fx:Declarations>
+
+    <s:TextInput id="phoneInput" 
+        initialize="myCreationComplete(event);" 
+        invalid="handleInvalidVal(event);" 
+        valid="handleValidVal(event);"/>
+    <s:TextInput id="zipInput"/>
+</s:Application>

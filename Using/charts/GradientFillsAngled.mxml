@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- charts/GradientFillsAngled.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Angled Gradient Background Fill">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:BarChart id="myChart" 
+          dataProvider="{srv.lastResult.data.result}" 
+          showDataTips="true">
+        <mx:verticalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:verticalAxis>
+        <mx:fill>
+           <mx:LinearGradient rotation="90">
+            <mx:entries>
+                <mx:GradientEntry 
+                    color="0xC5C551" 
+                    ratio="0" 
+                    alpha="1"/>
+                <mx:GradientEntry 
+                    color="0xFEFE24" 
+                    ratio=".33" 
+                    alpha="1"/>
+                <mx:GradientEntry 
+                    color="0xECEC21" 
+                    ratio=".66" 
+                    alpha="1"/>
+            </mx:entries>
+           </mx:LinearGradient>
+        </mx:fill>
+        <mx:series>
+           <mx:BarSeries xField="expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:BarChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

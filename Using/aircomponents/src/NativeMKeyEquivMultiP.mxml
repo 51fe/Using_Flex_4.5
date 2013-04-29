@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMKeyEquivMultiP.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="init();"> 
+    <s:menu> 
+        <mx:FlexNativeMenu dataProvider="{menuData}"  
+            labelField="@label"  
+            keyEquivalentField="@keyEquivalent"  
+            keyEquivalentModifiersFunction="keyEquivalentModifiers"  
+            showRoot="false"  
+            itemClick="trace('click:', event.label);"/> 
+    </s:menu>
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import flash.system.Capabilities; 
+            import flash.ui.Keyboard; 
+             
+            private var isWin:Boolean; 
+            private var isMac:Boolean; 
+             
+            private function init():void { 
+                isWin = (Capabilities.os.indexOf("Windows") >= 0); 
+                isMac = (Capabilities.os.indexOf("Mac OS") >= 0); 
+            } 
+                 
+            private function keyEquivalentModifiers(item:Object):Array { 
+                var result:Array = new Array(); 
+                 
+                var keyEquivField:String = menu.keyEquivalentField; 
+                var altKeyField:String; 
+                var controlKeyField:String; 
+                var shiftKeyField:String; 
+                if (item is XML) 
+                { 
+                    altKeyField = "@altKey"; 
+                    controlKeyField = "@controlKey"; 
+                    shiftKeyField = "@shiftKey"; 
+                } 
+                else if (item is Object) 
+                { 
+                    altKeyField = "altKey"; 
+                    controlKeyField = "controlKey"; 
+                    shiftKeyField = "shiftKey"; 
+                } 
+                 
+                if (item[keyEquivField] == null || item[keyEquivField].length == 0) 
+                { 
+                    return result; 
+                } 
+                 
+                if (item[altKeyField] != null && item[altKeyField] == true) 
+                { 
+                    if (isWin) 
+                    { 
+                        result.push(Keyboard.ALTERNATE); 
+                    } 
+                } 
+                 
+                if (item[controlKeyField] != null && item[controlKeyField] == true) 
+                { 
+                    if (isWin) 
+                    { 
+                        result.push(Keyboard.CONTROL); 
+                    } 
+                    else if (isMac) 
+                    { 
+                        result.push(Keyboard.COMMAND); 
+                    } 
+                } 
+                 
+                if (item[shiftKeyField] != null && item[shiftKeyField] == true) 
+                { 
+                    result.push(Keyboard.SHIFT); 
+                } 
+                 
+                return result; 
+            } 
+        ]]> 
+    </fx:Script>
+     
+    <fx:Declarations>
+        <fx:XML format="e4x" id="menuData"> 
+            <root> 
+                <menuitem label="File"> 
+                    <menuitem label="New" keyEquivalent="n" controlKey="true"/> 
+                    <menuitem label="Open" keyEquivalent="o" controlKey="true"/> 
+                    <menuitem label="Save" keyEquivalent="s" controlKey="true"/> 
+                    <menuitem label="Save As..."  
+                        keyEquivalent="s"  
+                        controlKey="true"  
+                        shiftKey="true"/> 
+                    <menuitem label="Close" keyEquivalent="w" controlKey="true"/> 
+                </menuitem> 
+                <menuitem label="Edit"> 
+                    <menuitem label="Cut" keyEquivalent="x" controlKey="true"/> 
+                    <menuitem label="Copy" keyEquivalent="c" controlKey="true"/> 
+                    <menuitem label="Paste" keyEquivalent="v" controlKey="true"/> 
+                </menuitem> 
+            </root> 
+        </fx:XML> 
+    </fx:Declarations>
+</s:WindowedApplication>

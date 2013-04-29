@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- behaviors\CompositeEffectsAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createEffect(event);">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+        
+            // Import effect classes and create effect variables.
+            import mx.effects.*;
+            public var myFadeShow:Fade;
+            public var myResizeShow:Resize;
+            public var FRShow:Parallel;
+        
+            private function createEffect(eventObj:Event):void {
+                // Create a Fade effect.
+                myFadeShow=new Fade(aTextArea);
+                myFadeShow.alphaFrom=0.0;
+                myFadeShow.alphaTo=1.0;
+
+                // Initialize a Resize effect.
+                myResizeShow=new Resize(aTextArea);
+                myResizeShow.heightTo=50;
+                myResizeShow.widthTo=100;
+
+                // Initialize a Parallel effect.
+                FRShow=new Parallel();
+                FRShow.addChild(myFadeShow);
+                FRShow.addChild(myResizeShow);
+            }
+        ]]>
+    </fx:Script>
+    
+    <mx:TextArea id="aTextArea"
+        height="0" width="0" 
+        text="Hello world." 
+        visible="false"/>
+
+    <mx:Button id="myButton1" 
+        label="Show!" 
+        click="aTextArea.visible=true; FRShow.end(); FRShow.play();"/>
+</s:Application>

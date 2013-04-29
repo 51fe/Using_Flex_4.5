@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- events/DetectingShiftClicks.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import spark.components.Button;
+
+        private function initApp():void {
+            var b1:Button = new Button();
+            b1.label = "Button 1";
+
+            var b2:Button = new Button();
+            b2.label = "Button 2";        
+
+            b1.addEventListener(MouseEvent.CLICK, removeButtons);
+            b2.addEventListener(MouseEvent.CLICK, removeButtons);
+
+            vg1.addElement(b1);
+            vg1.addElement(b2);
+        }
+
+        private function removeButtons(event:MouseEvent):void {
+            if (event.shiftKey) {
+                vg1.removeElement(Button(event.currentTarget));
+            } else {
+                event.currentTarget.toolTip = "Shift+click to remove this button.";  
+            }
+        }
+    ]]></fx:Script>
+
+    <s:VGroup id="vg1"/>
+    
+    <s:Button id="resetButton" label="Reset" click="initApp();"/>
+
+</s:Application>

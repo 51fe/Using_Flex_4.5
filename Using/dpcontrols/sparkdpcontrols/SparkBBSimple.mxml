@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkBBarSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout paddingLeft="20" paddingTop="20"/>
+    </s:layout>
+
+    <s:ButtonBar>  
+        <mx:ArrayCollection>
+            <fx:String>Flash</fx:String> 
+            <fx:String>Director</fx:String> 
+            <fx:String>Dreamweaver</fx:String> 
+            <fx:String>ColdFusion</fx:String> 
+        </mx:ArrayCollection>
+    </s:ButtonBar>
+</s:Application>

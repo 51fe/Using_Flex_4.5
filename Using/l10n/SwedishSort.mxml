@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/SwedishSort.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+               creationComplete="initApp()">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <fx:Declarations>
+        <s:SortingCollator id="defaultSorter" locale="{LocaleID.DEFAULT}"/>
+        <s:SortingCollator id="swedishSorter" locale="sv-SE"/>
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.globalization.LocaleID;            
+            import mx.collections.ArrayCollection;
+            
+            private var a:Array = new Array('Öhlund','Oehland','Zorn','Ohlin');
+            [Bindable]
+            private var names:ArrayCollection = new ArrayCollection(a);
+            
+            private function initApp():void {
+                originalOrder.text = "Original Order: " + names.toString();
+
+                sortNames(defaultSorter);
+                label1.text = "Default Order: " + names.toString();
+
+                sortNames(swedishSorter);
+                label2.text = "Swedish Order: " + names.toString();
+            }
+            
+            private function sortNames(sorter:SortingCollator):void {               
+                var changed:Boolean = false;                
+                while (!changed) {
+                    changed = true;                 
+                    for (var i:int = 0; i < names.length - 1; i++) {
+                        var comparisonResult:int = sorter.compare(names[i],names[i+1]);
+                        if (comparisonResult > 0) { 
+                            var s:String = names[i];  
+                            names[i] = names[i + 1];
+                            names[i + 1] = s;                           
+                            changed = false;
+                        }
+                    }
+                }               
+            }           
+        ]]>
+    </fx:Script>    
+    <s:Label id="originalOrder" paddingTop="10" fontWeight="bold"/>
+    <s:Label id="label1"/>
+    <s:Label id="label2"/>
+</s:Application>

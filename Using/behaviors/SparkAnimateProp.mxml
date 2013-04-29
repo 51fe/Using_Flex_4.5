@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkAnimateProp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Animate id="scaleUp"
+            target="{myB1}">
+            <s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.0" valueTo="1.5"/>
+        </s:Animate>
+        <s:Animate id="scaleDown"
+            target="{myB1}">
+            <s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.5" valueTo="1.0"/>
+        </s:Animate>
+    </fx:Declarations>
+
+    <s:Button id="myB1"
+        label="Scale Button"
+        mouseDown="scaleUp.end(); scaleUp.play();"
+        mouseUp="scaleDown.end(); scaleDown.play();"/>
+</s:Application>

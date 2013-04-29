@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- usingas/IntrospectionForIn.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        private var obj:Object = new Object();
+
+        private function initApp():void {
+            // Create the object.
+            obj.a = "Schotten Totten";
+            obj.b = "Taj Majal";
+            obj.c = "Durche die Wuste";     
+        }
+
+        public function dumpObj():void {
+            for (var p:String in obj) {
+                ta1.text += p + ":" + obj[p] + "\n";
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="ta1" width="400" height="200"/>
+    <s:Button label="Dump Object" click="dumpObj()"/>
+
+</s:Application>

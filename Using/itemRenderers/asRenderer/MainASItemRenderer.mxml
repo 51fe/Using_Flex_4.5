@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- itemRenderers\asRenderer\MainASItemRenderer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600" height="600">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Monday: 12, Tuesday: 22, Wednesday: 452, Thursday: 90},
+                {Monday: 258, Tuesday: 22, Wednesday: 45, Thursday: 46},
+                {Monday: 4, Tuesday: 123, Wednesday: 50, Thursday: 95},
+                {Monday: 12, Tuesday: 52, Wednesday: 111, Thursday: 20},
+                {Monday: 22, Tuesday: 78, Wednesday: 4, Thursday: 51}
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:Text text="All cells over 100 are red" />
+    
+    <mx:DataGrid id="myDataGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true">
+        <mx:columns>
+            <mx:DataGridColumn dataField="Monday" 
+                itemRenderer="myComponents.CellField" />
+            <mx:DataGridColumn dataField="Tuesday" 
+                itemRenderer="myComponents.CellField" />
+            <mx:DataGridColumn dataField="Wednesday" 
+                itemRenderer="myComponents.CellField" />
+            <mx:DataGridColumn dataField="Thursday" 
+                itemRenderer="myComponents.CellField" />
+        </mx:columns>
+    </mx:DataGrid>
+</s:Application>

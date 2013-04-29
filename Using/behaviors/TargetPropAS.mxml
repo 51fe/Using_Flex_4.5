@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- behaviors\TargetPropAS.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+    creationComplete="createEffect(event);"
+>
+    <mx:Script>
+        <![CDATA[
+            import mx.effects.Fade;
+            import flash.events.Event;
+
+            private var myFade:Fade = new Fade();
+        
+            private function createEffect(eventObj:Event):void {
+                myFade.duration=5000;
+
+                /* Pass Array of targets to play(). */
+                myFade.play([myPanel1, myPanel2]);
+
+                /* Alternatively, set targets to an array of components.
+                   myFade.targets = [myPanel1, myPanel2];            
+                   myFade.play(); */
+            }
+
+            private function playZoom(eventObj:Event):void {
+                myZoom.end();
+
+                /* Alternatively, pass Array of targets to play().
+                   myZoom.play([myTA]); */
+
+                // Set target to a single component.
+                myZoom.target = myTA;
+                myZoom.play();
+            }
+    ]]>
+    </mx:Script>
+
+    <mx:Zoom id="myZoom" 
+        duration="2000" 
+        zoomHeightFrom="0.10" 
+        zoomWidthFrom="0.10" 
+        zoomHeightTo="1.00" 
+        zoomWidthTo="1.00"
+    />
+
+    <mx:Panel id="myPanel1">
+        <mx:TextArea id="myTA"/>
+    </mx:Panel>
+
+    <mx:Panel id="myPanel2">
+        <mx:Button id="myButton" label="Click Me" click="playZoom(event);"/>
+    </mx:Panel>
+</mx:Application>

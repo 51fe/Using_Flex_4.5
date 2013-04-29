@@ -1,0 +1,48 @@
+﻿<?xml version="1.0"?>
+<!-- tooltips/PlacingToolTips.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="100" width="300"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script> 
+        <![CDATA[
+             import mx.controls.ToolTip;
+             import mx.managers.ToolTipManager;
+             import mx.core.IUIComponent;
+             
+             private var tip:ToolTip;
+             private var s:String;
+               
+             private function showTip(event:Object):void {
+                s="My ToolTip";
+                
+                // Position the ToolTip to the right of the current target.
+                tip = ToolTipManager.createToolTip(s, 
+                    event.currentTarget.x + event.currentTarget.width + 10, 
+                    event.currentTarget.y, null,IUIComponent(event.currentTarget)) 
+                    as ToolTip;
+            }
+
+            private function destroyTip(event:Object):void {
+                 ToolTipManager.destroyToolTip(tip);               
+            }            
+        ]]>
+    </fx:Script>
+
+    <s:TextInput id="a" 
+        width="100" 
+        focusIn="showTip(event)" 
+        focusOut="destroyTip(event)"/>
+
+    <s:TextInput id="b" 
+        width="100" 
+        focusIn="showTip(event)" 
+        focusOut="destroyTip(event)"/>
+
+</s:Application>

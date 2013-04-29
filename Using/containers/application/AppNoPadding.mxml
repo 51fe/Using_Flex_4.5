@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppNoPadding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="100%" height="100%">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout> 
+    
+    <mx:VBox width="100%" height="100%" backgroundColor="#A9C0E7">
+        <!-- ... -->
+    </mx:VBox>
+</s:Application>

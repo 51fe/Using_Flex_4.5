@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- charts/AreaStacked.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+    
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Stacked AreaChart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:AreaChart id="myChart"
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true" 
+        type="stacked">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:AreaSeries yField="profit" displayName="Profit"/>
+           <mx:AreaSeries yField="expenses" displayName="Expenses"/>
+           <mx:AreaSeries yField="amount" displayName="Amount"/>
+        </mx:series>
+     </mx:AreaChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

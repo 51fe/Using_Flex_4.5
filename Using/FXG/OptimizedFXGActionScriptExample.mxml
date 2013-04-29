@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/OptimizedFXGActionScriptExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="500" height="300" 
+    creationComplete="drawStar()">
+
+    <fx:Script>
+        <![CDATA[                    
+        import spark.core.SpriteVisualElement;
+
+        private var myStar:SpriteVisualElement;
+
+        private function drawStar():void {
+            // Create new instances of star.fxg as if it were a local component.
+            for (var i:int = 0; i<4; i++) {
+                myStar = new star();
+
+                myStar.x = 50 + (i*75);
+                myStar.y = 50;
+                myStar.height = 100 - (i*30);
+                myStar.width = 100 - (i*30);
+                myStar.alpha = 1 - (i*.2);
+                myStar.rotationX = 20 + (i*20);
+
+                addElement(myStar);
+            }
+        }
+        ]]>
+    </fx:Script>
+</s:Application> 

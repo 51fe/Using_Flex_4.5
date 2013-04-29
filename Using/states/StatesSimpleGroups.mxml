@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- states\StatesSimpleGroups.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <s:states> 
+        <s:State name="default"/> 
+        <s:State name="addCheckBox" stateGroups="Group1"/> 
+        <s:State name="addTextInput"/> 
+        <s:State name="addCheckBoxandButton" stateGroups="Group1"/> 
+    </s:states>
+      
+    <s:HGroup>
+        <!-- Included in the addCheckBox and addCheckBoxandButton view states. --> 
+        <s:CheckBox id="myCB" label="Checkbox" 
+            includeIn="Group1"/>
+     
+       <!-- Included in the addTextInput view state. --> 
+       <s:TextInput id="myTI" 
+            includeIn="addTextInput"/>    
+
+        <!-- Included in the addCheckBoxandButton view state. --> 
+        <s:Button id="myB" 
+           includeIn="addCheckBoxandButton"/>
+        
+        <!-- Exclude from addTextInput view state. --> 
+        <s:TextArea text="Exclude from addTextInput" 
+           excludeFrom="addTextInput"/>             
+    </s:HGroup>
+
+    <s:HGroup>
+        <s:Button label="Add CheckBox" 
+            click="currentState='addCheckBox'"/> 
+        <s:Button label="Add Textinput" 
+            click="currentState='addTextInput'"/>    
+        <s:Button label="Add Group 1" 
+            click="currentState='addCheckBoxandButton'"/> 
+        <s:Button label="Default" 
+            click="currentState='default'"/>
+    </s:HGroup> 
+</s:Application>

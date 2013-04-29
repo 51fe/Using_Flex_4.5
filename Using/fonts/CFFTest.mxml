@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- fonts/CFFTest.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myCFFFont;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFontNoCFF;
+        embedAsCFF: false;
+     }
+     
+     .myCFFStyle {
+        fontSize: 32;
+        fontFamily: myCFFFont;
+     }
+
+     .myStyleNoCFF {
+        fontSize: 32;
+        fontFamily: myFontNoCFF;
+     }
+  </fx:Style>
+
+  <s:Panel title="Using Correct Fonts"> 
+    <s:VGroup>
+        <s:Button label="Spark Button" styleName="myCFFStyle"/> 
+        <mx:Button label="MX Button" styleName="myStyleNoCFF"/>
+    </s:VGroup>
+  </s:Panel>
+
+  <s:Panel title="Using Incorrect Fonts"> 
+    <s:VGroup>
+        <s:Button label="Spark Button" styleName="myCFFStyle"/> 
+
+        <!-- The Button label will not show up because it's a MX control that
+        is attempting to use a Spark-compatible embedded font. -->
+        <mx:Button label="MX Label" styleName="myCFFStyle"/>
+    </s:VGroup>
+  </s:Panel>
+
+</s:Application>

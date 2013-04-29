@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- optimize/ArrayListVersusArrayCollection.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <s:Label text="This ComboBox uses an ArrayList as a data provider:"/>
+    <!-- Using an ArrayList is more efficient. -->
+   <s:ComboBox> 
+      <s:ArrayList>
+         <fx:String>AK</fx:String>
+         <fx:String>AL</fx:String>
+         <fx:String>AR</fx:String>
+      </s:ArrayList>
+   </s:ComboBox>
+    
+    <s:Label text="This ComboBox uses an ArrayCollection as a data provider:"/>
+   <s:ComboBox> 
+      <s:ArrayCollection>
+         <fx:String>AK</fx:String>
+         <fx:String>AL</fx:String>
+         <fx:String>AR</fx:String>
+      </s:ArrayCollection>
+   </s:ComboBox>
+</s:Application>

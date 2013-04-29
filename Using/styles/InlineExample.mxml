@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- styles/InlineExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:VGroup>
+        <!-- This button uses custom inline styles. -->
+        <s:Button id="myButton" color="0x9933FF" fontSize="15" label="Click Me"/>
+
+        <!-- This button uses default styles. -->
+        <s:Button id="myOtherButton" label="Click Me"/>
+    </s:VGroup>
+</s:Application>

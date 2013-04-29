@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- styles/SetSizeGetSize.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();">
+  
+  <fx:Script><![CDATA[
+    import mx.controls.Alert;  
+      
+    [Bindable]
+    private var curSize:int = 10;
+  
+    private function initApp():void {
+        ip1.setStyle("fontSize", curSize);
+        b1.setStyle("fontSize", curSize);
+        b2.setStyle("fontSize", curSize);               
+    }
+  
+    public function showStyles():void {
+        Alert.show("Font size is " + ip1.getStyle("fontSize") + ".");
+     }
+     
+     public function setNewStyles():void {
+        curSize = Number(ip2.text);
+        
+        ip1.setStyle("fontSize", curSize);
+        b1.setStyle("fontSize", curSize);
+        b2.setStyle("fontSize", curSize);
+     }
+  ]]></fx:Script>
+
+  <s:VGroup id="vb">
+     <s:TextInput id="ip1" 
+        styleName="myClass" 
+        text="This is a TextInput control." 
+        width="400"
+     />
+
+     <s:Label id="lb1" text="Current size: {curSize}" width="400"/>
+
+     <s:Button id="b1" label="Get Style" click="showStyles();"/>
+
+     <s:Form>
+        <s:FormItem label="Enter new size:">
+            <s:HGroup>
+                <s:TextInput text="{curSize}" id="ip2" width="50"/>
+                <s:Button id="b2" label="Set Style" click="setNewStyles();"/>
+            </s:HGroup>
+        </s:FormItem>
+     </s:Form>
+
+  </s:VGroup>
+</s:Application>

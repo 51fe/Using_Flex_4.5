@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- assets\catalog.xml -->
+<products>
+  <product>
+    <name>Name</name>
+    <price>Price</price>
+    <freeship>Free Shipping?</freeship>
+  </product>
+  <product>
+    <name>Whirlygig</name>
+    <price>5</price>
+    <freeship>false</freeship>
+  </product>
+  <product>
+    <name>Tilty Thingy</name>
+    <price>15</price>
+    <freeship>true</freeship>
+  </product>
+<product>
+    <name>Really Big Blocks</name>
+    <price>25</price>
+    <freeship>true</freeship>
+  </product>
+</products>

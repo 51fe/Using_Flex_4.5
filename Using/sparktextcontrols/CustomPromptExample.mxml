@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/CustomPromptExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>  
+    <![CDATA[  
+        private function resetPrompts():void {
+            myTextInput.text = "";
+        }
+      ]]>  
+  </fx:Script>  
+  
+    <s:TextInput id="myTextInput" prompt="Enter name..." 
+        skinClass="mySkins.CustomTextInputSkin"/>
+    <s:Button label="Reset" click="resetPrompts()"/>
+
+</s:Application>

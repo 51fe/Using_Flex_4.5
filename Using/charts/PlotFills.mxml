@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- charts/PlotFills.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+
+        <!-- Define custom colors for use as plot point fills. -->
+        <mx:SolidColor id="sc1" color="blue" alpha=".3"/>
+        <mx:SolidColor id="sc2" color="red" alpha=".3"/>
+        <mx:SolidColor id="sc3" color="green" alpha=".3"/>
+
+        <!-- Define custom SolidColorStrokes. -->
+        <mx:SolidColorStroke id="s1" color="blue" weight="1"/>
+        <mx:SolidColorStroke id="s2" color="red" weight="1"/>
+        <mx:SolidColorStroke id="s3" color="green" weight="1"/>
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Plot Chart with custom fills">
+         <s:layout>
+             <s:VerticalLayout/>
+         </s:layout>
+        <mx:PlotChart id="myChart" 
+            dataProvider="{srv.lastResult.data.result}"
+            showDataTips="true">
+            <mx:series>
+                <mx:PlotSeries
+                    xField="expenses"
+                    yField="profit"
+                    displayName="Plot 1"
+                    fill="{sc1}"
+                    stroke="{s1}"/>
+                <mx:PlotSeries
+                    xField="amount"
+                    yField="expenses"
+                    displayName="Plot 2"
+                    fill="{sc2}"
+                    stroke="{s2}"/>
+                <mx:PlotSeries
+                    xField="profit"
+                    yField="amount"
+                    displayName="Plot 3"
+                    fill="{sc3}"
+                    stroke="{s3}"/>
+            </mx:series>
+        </mx:PlotChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+</s:Application>

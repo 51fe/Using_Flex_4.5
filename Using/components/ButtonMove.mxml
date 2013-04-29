@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- components\ButtonMove.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="150"
+    height="120">
+
+    <fx:Script>
+        <![CDATA[
+            public function moveButton():void {
+                myButton.x += 15;
+                myButton.y += 15;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton" 
+        x="15" 
+        y="15" 
+        label="Move"
+        click="moveButton();"/>
+</s:Application>

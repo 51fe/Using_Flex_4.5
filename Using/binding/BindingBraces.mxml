@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- binding/BindingBraces.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Data model stores registration data that user enters. -->
+        <fx:Model id="reg">
+            <registration>
+                <name>{fullname.text}</name>
+                <email>{email.text}</email>
+                <phone>{phone.text}</phone>
+                <zip>{zip.text}</zip>
+                <ssn>{ssn.text}</ssn>
+            </registration>
+        </fx:Model>
+    </fx:Declarations>
+
+    <!-- Form contains user input controls. -->
+    <s:Form>
+        <s:FormItem label="Name" required="true">
+            <s:TextInput id="fullname" width="200"/>
+        </s:FormItem>
+
+        <s:FormItem label="Email" required="true">
+            <s:TextInput id="email" width="200"/>
+        </s:FormItem>
+
+        <s:FormItem label="Phone" required="true">
+            <s:TextInput id="phone" width="200"/>
+        </s:FormItem>
+
+        <s:FormItem label="Zip" required="true">
+            <s:TextInput id="zip" width="60"/>
+        </s:FormItem>
+
+        <s:FormItem label="Social Security" required="true">       
+            <s:TextInput id="ssn" width="200"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

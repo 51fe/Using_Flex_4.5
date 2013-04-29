@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- states\StatesCreationPolicy.mxml  -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initButton();">
+    
+    <fx:Script>
+        <![CDATA[
+
+            // Because the Immediate view state creates the Button control
+            // at application startup, you can access the control to
+            // set the label before the first switch 
+            // to the Immediate view state.
+            public function initButton():void {
+                newButtonImmediate.label="Immediate Button";
+
+                // Uncommenting this line to access the label causes a 
+                // Run Time Exception because newButtonDeferred does not exist yet.
+                // newButtonDeferred.label="Deferred Button";
+            }            
+        ]]>
+    </fx:Script>
+
+    <s:states>
+        <s:State name="default"/>
+        <s:State name="Immediate"/>
+        <s:State name="Deferred"/>
+    </s:states>    
+    
+    <s:Panel id="myPanel" 
+        title="Static and dynamic states" 
+        width="300" height="150">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <!-- Create the Button control at application startup. -->
+        <s:Button id="newButtonImmediate" 
+            includeIn="Immediate" 
+            itemCreationPolicy="immediate"/>
+
+        <!-- Create the Button control when you switch to this view state. -->
+        <s:Button id="newButtonDeferred" 
+            label="Deferred button" 
+            includeIn="Deferred" 
+            itemCreationPolicy="deferred"/>
+            
+        <!-- Change to the Immediate view state. -->
+        <s:Button label="Change to Immediate state" 
+            click="currentState='Immediate';"/>
+            
+        <!-- Change to the Deferred view state. -->
+        <s:Button label="Change to Deferred state" 
+          click="currentState='Deferred';"/>
+
+        <!-- Change to the default view state. -->
+        <s:Button label="Change to default state" 
+          click="currentState='default';"/>
+    </s:Panel>
+</s:Application>

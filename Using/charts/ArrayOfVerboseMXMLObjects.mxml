@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!-- charts/ArrayOfVerboseMXMLObjects.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+  <fx:Declarations>
+      <fx:Array id="expenses">
+         <fx:Object>
+           <fx:Month>January</fx:Month>
+           <fx:Profit>2000</fx:Profit>
+           <fx:Expenses>1500</fx:Expenses>
+           <fx:Amount>450</fx:Amount>
+         </fx:Object>
+         <fx:Object>
+           <fx:Month>February</fx:Month>
+           <fx:Profit>1000</fx:Profit>
+           <fx:Expenses>200</fx:Expenses>
+           <fx:Amount>600</fx:Amount>
+         </fx:Object>
+         <fx:Object>
+           <fx:Month>March</fx:Month>
+           <fx:Profit>1500</fx:Profit>
+           <fx:Expenses>500</fx:Expenses>
+           <fx:Amount>300</fx:Amount>
+         </fx:Object>
+         <fx:Object>
+           <fx:Month>April</fx:Month>
+           <fx:Profit>500</fx:Profit>
+           <fx:Expenses>300</fx:Expenses>
+           <fx:Amount>300</fx:Amount>
+         </fx:Object>
+         <fx:Object>
+           <fx:Month>May</fx:Month>
+           <fx:Profit>1000</fx:Profit>
+           <fx:Expenses>450</fx:Expenses>
+           <fx:Amount>250</fx:Amount>
+         </fx:Object>
+         <fx:Object>
+           <fx:Month>June</fx:Month>
+           <fx:Profit>2000</fx:Profit>
+           <fx:Expenses>500</fx:Expenses>
+           <fx:Amount>700</fx:Amount>
+         </fx:Object>
+      </fx:Array>
+  </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" dataProvider="{expenses}" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis
+                dataProvider="{expenses}"
+                categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="Month" 
+                yField="Profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="Month" 
+                yField="Expenses"
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

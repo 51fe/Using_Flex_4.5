@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- validators\ValEventListener.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            // Import event class
+            import mx.events.ValidationResultEvent;
+            
+            private function handleValid(event:ValidationResultEvent):void {
+                if(event.type==ValidationResultEvent.VALID)  
+                    submitButton.enabled = true;
+                else
+                    submitButton.enabled = false;
+            }
+
+            // Submit form is everything is valid. 
+            private function submitForm():void {
+                // Handle submit.
+            }
+
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:ZipCodeValidator 
+            source="{inputZip}" property="text" 
+            valid="handleValid(event);" 
+            invalid="handleValid(event);"/>
+    </fx:Declarations>
+
+    <s:TextInput id="inputZip"/> 
+    <s:TextInput id="inputPn"/> 
+
+    <s:Button id="submitButton" 
+        label="Submit"  
+        enabled="false"
+        click="submitForm();"/>
+</s:Application>

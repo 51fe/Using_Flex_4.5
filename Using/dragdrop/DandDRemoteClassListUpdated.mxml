@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDRemoteClassListUpdated.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*">
+    <s:layout>
+        <s:BasicLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        
+            public function changeit():void
+            {
+                if (list2.dataProvider != null)
+                {                
+                    msg.text += list2.dataProvider[0]
+                    
+                    if(list2.dataProvider[0] is Car)
+                        msg.text += " Is Car\n";
+                    else
+                        msg.text += " Is NOT Car\n";
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:List id="list1" 
+        x="10" y="45" 
+        width="160" height="120" 
+        dragEnabled="true" 
+        dragMoveEnabled="true">
+        <s:dataProvider>
+            <s:ArrayCollection>
+                <Car model="Camry" make="Toyota" numWheels="4"/>
+                <Car model="Prius" make="Toyota" numWheels="4"/>
+            </s:ArrayCollection>
+       </s:dataProvider>
+    </s:List>
+
+    <s:List  id="list2"
+        x="200" y="45" 
+        width="160" height="120" 
+        dropEnabled="true"/>
+    
+    <s:Button label="Access it as button" click="changeit();"/>
+    
+    <s:TextArea id="msg"  
+        x="10" y="200"
+        width="400" height="100"/>
+</s:Application>

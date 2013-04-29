@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- textcontrols/HTMLTags.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <mx:Text width="100%" color="blue" fontStyle="italic" fontSize="14">
+        <mx:htmlText>
+            <![CDATA[
+                This is 14 point blue italic text.<br>
+                <b><font color="#000000" size="10">This text is 10 point black, italic, and bold.</font></b>
+            ]]>
+        </mx:htmlText>
+    </mx:Text>
+</s:Application>

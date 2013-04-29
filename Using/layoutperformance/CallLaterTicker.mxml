@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- layoutperformance/CallLaterTicker.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script><![CDATA[
+    
+        [Bindable]
+        public var text:String = "SLAR:95.5....TIBA:42....RTF:34.15....AST:23.42";
+        [Bindable]
+        public var speed:Number = 5;
+
+        public function initTicker():void {
+            theText.move( this.width+10, 0 ); // Start the text on the right side.
+            callLater(moveText);
+        }
+
+        public function moveText():void {
+            var xpos:Number = theText.x;
+            if( xpos-speed+theText.width < 0 ) {
+                xpos = this.width+10; // Start the text on the right side.
+            }
+            xpos -= speed;
+            theText.move(xpos,0);
+            callLater(moveText);
+        }
+
+        public function changeSpeed():void {
+            speed = speedSelector.value;
+        }
+        
+    ]]></fx:Script>
+
+    <s:Panel title="Ticker Sample" width="400" height="200">
+        <s:VGroup>
+                <mx:Canvas creationComplete="initTicker()"
+                    horizontalScrollPolicy="off" backgroundColor="red" color="white"
+                    width="400">
+                <mx:Label id="theText" text="{text}" y="0"/>
+            </mx:Canvas>
+            <mx:HBox>
+                <mx:Label text="Speed:"/>
+                <mx:HSlider minimum="1" maximum="10" value="{speed}"
+                    id="speedSelector" snapInterval="1" tickInterval="1"
+                    change="changeSpeed()"/>
+            </mx:HBox>
+        </s:VGroup>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- menus/MenuBarControl.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+    <!-- Define the menu; dataProvider is the default MenuBar property.
+      Because this uses an XML data provider, specify the labelField and
+      showRoot properties. -->
+    <mx:MenuBar id="myMenuBar" labelField="@label">
+        <fx:XMLList>
+            <menuitem label="MenuItem A">
+                <menuitem label="SubMenuItem A-1" enabled="false"/>
+                <menuitem label="SubMenuItem A-2"/>
+            </menuitem>
+            <menuitem label="MenuItem B"/>
+            <menuitem label="MenuItem C"/>
+            <menuitem label="MenuItem D">
+                <menuitem label="SubMenuItem D-1" 
+                    type="radio" groupName="one"/>
+                <menuitem label="SubMenuItem D-2" 
+                    type="radio" groupName="one"
+                    selected="true"/>
+                <menuitem label="SubMenuItem D-3" 
+                    type="radio" groupName="one"/>
+            </menuitem>
+        </fx:XMLList>
+    </mx:MenuBar>
+</s:Application>

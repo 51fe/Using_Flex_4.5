@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- printing\DGPrint.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.printing.*;
+
+            // Create a PrintJob instance.
+            private function doPrint():void {
+                // Create an instance of the FlexPrintJob class.
+                var printJob:FlexPrintJob = new FlexPrintJob();
+
+                // Start the print job.
+                if (printJob.start() != true) return;
+
+                // Add the object to print. Do not scale it.
+                printJob.addObject(myDataGrid, FlexPrintJobScaleType.NONE);
+
+                // Send the job to the printer.
+                printJob.send();
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox id="myVBox">
+        <mx:DataGrid id="myDataGrid" width="300">
+            <mx:dataProvider>
+                <fx:Object Product="Flash" Code="1000"/>
+                <fx:Object Product="Flex" Code="2000"/>
+                <fx:Object Product="ColdFusion" Code="3000"/>
+                <fx:Object Product="JRun" Code="4000"/>
+            </mx:dataProvider>
+        </mx:DataGrid>
+        <mx:Button id="myButton" 
+            label="Print" 
+            click="doPrint();"/>
+    </mx:VBox>
+</s:Application>

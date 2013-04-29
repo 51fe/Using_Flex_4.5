@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/MediaQueryExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+     xmlns:s="library://ns.adobe.com/flex/spark" 
+     applicationDPI="320"
+     creationComplete="initApp()">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        s|TextArea {
+            fontSize: 12;
+        }
+
+        @media (application-dpi: 160) and (os-platform: "Windows"), (os-platform: "Macintosh"), (os-platform: "Linux") {
+            s|TextArea {
+                fontSize: 12;
+                color: red;
+            }
+        }
+        @media (application-dpi: 240) and (os-platform: "Windows"), (os-platform: "Macintosh"), (os-platform: "Linux") {
+            s|TextArea {
+                fontSize: 18;
+                color: green;
+            }
+        }
+        @media (application-dpi: 320) and (os-platform: "Windows"), (os-platform: "Macintosh"), (os-platform: "Linux") {
+            s|TextArea {
+                fontSize: 24;
+                color: blue;
+            }
+        }
+    </fx:Style>
+    
+    <fx:Script>
+        private function initApp():void {
+            myTextArea.text = "OS: " + Capabilities.os + "\n" 
+                + "MFR: " + Capabilities.manufacturer + "\n" 
+                + "DPI: " + applicationDPI;
+        }
+    </fx:Script>
+    
+    <s:TextArea id="myTextArea" width="100%"/>
+    
+</s:Application>

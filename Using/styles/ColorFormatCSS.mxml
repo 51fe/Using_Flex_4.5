@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- styles/ColorFormatCSS.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+  <fx:Style>
+     .myStyle { 
+        themeColor: #6666CC;    /* CSS hexadecimal format */
+        color: Blue;        /* VGA color name */
+     }  
+  </fx:Style>
+  
+  <s:Button id="myButton" styleName="myStyle" label="Click Here"/>
+  
+</s:Application>

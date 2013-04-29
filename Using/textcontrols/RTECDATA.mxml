@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- textcontrols/RTECDATA.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:RichTextEditor id="rte1" title="Rich Text Editor">
+     <mx:htmlText>
+        <![CDATA[
+           <p align='center'><b><font size='16'>HTML Text</font></b>
+           </p>This paragraph has <font color='#006666'><b>bold teal text.
+           </b></font>
+        ]]>
+     </mx:htmlText>
+  </mx:RichTextEditor>
+</s:Application>

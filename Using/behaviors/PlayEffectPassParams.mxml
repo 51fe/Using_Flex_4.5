@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- behaviors\PlayEffectPassParams.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            import flash.events.Event;
+            import mx.effects.Effect;
+            import mx.effects.Move; 
+
+            private var myMove:Move = new Move();
+
+            /* Click event listener that passes the target component
+               and the coordinates of the center of the parent container
+               to the function that creates the effect. */ 
+            private function playMove(target:Object, 
+                    newX:Number, newY:Number):void {
+                myMove.end();
+                myMove.target=target;
+                myMove.duration = 1000;
+                myMove.xTo = newX - target.width/2;
+                myMove.yTo = newY - target.height/2;
+                myMove.play();
+            }
+
+            /* Create the Move effect and play it on the target 
+               component passed to the function. */
+            private function handleClick(eventObj:Event):void {
+                var targetComponent:Object = eventObj.currentTarget;
+                var parentCont:Object = targetComponent.parent;
+                playMove(eventObj.target, parentCont.width/2, 
+                    parentCont.height/2); 
+            } 
+        ]]>
+    </mx:Script>
+
+    <mx:Canvas width="200" height="200" borderStyle="solid">
+        <mx:Button id="myButton" 
+            label="Center me" 
+            x="0"
+            y="0"
+            click="handleClick(event);"
+        /> 
+    </mx:Canvas>
+    <mx:Button label="Reset" click="myButton.x=0;myButton.y=0;"/>
+</mx:Application>

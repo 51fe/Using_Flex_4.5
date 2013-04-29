@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\sparkmx\myComponents\RendererDGImage.mxml -->
+<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+
+        <mx:Image id="albumImage" height="175" source="{data.Cover}"/>
+</s:MXDataGridItemRenderer>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- controls\slider\HSlider4Sliders.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    
+    <mx:VBox>
+        <mx:HSlider 
+            maximum="100"/>
+        <mx:HSlider  
+            maximum="100"
+            snapInterval="5"/>
+        <mx:HSlider 
+            maximum="100"
+            snapInterval="5" 
+            tickInterval="25"/>
+        <mx:HSlider 
+            maximum="100"
+            snapInterval="5"
+            tickInterval="25" 
+            labels="[0,25,50,75,100]"/>
+    </mx:VBox>
+</mx:Application>

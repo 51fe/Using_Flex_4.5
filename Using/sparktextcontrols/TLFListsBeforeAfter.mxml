@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TLFListsBeforeAfter.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+  
+    <!-- Before/After content. -->
+    <s:RichEditableText id="myRET" width="500">
+        <s:p>List with Before/After content:</s:p>
+        <s:list id="myList" paddingLeft="10" listStylePosition="inside">
+            <s:listMarkerFormat>
+                <!-- Note that this example inserts an empty string with &quote; HTML entities. -->
+                <s:ListMarkerFormat 
+                    beforeContent="Chapter " 
+                    content="counters(ordered,&quot;&quot;,upperRoman)" 
+                    afterContent=": "/>
+            </s:listMarkerFormat>
+            <s:li>Beginning</s:li>
+            <s:li>Middle</s:li>
+            <s:li>End</s:li>
+        </s:list>
+
+        <s:list id="myList2" paddingLeft="10" listStylePosition="inside">
+            <s:listMarkerFormat>
+                <s:ListMarkerFormat 
+                    beforeContent="*BEFORE*" 
+                    content="counters(ordered,&quot;*SUFFIX*&quot;,upperRoman)" 
+                    afterContent="*AFTER*"/>
+            </s:listMarkerFormat>
+            <s:li>Beginning</s:li>
+            <s:li>Middle</s:li>
+            <s:li>End</s:li>
+        </s:list>
+
+    </s:RichEditableText>   
+</s:Application>

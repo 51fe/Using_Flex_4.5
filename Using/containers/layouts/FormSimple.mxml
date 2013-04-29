@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Form id="myForm" width="400" height="100">
+
+        <!-- Define FormHeading and FormItem components here -->
+
+    </mx:Form>
+</s:Application>

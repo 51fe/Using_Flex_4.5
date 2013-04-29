@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!-- accessibility\ScrollComp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="setupFocusViewportWatcher();">
+ 
+    <fx:Script>
+        <![CDATA[
+        
+        import mx.core.Container;
+        import mx.core.EdgeMetrics;
+    
+        [Bindable]
+        public var cards: Array = [ 
+            {label:"Visa", data:1}, 
+            {label:"Master Card", data:2}, 
+            {label:"American Express", data:3} ];
+        
+        [Bindable]
+        public var selectedItem:Object;
+ 
+        [Bindable]
+        public var forListDP:Array = [
+            {label:'Apple', data:10.00},
+            {label:'Banana', data:15.00},
+            {label:'Melon', data:3.50},
+            {label:'Kiwi', data:7.65},
+            {label:'123', data:12.35 },
+            {label:'some', data:10.01 }];
+    
+        // Set up the event listener for the focusIn event. 
+        public function setupFocusViewportWatcher():void {
+            addEventListener("focusIn", makeFocusedItemVisible);
+        }
+    
+        public function makeFocusedItemVisible(event:FocusEvent):void {
+            // Target is the actual object that has focus.
+            var target:InteractiveObject = InteractiveObject(event.target);
+            
+            // OriginalTarget is the component that has focus as some
+            // component actually delegate true focus to an internal object.
+            var originalTarget:InteractiveObject = 
+        InteractiveObject(focusManager.findFocusManagerComponent(target));
+    
+            // The viewable portion of a container
+            var viewport:Rectangle = new Rectangle();
+            do {
+                // Cycle through all parents looking for containers.
+                if (target.parent is Container) {
+                    var viewportChanged:Boolean = false;
+                    var c:Container = target.parent as Container;
+
+                    // Get the viewable area in the container.
+                    var vm:EdgeMetrics = c.viewMetrics;
+                    viewport.x = vm.left;
+                    viewport.y = vm.top;
+                    viewport.width = 
+                        c.width / c.scaleX - vm.left - vm.right;
+                    viewport.height = 
+                        c.height / c.scaleY - vm.top - vm.bottom;
+                    
+                    // Calculate the position of the target in the container.
+                    var topLeft:Point = new Point(0, 0);
+                    var bottomRight:Point = 
+                new Point(originalTarget.width, originalTarget.height);
+                    topLeft = originalTarget.localToGlobal(topLeft);
+                    topLeft = c.globalToLocal(topLeft);
+                    bottomRight = originalTarget.localToGlobal(bottomRight);
+                    bottomRight = c.globalToLocal(bottomRight);
+    
+                    // Figure out if we have to move the scroll bars.
+                    // If the scroll bar moves, the position of the component
+                    // moves as well. This algorithm makes sure the top
+                    // left of the component is visible if the component is
+                    // bigger than the viewport.
+                    var delta:Number;
+
+                    if (bottomRight.x > viewport.right) {
+                        delta = bottomRight.x - viewport.right;
+                        c.horizontalScrollPosition += delta;
+                        topLeft.x -= delta;
+                        viewportChanged = true;
+                    }
+
+                    if (topLeft.x < viewport.left) {
+                        // leave it a few pixels in from the left
+                        c.horizontalScrollPosition -= 
+                            viewport.left - topLeft.x + 2;
+                        viewportChanged = true;
+                    }
+                    
+                    if (bottomRight.y > viewport.bottom) {
+                        delta = bottomRight.y - viewport.bottom;
+                        c.verticalScrollPosition += delta;
+                        topLeft.y -= delta;
+                        viewportChanged = true;
+                    }
+                    
+                    if (topLeft.y < viewport.top) {
+                        // leave it a few pixels down from the top
+                        c.verticalScrollPosition -= 
+                            viewport.top - topLeft.y + 2;
+                        viewportChanged = true;
+                    }
+                    
+                    // You must the validateNow() method to get the 
+                    // container to move the component before working 
+                    // on the next parent.
+                    // Otherwise, your calculations will be incorrect.
+                    if (viewportChanged) {
+                        c.validateNow();
+                    }
+                }
+                
+                target = target.parent;
+            }
+            
+            while (target != this);
+        }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <fx:Model id="statesModel" source="assets/states.xml"/>
+    </fx:Declarations>
+
+    <mx:Panel 
+            x="58" y="48" 
+            width="442" height="201" 
+            layout="absolute"
+            title="Tab through controls to see if focus stays in view">
+            
+        <mx:VBox x="10" y="10" verticalScrollPolicy="off">
+            <mx:TextInput/>
+            <mx:TextInput/>
+            <mx:TextArea width="328" height="64"/>
+            <mx:ComboBox dataProvider="{cards}" width="150"/>
+            <mx:DataGrid dataProvider="{forListDP}" />
+            <mx:DateChooser yearNavigationEnabled="true"/>
+            <mx:List id="source" 
+                width="75" 
+                dataProvider="{statesModel.state}"/>
+        </mx:VBox>
+    </mx:Panel>
+</s:Application>

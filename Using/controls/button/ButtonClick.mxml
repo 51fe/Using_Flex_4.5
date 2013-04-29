@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- controls\button\ButtonClick.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            protected function myBtn_clickHandler(event:MouseEvent):void {
+                Alert.show("Goodbye!");
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myBtn"
+        x="83" y="92"
+        label="Hello World!"
+        click="myBtn_clickHandler(event)"/>
+        
+</s:Application>

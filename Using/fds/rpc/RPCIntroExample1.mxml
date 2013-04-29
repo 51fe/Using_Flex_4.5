@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCIntroExample1.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <!-- Connect to a service destination.--> 
+    <mx:RemoteObject id="remoteService" destination="myRO"/>
+
+    <!-- Provide input data for calling the service. --> 
+    <mx:TextInput id="inputText"/>
+
+    <!-- Call the web service, use the text in a TextInput control as input data.--> 
+    <mx:Button click="remoteService.getData(inputText.text)"/>
+
+    <!-- Display results data in the user interface. --> 
+    <mx:TextArea text="{remoteService.getData.lastResult.prop1}"/>
+</mx:Application>

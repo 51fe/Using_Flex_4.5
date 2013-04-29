@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- charts/BasicAreaOneSeries.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+	<fx:Script><![CDATA[
+		import mx.collections.ArrayCollection;
+
+		[Bindable]
+		public var expenses:ArrayCollection = new ArrayCollection([
+			{Month:"Jan", Profit:2000, Expenses:1500, Amount:450},
+			{Month:"Feb", Profit:1000, Expenses:200, Amount:600},
+			{Month:"Mar", Profit:1500, Expenses:500, Amount:300}
+		]);
+	]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Area Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:AreaChart id="myChart" dataProvider="{expenses}"
+     showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis
+                dataProvider="{expenses}"
+                categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:AreaSeries 
+                yField="Profit" 
+                displayName="Profit"/>
+        </mx:series>
+     </mx:AreaChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

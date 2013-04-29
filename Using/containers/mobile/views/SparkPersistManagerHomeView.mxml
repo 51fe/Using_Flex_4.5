@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        title="Home View"
+        creationComplete="creationCompleteHandler(event)">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            import spark.events.IndexChangeEvent;
+            import spark.managers.PersistenceManager;
+            
+            protected function myList_changeHandler(event:IndexChangeEvent):void {
+                // Change to the new view, and pass the employee infomration.
+                navigator.pushView(views.EmployeeView, myList.selectedItem);
+                
+                // Save to the local shared object the selected item from the list.
+                persManager.setProperty('currentListIndex', myList.selectedItem);
+                persManager.save();
+            }
+            
+            // Create a reference to the PersistenceManager.
+            protected const persManager:PersistenceManager = 
+                mx.core.FlexGlobals.topLevelApplication.persistenceManager;
+            
+            // When the View is created, check the local shared object for data.
+            protected function creationCompleteHandler(event:FlexEvent):void {
+                // Get the previously selected item from the local shared object.
+                var retObj:Object =  persManager.getProperty('currentListIndex');
+                
+                // Check to see if the retured data is null.
+                if (retObj != null) {
+                    // Initialize the List from the local shared object.
+                    myList.selectedItem = retObj;
+                    // Clear the local shared object.
+                    persManager.clear();
+                    // Change view, and pass the employee infomration from 
+                    // the local shared object.
+                    navigator.pushView(views.EmployeeView,myList.selectedItem);
+                }
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Label text="Select an employee name"/>
+    <s:List id="myList"
+            width="100%" height="100%"
+            labelField="firstName"
+            change="myList_changeHandler(event)">
+        <s:ArrayCollection>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/>
+        </s:ArrayCollection>
+    </s:List>    
+</s:View>

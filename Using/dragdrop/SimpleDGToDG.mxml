@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- dragdrop\SimpleDGToDG.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+      <![CDATA[
+          import mx.collections.ArrayCollection;
+      
+          private function initApp():void {
+            srcgrid.dataProvider = new ArrayCollection([
+              {Artist:'Carole King', Album:'Tapestry', Price:11.99},
+              {Artist:'Paul Simon', Album:'Graceland', Price:10.99},
+              {Artist:'Original Cast', Album:'Camelot', Price:12.99},
+              {Artist:'The Beatles', Album:'The White Album', Price:11.99}
+            ]);
+
+            destgrid.dataProvider = new ArrayCollection([]);    
+          }
+      ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:VGroup>
+            <s:Label text="Available Albums"/>
+            <mx:DataGrid id="srcgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true">
+                <mx:columns>
+                    <mx:DataGridColumn dataField="Artist"/>
+                    <mx:DataGridColumn dataField="Album"/>
+                    <mx:DataGridColumn dataField="Price"/>
+                </mx:columns>    
+            </mx:DataGrid>
+        </s:VGroup>
+
+        <s:VGroup>
+            <s:Label text="Buy These Albums"/>
+            <mx:DataGrid id="destgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true">
+                <mx:columns>
+                    <mx:DataGridColumn dataField="Artist"/>
+                    <mx:DataGridColumn dataField="Album"/>
+                    <mx:DataGridColumn dataField="Price"/>
+                </mx:columns>    
+            </mx:DataGrid>
+        </s:VGroup>
+    </s:HGroup>
+
+    <s:Button id="b1" 
+        label="Reset"
+        click="initApp()"
+    />
+
+</s:Application>

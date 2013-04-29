@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- mxml\DefProp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <!-- Omit the default property. -->
+    <s:List> 
+        <s:ArrayCollection>
+            <fx:String>AK</fx:String>
+            <fx:String>AL</fx:String>
+            <fx:String>AR</fx:String>
+        </s:ArrayCollection>
+    </s:List>
+    
+    <!-- Explicitly speficy the default property. -->
+    <s:List> 
+        <s:dataProvider>
+            <s:ArrayCollection>
+                <fx:String>AK</fx:String>
+                <fx:String>AL</fx:String>
+                <fx:String>AR</fx:String>
+            </s:ArrayCollection>
+        </s:dataProvider>
+    </s:List>    
+</s:Application>

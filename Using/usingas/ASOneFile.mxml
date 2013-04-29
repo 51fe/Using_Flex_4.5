@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- usingas/ASOneFile.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="700">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:Panel title="Temperature Application" width="90%">
+        <s:HGroup>
+            <s:Label text="Temperature in Fahrenheit:"/>
+            <s:TextInput id="fahrenheit" width="120"/>
+            <s:Button label="Convert"
+                click="celsius.text=String(Math.round((Number(fahrenheit.text)-32)/1.8 * 10)/10);"/>
+            <s:Label text="Temperature in Celsius:"/>
+            <s:Label id="celsius" width="120" fontSize="24"/>
+        </s:HGroup>
+    </s:Panel>
+</s:Application>

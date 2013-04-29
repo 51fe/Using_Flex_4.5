@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\inline\InlineDGEditorCBReUse.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="700" >
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]                
+            public var initDG:ArrayCollection = new ArrayCollection([
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', City: 'Boston', State: 'MA'},
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', City: 'SanFrancisco', State: 'CA'} 
+            ]);
+
+            [Bindable]                
+            public var initDG2:ArrayCollection = new ArrayCollection([
+                {Company: 'MyCo', Contact: 'Stan Stanley', 
+                    Phone: '413-555-5555', City: 'Boston', State: 'MA'},
+                {Company: 'YourCo', Contact: 'Dave Davis', 
+                    Phone: '617-555-1212', City: 'SanFrancisco', State: 'CA'} 
+            ]);
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:Component id="inlineEditor">
+            <mx:ComboBox >
+                <mx:dataProvider>
+                    <fx:String>AL</fx:String>
+                    <fx:String>AK</fx:String>
+                    <fx:String>AR</fx:String>
+                    <fx:String>CA</fx:String>
+                    <fx:String>MA</fx:String>
+                </mx:dataProvider>
+            </mx:ComboBox>
+        </fx:Component> 
+    </fx:Declarations>
+
+    <mx:DataGrid id="myGrid" 
+        variableRowHeight="true" 
+        dataProvider="{initDG}" 
+        editable="true" > 
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="City"/>
+            <mx:DataGridColumn dataField="State" 
+                width="150" 
+                editorDataField="selectedItem" 
+                itemEditor="{inlineEditor}"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+    
+    <mx:DataGrid id="myGrid2" 
+        variableRowHeight="true" 
+        dataProvider="{initDG2}" 
+        editable="true">    
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="City"/>
+            <mx:DataGridColumn dataField="State" 
+                width="150" 
+                editorDataField="selectedItem" 
+                itemEditor="{inlineEditor}"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

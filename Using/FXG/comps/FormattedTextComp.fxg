@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/FormattedTextComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <RichText>
+       <content>This text is <span fontWeight="bold">BOLD</span>,<br/> 
+       this text is <span textDecoration="underline">UNDERLINED</span>,<br/>
+       and this text is <span fontStyle="italic">ITALIC</span>.
+       <p>This is a new paragraph.</p></content>
+    </RichText>
+</Graphic>

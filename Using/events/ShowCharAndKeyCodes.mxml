@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- charts/ShowCharAndKeyCodes.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="init()"
+    width="650">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script><![CDATA[
+     import flash.events.KeyboardEvent;
+
+     private function init():void {
+        ti1.setFocus();
+        this.addEventListener(KeyboardEvent.KEY_DOWN, trapKeys);
+     }
+            
+     private function trapKeys(e:KeyboardEvent):void {
+        ta1.text = String(e.toString());
+        
+        l1.text = numToChar(e.charCode) + " (" + String(e.charCode) + ")";
+        l2.text = numToChar(e.keyCode) + " (" + String(e.keyCode) + ")";
+     }
+    
+    private function numToChar(num:int):String {
+        if (num > 47 && num < 58) {
+            var strNums:String = "0123456789";
+            return strNums.charAt(num - 48);
+        } else if (num > 64 && num < 91) {
+            var strCaps:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return strCaps.charAt(num - 65);
+        } else if (num > 96 && num < 123) {
+            var strLow:String = "abcdefghijklmnopqrstuvwxyz";
+            return strLow.charAt(num - 97);
+        } else {
+            return num.toString();
+        }
+    }        
+  ]]></fx:Script>
+
+  <s:TextInput width="50%" id="ti1"/>
+  
+  <s:Panel id="mainPanel" width="100%" height="100%">
+     <s:Form>
+        <s:FormItem label="Char (Code)">
+           <s:Label id="l1"/>
+        </s:FormItem>
+        <s:FormItem label="Key (Code)">
+           <s:Label id="l2"/>
+        </s:FormItem>
+        <s:FormItem label="Key Event">
+           <s:TextArea id="ta1" width="500" height="200" editable="false"/>
+        </s:FormItem>
+     </s:Form>
+  </s:Panel>      
+                
+</s:Application>

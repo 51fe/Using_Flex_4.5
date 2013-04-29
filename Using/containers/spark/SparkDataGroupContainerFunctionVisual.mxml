@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkDataGroupContainerFunctionVisual.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.core.IVisualElement;
+            
+            import myComponents.MySimpleItemRendererEmployee;
+            import spark.skins.spark.DefaultComplexItemRenderer;
+        
+            private function selectRenderer(item:Object):ClassFactory {
+                var classFactory:ClassFactory;
+                if(item is IVisualElement){ 
+                    // If the item is a Flex component, use DefaultComplexItemRenderer.
+                    classFactory = new ClassFactory(DefaultComplexItemRenderer);
+                }
+                else if (item is Object){
+                    // If the item is an Object, use MySimpleItemRendererFunction.
+                    classFactory = new ClassFactory(MySimpleItemRendererEmployee);
+                } 
+                return classFactory;
+            } 
+        ]]>
+    </fx:Script>
+
+    <s:DataGroup itemRendererFunction="selectRenderer"> 
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ArrayList>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/>
+            <s:Button label="Add Employee"/>
+        </mx:ArrayList>
+    </s:DataGroup> 
+</s:Application>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- dataEffects\myComponents\MyDataEffect.mxml -->
+<mx:Sequence xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.effects.easing.Elastic;
+        ]]>
+    </fx:Script>
+
+    <!-- Define a custom data effect as a Sequence effect. -->
+    <mx:children>
+        <mx:Blur 
+            blurYTo="12" blurXTo="12" 
+            duration="300" 
+            perElementOffset="150"
+            filter="removeItem"/>
+        <mx:SetPropertyAction 
+            name="visible" value="false" 
+            filter="removeItem"/>    
+        <mx:UnconstrainItemAction/>
+        <mx:Parallel>
+            <mx:Move 
+                duration="750" 
+                easingFunction="{Elastic.easeOut}" 
+                perElementOffset="20"/>
+            <mx:RemoveItemAction 
+                startDelay="400" 
+                filter="removeItem"/>
+            <mx:AddItemAction  
+                startDelay="400" 
+                filter="addItem"/>
+            <mx:Blur 
+                startDelay="410" 
+                blurXFrom="18" blurYFrom="18" blurXTo="0" blurYTo="0" 
+                duration="300" 
+                filter="addItem"/>
+        </mx:Parallel>
+    </mx:children>
+</mx:Sequence>        

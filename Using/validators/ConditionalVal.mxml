@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- validators\ConditionalVal.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            import mx.events.ValidationResultEvent;
+    
+            private var vEvent:ValidationResultEvent;
+    
+            private function validateData():void {
+                if (String(country.selectedValue) == "Canada") {
+                    vEvent = zipCN.validate(zipInput.text);
+                }
+                else {
+                    vEvent = zipUS.validate(zipInput.text);
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:ZipCodeValidator id="zipUS" 
+            domain="US Only" 
+            listener="{zipInput}"/>
+        <mx:ZipCodeValidator id="zipCN" 
+            domain="Canada Only" 
+            listener="{zipInput}"/>
+            
+        <s:RadioButtonGroup id="country"/>
+    </fx:Declarations>
+
+    <s:RadioButton group="{country}" label="US"/>
+    <s:RadioButton group="{country}" label="Canada"/>
+
+    <s:TextInput id="zipInput"/>
+    <s:Button label="Submit" click="validateData();"/>
+</s:Application>

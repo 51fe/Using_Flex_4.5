@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TextAreaStyling.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="doSomething()">
+
+    <fx:Script>
+        import spark.components.RichEditableText;
+    
+        private function doSomething():void {
+            /* To set a non-inheritable style on a TextArea, you must actually
+               apply it to the underlying RichEditableText subcomponent, which is 
+               accessed through the textDisplay property: */            
+            RichEditableText(text1.textDisplay).setStyle("columnCount", 2);
+
+            /* Setting a non-inheritable style directly on the TextArea does
+               not apply the style properly. */
+            text2.setStyle("columnCount", 2);
+        }
+    
+    </fx:Script>
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <s:TextArea id="text1" width="200" height="100">
+        <s:textFlow>
+            <s:TextFlow>
+                <s:p>This is TextArea #1. This is enough text to ensure that there will be more than one column if the columnCount property is properly applied.</s:p>
+            </s:TextFlow>
+        </s:textFlow>
+    </s:TextArea>
+
+    <s:TextArea id="text2" width="200" height="100">
+        <s:textFlow>
+            <s:TextFlow>
+                <s:p>This is TextArea #2. This is enough text to ensure that there will be more than one column if the columnCount property is properly applied.</s:p>
+            </s:TextFlow>
+        </s:textFlow>
+    </s:TextArea>
+
+</s:Application>

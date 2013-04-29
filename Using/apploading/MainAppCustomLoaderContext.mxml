@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/MainAppCustomLoaderContext.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()">
+
+     <fx:Script>
+          <![CDATA[
+               import flash.system.SecurityDomain;
+               import flash.system.ApplicationDomain;
+               
+               private function initApp():void {  
+                    var context:LoaderContext = new LoaderContext();
+                    
+                    /* Specify the current application's security domain. */
+                    context.securityDomain = SecurityDomain.currentDomain;
+
+                    /* Specify a new ApplicationDomain, which loads the sub-app into a 
+                      peer ApplicationDomain. */
+                    context.applicationDomain = new ApplicationDomain();
+
+                    contentLoader.loaderContext = context;                 
+                    contentLoader.source = "http://yourdomain.com/SubApp3.swf";
+               }
+          ]]>
+     </fx:Script>
+     <mx:SWFLoader id="contentLoader"/>      
+     
+</s:Application>

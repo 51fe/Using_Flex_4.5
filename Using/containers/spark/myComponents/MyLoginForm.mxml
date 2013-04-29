@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- containers\spark\myComponents\MyLoginForm.mxml -->
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    close="handleCloseEvent();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+
+            // Handle the close button and Cancel button.
+            private function handleCloseEvent():void {
+                PopUpManager.removePopUp(this);
+            }            
+            
+            // Handle the OK button.
+            private function processLogin():void {
+                // Check credentials (not shown) then remove pop up.
+                PopUpManager.removePopUp(this);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Form>
+        <s:FormItem label="User Name">
+            <s:TextInput id="username" width="100%"/>
+        </s:FormItem> 
+        <s:FormItem label="Password">
+            <s:TextInput id="password" 
+                displayAsPassword="true" 
+                width="100%"/>
+        </s:FormItem> 
+    </s:Form>
+    <s:HGroup> 
+        <s:Button label="OK"
+            click="processLogin();" /> 
+        <s:Button label="Cancel"
+            click="handleCloseEvent();"/> 
+    </s:HGroup> 
+</s:TitleWindow>

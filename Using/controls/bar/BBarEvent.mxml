@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- controls\bar\BBarEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+    <fx:Script>
+        <![CDATA[
+            import mx.events.ItemClickEvent;
+
+            private var savedIndex:int = 99999;
+            
+            private function clickHandler(event:ItemClickEvent):void {
+                if (event.index == savedIndex) {
+                    myTA.text=""
+                }
+                else {
+                    savedIndex = event.index;
+                    myTA.text="Selected button index: " +
+                    String(event.index) + "\n" +
+                    "Selected button label: " +
+                    event.label;
+                }    
+            }
+        ]]>
+    </fx:Script>
+    <s:VGroup>
+        <mx:ToggleButtonBar
+            horizontalGap="5"
+            itemClick="clickHandler(event);"
+            toggleOnClick="true"
+            selectedIndex="-1">
+            
+        <mx:dataProvider>
+            <fx:String>Flash</fx:String>
+            <fx:String>Director</fx:String>
+            <fx:String>Dreamweaver</fx:String>
+            <fx:String>ColdFusion</fx:String>
+        </mx:dataProvider>
+        </mx:ToggleButtonBar>
+        <s:TextArea id="myTA" width="250" height="100"/>
+    </s:VGroup>
+
+</s:Application>

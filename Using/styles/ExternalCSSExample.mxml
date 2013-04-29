@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- styles/ExternalCSSExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style source="../assets/SimpleTypeSelector.css"/>
+
+    <s:Button id="myButton" label="Click Me"/>
+
+</s:Application>

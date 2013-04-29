@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- skins/EmbedSymbolsInline.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:Button id="b1" 
+     overSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyOverSkin')"
+     upSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyUpSkin')"
+     downSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyDownSkin')"/>
+</s:Application>

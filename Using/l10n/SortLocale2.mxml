@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/SortLocale2.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600">
+    <fx:Declarations>
+        <s:Sort id="sortbyLastName_FirstName">
+            <s:fields>
+                <s:SortField name="last"/>
+                <s:SortField name="first"/>
+            </s:fields>
+        </s:Sort>
+        <mx:ArrayCollection id="collection" sort="{sortbyLastName_FirstName}">
+            <mx:source>
+                <fx:Object first="Anders" last="Öhlund"/>
+                <fx:Object first="Eileen" last="Oehland"/>
+                <fx:Object first="Aiden" last="Zorn"/>
+                <fx:Object first="Steve" last="Ohlin"/>
+            </mx:source>
+        </mx:ArrayCollection>
+    </fx:Declarations>
+    
+    <fx:Script>
+        /* Sets the locale style on the document UI component.
+            The SortField and Sort objects defined in the 
+            fx:Declarations section will inherit this style. */
+        private function updateSort(e:Event):void {
+            setStyle('locale', myDDL.selectedItem); 
+            collection.refresh();
+        }
+    </fx:Script>
+    
+    <s:VGroup>
+        <s:HGroup>
+            <s:Label text="Select Locale ID Name: "/>
+            <s:DropDownList id="myDDL" prompt="Select One"
+                width="200"
+                labelField="product"
+                change="updateSort(event)">
+                <mx:ArrayCollection>
+                    <fx:String>en-US</fx:String>
+                    <fx:String>sv-SE</fx:String>
+                    <fx:String>zh-CN</fx:String>
+                </mx:ArrayCollection>           
+            </s:DropDownList>
+        </s:HGroup>
+
+        <s:DataGrid 
+            dataProvider="{collection}" 
+            creationComplete="{collection.refresh()}">
+            <s:columns>
+                <s:ArrayList>
+                    <s:GridColumn dataField="last"/>
+                    <s:GridColumn dataField="first"/>
+                </s:ArrayList>
+            </s:columns>
+        </s:DataGrid>
+
+    </s:VGroup>
+</s:Application>

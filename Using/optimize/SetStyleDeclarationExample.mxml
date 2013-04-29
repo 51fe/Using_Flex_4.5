@@ -1,0 +1,40 @@
+<?xml version="1.0"?> 
+<!-- optimize/SetStyleDeclarationExample.mxml -->
+<s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[ 
+        private var myButtonStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myButtonStyle');
+        private var myLabelStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myLabelStyle');
+        private var myTextAreaStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myTextAreaStyle');
+
+        private function initApp():void {
+            myButtonStyle.setStyle('color', 'blue');
+            myLabelStyle.setStyle('color', 'blue');
+            myTextAreaStyle.setStyle('color', 'blue');
+        }
+
+        private function applyStyles():void {
+            styleManager.setStyleDeclaration("spark.components.Button", myButtonStyle, false);
+            styleManager.setStyleDeclaration("spark.components.Label", myLabelStyle, false);
+            styleManager.setStyleDeclaration("spark.components.TextArea", myTextAreaStyle, true);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton" label="Click Me" click="applyStyles()"/>
+    <s:Label id="myLabel" text="This is a label"/>
+    <s:TextArea id="myTextArea" text="This is a TextArea"/>
+
+</s:Application>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?> 
+<!-- asAdvanced/MainMyTextArea.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*" 
+    width="1000">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <MyComp:MyTextArea id="myTA" text="This is a long text strring that would normally cause a TextArea control to display scroll bars. But, the custom MyTextArea control calcualtes its default size based on the text size."/>
+    
+    <mx:TextArea id="flexTA" text="This is a long text strring that would normally cause a TextArea control to display scroll bars. But, the custom MyTextArea control calcualtes its default size based on the text size."/>
+
+</s:Application>

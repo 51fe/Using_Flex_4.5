@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- components\HBoxSize.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <mx:HBox id="hb1">
+        <mx:Button id="b1" 
+            label="Label 1" 
+            width="50%"/>
+        <mx:Button id="b2" 
+            label="Label 2" 
+            width="40%" 
+            minWidth="70"/>
+        <mx:Button id="b3" 
+            label="Label 3"/>
+    </mx:HBox>
+    
+    <s:Form>
+        <s:FormItem label="HBox:">
+            <s:Label text="{hb1.width}"/>
+        </s:FormItem>
+        <s:FormItem label="Button #1:">
+            <s:Label text="{b1.width}"/>
+        </s:FormItem>
+        <s:FormItem label="Button #2:">
+            <s:Label text="{b2.width}"/>
+        </s:FormItem>
+        <s:FormItem label="Button #3">
+            <s:Label text="{b3.width}"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

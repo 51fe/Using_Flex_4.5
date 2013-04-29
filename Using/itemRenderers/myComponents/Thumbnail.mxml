@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!-- itemRenderers\myComponents\Thumbnail.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    horizontalAlign="center"
+    verticalGap="0" borderStyle="none" backgroundColor="white" >
+
+    <mx:Image id="image" width="60" height="60" source="{data.image}"/>
+    <mx:Label text="{data.name}" width="120" textAlign="center"/>
+    <mx:Label text="${data.price}" fontWeight="bold"/>
+</mx:VBox>

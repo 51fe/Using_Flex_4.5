@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\sparkmx\myComponents\NSEditor.mxml -->
+<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+            public var myRetVal:int = 0;
+        ]]>
+    </fx:Script>
+    
+    <!-- Use the valueCommit event when the user selects the 
+         cell but does not change the value. -->
+    <s:NumericStepper id="myNS"
+        value="{data.quant}"
+        stepSize="1" 
+        maximum="50"
+        change="myRetVal=myNS.value;"
+        valueCommit="myRetVal=myNS.value;"/>
+</s:MXDataGridItemRenderer>

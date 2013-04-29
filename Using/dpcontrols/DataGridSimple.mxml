@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/DataGridSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+   <mx:DataGrid> 
+      <mx:ArrayList>
+         <fx:Object>
+            <fx:Artist>Pavement</fx:Artist>
+            <fx:Price>11.99</fx:Price>
+            <fx:Album>Slanted and Enchanted</fx:Album>
+         </fx:Object>
+         <fx:Object>
+            <fx:Artist>Pavement</fx:Artist>
+            <fx:Album>Brighten the Corners</fx:Album>
+            <fx:Price>11.99</fx:Price>
+         </fx:Object>
+      </mx:ArrayList>
+   </mx:DataGrid>
+</s:Application>

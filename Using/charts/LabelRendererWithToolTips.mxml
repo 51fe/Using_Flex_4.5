@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!-- charts/LabelRendererWithToolTips.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="setupDP()" 
+    width="550" height="600">
+    
+    <fx:Script>
+     <![CDATA[
+        import mx.collections.ArrayCollection;
+        import mx.charts.ColumnChart; 
+    
+        [Bindable]
+        private var ac:ArrayCollection;
+        
+        public function setupDP():void{
+            ac =  new ArrayCollection([
+              [ "Label 1 is short.", 200000],
+              [ "Label 2 is a fairly long label.", 150000],
+              [ "Label 3 is an extremely long label. It contains 95 characters " + 
+                "and will likely be truncated.", 40000]
+            ]);
+        }
+     ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="bc1" 
+            showDataTips="true" 
+            dataProvider="{ac}">
+            <mx:series>
+                <mx:ColumnSeries xField="0" yField="1"/>
+            </mx:series>
+            <mx:verticalAxis>
+                <mx:LinearAxis id="va1"/>
+            </mx:verticalAxis>
+            <mx:horizontalAxis >
+                <mx:CategoryAxis id="ha1" 
+                    dataProvider="{ac}" 
+                    categoryField="0"/> 
+            </mx:horizontalAxis>
+            <mx:horizontalAxisRenderers>
+                <mx:AxisRenderer axis="{ha1}" canDropLabels="false">
+                    <mx:labelRenderer>
+                        <fx:Component>
+                            <mx:Label toolTip="{this.myTip}">
+                                <fx:Script><![CDATA[
+                                    [Bindable]
+                                    private var myTip:String;
+
+                                    override public function set data(value:Object):void{
+                                        if(value == null)
+                                            return;
+                                        myTip = value.text;
+                                        var length:int = value.text.toString().length;
+                                        if (length > 20) {
+                                            text = value.text.toString().substr(0, 20) + "...";
+                                        } else {
+                                            text = value.text;
+                                        }
+                                    }
+                                ]]></fx:Script>
+                            </mx:Label>
+                        </fx:Component>
+                    </mx:labelRenderer>
+                </mx:AxisRenderer>                
+            </mx:horizontalAxisRenderers>
+            <mx:verticalAxisRenderers>
+                <mx:AxisRenderer axis="{va1}" canDropLabels="false"/>                
+            </mx:verticalAxisRenderers>
+        </mx:ColumnChart>           
+        <s:Label id="l1" 
+            color="white" 
+            text="Hover over the horizontal axis's labels to see the entire title rendered as a ToolTip."/>        
+    </s:Panel>         
+</s:Application>

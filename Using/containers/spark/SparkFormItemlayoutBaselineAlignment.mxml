@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\layouts\spark\SparkFormItemLayoutBaselineAlignment.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <s:Group y="200" x="30">
+        <s:layout>
+            <s:FormItemLayout>
+                <s:constraintRows>
+                    <s:ConstraintRow id="row1" />
+                    <s:ConstraintRow id="row2" baseline="maxAscent:5"/>
+                    <s:ConstraintRow id="row3" baseline="30"/>
+                </s:constraintRows>
+            </s:FormItemLayout>
+        </s:layout> 
+        <s:Label fontSize="20" text="hello!" baseline="row1:10" x="38" color="blue"/>
+        <s:Label fontSize="25" text="hello!" baseline="row1:0" x="89" color="#FF9933"/>
+        <s:Label fontSize="35" text="hello!" baseline="row1:0" x="149" color="green"/>
+        <s:Label fontSize="50" text="hello!" baseline="row1:0" x="234" />
+    </s:Group>
+</s:Application>

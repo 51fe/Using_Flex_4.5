@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/MainAppUsingSubAppDefinitions.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+     <fx:Script>
+          <![CDATA[
+               import mx.core.UIComponent;
+               public function createClassInstance():void {
+                    // Check that the definition exists.
+                    if (contentLoader.loaderContext.applicationDomain.hasDefinition('MyRedButton')) {
+                         var objClass:Class = contentLoader.loaderContext.applicationDomain.getDefinition('MyRedButton') as Class;
+                         if (objClass != null) { 
+                              var newObject:UIComponent = UIComponent(new objClass());
+
+                              // Set properties on the custom class as an associative array.
+                              newObject["label"] = "Click Me";   
+                              
+                              // Add the new instance to the second panel in this application.
+                              myPanel2.addChild(newObject);
+                         }
+                    }                   
+               }
+          ]]>
+     </fx:Script>
+
+     <!-- The SWFLoader in the first panel loads the 
+           sub-application that contains a definition of MyRedButton. -->
+     <mx:Panel id="myPanel" title="SubApp1 Loaded by main application">
+          <mx:SWFLoader id="contentLoader" 
+            trustContent="true" 
+            source="SubApp1.swf"/>     
+     </mx:Panel>
+
+     <!-- This application adds an instance of the MyRedButton 
+           class to the second panel after the content is loaded. -->
+     <mx:Panel id="myPanel2" title="Instance of a Class Defined By SubApp1"/>
+     
+</s:Application>

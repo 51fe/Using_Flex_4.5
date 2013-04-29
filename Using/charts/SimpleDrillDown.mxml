@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!-- charts/SimpleDrillDown.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();srv.send();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/networth-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/networth.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        public var initSeriesArray:Array = new Array();
+        public var level:Number = 1;
+        public var newSeries:Array;
+        
+        private function initApp():void {
+            // Get initial series Array -- to be reloaded when it returns 
+            // from a drill down.
+            initSeriesArray = chart.series;             
+        }
+        
+        private function zoomIntoSeries(e:Event):void {
+            newSeries = new Array();
+            if (level == 1) {
+                newSeries.push(e.currentTarget);   
+                level = 2; 
+            } else {
+                newSeries = initSeriesArray;
+                p1.title = "Net Worth";
+                level = 1;
+            }           
+            chart.series = newSeries;            
+        }
+        
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel id="p1" title="Net Worth">
+         <s:layout>
+             <s:VerticalLayout/>
+         </s:layout>
+        <mx:ColumnChart id="chart" 
+            dataProvider="{srv.lastResult.data.result}" 
+            type="stacked" 
+            showDataTips="true">
+            <mx:series> 
+                <mx:ColumnSeries id="s1" 
+                    displayName="Cash" 
+                    yField="cash" 
+                    xField="date" 
+                    click="zoomIntoSeries(event)"/>
+                <mx:ColumnSeries id="s2" 
+                    displayName="Stocks" 
+                    yField="stocks"  
+                    xField="date"  
+                    click="zoomIntoSeries(event)"/>
+                <mx:ColumnSeries id="s3" 
+                    displayName="Retirement" 
+                    yField="retirement" 
+                    xField="date" 
+                    click="zoomIntoSeries(event)"/>
+                <mx:ColumnSeries id="s4" 
+                    displayName="Home" 
+                    yField="home" 
+                    xField="date" 
+                    click="zoomIntoSeries(event)"/>
+                <mx:ColumnSeries id="s5" 
+                    displayName="Other" 
+                    yField="other" 
+                    xField="date" 
+                    click="zoomIntoSeries(event)"/>
+            </mx:series>            
+            <mx:horizontalAxis >
+                <mx:DateTimeAxis title="Date" dataUnits="months"/>
+            </mx:horizontalAxis>    
+        </mx:ColumnChart> 
+        <mx:Legend dataProvider="{chart}"/>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- binding/E4XInBraces.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="750">
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        
+            [Bindable]
+            public var xdata:XML = <order>
+                <item id = "3456">
+                    <description>Big Screen Television</description>
+                    <price>1299.99</price><quantity>1</quantity>
+                </item>
+                <item id = "56789">
+                    <description>DVD Player</description>
+                    <price>399.99</price>
+                    <quantity>1</quantity>
+                </item>
+            </order>;
+        ]]>
+    </fx:Script>
+
+    <mx:Label text="Using .. notation."/>
+    <!-- Inline databinding will automatically call the 
+        toString() method when the binding destination is a string. -->
+    <mx:List width="25%" 
+        dataProvider="{xdata..description}"/>
+    
+    <mx:Label text="Using . notation."/>
+    <mx:List width="25%" 
+        dataProvider="{xdata.item.description}"/>
+
+    <mx:Label text="Using || (or) notation."/>
+    <mx:List width="25%" 
+        dataProvider="{xdata.item.(@id=='3456'||@id=='56789').description}"/>
+</s:Application>

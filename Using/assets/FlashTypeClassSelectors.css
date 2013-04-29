@@ -1,0 +1,15 @@
+/* assets/FlashTypeClassSelectors.css */
+.myPlainStyle {
+    fontFamily: "Myriad Web Pro";
+    fontSize: 24;
+}
+.myItalicStyle {
+    fontFamily: "Myriad Web Pro";
+    fontSize: 24;
+    fontStyle: italic;
+}
+.myBoldStyle {
+    fontFamily: "Myriad Web Pro";
+    fontSize: 24;
+    fontWeight: bold;
+}

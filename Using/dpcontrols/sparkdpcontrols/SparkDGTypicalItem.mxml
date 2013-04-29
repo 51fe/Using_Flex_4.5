@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGTypicalItem.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+        
+    <s:DataGrid requestedRowCount="5">
+        <s:typicalItem>
+            <s:DataItem key="9999999" name="Typical name length" 
+                price="1234.56" call="false"/>
+        </s:typicalItem>
+            
+        <s:ArrayCollection id="items">
+            <s:DataItem key="1000" name="Abrasive" price="100.11" call="false"/>
+            <s:DataItem key="1001" name="Brush" price="110.01" call="true"/>
+            <s:DataItem key="1002" name="Clamp" price="120.02" call="false"/>
+            <s:DataItem key="1003" name="Drill" price="130.03" call="true"/>
+            <s:DataItem key="1004" name="Epoxy" price="140.04" call="false"/>
+            <s:DataItem key="1005" name="File" price="150.05" call="true"/>
+        </s:ArrayCollection>
+    </s:DataGrid>
+</s:Application>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/BasicLocaleChain.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.resources.ResourceBundle;
+        import mx.controls.Alert;
+
+        [Bindable]
+        private var locales:Array = [ "es_ES","en_US" ];
+
+        private function initApp():void {
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+    
+            // Initialize the ComboBox to the first locale in the locales Array.
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]);
+        }
+
+        private function registrationComplete():void {
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks'));
+        }  
+
+        private function comboChangeHandler():void {
+            // Set the localeChain to either the one-element Array
+            // [ "en_US" ] or the one-element Array [ "es_ES" ].
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];
+            
+            // This style is not bound to the resource bundle, so it must be reset when 
+            // the new locale is selected.
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+        }
+    ]]></fx:Script>
+
+    <fx:Metadata>
+        [ResourceBundle("RegistrationForm")]
+    </fx:Metadata> 
+
+    <s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/>
+
+    <mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}"
+        change="comboChangeHandler()"/>
+
+    <s:Form>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','city')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','state')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}">
+            <s:TextInput/>
+        </s:FormItem>
+    </s:Form>
+    <s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/>
+</s:Application>

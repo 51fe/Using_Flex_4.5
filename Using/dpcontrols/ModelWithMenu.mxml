@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\ModelWithMenu.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+
+            import mx.controls.Menu;
+            public var productMenu:Menu;
+
+            public function initMenu(): void {
+                productMenu = Menu.createMenu(null, Products.Department);
+                productMenu.setStyle("disabledColor", 0xCC3366);
+                productMenu.show(10,10);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:Model id="Products">
+            <Root>
+                <Department label="Toys">
+                    <children label="Teddy Bears"/>
+                    <children label="Action Figures"/>
+                    <children label="Building Blocks"/>
+                </Department>
+                <Department label="Kitchen">
+                    <children label="Electronics">
+                        <children label="Crock Pot"/>
+                        <children label="Panini Grill"/>
+                    </children>
+                    <children label="Cookware">
+                        <children label="Grill Pan"/>
+                        <children label="Iron Skillet" enabled="false"/>
+                    </children>
+                </Department>
+                <!-- The items in this entry are bound to the form data -->
+                <Department label="{menuName.text}">
+                    <children label="{item1.text}"/>
+                    <children label="{item2.text}"/>
+                    <children label="{item3.text}"/>
+                </Department>
+            </Root>
+        </fx:Model>
+    </fx:Declarations>
+
+    <s:Button label="Show Products" click="initMenu()"/>
+    <!-- If you change the contents of the form, the next time you 
+        display the Menu, it will show the updated data in the last 
+        main menu item. -->
+    <s:Form>
+        <s:FormItem label="Third Submenu title">
+            <s:TextInput id="menuName" text="Clothing"/>
+        </s:FormItem>
+        <s:FormItem label="Item 1">
+            <s:TextInput id="item1" text="Sweaters"/>
+        </s:FormItem>
+        <s:FormItem label="Item 2">
+            <s:TextInput id="item2" text="Shoes"/>
+        </s:FormItem>
+        <s:FormItem label="Item 3">
+            <s:TextInput id="item3" text="Jackets"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

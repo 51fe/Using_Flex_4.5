@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- repeater\RepeatersProp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+      import mx.controls.Alert;
+      [Bindable]
+      public var myArray:Array=[1,2];
+    ]]>
+  </fx:Script>
+
+  <fx:Declarations> 
+    <s:ArrayCollection id="myAC" source="{myArray}"/>
+  </fx:Declarations> 
+  
+  <mx:VBox> 
+      <mx:Repeater  id="repeater1" dataProvider="{myAC}">
+        <mx:Repeater  id="repeater2" dataProvider="{myAC}">
+          <mx:Button
+            label="[{repeater1.currentIndex},{repeater2.currentIndex}]"
+            click="Alert.show(event.target.repeaters[1].id);"/>
+        </mx:Repeater>
+      </mx:Repeater>
+  </mx:VBox> 
+</s:Application>

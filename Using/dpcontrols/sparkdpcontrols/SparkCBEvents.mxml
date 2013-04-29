@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkCBEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout paddingTop="5" paddingLeft="5"/>
+    </s:layout> 
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            import spark.events.TextOperationEvent;
+            
+            public function myChangeHandler(event:TextOperationEvent):void {
+                // Handle change event.
+            }
+
+            protected function myCB_creationCompleteHandler(event:FlexEvent):void
+            {
+                myCB.textInput.addEventListener('change', myChangeHandler);
+            }
+
+        ]]>
+    </fx:Script>
+    
+    <s:Label text="The selected index is: {myCB.selectedIndex}"/>
+    <s:Label text="The selected item is: {myCB.selectedItem}"/>
+
+    <s:ComboBox id="myCB" width="140"
+        creationComplete="myCB_creationCompleteHandler(event)"> 
+        <s:dataProvider>
+            <mx:ArrayList>
+                <fx:String>Red</fx:String>
+                <fx:String>Orange</fx:String>
+                <fx:String>Yellow</fx:String>
+                <fx:String>Blue</fx:String>
+                <fx:String>Green</fx:String>
+            </mx:ArrayList>
+        </s:dataProvider>
+    </s:ComboBox>
+</s:Application>

@@ -1,0 +1,7 @@
+/* assets/SimpleTypeSelector.css */
+@namespace s "library://ns.adobe.com/flex/spark";
+
+s|Button { 
+    fontStyle: italic;
+    color: #99FF00;
+}

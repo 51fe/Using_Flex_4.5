@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- modules/StyleModLoaderApp2.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        /* When you set this style in the main application, the modules immediately
+           inherit the value. */
+        private function changeStyle():void {
+            styleManager.getStyleDeclaration("spark.components.Button").setStyle("fontSize", 15);
+        }
+    </fx:Script>
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        s|Button { 
+            color:blue;
+            cornerRadius:10;
+        }
+    </fx:Style>
+
+    <s:VGroup>
+        <s:Label id="l1" text="Module 1"/>
+        <s:ModuleLoader id="ml1" url="mxmlmodules/StyleMod1.swf"/>
+    </s:VGroup>
+
+    <s:VGroup>
+        <s:Label id="l2" text="Module 2"/>
+        <s:ModuleLoader id="ml2" url="mxmlmodules/StyleMod2.swf"/>
+    </s:VGroup>
+
+    <s:Button label="Change Styles" click="changeStyle()"/>
+
+</s:Application>

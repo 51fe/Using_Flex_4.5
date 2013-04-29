@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- styles/ArraysOfColors.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <fx:Style>
+     @namespace mx "library://ns.adobe.com/flex/mx";
+
+     mx|Tree {
+        depthColors: #FFCC33, #FFCC99, #CC9900;
+        alternatingItemColors: red, green;
+     }
+  </fx:Style>
+
+    <fx:Declarations>
+
+      <fx:XMLList id="treeData">
+         <node label="Mail Box">
+            <node label="Inbox">
+               <node label="Marketing"/>
+               <node label="Product Management"/>
+               <node label="Personal"/>
+            </node>
+            <node label="Outbox">
+               <node label="Professional"/>
+               <node label="Personal"/>
+            </node>
+            <node label="Spam"/>
+            <node label="Sent"/>
+         </node>    
+      </fx:XMLList>
+    </fx:Declarations>
+
+  <s:Panel title="Tree Control Example" width="100%">
+        <mx:Tree id="myTree" width="100%" labelField="@label" dataProvider="{treeData}"/>
+  </s:Panel>
+</s:Application>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- behaviors\BehaviorsASStyles.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[        
+            import mx.effects.Zoom;
+
+            // Define a new Zoom effect.
+            private var zEffect:Zoom = new Zoom();
+
+            private function initApp():void {
+                // Set duration of zoom effect. 
+                zEffect.duration = 1000;
+
+                // Define zoom in ratio.        
+                zEffect.zoomHeightTo = 1.0; 
+                zEffect.zoomWidthTo = 1.0; 
+            }
+        
+            private function applyZoomEffect(newZoom:Number):void {
+                zEffect.zoomHeightTo = newZoom; 
+                zEffect.zoomWidthTo = newZoom;             
+
+                // Apply or re-apply the Zoom effect to the Button control. 
+                b1.setStyle("mouseDownEffect", zEffect);                
+            }
+            
+            private function resizeButton():void {
+                var newZoom:Number;
+                var n:Number = zEffect.zoomHeightTo;
+                if (n == 1.0) {
+                    newZoom = 2.0;
+                } else {
+                    newZoom = 1.0;
+                }
+                applyZoomEffect(newZoom);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:HBox>
+        <mx:Button id="b1" label="Click Me" click="resizeButton();"/>
+    </mx:HBox>
+</s:Application>

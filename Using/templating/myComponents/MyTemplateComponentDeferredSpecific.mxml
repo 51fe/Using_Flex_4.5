@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- templating/myComponents/MyTemplateComponentDeferredSpecific.mxml -->
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="init();">
+    
+    <fx:Script>
+        <![CDATA[
+        
+            import spark.components.HGroup;
+            import mx.core.UIComponent;
+                
+            [InstanceType("spark.components.Label")]
+            public var topRow:IDeferredInstance;
+
+            // Define an Array of deferred properties 
+            // for a row of components.
+            // Restrict the type of the component 
+            // to mx.controls.Button.
+            [InstanceType("spark.components.Button")]
+            [ArrayElementType("mx.core.IDeferredInstance")]
+            public var bottomRow:Array;
+    
+            private function init():void {            
+                addElement(UIComponent(topRow.getInstance()));
+
+                var controlHGroup:HGroup = new HGroup();
+                for (var i:int = 0; i < bottomRow.length; i++)
+            controlHGroup.addElement(UIComponent(bottomRow[i].getInstance()));
+
+                addElement(controlHGroup);
+            }
+        ]]>
+    </fx:Script>
+</s:VGroup>

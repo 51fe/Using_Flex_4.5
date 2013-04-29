@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- validators\ValTriggerProg.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            // Import ZipCodeValidator.
+            import mx.validators.ZipCodeValidator;
+
+            private var v:ZipCodeValidator = new ZipCodeValidator();
+
+            private function performValidation():void {
+                v.domain = "US or Canada";
+                // Set the listener property to the component 
+                // used to display validation errors. 
+                v.listener=myZip;
+                v.validate(myZip.text);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextInput id="myZip"/>
+    <s:Button label="Submit" click="performValidation();"/>
+</s:Application>

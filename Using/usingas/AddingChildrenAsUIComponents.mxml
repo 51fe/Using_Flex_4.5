@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- usingas/AddingChildrenAsUIComponents.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import flash.display.Sprite;
+        import mx.core.UIComponent;
+
+        private var xLoc:int = 20;
+        private var yLoc:int = 20;
+        private var circleColor:Number = 0xFFCC00;
+
+        private function addChildToPanel():void {
+
+            var circle:Sprite = new Sprite();
+            circle.graphics.beginFill(circleColor);
+            circle.graphics.drawCircle(xLoc, yLoc, 15);
+
+            var c:UIComponent = new UIComponent();
+            c.addChild(circle);
+            panel1.addElement(c);
+            
+            xLoc = xLoc + 5;
+            yLoc = yLoc + 1;
+            circleColor = circleColor + 20;
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Panel id="panel1" height="250" width="300"/>
+
+    <s:Button id="myButton" label="Click Me" click="addChildToPanel();"/>
+    
+</s:Application>

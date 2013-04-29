@@ -1,0 +1,30 @@
+<mx:OLAPCube name="FlatSchemaCube" 
+    dataProvider="{flatData}" 
+    id="myMXMLCube"
+    complete="runQuery(event);">
+     
+    <mx:OLAPDimension name="CustomerDim">
+        <mx:OLAPAttribute name="Customer" dataField="customer"/>
+        <mx:OLAPHierarchy name="CustomerHier" hasAll="true">
+            <mx:OLAPLevel attributeName="Customer"/>
+        </mx:OLAPHierarchy>
+    </mx:OLAPDimension>
+    
+    <mx:OLAPDimension name="ProductDim">
+        <mx:OLAPAttribute name="Product" dataField="product"/>
+        <mx:OLAPHierarchy name="ProductHier" hasAll="true">
+            <mx:OLAPLevel attributeName="Product"/>
+        </mx:OLAPHierarchy>
+    </mx:OLAPDimension>
+
+    <mx:OLAPDimension name="QuarterDim">
+        <mx:OLAPAttribute name="Quarter" dataField="quarter"/>
+        <mx:OLAPHierarchy name="QuarterHier" hasAll="true">
+            <mx:OLAPLevel attributeName="Quarter"/>
+        </mx:OLAPHierarchy> 
+    </mx:OLAPDimension>
+    
+    <mx:OLAPMeasure name="Revenue" 
+        dataField="revenue" 
+        aggregator="SUM"/>
+</mx:OLAPCube>

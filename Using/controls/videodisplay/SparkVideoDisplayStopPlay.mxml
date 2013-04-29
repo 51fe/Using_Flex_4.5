@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- controls\videodisplay\SparkVideoDisplayStopPlay.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="myVid.pause();">
+    <s:VGroup>
+        <s:VideoDisplay id="myVid" 
+            source="../assets/MyVideo.flv"
+            height="250" 
+            width="250"
+        />
+        <s:HGroup>
+            <s:Button label="||" click="myVid.pause();"/>
+            <s:Button label="&gt;" click="myVid.play();"/>         
+        </s:HGroup>
+    </s:VGroup>
+</s:Application>

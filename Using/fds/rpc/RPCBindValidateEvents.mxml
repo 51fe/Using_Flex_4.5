@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCBindValidateEvents.mxml. Compiles w destination error --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    width="600" height="400">
+
+    <!-- WebService component handles web service requests and results. --> 
+    <mx:WebService id="WeatherService" destination="wsDest">
+        <mx:operation name="GetWeather"
+            fault="showErrorDialog(event.fault.faultString)" result="log();">
+
+    <!-- The mx:request data model stores web service request data. --> 
+            <mx:request>
+                <ZipCode>{myZipField.text}</ZipCode>
+            </mx:request>
+        </mx:operation>
+    </mx:WebService>
+
+    <!-- Validator validates ZIP code using the standard Zip Code validator. --> 
+    <mx:ZipCodeValidator
+        source="{WeatherService.GetWeather.request}" property="ZipCode"
+        trigger="{mybutton}" triggerEvent="click"/>
+    <mx:VBox>
+    <mx:TextInput id="myZipField" text="enter zip" width="80"/>
+
+    <!-- Button triggers service request. --> 
+    <mx:Button id="mybutton" label="Get Weather"
+        click="WeatherService.GetWeather.send();"/>
+
+    <!-- TextArea control displays the results that the service returns. --> 
+        <mx:TextArea id="temp" text="The current temperature in 
+        {WeatherService.GetWeather.lastResult.CityShortName} is
+        {WeatherService.GetWeather.lastResult.CurrentTemp}."
+        height="30" width="200"/>
+    </mx:VBox>
+    <mx:Script>
+        <![CDATA[
+            public function log():void {
+                // function implementation
+            }
+
+            public function showErrorDialog(error:String):void {
+                // function implementation
+            }
+        ]]>
+    </mx:Script>
+</mx:Application>

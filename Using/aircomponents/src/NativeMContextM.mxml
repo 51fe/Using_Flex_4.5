@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMContextM.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import flash.desktop.DockIcon; 
+            import flash.desktop.InteractiveIcon; 
+            import flash.desktop.NativeApplication; 
+            import flash.desktop.SystemTrayIcon; 
+            import flash.display.Shape; 
+            import mx.controls.FlexNativeMenu; 
+             
+            private var myMenu:FlexNativeMenu; 
+             
+            private function init():void { 
+                // Create the menu 
+                myMenu = new FlexNativeMenu(); 
+                myMenu.dataProvider = menuData; 
+                myMenu.labelField = "@label"; 
+                myMenu.showRoot = false; 
+                 
+                var icon:InteractiveIcon; 
+                icon = NativeApplication.nativeApplication.icon; 
+                 
+                // If we need a system tray icon, create one and display it 
+                if (NativeApplication.supportsSystemTrayIcon) 
+                { 
+                    var iconData:BitmapData = createSystemTrayIcon(); 
+                    SystemTrayIcon(icon).bitmaps = new Array(iconData); 
+                } 
+                 
+                // Use this approach if you want to assign the same menu 
+                // to the dock icon and system tray icon 
+                this.systemTrayIconMenu = this.dockIconMenu = myMenu; 
+                 
+                // Use this approach if you want to assign separate menus 
+//              if (NativeApplication.supportsDockIcon) 
+//              { 
+//                  this.dockIconMenu = myMenu; 
+//              } 
+//              else if (NativeApplication.supportsSystemTrayIcon) 
+//              { 
+//                  this.systemTrayIconMenu = myMenu; 
+//              } 
+            } 
+             
+            private function createSystemTrayIcon():BitmapData { 
+                // Draw the icon in a Graphic 
+                var canvas:Shape = new Shape(); 
+                canvas.graphics.beginFill(0xffff00); 
+                canvas.graphics.drawCircle(24, 24, 24); 
+                canvas.graphics.endFill(); 
+                canvas.graphics.beginFill(0x000000); 
+                canvas.graphics.drawEllipse(13, 13, 9, 12); 
+                canvas.graphics.drawEllipse(27, 13, 9, 12); 
+                canvas.graphics.endFill(); 
+                canvas.graphics.lineStyle(3, 0x000000); 
+                canvas.graphics.moveTo(11, 32); 
+                canvas.graphics.curveTo(24, 46, 37, 32); 
+                 
+                var result:BitmapData = new BitmapData(48, 48, true, 0x00000000); 
+                result.draw(canvas); 
+                 
+                return result; 
+            } 
+        ]]> 
+    </fx:Script> 
+     
+     <fx:Declarations>
+        <!-- The XML data provider --> 
+        <fx:XML format="e4x" id="menuData"> 
+            <root> 
+                <menuitem label="MenuItem A"/> 
+                <menuitem label="MenuItem B"/> 
+                <menuitem label="MenuItem C"/> 
+            </root> 
+        </fx:XML> 
+     </fx:Declarations>
+     
+    <s:Label text="Right-click on the dock icon (Mac OS X) or system tray icon (Windows)"/>
+</s:WindowedApplication>

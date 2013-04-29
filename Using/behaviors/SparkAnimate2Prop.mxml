@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkAnimate2Prop.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Animate id="scaleIncrease"
+            target="{myB1}">
+            <s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.0" valueTo="1.5"/>
+            <s:SimpleMotionPath property="scaleY" 
+                valueFrom="1.0" valueTo="1.5"/>
+        </s:Animate>
+        <s:Animate id="scaleDecrease"
+            target="{myB1}"> 
+            <s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.5" valueTo="1.0"/>                
+            <s:SimpleMotionPath property="scaleY" 
+                valueFrom="1.5" valueTo="1.0"/>                
+        </s:Animate>
+    </fx:Declarations>
+
+    <s:Button id="myB1"
+        label="Scale Button"
+        mouseDown="scaleDecrease.end(); scaleIncrease.play();"
+        mouseUp="scaleIncrease.end(); scaleDecrease.play();"/>
+</s:Application>

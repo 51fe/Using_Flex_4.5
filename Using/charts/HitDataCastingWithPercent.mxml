@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- charts/HitDataCastingWithPercent.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+     
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.charts.HitData;
+     import mx.charts.series.ColumnSeries;
+     import mx.charts.series.items.ColumnSeriesItem;
+
+     public var b:Boolean = true;
+
+     public function myDataTipFunction(e:HitData):String {
+
+        var s:String;
+        s = "<B>" + ColumnSeries(e.element).displayName + "</B>\n";
+
+        s += "<I>Profit:</I> <FONT COLOR='#339966'>$" + 
+            e.item.profit + "</FONT>\n";
+        s += "<I>Expenses:</I> <FONT COLOR='#FF0000'>$" + 
+            e.item.expenses + "</FONT>\n";
+        s += "------------------------\n";
+        s += "<I>Difference:</I> $" + (e.item.profit - e.item.expenses) + "\n";
+
+        // The value of the Profit will always be 100%, 
+        // so exclude adding that to the DataTip. Only 
+        // add percent when the user gets the Amount DataTip.
+        var percentValue:Number = Number(ColumnSeriesItem(e.chartItem).yValue);
+        if (percentValue < 100) {
+            s += "Profit was equal to about <B>" + 
+                Math.round(percentValue) + "</B>% of the total.\n";
+        }
+        return s;
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Accessing ChartItems from HitData Objects">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        type="100%"
+        dataTipFunction="myDataTipFunction" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                yField="profit" 
+                displayName="Profit '09"/>
+           <mx:ColumnSeries 
+                yField="expenses" 
+                displayName="Expenses '09"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

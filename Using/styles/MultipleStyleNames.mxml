@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- styles/MultipleStyleNames.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        .myFontStyle { 
+            fontSize: 22;
+        }
+        .myOtherFontStyle {
+            color: #9933FF;        
+        }
+    </fx:Style>
+
+    <s:VGroup>
+        <!-- This button has the custom style applied to it. -->
+        <s:Button id="myButton" 
+            styleName="myFontStyle myOtherFontStyle" 
+            label="Click Me"/>
+
+        <!-- This button uses default styles. -->
+        <s:Button id="myButton2" label="Click Me"/>
+    </s:VGroup>
+
+</s:Application>

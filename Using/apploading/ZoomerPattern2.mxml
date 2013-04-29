@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/ZoomerPattern2.mxml -->
+<s:Application 
+    creationComplete="setup()" 
+    height="250"
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+     <fx:Script>
+     <![CDATA[
+          import mx.core.UIComponent;
+          import mx.managers.PopUpManager;
+
+          [Bindable]
+          public var data1:Array = ["Ice Cream", "Fudge", "Whipped Cream", "Nuts"];
+
+          public var zoomTool:UIComponent;
+
+          public function setup():void {
+               // Draw the zoom rectangle.
+               zoomWidget.graphics.lineStyle(1);
+               zoomWidget.graphics.beginFill(0, 0);
+               zoomWidget.graphics.drawRect(0, 0, 17, 17);
+               zoomWidget.graphics.endFill();
+
+               // Listen for mouse down events.
+               zoomWidget.addEventListener(MouseEvent.MOUSE_DOWN, zoom_mouseDownHandler);
+          }
+
+          private var lastX:int;
+          private var lastY:int;
+
+          private function zoom_mouseDownHandler(event:MouseEvent):void {
+               // When the mouse is down, listen for the move and up events.              
+               systemManager.topLevelSystemManager.addEventListener(
+                    MouseEvent.MOUSE_MOVE, zoom_mouseMoveHandler, true);
+               systemManager.topLevelSystemManager.addEventListener(
+                    MouseEvent.MOUSE_UP, zoom_mouseUpHandler, true);
+
+               // Update the last position of the mouse.
+               lastX = event.stageX;
+               lastY = event.stageY;
+
+               // Create and pop up the zoomTool. This is what is dragged around.
+               // It must be a popup so that it can float over other content.
+               zoomTool = new UIComponent();
+               PopUpManager.addPopUp(zoomTool, this);
+               var pt:Point = new Point(zoomWidget.transform.pixelBounds.x, 
+                    zoomWidget.transform.pixelBounds.y);
+               pt = zoomTool.parent.globalToLocal(pt);
+               zoomTool.x = pt.x;
+               zoomTool.y = pt.y;
+               zoomTool.graphics.lineStyle(1);
+               zoomTool.graphics.beginFill(0, 0);
+               zoomTool.graphics.drawRect(0, 0, 17, 17);
+               zoomTool.graphics.endFill();
+
+               // Hide the rectangle that was the target.
+               zoomWidget.visible = false;
+          }
+
+          private function zoom_mouseMoveHandler(event:MouseEvent):void {
+               // Update the position of the dragged rectangle.
+               zoomTool.x += event.stageX - lastX;
+               zoomTool.y += event.stageY - lastY;
+               lastX = event.stageX;
+               lastY = event.stageY;
+
+               var bm:BitmapData = new BitmapData(16, 16);
+               
+               // Capture the bits on the screen.
+               bm.draw(DisplayObject(systemManager.topLevelSystemManager), new 
+                    Matrix(1, 0, 0, 1,  -zoomTool.transform.pixelBounds.x - 2, 
+                    -zoomTool.transform.pixelBounds.y - 2));
+
+               // Create a Bitmap to hold the bits.
+               if (zoomed.numChildren == 0) {
+                    var bmp:Bitmap = new Bitmap();
+                    zoomed.addChild(bmp);
+               } else
+                    bmp = zoomed.getChildAt(0) as Bitmap;
+
+               // Set the bits.
+               bmp.bitmapData = bm;
+
+               // Zoom in on the bits.
+               bmp.scaleX = bmp.scaleY = 8;
+          }
+
+          private function zoom_mouseUpHandler(event:Event):void {
+               // Remove the listeners.
+               systemManager.topLevelSystemManager.removeEventListener(
+                    MouseEvent.MOUSE_MOVE, zoom_mouseMoveHandler, true);
+               systemManager.topLevelSystemManager.removeEventListener(
+                    MouseEvent.MOUSE_UP, zoom_mouseUpHandler, true);
+
+               // Replace the target rectangle.
+               zoomWidget.visible = true;
+
+               // Remove the dragged rectangle.
+               PopUpManager.removePopUp(zoomTool);
+          }
+
+     ]]>
+     </fx:Script>
+     
+     <mx:HBox>
+          <mx:HBox backgroundColor="0x00eeee" height="140" paddingTop="4" paddingRight="4">
+               <mx:Label text="Drag Rectangle"/>
+               <mx:UIComponent id="zoomWidget" width="17" height="17"/>
+               <mx:Canvas id="zoom" 
+                    borderStyle="solid" 
+                    width="132" 
+                    height="132"
+               >
+                    <mx:UIComponent id="zoomed" width="128" height="128"/>
+               </mx:Canvas>
+          </mx:HBox>
+          <mx:List dataProvider="{data1}"/>
+     </mx:HBox>
+</s:Application>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/MultiSourceMain2.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+     xmlns:s="library://ns.adobe.com/flex/spark" 
+     firstView="views.MultiSourceView2" applicationDPI="160" initialize="initApp()">
+    
+    <fx:Script>
+        <![CDATA[
+                public function initApp():void {
+                }   
+        ]]>
+    </fx:Script>
+    
+</s:ViewNavigatorApplication>

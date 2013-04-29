@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppSparkBackground.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    skinClass="mySkins.MyAppBackgroundSkin">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+</s:Application>

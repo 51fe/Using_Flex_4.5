@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- styles/EmbedInCSS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+	<fx:Style>
+		.style1 { 
+			backgroundImage: Embed("../assets/butterfly.gif"); 
+			backgroundAlpha: .2;
+		}
+	</fx:Style>
+    
+    <s:Panel title="BorderContainer Component Example"
+            width="75%" height="75%" 
+            horizontalCenter="0" verticalCenter="0"> 
+
+        <s:BorderContainer 
+            left="10" right="10" top="10" bottom="10"
+            styleName="style1">
+            <s:layout>
+                <s:VerticalLayout 
+                    paddingLeft="5" paddingRight="5" 
+                    paddingTop="5" paddingBottom="5"/>
+            </s:layout>
+            <s:HGroup>
+				<s:Button label="Button 1"/>
+				<s:Button label="Button 2"/>
+				<s:Button label="Button 3"/>
+				<s:Button label="Button 4"/>
+            </s:HGroup>
+            <s:HGroup>
+				<s:Button label="Button 5"/>
+				<s:Button label="Button 6"/>
+				<s:Button label="Button 7"/>
+				<s:Button label="Button 8"/>
+            </s:HGroup>
+            <s:HGroup>
+				<s:Button label="Button 9"/>
+				<s:Button label="Button 10"/>
+				<s:Button label="Button 11"/>
+				<s:Button label="Button 12"/>
+            </s:HGroup>
+        </s:BorderContainer> 
+    </s:Panel>
+</s:Application>

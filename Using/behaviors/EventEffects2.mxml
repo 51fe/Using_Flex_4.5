@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- behaviors\EventEffects2.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+    
+            import mx.effects.*;
+            import mx.events.EffectEvent;
+            import mx.core.UIComponent;
+    
+            private function endEffectListener(eventObj:EffectEvent):void {
+                // Access the effect object.
+                var effectObj:Effect = Effect(eventObj.target);
+
+                // Access the target component of the effect.
+                var effectTarget:UIComponent = 
+                    UIComponent(eventObj.effectInstance.target); 
+
+                // Write the target id and event type to the TextArea control.            
+                myTA.text = effectTarget.id;
+                myTA.text = myTA.text + " " + eventObj.type;
+            } 
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <s:Fade id="slowFade" 
+            duration="2000" 
+            effectEnd="endEffectListener(event);"
+            target="{myButton1}"/>
+    </fx:Declarations>
+
+    <s:Button id="myButton1" 
+        label="Button 1" 
+        creationCompleteEffect="{slowFade}"/>
+
+    <s:TextArea id="myTA" />
+</s:Application>

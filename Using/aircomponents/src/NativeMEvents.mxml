@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMEvents.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.events.FlexNativeMenuEvent; 
+            import mx.controls.FlexNativeMenu; 
+            import mx.events.FlexNativeMenuEvent;
+             
+            // The event listener that opens the menu with an XML data  
+            // provider and adds event listeners for the menu. 
+            private function createAndShow():void { 
+                ta1.text=""; 
+                xmlBasedMenu.addEventListener(FlexNativeMenuEvent.ITEM_CLICK, menuShowInfo); 
+                xmlBasedMenu.addEventListener(FlexNativeMenuEvent.MENU_SHOW, menuShowInfo); 
+                xmlBasedMenu.display(stage, 225, 10); 
+            } 
+
+            // The event listener for the xml-based menu events. 
+            // Retain information on all events for a menu instance. 
+            private function menuShowInfo(event:FlexNativeMenuEvent):void { 
+                ta1.text = "event.type: " + event.type; 
+                 
+                // The label field is null for menuShow events. 
+                ta1.text += "\nevent.label: " + event.label; 
+                 
+                // The index value is -1 for menuShow events. 
+                ta1.text+="\nevent.index: " + event.index; 
+                 
+                // The item field is null for menuShow events. 
+                if (event.item != null) 
+                { 
+                    ta1.text += "\nItem label: " + event.item.@label 
+                    ta1.text += "\nItem toggled: " + event.item.@toggled; 
+                    ta1.text += "\nItem type: " + event.item.@type; 
+                } 
+            } 
+
+            // The event listener that creates an object-based menu  
+            // and adds event listeners for the menu. 
+            private function createAndShow2():void { 
+                ta1.text=""; 
+                objectBasedMenu.addEventListener(FlexNativeMenuEvent.ITEM_CLICK, menuShowInfo2); 
+                objectBasedMenu.addEventListener(FlexNativeMenuEvent.MENU_SHOW, menuShowInfo2); 
+                objectBasedMenu.display(stage, 225, 10); 
+            } 
+
+            // The event listener for the object-based Menu events. 
+            private function menuShowInfo2(event:FlexNativeMenuEvent):void { 
+                ta1.text = "event.type: " + event.type; 
+                 
+                // The label field is null for menuShow events. 
+                ta1.text += "\nevent.label: " + event.label; 
+                 
+                // The index value is -1 for menuShow events. 
+                ta1.text += "\nevent.index: " + event.index; 
+                 
+                // The item field is null for menuShow events. 
+                if (event.item) 
+                { 
+                    ta1.text += "\nItem label: " + event.item.label 
+                    ta1.text += "\nItem toggled: " + event.item.toggled; 
+                    ta1.text += "\ntype: " + event.item.type; 
+                } 
+            } 
+
+            // The object-based data provider, an Array of objects. 
+            // Its contents are identical to that of the XML data provider. 
+            [Bindable]  
+            public var objMenuData:Array = [ 
+                {label: "MenuItem A", children: [ 
+                    {label: "SubMenuItem A-1", enabled: false}, 
+                    {label: "SubMenuItem A-2"}  
+                ]}, 
+                {label: "MenuItem B", type: "check", toggled: true}, 
+                {label: "MenuItem C", type: "check", toggled: false}, 
+                {type: "separator"}, 
+                {label: "MenuItem D", children: [ 
+                    {label: "SubMenuItem D-1"}, 
+                    {label: "SubMenuItem D-2"},  
+                    {label: "SubMenuItem D-3"}  
+                ]}  
+            ]; 
+        ]]> 
+    </fx:Script> 
+    
+    <fx:Declarations>
+        <!-- The XML-based menu data provider.  
+        The <fx:XML tag requires a single root. --> 
+        <fx:XML id="xmlMenuData" format="e4x">
+            <xmlRoot> 
+                <menuitem label="MenuItem A" > 
+                    <menuitem label="SubMenuItem A-1" enabled="false"/> 
+                    <menuitem label="SubMenuItem A-2"/> 
+                </menuitem> 
+                <menuitem label="MenuItem B" type="check" toggled="true"/> 
+                <menuitem label="MenuItem C" type="check" toggled="false"/> 
+                <menuitem type="separator"/>      
+                <menuitem label="MenuItem D"> 
+                    <menuitem label="SubMenuItem D-1"/> 
+                    <menuitem label="SubMenuItem D-2"/> 
+                    <menuitem label="SubMenuItem D-3"/> 
+                </menuitem> 
+            </xmlRoot> 
+        </fx:XML> 
+
+        <!-- Define the FlexNativeMenu components in   
+          the <fx:Declarations> block. --> 
+         <mx:FlexNativeMenu id="xmlBasedMenu"
+            showRoot="false"  
+            labelField="@label"  
+            dataProvider="{xmlMenuData}"/>
+
+        <mx:FlexNativeMenu id="objectBasedMenu"  
+            dataProvider="{objMenuData}"/> 
+    </fx:Declarations>
+     
+    <!-- Button controls to open the menus. --> 
+    <s:Button x="10" y="5"  
+        label="Open XML Popup"  
+        click="createAndShow();"/> 
+    <s:Button x="10" y="35"  
+        label="Open Object Popup"  
+        click="createAndShow2();"/> 
+    <!-- Text area to display the event information --> 
+    <s:TextArea x="10" y="70"  
+        width="200" height="250"  
+        id="ta1"/>
+</s:WindowedApplication>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- createcomps_mxml/MyApplicationProps.mxml-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:local="*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            import flash.events.Event;
+
+            private function handleCloseEvent(eventObj:Event):void {
+                myTA.text="foo";
+            }   
+        ]]>
+    </fx:Script>
+
+    <local:StateComboBox maxChars="25" 
+        close="handleCloseEvent(event);"/>
+    <mx:TextArea id="myTA" />
+</s:Application>

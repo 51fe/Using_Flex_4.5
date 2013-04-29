@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/FSListSimple.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <mx:FileSystemList id="fileList"/> 
+    <s:Button label="Up" 
+        click="fileList.navigateUp();" 
+        enabled="{fileList.canNavigateUp}"/> 
+</s:WindowedApplication>

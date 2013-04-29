@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- createcomps_effects/MainSoundParam.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComps="myEffects.*"> 
+
+    <fx:Declarations>
+        <MyComps:MySoundParam id="mySoundEffect" 
+            soundMP3="http://localhost:8100/flex/assets/sample.mp3"/>
+    </fx:Declarations>
+
+    <!-- Use the SoundEffect effect with a mouseOver trigger. -->
+    <mx:Label id="myLabel" 
+        text="play MP3" 
+        rollOver="mySoundEffect.end();mySoundEffect.play();"/>
+</s:Application>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- events/OneHandlerTwoComponentsAS.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="createHandlers(event)">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+
+        public function createHandlers(e:Event):void {
+            b1.addEventListener(MouseEvent.CLICK, submitForm);
+            b2.addEventListener(MouseEvent.CLICK, submitForm);
+        }
+
+        private function submitForm(e:Event):void {
+            // Handle event here.
+            Alert.show("Current Target: " + e.currentTarget.id);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Click Me"/>
+
+    <s:Button id="b2" label="Click Me, Too"/>
+
+</s:Application>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\UseIList.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="initData();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+
+            // The data provider is an Array of Strings
+            public var myArray:Array = ["AZ", "MA", "MZ", "MN", "MO", "MS"];
+            // Declare an ArrayList that represents the Array.
+            [Bindable]
+            public var myAL:ArrayList;
+
+            //Initialize the ArrayList.
+            public function initData():void {
+                myAL = new ArrayList(myArray); 
+            }
+
+            // The function to change the collection, and therefore
+            // the Array.
+            public function changeCollection():void {
+                // Get the original collection length. 
+                var oldLength:int=myAL.length;
+
+                // Remove the invalid first item, AZ.
+                var removedItem:String=String(myAL.removeItemAt(0));
+                // Add ME as the second item. (ILists used 0-based indexing.)
+                myAL.addItemAt("ME", 1);
+                // Add MT at the end of the Array and collection.
+                myAL.addItem("MT");
+                // Change the third item from MZ to MI.
+                myAL.setItemAt("MI", 2);
+                // Get the updated collection length. 
+                var newLength:int=myAL.length;
+                // Get the index of the item with the value ME.
+                var addedItemIndex:int=myAL.getItemIndex("ME");
+                // Get the fifth item in the collection.
+                var index4Item:String=String(myAL.getItemAt(4));
+
+                // Display the information in the TextArea control.
+                ta1.text="Start Length: " + oldLength + ". New Length: " +
+                    newLength;
+                ta1.text+=".\nRemoved " + removedItem;
+                ta1.text+=".\nAdded ME at index " + addedItemIndex;
+                ta1.text+=".\nThe item at index 4 is " + index4Item + ".";
+                // Show that the base Array has been changed.
+                ta1.text+="\nThe base Array is: " + myArray.join();
+            }
+        ]]>
+    </fx:Script>
+
+    <s:ComboBox id="myCB" dataProvider="{myAL}"/>
+    <s:TextArea id="ta1" height="75" width="300"/> 
+    <s:Button label="rearrange list" click="changeCollection();"/>
+</s:Application>

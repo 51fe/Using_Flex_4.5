@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- skins/EmbedImagesClassSelector.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>  
+    
+    <fx:Style>
+        .myButtonStyle {
+            overSkin: Embed("../assets/orb_over_skin.gif");
+            upSkin: Embed("../assets/orb_up_skin.gif");
+            downSkin: Embed("../assets/orb_down_skin.gif");
+        }
+    </fx:Style>
+
+    <mx:Button id="b1" label="Click Me"/>
+    <mx:Button id="b2" label="Click Me" styleName="myButtonStyle"/>
+</s:Application>

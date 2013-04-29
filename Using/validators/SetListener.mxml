@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- validators\SetListener.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text"
+            listener="{errorMsg}"/>
+    </fx:Declarations>
+
+    <s:TextInput id="zipCodeInput"/> 
+    <s:TextArea id="errorMsg"/>
+</s:Application>

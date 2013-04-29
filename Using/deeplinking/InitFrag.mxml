@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/InitFrag.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init(event);">    
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.BrowserManager;
+            import mx.managers.IBrowserManager;
+            import mx.events.BrowserChangeEvent;
+            import mx.utils.URLUtil;
+
+            private var bm:IBrowserManager;            
+            private function init(e:Event):void {
+                bm = BrowserManager.getInstance();                
+                bm.init("", "Welcome!");
+                parseURL(e);
+            }
+        
+            [Bindable]
+            private var indexFromURL:int;
+            private function parseURL(e:Event):void {            
+                var o:Object = URLUtil.stringToObject(bm.fragment);                
+                indexFromURL = o.index;
+            }           
+        ]]>
+    </fx:Script>
+
+    <mx:Accordion selectedIndex="{indexFromURL}">
+        <mx:VBox label="Panel 1">
+            <mx:Label text="Accordion container panel 1"/>
+        </mx:VBox>
+        <mx:VBox label="Panel 2">
+            <mx:Label text="Accordion container panel 2"/>
+        </mx:VBox>
+        <mx:VBox label="Panel 3">
+            <mx:Label text="Accordion container panel 3"/>
+        </mx:VBox>    
+    </mx:Accordion>   
+
+</s:Application>

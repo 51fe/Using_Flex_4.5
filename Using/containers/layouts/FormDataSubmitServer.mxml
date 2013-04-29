@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataSubmitServer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private function processValues():void {
+                // Check to see if ZIP code is valid.
+                WeatherService.GetWeather.send();
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Define the web service connection. 
+            The specified WSDL URI is not functional. -->
+        <mx:WebService id="WeatherService" 
+            wsdl="/ws/WeatherService?wsdl">  
+            <mx:operation name="GetWeather">
+                <mx:request>
+                    <ZipCode>{zipCode.text}</ZipCode>
+                </mx:request>
+            </mx:operation>
+        </mx:WebService>
+    </fx:Declarations>
+
+    <mx:Form>
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zipCode" 
+                width="200" 
+                text="ZIP code please."/>
+            <mx:Button 
+                width="60" 
+                label="Submit" 
+                click="processValues();"/>
+        </mx:FormItem>
+    </mx:Form>
+
+    <mx:VBox>
+        <mx:TextArea
+            text=
+              "{WeatherService.GetWeather.lastResult.CityShortName}"/>
+        <mx:TextArea 
+            text=
+              "{WeatherService.GetWeather.lastResult.CurrentTemp}"/>
+        <mx:TextArea 
+            text=
+          "{WeatherService.GetWeather.lastResult.DayForecast}"/>
+    </mx:VBox>
+</s:Application>

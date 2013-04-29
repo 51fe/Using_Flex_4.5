@@ -1,0 +1,13 @@
+/* ../assets/BasicStyles.css */
+
+@namespace s "library://ns.adobe.com/flex/spark";
+
+s|Button {
+    fontSize:    24;
+    color: #FF9933;
+}
+
+s|Label {
+    fontSize:    24;
+    color: #FF9933;
+}

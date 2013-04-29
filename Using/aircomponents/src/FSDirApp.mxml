@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/FSDirApp.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="750" height="500">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+     
+    <mx:HDividedBox> 
+        <mx:FileSystemTree id="tree"  
+            width="200" height="100%" 
+            directory="{new File('C:\\')}" 
+            enumerationMode="directoriesOnly" 
+            change="dataGrid.directory = File(tree.selectedItem);"/>     
+        <mx:FileSystemDataGrid id="dataGrid"  
+            width="100%" height="100%" 
+            directory="{new File('C:\\')}"/> 
+    </mx:HDividedBox> 
+</s:WindowedApplication>

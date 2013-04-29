@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sparktextcontrols/ExternalXMLFile.mxml -->
+<s:Application name="Spark_RichText_text_test"
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+ 
+    <fx:Script>
+        <![CDATA[
+            import spark.utils.TextFlowUtil;
+ 
+            XML.ignoreWhitespace = false;
+        ]]>
+    </fx:Script>
+ 
+    <fx:Declarations>
+        <fx:XML id="textFlowAsXML" source="externalTextFlow1.xml" />
+    </fx:Declarations>
+ 
+    <s:RichText id="richTxt"
+            textFlow="{TextFlowUtil.importFromXML(textFlowAsXML)}"
+            horizontalCenter="0" verticalCenter="0" />
+ 
+</s:Application>

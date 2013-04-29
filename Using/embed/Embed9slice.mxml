@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- embed\Embed9slice.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="1200" width="600"> 
+
+    <fx:Script>
+        <![CDATA[
+            [Embed(source="slice_9_grid.gif", 
+                scaleGridTop="25", scaleGridBottom="125", 
+                scaleGridLeft="25", scaleGridRight="125")]
+            [Bindable]
+            public var imgCls:Class;            
+        ]]>
+    </fx:Script>
+    
+    <s:VGroup>
+        <s:Image source="{imgCls}"/>
+        <s:Image source="{imgCls}" width="300" height="300"/>
+        <s:Image source="{imgCls}" width="450" height="450"/>
+    </s:VGroup>
+</s:Application>

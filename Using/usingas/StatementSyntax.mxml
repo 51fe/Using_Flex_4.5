@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- usingas/StatementSyntax.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="doSomething()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+        public var s:Boolean;
+        
+        public function doSomething():void {
+            // The following statements must be inside a function. 
+            s = label1.visible; 
+            label1.text = "label1.visible = " + String(s);
+        }
+        ]]>
+    </fx:Script>
+    
+    <s:Label id="label1"/>
+    
+</s:Application>

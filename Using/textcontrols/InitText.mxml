@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- textcontrols/InitText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="initText()">
+    
+  <fx:Script>
+     public function initText():void {
+        //The following is on one line.
+        myText.text="This string contains a return, \n, tab, \t, and quotation mark, \". " + 
+            "This string also contains less than, &lt;, greater than, &gt;, " + 
+            "ampersand, &amp;, and apostrophe, ', characters.";
+     }
+  </fx:Script>
+
+  <mx:Text width="450" id="myText"/>
+
+</s:Application>

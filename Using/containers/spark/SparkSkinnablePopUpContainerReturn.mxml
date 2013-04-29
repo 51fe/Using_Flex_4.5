@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkSkinnablePopUpContainerReturn.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            // Import the MyAlertPopUp class.
+            import myComponents.MyAlertPopUpReturn;
+            import spark.events.PopUpEvent;
+            
+            // Create and open the SkinnablePopUpContainer.
+            protected function button1_clickHandler(event:MouseEvent):void {
+                // Create an instance of MyAlertPopUp.
+                var alertDB:MyAlertPopUpReturn = new MyAlertPopUpReturn();
+                
+                // Add an event handler for the close event to check for 
+                // any returned data.
+                alertDB.addEventListener('close', alertDB_closeHandler);
+                alertDB.open(this, true);
+            }
+            
+            // Handle the close event from the SkinnablePopUpContainer.
+            protected function alertDB_closeHandler(event:PopUpEvent):void {
+                // If commit is false, do data is returned.
+                if (!event.commit)
+                    return;
+                
+                // Write the returned String to the TextArea control.
+                myTA.text = event.data as String;
+            }            
+        ]]>
+    </fx:Script>
+    
+    <s:Button label="Open Alert" click="button1_clickHandler(event);"/>
+    <s:TextArea id="myTA"/>
+</s:Application>

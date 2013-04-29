@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkListSimpleMultipleSelection.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="450">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import spark.events.IndexChangeEvent;
+            
+            private function myChangedHandler(event:IndexChangeEvent):void {
+                
+                var selIndices:Vector.<int> = event.currentTarget.selectedIndices;
+                var selItems:Vector.<Object> = event.currentTarget.selectedItems;
+                var numItems:Number = selIndices.length;
+                
+                selIndicesTA.text = "";
+                selItemsTA.text = "";
+                
+                for (var i:Number = 0; i<numItems; i++)
+                {
+                    selIndicesTA.text = selIndicesTA.text + selIndices[i] + "\n";
+                    selItemsTA.text = selItemsTA.text + selItems[i] + "\n";
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:List allowMultipleSelection="true"
+        change="myChangedHandler(event);"> 
+        <mx:ArrayCollection>
+            <fx:String>Flex</fx:String> 
+            <fx:String>Flash Builder</fx:String> 
+            <fx:String>Flash</fx:String> 
+            <fx:String>Director</fx:String> 
+            <fx:String>Dreamweaver</fx:String> 
+            <fx:String>ColdFusion</fx:String> 
+        </mx:ArrayCollection>
+    </s:List>
+    
+    <s:Label text="Selected indices"/>
+    <s:TextArea id="selIndicesTA" height="75"/>
+    <s:Label text="Selected items"/>
+    <s:TextArea id="selItemsTA" height="75"/>
+</s:Application>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGStyledIR.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="450" height="450">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            
+            // Data includes URL to album cover.
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'../assets/slanted.jpg'},
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'../assets/brighten.jpg'}
+            ]);
+        ]]>
+    </fx:Script>
+    
+    <s:DataGrid id="myGrid" 
+        dataProvider="{initDG}"
+        variableRowHeight="true">   
+        <s:columns>
+            <s:ArrayList>
+                <s:GridColumn dataField="Artist">
+                    <s:itemRenderer>
+                        <fx:Component>
+                            <s:GridItemRenderer>
+                                <s:Label id="labelDisplay" fontSize="24"/>
+                            </s:GridItemRenderer>
+                        </fx:Component>
+                    </s:itemRenderer>    
+                </s:GridColumn>
+                <s:GridColumn dataField="Album"/>
+                <s:GridColumn dataField="Price"/>
+            </s:ArrayList>
+        </s:columns>       
+    </s:DataGrid>
+</s:Application>

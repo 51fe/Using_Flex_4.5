@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- dragdrop\SimpleDGToDGAlert.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[        
+            import mx.events.DragEvent; 
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+            
+            private function initApp():void {
+              srcgrid.dataProvider =  new ArrayCollection([
+                {Artist:'Carole King', Album:'Tapestry', Price:11.99},
+                {Artist:'Paul Simon', Album:'Graceland', Price:10.99},
+                {Artist:'Original Cast', Album:'Camelot', Price:12.99},
+                {Artist:'The Beatles', Album:'The White Album', Price:11.99}
+              ]);
+                
+                destgrid.dataProvider = new ArrayCollection([]);
+            }
+
+            // Define the event listener.
+            public function dragDropHandler(event:DragEvent):void {    
+                // dataForFormat() always returns an Vector.<Object>
+                // for the list-based controls 
+                // in case multiple items were selected.
+                var dragObj:Vector.<Object>=
+                    event.dragSource.dataForFormat("itemsByIndex") as Vector.<Object>; 
+
+                // Get the Artist for all dragged albums.
+                var artistList:String='';
+                for (var i:Number = 0; i < dragObj.length; i++) { 
+                    artistList+='Artist: ' + dragObj[i].Artist + '\n';
+                }
+                
+                Alert.show(artistList);                
+            }           
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:VGroup>
+            <s:Label text="Available Albums"/>
+            <mx:DataGrid id="srcgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true">                
+                <mx:columns>
+                    <mx:DataGridColumn dataField="Artist"/>
+                    <mx:DataGridColumn dataField="Album"/>
+                    <mx:DataGridColumn dataField="Price"/>
+                </mx:columns>    
+            </mx:DataGrid>
+        </s:VGroup>
+
+        <s:VGroup>
+            <s:Label text="Buy These Albums"/>
+            <mx:DataGrid id="destgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true" 
+                dragDrop="dragDropHandler(event);">                
+                <mx:columns>
+                    <mx:DataGridColumn dataField="Artist"/>
+                    <mx:DataGridColumn dataField="Album"/>
+                    <mx:DataGridColumn dataField="Price"/>
+                </mx:columns>    
+            </mx:DataGrid>
+        </s:VGroup>
+    </s:HGroup>
+
+    <s:Button id="b1" 
+        label="Reset"
+        click="initApp();"/>
+</s:Application>

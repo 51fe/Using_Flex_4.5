@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- containers\intro\VBoxNumChildren.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+      <![CDATA[
+            // Import the Alert class.
+            import mx.controls.Alert;
+    
+            public function calculateChildren():void {
+                var myText:String = new String();
+                myText="The Group container has " + 
+                    myGroup.numElements + " children.";
+                myText+="\nThe application has " + 
+                    numElements + " children.";
+                Alert.show(myText);
+            }        
+        ]]>
+    </fx:Script>
+
+    <s:VGroup id="myGroup">
+        <s:Label text="This is label 1."/>
+        <s:Label text="This is label 2."/>
+        <s:Label text="This is label 3."/>
+        <s:Label text="This is label 4."/>
+        <s:Label text="This is label 5."/>
+    </s:VGroup>  
+    
+    <s:Button label="Show Children" click="calculateChildren();"/>
+</s:Application>

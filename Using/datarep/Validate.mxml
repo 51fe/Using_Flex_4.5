@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- datarep\Validate.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <fx:Model id="zipModel">
+            <root>
+                <zip>{input.text}</zip>
+            </root>    
+        </fx:Model>
+
+        <mx:ZipCodeValidator source="{zipModel}" 
+            property="zip"
+            listener="{input}" 
+            trigger="{input}"/>
+    </fx:Declarations>
+
+    <s:TextInput id="input" 
+        text="enter zip" 
+        width="80"/>
+    <s:TextInput 
+        text="click here to validate"/>
+</s:Application>

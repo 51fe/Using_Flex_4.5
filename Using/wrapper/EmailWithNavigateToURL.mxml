@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/EmailWithNavigateToURL.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     <s:layout> 
+        <s:HorizontalLayout/> 
+     </s:layout>
+  <fx:Script>
+     import flash.net.*;
+     public function sendMail(e:Event):void {
+        var u:URLRequest = new URLRequest("mailto:" + ti1.text);
+        navigateToURL(u,"_self");
+     }
+  </fx:Script>
+  <s:Button id="b1" click="sendMail(event)" label="Send Mail"/>
+  <mx:Form>
+     <mx:FormItem>
+        <mx:Label text="Email Address: "/>
+     </mx:FormItem>
+     <mx:FormItem>
+        <mx:TextInput id="ti1"/>
+     </mx:FormItem>
+  </mx:Form>
+</s:Application>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/EnumerateAllBundles.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="enumerateBundles()"> 
+
+    <fx:Script><![CDATA[
+        import mx.resources.ResourceBundle;
+        import mx.controls.Alert;
+
+        private function registrationComplete():void {
+            /* Use the ResourceManager to set localized values in ActionScript. */
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks'));
+        } 
+        
+        private function enumerateBundles():void {
+            for each (var locale:String in resourceManager.getLocales()) {
+                ta1.text += "****************************************\n";
+                ta1.text += "locale: " + locale + "\n";
+                ta1.text += "****************************************\n";
+                for each (var bundleName:String in resourceManager.getBundleNamesForLocale(locale)) {
+                    ta1.text += "  --------------------------------------\n";
+                    ta1.text += "  bundleName: " + bundleName + "\n";
+                    var bundle:ResourceBundle = 
+                        ResourceBundle(resourceManager.getResourceBundle(locale, bundleName));
+                    for (var key:String in bundle.content) {
+                        ta1.text += "    -" + key + ":" + bundle.content[key]  + "\n";
+                    }
+                }
+            }        
+        }
+    ]]></fx:Script>
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Metadata>
+        [ResourceBundle("RegistrationForm")]
+    </fx:Metadata> 
+
+    <s:Form>
+        <s:FormItem label="@Resource(key='personname', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='street_address', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='city', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='state', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='zip', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+    </s:Form>
+    <s:Button id="b1" 
+        label="@Resource(key='submit_button', bundle='RegistrationForm')" 
+        click="registrationComplete()"/>
+    
+    <s:TextArea id="ta1" width="100%" height="100%"/>
+</s:Application>

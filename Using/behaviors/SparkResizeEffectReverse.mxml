@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- behaviorExamples\SparkResizeEffectReverse.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+ 
+    <fx:Declarations>
+        <s:Resize id="myResizeEffectUp" 
+            target="{myImage}"
+            widthBy="10" heightBy="10"/>
+        <s:Resize id="myResizeEffectDown" 
+            target="{myImage}"
+            widthBy="-10" heightBy="-10"/>
+    </fx:Declarations>
+
+    <s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/>
+    <s:Button label="Resize Me Up" 
+        click="myResizeEffectUp.end();myResizeEffectUp.play();"/>
+    <s:Button label="Resize Me Down" 
+        click="myResizeEffectDown.end();myResizeEffectDown.play();"/>
+</s:Application>

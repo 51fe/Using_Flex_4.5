@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- optimize/ShowTotalMemory.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initTimer()">
+
+    <fx:Script><![CDATA[
+        import flash.utils.Timer;
+        import flash.events.TimerEvent;
+
+        [Bindable]
+        public var time:Number = 0;
+        [Bindable]
+        public var totmem:Number = 0;
+        [Bindable]
+        public var maxmem:Number = 0;
+
+
+
+        public function initTimer():void {
+            // The first parameter is the interval (in milliseconds). The 
+            // second parameter is number of times to run (0 means infinity).
+            var myTimer:Timer = new Timer(1000, 0);
+            myTimer.addEventListener("timer", timerHandler);
+            myTimer.start();
+        }
+        
+        public function timerHandler(event:TimerEvent):void {
+            time = getTimer()
+            totmem = flash.system.System.totalMemory;
+            maxmem = Math.max(maxmem, totmem);
+        }
+    ]]></fx:Script>
+    
+    <s:Form>
+        <s:FormItem label="Time:">
+            <s:Label text="{time} ms"/>
+        </s:FormItem>
+        <s:FormItem label="totalMemory:">
+            <s:Label text="{totmem} bytes"/>
+        </s:FormItem>
+        <s:FormItem label="Max. Memory:">
+            <s:Label text="{maxmem} bytes"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- Models\ModelWithValidator.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Declarations>
+        <fx:Model id="reg">
+            <registration>
+                <name>{username.text}</name>
+                <email>{email.text}</email>
+                <phone>{phone.text}</phone>
+                <zip>{zip.text}</zip>
+                <ssn>{ssn.text}</ssn>
+            </registration>
+        </fx:Model>
+    
+        <mx:Validator required="true" 
+            source="{reg}" property="name"
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{username}"/>
+        <mx:EmailValidator source="{reg}" property="email"
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{email}"/>
+        <mx:PhoneNumberValidator source="{reg}" property="phone"
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{phone}"/>
+        <mx:ZipCodeValidator source="{reg}" property="zip" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{zip}"/>
+        <mx:SocialSecurityValidator source="{reg}" property="ssn"
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{ssn}"/>
+    </fx:Declarations>
+    
+    <!-- Form contains user input controls. -->
+    <s:Form>
+        <s:FormItem label="Name" required="true">
+            <s:TextInput id="username" width="200"/>
+        </s:FormItem>
+        <s:FormItem label="Email" required="true">
+            <s:TextInput id="email" width="200"/>
+        </s:FormItem>
+        <s:FormItem label="Phone" required="true">
+            <s:TextInput id="phone" width="200"/>
+        </s:FormItem>
+        <s:FormItem label="Zip" required="true">
+            <s:TextInput id="zip" width="60"/>
+        </s:FormItem>
+        <s:FormItem label="Social Security" required="true">
+            <s:TextInput id="ssn" width="200"/>
+        </s:FormItem>
+        <s:FormItem> 
+        <!-- User clicks Button to trigger validation. -->
+            <s:Button id="submit" label="Validate"/>
+        </s:FormItem>
+    </s:Form>   
+</s:Application>

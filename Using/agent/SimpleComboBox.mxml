@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- agent/SimpleComboBox.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var cards: Array = [ 
+                {label:"Visa", data:1}, 
+                {label:"MasterCard", data:2}, 
+                {label:"American Express", data:3} 
+            ];
+        
+            [Bindable]
+            public var selectedItem:Object;        
+        ]]>
+    </fx:Script>
+    <s:Panel title="ComboBox Control Example">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        
+        <mx:ComboBox id="cb1" dataProvider="{cards}" width="150" 
+            close="selectedItem=ComboBox(event.target).selectedItem" 
+            automationName="Credit Card List"/>
+
+        <s:VGroup width="250">
+            <s:Label width="200" color="blue" 
+                text="Select a type of credit card."/>
+            <s:Label text="You selected: {selectedItem.label}"/>
+            <s:Label text="Data: {selectedItem.data}"/>
+        </s:VGroup>         
+    </s:Panel>    
+</s:Application>       

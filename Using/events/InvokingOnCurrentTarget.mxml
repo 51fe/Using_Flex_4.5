@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- events/InvokingOnCurrentTarget.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="500">
+
+    <fx:Script>
+        <![CDATA[
+        import mx.core.UIComponent;
+
+        private function tiHandler(e:Event):void {
+            /* 
+            The following enforces type checking: 
+            */
+            TextInput(e.currentTarget).selectRange(0,3);
+
+            /* 
+            The following throws a run-time error but not a compile-time error: 
+            e.currentTarget.tmesis = 4;
+            */
+
+            /*
+            ... unless you cast it to the expected type like the following. Then
+            the compiler throws an error.
+            TextInput(e.currentTarget).tmesis = 4; 
+            */
+        }
+        ]]>
+    </fx:Script>
+
+    <s:TextInput id="ti1" click="tiHandler(event)"
+        text="When you click on this control, the first three characters are selected."
+        width="400"/>
+
+</s:Application>

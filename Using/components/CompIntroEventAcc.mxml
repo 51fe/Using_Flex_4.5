@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- components\CompIntroEventAcc.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="300"
+    height="280">
+
+    <fx:Script>
+        <![CDATA[
+            // Import the class that defines the event object.
+            import mx.events.IndexChangedEvent;
+            import mx.controls.Alert;
+            
+            private function handleChange(event:IndexChangedEvent):void {
+                var currentIndex:int=event.newIndex;
+                Alert.show("You just changed views.\nThe new index is "
+                    + event.newIndex + ".");
+            }
+        ]]>
+    </fx:Script>
+
+    <!-- The Accordion control dispatches a change event when the 
+            selected child container changes. -->
+    <mx:Accordion id="myAcc" 
+        height="60" 
+        width="200" 
+        change="handleChange(event);">
+        <s:NavigatorContent label="Box 1">
+            <s:Label text="This is one view."/>
+        </s:NavigatorContent>
+
+        <s:NavigatorContent label="Box 2">
+            <s:Label text="This is another view."/>
+        </s:NavigatorContent>
+    </mx:Accordion>
+</s:Application>

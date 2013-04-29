@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- lsos/WelcomeMessage.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        public var mySO:SharedObject;
+        [Bindable]
+        public var welcomeMessage:String;
+
+        public function initApp():void {
+            mySO = SharedObject.getLocal("mydata");
+            if (mySO.data.visitDate==null) {
+                welcomeMessage = "Hello first-timer!"
+            } else {
+                welcomeMessage = "Welcome back. You last visited on " +
+            getVisitDate();
+            }
+        }
+
+        private function getVisitDate():Date {
+            return mySO.data.visitDate;
+        }
+
+        private function storeDate():void {
+            mySO.data.visitDate = new Date();
+            mySO.flush();
+        }
+
+        private function deleteLSO():void {
+            // Deletes the SharedObject from the client machine.
+            // Next time they log in, they will be a 'first-timer'.
+            mySO.clear();
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Label id="label1" text="{welcomeMessage}"/>
+    <s:Button label="Log Out" click="storeDate()"/>
+    <s:Button label="Delete LSO" click="deleteLSO()"/>
+
+</s:Application>

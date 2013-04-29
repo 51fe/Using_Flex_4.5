@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- events/MultipleEventHandlersInline.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        [Bindable]
+        private var s:String = "";
+  
+        private function submitForm(e:Event):void {
+            // Handle event here.
+            s += "The submitForm() method was called. ";
+        }
+        private function debugMessage(e:Event):void {
+            // Handle event here.
+            s += "The debugMessage() method was called. ";
+        }
+    ]]></fx:Script>
+  
+    <s:Button id="b1" 
+        label="Do Both Actions"
+        click='submitForm(event); debugMessage(event);' 
+    />
+    <s:Label id="l1" text="{s}"/>
+    
+    <s:Button id="b2" label="Reset" click="s='';"/>
+    
+</s:Application>

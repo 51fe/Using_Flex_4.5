@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- textcontrols/CustomRTE.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.*;
+            import mx.containers.*;
+            import flash.events.*;
+            import mx.managers.PopUpManager;
+            import mx.core.IFlexDisplayObject;
+
+            /* The variable for the pop-up dialog box. */
+            public var w:IFlexDisplayObject;
+
+            /* Add the Find/Replace button to the Rich Text Editor control's
+               tool bar container. */
+            public function addFindReplaceButton():void {
+                var but:Button = new mx.controls.Button();
+                but.label = "Find/Replace";
+                but.addEventListener("click",findReplaceDialog);
+                rt.toolbar.addChild(but);
+            }
+
+            /* The event listener for the Find/Replace button's click event
+               creates a pop-up with a MyTitleWindow custom control. */
+            public function findReplaceDialog(event:Event):void {
+                var w:MyTitleWindow = MyTitleWindow(PopUpManager.createPopUp(this, MyTitleWindow, true));
+                w.height=200;
+                w.width=340;
+
+                /* Pass the a reference to the textArea subcomponent
+                   so that the custom control can replace the text. */
+                w.RTETextArea = rt.textArea;
+                PopUpManager.centerPopUp(w);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:RichTextEditor id="rt" width="95%" 
+        title="RichTextEditor"
+        text="This is a short sentence."
+        initialize="addFindReplaceButton()"/>
+
+</s:Application>

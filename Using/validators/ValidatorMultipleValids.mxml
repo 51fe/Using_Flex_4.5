@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- validators\ValidatorMultipleValids.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initValidatorArray();"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.validators.Validator;
+        
+            // Define the validator Array.
+            private var myValidators:Array;
+
+            private function initValidatorArray():void {
+                myValidators=[zipV, pnV];
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:Model id="person">
+            <userInfo>
+                <zipCode>{zipCodeInput.text}</zipCode>
+                <phoneNumber>{phoneNumberInput.text}</phoneNumber>
+            </userInfo>
+        </fx:Model>
+
+        <!-- Define the validators. -->
+        <mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text"/>
+        <mx:PhoneNumberValidator id="pnV" 
+            source ="{phoneNumberInput}" 
+            property="text"/>
+    </fx:Declarations>
+
+    <s:Form>
+        <s:FormItem>
+            <s:TextInput id="zipCodeInput"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:TextInput id="phoneNumberInput"/>
+        </s:FormItem>
+    </s:Form>
+
+    <s:Button label="Validate" 
+        click="Validator.validateAll(myValidators);"/> 
+</s:Application>

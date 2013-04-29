@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- states\StatesRendererMain.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    
+    <s:DataGroup itemRenderer="myComponents.ImageComp"
+        width="300" height="400">
+        <s:layout>
+            <s:TileLayout columnWidth="150" rowHeight="175"
+                requestedColumnCount="2" requestedRowCount="2" />
+        </s:layout>
+        <mx:ArrayCollection>
+            <fx:Object 
+                name="Nokia 3595"
+                data="1"
+                price="129.99"
+                image="assets/Nokia_3595.gif"
+                description="Kids love it."/>
+            <fx:Object 
+                name= "Nokia 3650"
+                data="1"
+                price="99.99"
+                image="assets/Nokia_3650.gif"
+                description="Impress your friends."/> 
+            <fx:Object 
+                name="Nokia 6010"
+                data="1"
+                price="49.99"
+                image="assets/Nokia_6010.gif"
+                description="Good for everyone."/> 
+            <fx:Object 
+                name="Nokia 6360"
+                data="1"
+                price="19.99"
+                image="assets/Nokia_6360.gif"
+                description="Great deal!"/>
+        </mx:ArrayCollection>
+    </s:DataGroup>
+</s:Application>

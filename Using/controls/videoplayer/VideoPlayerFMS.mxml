@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- controls\VideoPlayer\VideoPlayerFMS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <s:VideoPlayer id="myPlayer"
+        width="500" height="300">
+        <s:source>
+            <s:DynamicStreamingVideoSource id="mySVS"
+                host="rtmp://fmsexamples.adobe.com/vod/">
+                <s:DynamicStreamingVideoItem id="dreamgirl150"
+                    streamName="MP4:_PS_dreamgirl_150.f4v"
+                    bitrate="150" />
+                <s:DynamicStreamingVideoItem id="dreamgirl500"
+                    streamName="MP4:_PS_dreamgirl_500.f4v"
+                    bitrate="500" />
+                <s:DynamicStreamingVideoItem id="dreamgirl1000"
+                    streamName="MP4:_PS_dreamgirl_1000.f4v"
+                    bitrate="1000" />
+            </s:DynamicStreamingVideoSource>
+        </s:source>
+    </s:VideoPlayer>
+
+    <s:TextArea width="500" height="50"
+        text="Please wait while the video loads..."/>
+</s:Application>

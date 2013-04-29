@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- containers\spark\SparkFormStackedSkinClasses.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="300">
+    
+    <fx:Style>
+       @namespace s "library://ns.adobe.com/flex/spark";
+        
+       s|Form
+           {
+               skinClass: ClassReference("spark.skins.spark.StackedFormSkin");
+           }
+       s|FormHeading
+           {
+               skinClass: ClassReference("spark.skins.spark.StackedFormHeadingSkin");
+           }        
+       s|FormItem
+           {
+               skinClass: ClassReference("spark.skins.spark.StackedFormItemSkin");
+           }
+    </fx:Style>
+    
+    <s:Form id="frm" width="300">
+        <s:FormHeading label="STACKED SPARK FORM" backgroundColor="Gray" color="#FFFFFF" width="300"/>
+        <s:FormItem sequenceLabel="1." label="First name" required="true">
+            <s:TextInput id="fName" maxChars="64" />
+        </s:FormItem>
+        <s:FormItem sequenceLabel="2." label="Last name">
+            <s:TextInput id="lName" maxChars="64" />
+        </s:FormItem>
+        <s:FormItem sequenceLabel="3." label="Address">
+            <s:TextInput id="AddressLine1" maxChars="32"/>
+            <s:TextInput id="AddressLine2" maxChars="32"/>
+            <s:TextInput id="AddressLine3" maxChars="32"/>
+        </s:FormItem>
+        <s:FormItem sequenceLabel="4." label="City">
+            <s:TextInput id="City" maxChars="64" />
+        </s:FormItem>
+        <s:FormItem sequenceLabel="5." label="State">
+            <s:TextInput id="State" maxChars="64" />
+        </s:FormItem>
+        <s:FormItem sequenceLabel="6." label="ZipCode" required="true">
+            <s:TextInput id="ZipCode" maxChars="64" />
+        </s:FormItem>
+    </s:Form>     
+</s:Application>

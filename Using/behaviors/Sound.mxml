@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- behaviors\Sound.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            // Embed MP3 file.
+            [Bindable]
+            [Embed(source="../assets/sound1.mp3")]
+            public var soundClass:Class;            
+        ]]>
+    </fx:Script>
+        
+    <fx:Declarations>
+        <mx:SoundEffect id="soundEmbed" 
+            useDuration="false" 
+            loops="0"
+            source="{soundClass}"/>
+    </fx:Declarations>
+
+    <mx:Button id="myButton2" 
+        label="Sound Embed" 
+        mouseDownEffect="{soundEmbed}"/>
+</s:Application>

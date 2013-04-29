@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- charts/HTMLDataProvider.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"
+    height="600">
+
+    <fx:Declarations>
+        <mx:HTTPService id="serviceInput" 
+            resultFormat="text" 
+            url="http://aspexamples.adobe.com/chart_examples/testDataPage.html"
+        />
+    </fx:Declarations>
+    
+    <fx:Script><![CDATA[
+        import mx.events.FlexEvent;
+        import mx.rpc.events.ResultEvent;
+        import mx.rpc.events.FaultEvent;
+        
+        [Bindable]
+        public var chartData:XMLList;   
+
+        private function initApp():void {   
+            serviceInput.addEventListener(ResultEvent.RESULT, resultHandler);
+            serviceInput.addEventListener(FaultEvent.FAULT, faultHandler);
+            serviceInput.send();    
+        }
+
+        public function resultHandler(evt:Event):void {
+            // Extract the XML data from the HTML page.
+            var htmlBlob:String = serviceInput.lastResult.toString();
+
+            htmlBlob = htmlBlob.slice( htmlBlob.indexOf("<!-- data starts here -->", 0) + 
+                25, htmlBlob.length );
+            htmlBlob = htmlBlob.slice( 0, htmlBlob.indexOf("<!-- data ends here -->", 0) );             
+
+            // Create an XMLList from the extracted XML data.
+            chartData = new XMLList(htmlBlob);
+        }
+
+        public function faultHandler(evt:Event):void {
+            trace(evt.toString());
+        }
+    ]]></fx:Script>
+    
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Line chart with data extracted from HTML page">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+         <mx:LineChart id="chart" 
+            dataProvider="{chartData}" showDataTips="true">
+             <mx:series>
+                 <mx:LineSeries id="series1" yField="misc" xField="month"/>
+             </mx:series>             
+             <mx:horizontalAxis>
+                 <mx:CategoryAxis categoryField="month"/>
+             </mx:horizontalAxis>                  
+         </mx:LineChart>
+     </s:Panel>
+</s:Application>

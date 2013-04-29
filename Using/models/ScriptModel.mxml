@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- Models\ScriptModel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var myEmployee:Object={
+                name:{
+                    first:null,
+                    last:null
+                    },
+                department:null,
+                email:null
+            };
+        ]]>
+    </fx:Script>   
+</s:Application>

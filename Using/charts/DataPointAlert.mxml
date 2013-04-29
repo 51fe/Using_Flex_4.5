@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- charts/DataPointAlert.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+      <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+      <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+      <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.controls.Alert;
+     import mx.charts.events.ChartItemEvent;
+
+     public function myHandler(e:ChartItemEvent):void {
+        Alert.show("Chart data was clicked");
+     }
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Clickable Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        itemClick="myHandler(event)"
+        dataProvider="{srv.lastResult.data.result}">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries yField="expenses" displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+  </s:Panel>
+</s:Application>

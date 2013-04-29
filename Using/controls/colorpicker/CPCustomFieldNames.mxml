@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- controls\colorpicker\CPCustomFieldNames.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.ColorPickerEvent;
+            import mx.events.DropdownEvent;
+
+            public function openEvt(event:DropdownEvent):void {
+                descriptBox.text="";
+            }
+            
+            public function changeEvt(event:ColorPickerEvent):void {
+                descriptBox.text=event.currentTarget.selectedItem.cName
+                    + ": " + event.currentTarget.selectedItem.cDescript; 
+            }
+        ]]>    
+    </fx:Script>
+    
+    <fx:Style>
+        .myStyle {
+            swatchWidth:25;
+            swatchHeight:25;
+            textFieldWidth:95;
+        }    
+    </fx:Style>
+    
+    <mx:VBox>
+        <mx:TextArea id="descriptBox" 
+            width="150" height="50"/>
+        <mx:ColorPicker id="cp" 
+            height="50" width="150"
+            labelField="cName" 
+            colorField="cVal" 
+            change="changeEvt(event)" 
+            open="openEvt(event)" 
+            swatchPanelStyleName="myStyle"
+            editable="false">
+            <mx:dataProvider>
+                <mx:ArrayCollection>
+                    <mx:source>
+                        <fx:Object cName="Yellow" cVal="0xFFFF00" 
+                            cDescript="A bright, light color."/> 
+                        <fx:Object cName="Hot Pink" cVal="0xFF66CC" 
+                            cDescript="It's HOT!"/>
+                        <fx:Object cName="Brick Red" cVal="0x990000" 
+                            cDescript="Goes well with warm colors."/> 
+                        <fx:Object cName="Navy Blue" cVal="0x000066" 
+                            cDescript="The conservative favorite."/> 
+                        <fx:Object cName="Forest Green" cVal="0x006600" 
+                            cDescript="Great outdoorsy look."/> 
+                        <fx:Object cName="Grey" cVal="0x666666" 
+                            cDescript="An old reliable."/>
+                    </mx:source>
+                </mx:ArrayCollection>
+            </mx:dataProvider>
+        </mx:ColorPicker>
+    </mx:VBox>
+</s:Application>

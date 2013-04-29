@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/FilteredTextExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*">
+     
+     <mx:Panel title="TextGraphic with BlurFilter Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <s:Group>
+            <comps:TextFilterComp/>    
+        </s:Group>
+     </mx:Panel>
+</s:Application>

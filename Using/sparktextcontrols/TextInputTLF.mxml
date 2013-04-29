@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TextInputTLF.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()">
+
+    <fx:Declarations>
+        <fx:XML id="myXML">
+            <div>            
+                <p>Hello <span fontWeight='bold'>world</span>!</p>
+            </div>
+        </fx:XML>    
+    </fx:Declarations>
+
+    <fx:Script>
+        import spark.utils.TextFlowUtil;
+        import spark.components.RichEditableText;
+
+        private function initApp():void {
+            RichEditableText(text1.textDisplay).textFlow = TextFlowUtil.importFromXML(myXML);
+        }
+    
+    </fx:Script>
+
+    <s:TextInput id="text1" width="100"/>
+
+</s:Application>

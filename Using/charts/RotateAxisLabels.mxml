@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- charts/RotateAxisLabels.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Style>
+     @namespace mx "library://ns.adobe.com/flex/mx";
+
+     @font-face{
+        src: url("../assets/MyriadWebPro.ttf");
+        fontFamily: myMyriad;
+        embedAsCFF: false; 
+     }
+
+     mx|ColumnChart {
+        fontFamily: myMyriad;
+        fontSize: 20;
+     }
+  </fx:Style>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Rotated Axis Labels">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="column" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis id="a1"
+                categoryField="month"
+                title="FY 2010"/>
+        </mx:horizontalAxis>
+
+        <mx:verticalAxis>
+           <mx:LinearAxis id="a2"/>
+        </mx:verticalAxis>
+
+        <mx:horizontalAxisRenderers>
+           <mx:AxisRenderer labelRotation="-90" axis="{a1}"/>
+        </mx:horizontalAxisRenderers>
+
+        <mx:verticalAxisRenderers>
+           <mx:AxisRenderer labelRotation="45" axis="{a2}"/>
+        </mx:verticalAxisRenderers>
+
+        <mx:series>
+           <mx:ColumnSeries displayName="Profit"
+                xField="month" 
+                yField="profit"/>
+           <mx:ColumnSeries displayName="Expenses"
+                xField="month" 
+                yField="expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{column}"/>
+  </s:Panel>
+</s:Application>

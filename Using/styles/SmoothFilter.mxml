@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/SmoothFilter.mxml -->
+<!-- Compile this example by setting theme=halo.swc for a compiler argument. -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    backgroundColor="0xFFFFFF">
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Canvas {
+            borderStyle:solid;
+            cornerRadius:10;
+            borderColor:#000000;
+            backgroundColor:#FFFFFF;
+        }
+    </fx:Style>
+
+    <fx:Script>
+        <![CDATA[
+            import spark.filters.*;
+            import flash.filters.BitmapFilterQuality;
+
+            private function getBitmapFilter():DropShadowFilter {
+                var distance:Number = 3;
+                var angle:Number = 90;
+                var color:Number = 0x000000;
+                var alpha:Number = 1;
+                var blurX:Number = 8;
+                var blurY:Number = 8;
+                var strength:Number = 0.65;
+                var quality:Number = BitmapFilterQuality.LOW;
+                var inner:Boolean = false;
+                var knockout:Boolean = false;
+
+                return new DropShadowFilter(distance, angle, color, alpha, 
+                    blurX, blurY, strength, quality, inner, knockout);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:HGroup>
+        <!-- This rotated canvas applies a filter using the dropShadowEnabled 
+            property. As a result, the filter's edges are slightly jagged. -->
+        <mx:Canvas id="canvas1" 
+            dropShadowEnabled="true" 
+            creationComplete="canvas1.rotation=-10" 
+            x="50" y="80" 
+            width="200" 
+            height="200"/>
+
+        <!-- This rotated canvas applies a bitmap filter. As a result, 
+            the edges are smoother. -->
+        <mx:Canvas id="canvas2" 
+            filters="{[getBitmapFilter()]}" 
+            creationComplete="canvas2.rotation=-10" 
+            x="50" y="450" 
+            width="200" 
+            height="200"/>
+    </s:HGroup>
+</s:Application>

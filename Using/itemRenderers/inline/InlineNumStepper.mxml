@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\inline\InlineNumStepper.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]                
+            private var myDP:ArrayCollection = new ArrayCollection([
+                {label1:"Order #2314", quant:3, Sent:true},
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myDG" dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        editable="true" >
+        <mx:columns>
+            <mx:DataGridColumn dataField="label1" headerText="Order #"/>
+            <mx:DataGridColumn dataField="quant" editorDataField="value" headerText="Qty">
+                <mx:itemEditor>
+                    <fx:Component>
+                        <mx:NumericStepper stepSize="1" maximum="50"/>
+                    </fx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid> 
+</s:Application>

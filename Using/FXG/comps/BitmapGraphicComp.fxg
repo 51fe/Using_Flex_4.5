@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/BitmapGraphicComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <BitmapImage
+         height="120"
+         width="120"
+         fillMode="clip"
+         source="@Embed('../../assets/AirIcon12x12.gif')"/>
+</Graphic>

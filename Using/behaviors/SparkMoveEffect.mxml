@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- Simple example to demonstrate the Move class. -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Move id="moveEffect" 
+            target="{targetBox}" 
+            xBy="100" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;"
+            effectEnd="playButton.enabled=true;"/>
+    </fx:Declarations>
+
+    <mx:Panel title="FxMove Effect Example"
+        width="75%" height="75%" 
+        horizontalAlign="center"
+        paddingTop="5" paddingLeft="10" paddingRight="10" paddingBottom="5">
+        <mx:HBox width="100%" height="100%">
+            <mx:VBox id="targetBox" width="50%"  horizontalAlign="center">
+                <mx:Label text="Nokia 9930" fontSize="14"/>
+                <mx:Image id="targetImg"/>
+            </mx:VBox>
+            <mx:VBox id="detailsBox" width="50%" left="0">
+                <mx:Text width="99%" color="blue"
+                    text="The Move effect changes the location of a target using the following parameters: xFrom, xTo, xBy, yFrom, xTo, yBy. Click 'Move' to watch the effect."/>
+            </mx:VBox>
+        </mx:HBox>
+        <mx:ControlBar>
+            <mx:Button id="playButton" label="Move" click="moveEffect.play();"/>
+        </mx:ControlBar>
+    </mx:Panel>
+</s:Application>

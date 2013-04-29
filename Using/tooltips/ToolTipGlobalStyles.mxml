@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToolTipGlobalStyles.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="setToolTipStyle()">
+
+    <fx:Script>
+        <![CDATA[
+            private function setToolTipStyle():void {
+                styleManager.getStyleDeclaration("global").setStyle("fontWeight","bold");
+                styleManager.getStyleDeclaration("global").setStyle("color","red");
+            }
+        ]]>
+    </fx:Script>
+
+  <s:Button id="b1" label="Click Me" toolTip="This Button does nothing, but the ToolTip is styled red and bold."/>
+
+</s:Application>

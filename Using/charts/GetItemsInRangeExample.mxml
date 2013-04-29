@@ -1,0 +1,103 @@
+<?xml version="1.0" ?> 
+<!--  charts/GetItemsInRangeExample.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600" width="600">
+     
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/medals-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/medals.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.series.items.ColumnSeriesItem;        
+        
+        private function getItems(e:Event):void {
+            var x:Number = Number(ti1.text);
+            var y:Number = Number(ti2.text);
+            var h:Number = Number(ti3.text);
+            var w:Number = Number(ti4.text);
+        
+            var r:Rectangle = new Rectangle(x, y, h, w); 
+            
+            // Get an Array of ChartItems in the defined area.
+            var a:Array = myChart.getItemsInRegion(r);
+            
+            for (var i:int = 0; i<a.length; i++) {              
+                var myChartItem:ColumnSeriesItem = ColumnSeriesItem(a[i]);
+            
+                // Make items appear selected.
+                myChartItem.currentState = "selected";
+            
+                // Show values of the items that appear selected.
+                ta1.text += myChartItem.xValue.toString() + 
+                    "=" + myChartItem.yValue.toString() + "\n";
+            }
+        }        
+    ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel id="p1" title="Selecting Items in Ranges">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart" 
+            height="207" width="350" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="multiple">
+            <mx:series>
+                <mx:ColumnSeries id="series1" 
+                    yField="gold" 
+                    displayName="Gold" 
+                    selectable="true"/> 
+                <mx:ColumnSeries id="series2" 
+                    yField="silver" 
+                    displayName="Silver" 
+                    selectable="true"/> 
+                <mx:ColumnSeries id="series3" 
+                    yField="bronze" 
+                    displayName="bronze" 
+                    selectable="true"/> 
+            </mx:series>            
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="country"/>
+            </mx:horizontalAxis>                        
+        </mx:ColumnChart>
+
+        <mx:Legend dataProvider="{myChart}" direction="horizontal"/> 
+        
+		<s:Label text="Specify dimensions of a rectangle:"/>
+        <s:HGroup>
+            <s:Form>
+                <s:FormItem label="x">
+                    <s:TextInput id="ti1" text="20" width="50"/>
+                </s:FormItem>
+                <s:FormItem label="y">
+                    <s:TextInput id="ti2" text="20" width="50"/>
+                </s:FormItem>
+            </s:Form>
+            <s:Form>
+                <s:FormItem label="Height">
+                    <s:TextInput id="ti3" text="200" width="50"/>
+                </s:FormItem>
+                <s:FormItem label="Width">
+                    <s:TextInput id="ti4" text="200" width="50"/>
+                </s:FormItem>
+            </s:Form>
+        </s:HGroup>
+        <s:Button label="Select Items Inside Rectangle" click="ta1.text='';getItems(event)" />
+        <s:TextArea id="ta1" height="100" width="300"/>
+    </s:Panel>
+</s:Application>

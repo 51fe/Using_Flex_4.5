@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- datarep\DatarepModelTag.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Declarations>
+         <fx:Model id="reg">
+           <registration>
+              <name>{nme.text}</name>
+              <email>{email.text}</email>
+              <phone>{phone.text}</phone>
+              <zip>{zip.text}</zip>
+              <ssn>{ssn.text}</ssn>
+          </registration> 
+        </fx:Model>
+    </fx:Declarations>
+     
+    <s:TextInput id="nme"/>
+    <s:TextInput id="email"/>
+    <s:TextInput id="phone"/>
+    <s:TextInput id="zip"/>
+    <s:TextInput id="ssn"/>    
+</s:Application>

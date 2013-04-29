@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/DrillIntoTree.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();">
+    
+    <fx:Script>
+      <![CDATA[
+        import mx.collections.XMLListCollection;
+        import mx.core.FlexGlobals;
+        
+        [Bindable]
+        private var treeData:XML =
+            <root>
+                <node label="Monkeys">
+                    <node label="South America">
+                        <node label="Coastal"/>
+                        <node label="Inland"/>
+                    </node>
+                    <node label="Africa" isBranch="true"/>
+                    <node label="Asia" isBranch="true"/>
+                </node>
+                <node label="Sharks">
+                    <node label="South America" isBranch="true"/>
+                    <node label="Africa" isBranch="true"/>
+                    <node label="Asia" >
+                        <node label="Coastal"/>
+                        <node label="Inland"/>
+                    </node>
+                </node>
+            </root>;
+            
+        private var openSequence:Array = [];
+
+        private function initApp():void {
+            /*  Parse URL and place values into openSequence Array.
+                This lets you pass any integers on the query string, 
+                in any order. So:
+                http://localhost/flex/flex2/DrillIntoTree.swf?0=1&1=2&2=0
+                results in an array of selections like this:
+                0:1
+                1:2
+                2:0
+                Non-ints are ignored.
+                The Array is then used to drill down into the tree.
+            */
+           var paramLength:int = 0;
+           for (var s:String in FlexGlobals.topLevelApplication.parameters) {
+               if (!isNaN(Number(s))) {
+                    openSequence[s] = FlexGlobals.topLevelApplication.parameters[s];
+                    paramLength += 1;                   
+               }
+            }
+            openTree();
+        }
+        
+        private function openTree():void {
+            var nodeList:XMLListCollection = 
+                myTree.dataProvider as XMLListCollection;
+            var node:XMLList = nodeList.source;
+            for(var i:int=0; i < openSequence.length; i++) {
+                var j:int = openSequence[i];
+                var n:XML = node[j];
+                if( n.children() != null ) {
+                    myTree.expandItem(n,true,false);
+                    node = n.children();
+                } else {
+                    break;
+                }
+            }
+            if( n != null ) myTree.selectedItem = n;
+        }
+      ]]>
+    </fx:Script>
+    
+    <mx:Tree id="myTree" 
+        y="50" 
+        width="221" 
+        height="257" 
+        horizontalCenter="0"
+        dataProvider="{treeData.node}"
+        labelField="@label"/>    
+</s:Application>

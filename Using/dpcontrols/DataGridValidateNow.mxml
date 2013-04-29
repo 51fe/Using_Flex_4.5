@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/DataGridValidateNow.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+   initialize="initData();">
+
+   <fx:Script>
+       <![CDATA[
+    
+            import mx.collections.ArrayList;
+
+            [Bindable]
+            private var DGArray:ArrayList = new ArrayList([
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99},
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}]);
+         
+            // Initialize initDG ArrayList variable from the ArrayList.
+            public function initData():void {
+                myGrid.dataProvider = DGArray;
+            }
+        ]]>
+   </fx:Script>
+
+   <mx:DataGrid id="myGrid">
+      <mx:columns>
+         <mx:DataGridColumn dataField="Album"/>
+         <mx:DataGridColumn dataField="Price"/>
+      </mx:columns> 
+   </mx:DataGrid>
+</s:Application>

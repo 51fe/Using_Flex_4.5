@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- charts/BackgroundElementsWithActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();addButterfly()"
+    height="600">
+
+  <fx:Declarations>
+     <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+     <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+     <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+  </fx:Declarations>
+
+  <fx:Script><![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.graphics.SolidColor;
+      import mx.charts.GridLines;
+      import mx.charts.ColumnChart;
+
+      [Embed(source="../assets/butterfly.gif")]
+      public var butterfly:Class;
+
+      public function addButterfly():void {
+         var b:Object = new butterfly();
+         b.alpha = .2;
+         myChart.backgroundElements = [ b ];
+      }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Background Elements with ActionScript">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" dataProvider="{srv.lastResult.data.result}" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="expenses"
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

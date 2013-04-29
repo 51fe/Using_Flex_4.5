@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/FlashVarTest.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init()">
+     
+     <s:layout> 
+        <s:HorizontalLayout/> 
+     </s:layout>
+     
+     <fx:Script><![CDATA[
+         import mx.core.FlexGlobals;
+
+         private function init():void {
+              for (var i:String in FlexGlobals.topLevelApplication.parameters) {
+                 ta1.text += i + ":" + FlexGlobals.topLevelApplication.parameters[i] + "\n";
+              }
+          }
+      ]]></fx:Script>
+       
+      <s:Label text="flashVars"/>
+      <s:RichText id="ta1" width="300" height="200"/>
+
+</s:Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_text/HTMLTextView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="HTMLText View"
+        creationComplete="initView()">
+    
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import spark.components.supportClasses.StyleableTextField;
+            
+            private function initView():void {
+                StyleableTextField(ta1.textDisplay).htmlText = "TextArea <b>bold</b> <i>italic</i>.";
+                StyleableTextField(ti1.textDisplay).htmlText = "TextInput <b>bold</b> <i>italic</i>.";
+            }
+        ]]>
+    </fx:Script>
+    
+        <s:TextArea id="ta1" width="100%"/>          
+        <s:TextInput id="ti1" width="100%"/>         
+</s:View>

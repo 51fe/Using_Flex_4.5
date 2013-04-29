@@ -1,0 +1,46 @@
+<?xml version="1.0"?> 
+<!-- fonts/EmbedBoth.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"> 
+ 
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout> 
+ 
+  <fx:Style> 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myCFFFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontNoCFF; 
+        advancedAntiAliasing: true; 
+        embedAsCFF: false; 
+     } 
+     
+     .myCFFStyle { 
+        fontSize: 32; 
+        fontFamily: myCFFFont; 
+     } 
+ 
+     .myStyleNoCFF { 
+        fontSize: 32; 
+        fontFamily: myFontNoCFF; 
+     } 
+  </fx:Style> 
+ 
+  <s:Panel title="Using Two Different Embedded Fonts"> 
+    <s:VGroup> 
+        <s:Label text="Spark Label" 
+            styleName="myCFFStyle"/> 
+        <mx:Label text="MX Label" 
+            styleName="myStyleNoCFF" selectable="true"/> 
+    </s:VGroup> 
+  </s:Panel> 
+ 
+</s:Application>

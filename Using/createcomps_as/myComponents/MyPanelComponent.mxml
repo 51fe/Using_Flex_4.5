@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- createcomps_as/myComponents/MyPanelComponent.mxml -->
+<MyComps:MyPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComps="myComponents.*">
+    <MyComps:layout>
+        <s:VerticalLayout/>
+    </MyComps:layout>
+
+      <s:TextInput id="myInput"/>
+      <s:TextInput id="myOutput"/>
+
+</MyComps:MyPanel>

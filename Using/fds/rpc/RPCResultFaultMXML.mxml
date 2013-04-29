@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCResultFaultMXML.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            import mx.rpc.soap.SOAPFault;         
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+            import mx.controls.Alert;
+            public function showErrorDialog(event:FaultEvent):void {
+                // Handle operation fault.
+                Alert.show(event.fault.faultString, "Error");
+            }
+            public function defaultFault(event:FaultEvent):void {
+                // Handle service fault.
+                if (event.fault is SOAPFault) {
+                     var fault:SOAPFault=event.fault as SOAPFault;
+                     var faultElement:XML=fault.element;
+                     // You could use E4X to traverse the raw fault element returned in the SOAP envelope.
+                     // ...
+                }
+                Alert.show(event.fault.faultString, "Error");               
+            }
+            public function log(event:ResultEvent):void {
+                // Handle result.
+            }
+        ]]>
+    </mx:Script>
+    <mx:WebService id="WeatherService" wsdl="http://myserver:8500/flexapp/app1.cfc?wsdl"
+        fault="defaultFault(event)">
+        <mx:operation name="GetWeather"
+            fault="showErrorDialog(event)"
+            result="log(event)">
+            <mx:request>
+                <ZipCode>{myZip.text}</ZipCode>
+            </mx:request>
+        </mx:operation>
+    </mx:WebService>
+    <mx:TextInput id="myZip"/>  
+</mx:Application>

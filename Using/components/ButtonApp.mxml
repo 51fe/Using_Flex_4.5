@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- components\ButtonApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            public function handleClick():void {
+                text1.text="Thanks for the click!";
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="button1" 
+        label="Click here!" 
+        width="100" 
+        fontSize="12"
+        click="handleClick();"/>
+    <s:TextArea id="text1"/>
+</s:Application>

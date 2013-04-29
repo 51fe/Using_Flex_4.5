@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\ArrayCollectionInAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+            [Bindable]
+            public var stateArray:ArrayList;
+            
+            public function initData():void {
+                stateArray=new ArrayList(
+                [{label:"AL", data:"Montgomery"},
+                {label:"AK", data:"Juneau"},
+                {label:"AR", data:"Little Rock"}]);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:ComboBox id="myComboBox" dataProvider="{stateArray}"/>
+</s:Application>

@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!-- charts/CustomLegendInActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="drawLegend()"
+    height="600">
+    
+  <fx:Script><![CDATA[
+     import mx.containers.GridItem;
+     import mx.containers.GridRow;
+     import mx.graphics.SolidColor;
+     import mx.charts.LegendItem;
+     import mx.collections.ArrayCollection;
+
+     [Bindable]
+     public var expenses:ArrayCollection = new ArrayCollection([
+        {Expense:"Taxes", April:2000, May:321, June:131, July:1100, August:200, September:1400, October:42},
+        {Expense:"Rent", April:1000, May:95, June:313, July:600, August:400, September:200, October:52},
+        {Expense:"Taxes", April:2000, May:321, June:131, July:90, August:500, September:900, October:300},
+        {Expense:"Bills", April:100, May:478, June:841, July:400, August:600, September:1100, October:150}
+     ]);
+     
+     [Bindable]
+     private var rowSize:int = 5;
+     
+     [Bindable]
+     private var rowSizes:ArrayCollection = new ArrayCollection(
+          [ {label:"1 Per Row", data:1},
+            {label:"2 Per Row", data:2},
+            {label:"3 Per Row", data:3},
+            {label:"4 Per Row", data:4},
+            {label:"5 Per Row", data:5},
+            {label:"6 Per Row", data:6},
+            {label:"7 Per Row", data:7} ]);
+     
+     private function drawLegend():void {
+          clearLegend();
+
+          // Use a counter for the series.
+          var z:int = 0;
+
+          var numRows:int; 
+          if (myChart.series.length % rowSize == 0) {
+               // The number of series is exactly divisible by the rowSize.               
+               numRows = Math.floor(myChart.series.length / rowSize);                
+          } else {
+               // One extra row is needed if there is a remainder.
+               numRows = Math.floor(myChart.series.length / rowSize) + 1;
+          }
+
+          for (var j:int = 0; j < numRows; j++) {
+          var gr:GridRow = new GridRow();
+          myGrid.addChild(gr);
+          
+          for (var k:int = 0; k < rowSize; k++) {
+               // As long as the series counter is less than the number of series...
+               if (z < myChart.series.length) {
+                    var gi:GridItem = new GridItem();
+                    gr.addChild(gi);
+                    
+                    var li:LegendItem = new LegendItem();
+                    
+                    // Apply the current series' displayName to the LegendItem's label.
+                    li.label = myChart.series[z].displayName;
+          
+                    // Get the current series' fill.
+                    var sc:SolidColor = myChart.series[z].getStyle("fill");
+                    
+                    // Apply the current series' fill to the corresponding LegendItem.
+                    li.setStyle("fill", sc);
+                    
+                    // Apply other styles to make the LegendItems look uniform.
+                    li.setStyle("textIndent", 5);
+                    li.setStyle("labelPlacement", "left");
+                    li.setStyle("fontSize", 9);
+          
+                    gi.setStyle("backgroundAlpha", "1");
+                    gi.setStyle("backgroundColor", sc.color);
+                    gi.width = 80;
+                                             
+                    // Add the LegendItem to the GridItem.
+                    gi.addChild(li);
+                    
+                    // Increment any time a LegendItem is added.
+                    z++;
+               }
+          }                                  
+          }
+     }
+     
+     private function clearLegend():void {
+          myGrid.removeAllChildren();
+     }
+     
+     private function changeRowSize(e:Event):void {
+          rowSize = ComboBox(e.target).selectedItem.data;
+          drawLegend();
+     }
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Custom Legend in Grid" width="500" height="750">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:BarChart id="myChart" dataProvider="{expenses}" height="400" showDataTips="true">
+        <mx:verticalAxis>
+           <mx:CategoryAxis dataProvider="{expenses}" categoryField="Expense"/>
+        </mx:verticalAxis>
+        <mx:series>
+           <mx:BarSeries xField="April" displayName="April"/>
+           <mx:BarSeries xField="May" displayName="May"/>
+           <mx:BarSeries xField="June" displayName="June"/>
+           <mx:BarSeries xField="July" displayName="July"/>
+           <mx:BarSeries xField="August" displayName="August"/>
+           <mx:BarSeries xField="September" displayName="September"/>
+           <mx:BarSeries xField="October" displayName="October"/>
+        </mx:series>
+     </mx:BarChart>
+
+     <mx:HRule width="100%"/>
+     <mx:Grid id="myGrid"/>
+     <mx:HRule width="100%"/>
+
+     <s:HGroup>
+          <s:Label text="Select the number of rows in the Legend."/>
+          <s:ComboBox id="cb1" 
+               dataProvider="{rowSizes}" 
+               close="changeRowSize(event)" selectedIndex="4"/>   
+     </s:HGroup>
+  </s:Panel>
+</s:Application>

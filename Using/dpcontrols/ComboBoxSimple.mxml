@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ComboBoxSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+   <mx:ComboBox> 
+      <mx:ArrayList>
+         <fx:String>AK</fx:String>
+         <fx:String>AL</fx:String>
+         <fx:String>AR</fx:String>
+      </mx:ArrayList>
+   </mx:ComboBox>
+</s:Application>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- controls\button\RBSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:VGroup>
+        <s:RadioButton groupName="cardtype" 
+            id="americanExpress"
+            label="American Express" 
+            width="150"/>
+        <s:RadioButton groupName="cardtype" 
+            id="masterCard"
+            label="MasterCard" 
+            width="150"/>
+        <s:RadioButton groupName="cardtype" 
+            id="visa"
+            label="Visa" 
+            width="150"/>        
+    </s:VGroup>
+</s:Application>

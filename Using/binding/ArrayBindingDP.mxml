@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- binding/ArrayBindingDP.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            public var myAC:ArrayCollection = new ArrayCollection([
+                "One", "Two", "Three", "Four"]);
+                
+            [Bindable]
+            public var myAC2:ArrayCollection = new ArrayCollection([
+                "Uno", "Dos", "Tres", "Quatro"]);
+        ]]>    
+    </fx:Script>
+    
+    <!-- Data binding updated at application startup,
+        when myAC is modified, and when an element of
+        myAC is modifed. -->
+    <s:List width="150"
+        dataProvider="{myAC}"/>
+
+    <!-- Data bindings to myAC updated. -->
+    <s:Button 
+        label="Change Element" 
+        click="myAC[0]='mod One'"/>
+        
+    <!-- Data bindings to myAC updated. -->
+    <s:Button 
+        label="Add Element" 
+        click="myAC.addItem('new element');"/>
+        
+    <!-- Data bindings to myAC updated. -->
+    <s:Button 
+        label="Remove Element 0" 
+        click="myAC.removeItemAt(0);"/>
+        
+    <!-- Data bindings to myAC updated. -->
+    <s:Button 
+        label="Change ArrayCollection" 
+        click="myAC=myAC2"/>
+</s:Application>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- controls\date\DateChooserFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            private function formatDateTime(date:Date):String {
+                return dtf.format(date);
+            }       
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:DateTimeFormatter id="dtf" dateTimePattern="MM-dd-yyyy"/>
+    </fx:Declarations>
+    
+    <mx:DateField id="df" labelFunction="formatDateTime" parseFunction="{null}"/>
+</s:Application>

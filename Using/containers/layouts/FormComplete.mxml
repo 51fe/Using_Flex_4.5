@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormComplete.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            private function submitForm():void { 
+                // Handle the form submission.
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Form id="myForm" width="400">
+
+        <mx:FormHeading label="Billing Information"/>
+
+        <mx:FormItem label="First Name">
+            <mx:TextInput id="fname" width="100%"/>
+        </mx:FormItem>
+
+        <mx:FormItem label="Last Name">
+            <mx:TextInput id="lname" width="100%"/>
+        </mx:FormItem>
+
+        <mx:FormItem label="Address">
+            <mx:TextInput id="addr1" width="100%"/>
+            <mx:TextInput id="addr2" width="100%"/>
+        </mx:FormItem>
+
+        <mx:FormItem label="City / State" direction="vertical">
+            <mx:TextInput id="city"/>
+            <mx:ComboBox id="st" width="75">
+              <mx:ArrayList>
+                 <fx:String>MA</fx:String>
+                 <fx:String>NH</fx:String>
+                 <fx:String>RI</fx:String>
+              </mx:ArrayList>                     
+            </mx:ComboBox>
+        </mx:FormItem>
+
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zip" width="100"/>
+        </mx:FormItem>
+
+        <mx:FormItem label="Country">
+            <mx:ComboBox id="cntry">
+              <mx:ArrayList>
+                 <fx:String>USA</fx:String>
+                 <fx:String>UAE</fx:String>
+                 <fx:String>UAW</fx:String>
+              </mx:ArrayList>                     
+            </mx:ComboBox>
+        </mx:FormItem>
+
+        <mx:FormItem>
+            <mx:HRule width="200" height="1"/>
+            <mx:Button label="Submit Form" click="submitForm();"/>
+        </mx:FormItem>
+    </mx:Form>
+</s:Application>

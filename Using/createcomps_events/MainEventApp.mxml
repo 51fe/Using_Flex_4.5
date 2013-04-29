@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- createcomps_events/MainEventApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" >
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import myEvents.EnableChangeEvent;
+
+            public function 
+                enableChangeListener(eventObj:EnableChangeEvent):void {
+                    // Handle event.
+                    myTA2.text='got event';
+            }
+        ]]>
+    </fx:Script>
+
+    <MyComp:MyButton enableChange="myTA.text='got event';" />
+    <mx:TextArea id="myTA" />
+
+    <MyComp:MyButton enableChange="enableChangeListener(event);" />
+    <mx:TextArea id="myTA2" />
+</s:Application>

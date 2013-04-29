@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- modules/BarChartModule.mxml -->
+<s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%" >
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+        [Bindable]
+        public var expenses:ArrayCollection = new ArrayCollection([
+            {Month:"Jan", Profit:2000, Expenses:1500},
+            {Month:"Feb", Profit:1000, Expenses:200},
+            {Month:"Mar", Profit:1500, Expenses:500}
+        ]);
+    ]]></fx:Script>
+    
+    <mx:BarChart id="myChart" dataProvider="{expenses}">
+        <mx:verticalAxis>
+           <mx:CategoryAxis dataProvider="{expenses}" 
+                categoryField="Month"/>
+        </mx:verticalAxis>
+        <mx:series>
+           <mx:BarSeries displayName="Profit"
+                yField="Month" 
+                xField="Profit"/>
+           <mx:BarSeries displayName="Expenses"
+                yField="Month" 
+                xField="Expenses"/>
+        </mx:series>
+     </mx:BarChart>
+     <mx:Legend dataProvider="{myChart}"/>
+</s:Module>

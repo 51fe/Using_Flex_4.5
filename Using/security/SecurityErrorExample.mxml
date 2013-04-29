@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- security/SecurityErrorExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import flash.net.URLLoader;
+        import flash.net.URLRequest;
+        import flash.events.SecurityErrorEvent;
+        import mx.controls.Alert;
+
+        private var loader:URLLoader = new URLLoader();
+        
+        private function triggerSecurityError():void {   
+            var request:URLRequest = new URLRequest("c:/temp/feeds.txt");
+            
+            // Triggers a security exception if you run this SWF from a server without
+            // explicitly allowing local file-access permissions.
+           try {
+                loader.load(request);
+           } catch (error:SecurityError) {
+                Alert.show(error.name + ": " + error.message);                         
+           }
+        }
+    ]]></fx:Script>
+
+    <s:Button id="b1" label="Click Me To Trigger Security Error" click="triggerSecurityError()"/>
+
+</s:Application>

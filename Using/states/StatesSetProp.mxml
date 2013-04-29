@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- states\StatesSetProp.mxml -->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:states>
+        <s:State name="default"/>          
+        <s:State name="Register"/>          
+    </mx:states>
+
+    <mx:Panel id="loginPanel" 
+        title="Login" title.Register="Register" 
+        horizontalScrollPolicy="off" 
+        verticalScrollPolicy="off">
+        
+        <s:Form id="loginForm">
+            <s:Button id="loginButton"
+                label="Login" label.Register="Register"/>
+        </s:Form>
+        
+        <mx:ControlBar width="100%">
+            <mx:Button 
+              label="Change State" 
+              click="currentState = 
+                currentState=='Register' ? '':'Register';"/>
+        </mx:ControlBar>            
+    </mx:Panel>
+</mx:Application>

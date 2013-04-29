@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- charts/ApplyingFiltersWithMXML.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:flash="flash.filters.*">
+  <mx:RichTextEditor id="rte1">
+     <mx:filters>
+           <flash:GlowFilter id="myGlowFilter" color="0xFF33FF" strength="2" inner="false" knockout="false"/>
+    </mx:filters>                       
+  </mx:RichTextEditor>
+
+  <mx:Button id="b1" label="Click me">
+     <mx:filters>
+           <flash:BevelFilter id="myBevelFilter" distance="5" highlightAlpha=".8" shadowAlpha=".8"/>
+     </mx:filters>
+  </mx:Button>
+
+  <mx:DateChooser id="dc1">
+     <mx:filters>
+           <flash:BlurFilter id="myBlurFilter" blurX="16" blurY="16" quality="1"/>
+     </mx:filters>
+  </mx:DateChooser>
+
+  <mx:HSlider id="hs1">
+     <mx:filters>
+        <flash:DropShadowFilter id="myDropShadowFilter" distance="10" color=    "0x666666" alpha=".8"/>
+     </mx:filters>
+  </mx:HSlider>
+
+</mx:Application>

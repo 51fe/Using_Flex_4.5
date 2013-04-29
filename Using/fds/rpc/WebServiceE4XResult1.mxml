@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\WebServiceE4XResult1.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
+    pageTitle="Test" >
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            private namespace invesbot = "http://ws.invesbot.com/";
+            use namespace invesbot;
+        ]]>
+    </mx:Script>
+    <mx:WebService
+        id="WS"
+        destination="stockservice" useProxy="true" 
+        fault="Alert.show(event.fault.faultString), 'Error'">
+        <mx:operation name="GetQuote" resultFormat="e4x">
+            <mx:request>
+                <symbol>ADBE</symbol>
+            </mx:request>
+        </mx:operation>
+    </mx:WebService>
+    <mx:HBox>
+        <mx:Button label="Get Quote" click="WS.GetQuote.send()"/>
+        <mx:Text
+            text="{WS.GetQuote.lastResult.GetQuoteResult.StockQuote.Price}"
+        />
+    </mx:HBox>
+</mx:Application>

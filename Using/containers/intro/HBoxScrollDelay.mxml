@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- containers\intro\HBoxScrollDelay.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        mx|HScrollBar, mx|VScrollBar {
+            repeatDelay: 2000;
+            repeatInterval:1000;
+        }
+    </fx:Style>
+
+    <mx:HBox id="hb1" width="75" height="75">
+        <mx:Image source="@Embed(source='assets/logo.jpg')"/>
+    </mx:HBox>
+</s:Application>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- binding/BindBiDirection.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"/>
+    </s:layout>
+
+    <s:Label text="Specify data binding for both controls."/>
+    <s:TextInput id="input1" text="{input2.text}"/>
+    <s:TextInput id="input2" text="{input1.text}"/>    
+
+    <s:Label text="Use the bidirectional data binding syntax."/>
+    <s:TextInput id="input3" text="@{input4.text}"/>
+    <s:TextInput id="input4"/>
+    
+    <s:Label text="Use the Binding tag."/>
+    <s:TextInput id="input5"/>
+    <s:TextInput id="input6"/>  
+    <fx:Binding source="input5.text" destination="input6.text" twoWay="true"/>
+</s:Application>

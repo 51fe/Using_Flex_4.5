@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/JustifiedTextComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <RichText textAlign="justify" width="100">
+       <content>This is a block of text that is justified, so you can see formatting applied.</content>
+    </RichText>
+</Graphic>

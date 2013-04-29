@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingLeft="5"/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            protected function button2_clickHandler(event:MouseEvent):void {
+                displayVal.text = PrepForDisplay.format(bigNumber.text);
+            }
+        ]]>
+    </fx:Script>
+
+    
+    <fx:Declarations>
+        <!-- Declare and define parameters for the NumberFormatter.-->
+        <s:NumberFormatter id="PrepForDisplay"
+            fractionalDigits="3" 
+            decimalSeparator="."
+            groupingSeparator=","
+            useGrouping="true"
+            negativeNumberFormat="0"
+            errorText="'{bigNumber.text}' is an invalid input value"/>
+    </fx:Declarations>
+    
+    <!-- String to format.-->
+    <s:TextInput id="bigNumber" text="Enter number"/>  
+    <s:Button label="Format Value" 
+        click="button2_clickHandler(event);"/>
+    
+    <!-- Display formatted value.-->
+    <s:Label id="displayVal"/> 
+</s:Application>

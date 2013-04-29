@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- usingas/ComponentMethods.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        public function adjustThumb(s:HSlider):void {
+            var randomNumber:int = (Math.floor(Math.random() * 10));
+            s.setThumbValueAt(0, randomNumber);
+        }
+        ]]>
+    </fx:Script>
+
+    <mx:HSlider id="slider1" tickInterval="1" 
+        labels="[1,2,3,4,5,6,7,8,9,10]" width="282"/>
+
+    <s:Button id="myButton" 
+        label="Change Thumb Position" 
+        click="adjustThumb(slider1);"/>    
+</s:Application>

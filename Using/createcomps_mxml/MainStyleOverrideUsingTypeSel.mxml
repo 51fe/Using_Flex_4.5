@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- createcomps_mxml/MainStyleOverrideUsingTypeSel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">
+
+    <fx:Style>
+        @namespace "myComponents.*";
+        StateComboBoxWithStyleProps {
+            color : red;
+        }
+    </fx:Style> 
+
+    <MyComp:StateComboBoxWithStyleProps/>
+</s:Application>

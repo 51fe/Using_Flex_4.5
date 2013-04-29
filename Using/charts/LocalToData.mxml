@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- charts/LocalToData.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+     
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+
+     public var p:Point;
+
+     private function updateDetails(e:MouseEvent):void {
+        p = new Point(myChart.mouseX, myChart.mouseY);
+        mpos.text = "(" + p.x + "," + p.y + ")";
+
+        var d:Array = series1.localToData(p);
+        var da:Date = new Date(d[0]);     
+        
+        // Round y coordinate value on column to two places.
+        var v:Number = int((d[1])*100)/100;
+        
+        dval.text = "(" + daxis.formatForScreen(da) + ", " + v + ")";        
+
+        p = series1.dataToLocal(d[0], d[1]);
+        dpos.text ="(" + Math.floor(p.x) + ", " + Math.floor(p.y) + ")";
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        mouseMove="updateDetails(event)"
+        showDataTips="true">
+        <mx:horizontalAxis> 
+           <mx:DateTimeAxis id="daxis" dataUnits="days"/> 
+        </mx:horizontalAxis> 
+        <mx:series>
+           <mx:ColumnSeries id="series1"
+                xField="date" 
+                yField="close"
+                displayName="Close"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+
+  <s:Form width="300">
+     <s:FormItem label="Mouse Position:">
+        <s:Label id="mpos"/>
+     </s:FormItem>
+     <s:FormItem label="Data Position:">
+        <s:Label id="dpos"/>
+     </s:FormItem>
+     <s:FormItem label="Data:">
+        <s:Label id="dval"/>
+     </s:FormItem>
+  </s:Form>
+
+</s:Application>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- l10n/LocaleApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+
+    <fx:Declarations>
+        <s:DateTimeFormatter id="dateTimeFormatter"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+        import flash.globalization.LocaleID;
+        
+        public function initApp():void {
+            this.setStyle("locale", LocaleID.DEFAULT);
+        }
+        
+        public function doSomething():void {
+            l1.text = dateTimeFormatter.actualLocaleIDName;
+        }
+        ]]>
+    </fx:Script>    
+
+    <s:VGroup>
+        <s:Label id="l1"/>
+        <s:Button id="b1" label="Click Me" click="doSomething()"/>
+    </s:VGroup>
+    
+</s:Application>

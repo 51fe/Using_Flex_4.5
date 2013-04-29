@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- validators\CurrencyExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Example for US currency. -->
+        <mx:CurrencyValidator id="usV" 
+            source="{priceUS}" property="text"
+            alignSymbol="left"
+            trigger="{valButton}"
+            triggerEvent="click"/>
+
+        <!-- Example for European currency. -->
+        <mx:CurrencyValidator id="eurV" 
+            source="{priceEU}" property="text"
+            alignSymbol="right" 
+            decimalSeparator="," thousandsSeparator="."
+            trigger="{valButton}"
+            triggerEvent="click"/>
+    </fx:Declarations>
+
+    <s:Label text="Enter a US-formatted price:"/>
+    <s:TextInput id="priceUS"/>
+
+    <s:Label text="Enter a European-formatted price:"/>
+    <s:TextInput id="priceEU"/>
+    
+    <s:Button id="valButton" label="Validate Currencies"/>
+</s:Application>

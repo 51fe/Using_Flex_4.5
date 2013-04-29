@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- binding/DetectWatcher.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initWatcher();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+          import mx.binding.utils.*;
+          import mx.events.FlexEvent;
+          import mx.events.PropertyChangeEvent;
+
+          public var myWatcher:ChangeWatcher;
+
+          // Define binding watcher. 
+          public function initWatcher():void {
+            // Define a watcher for the text binding.
+              myWatcher = ChangeWatcher.watch(textarea, "text", watcherListener);
+          }
+
+          // Event listener when binding occurs. 
+          public function watcherListener(event:Event):void {
+            myTA1.text="binding occurred";
+                
+            // Use myWatcher.unwatch() to remove the watcher.
+          }
+        ]]>
+    </fx:Script>
+
+    <!-- Define a binding expression to watch. -->
+    <s:TextInput id="textinput" text="Hello"/>
+    <s:TextArea id="textarea" text="{textinput.text}"/>
+
+    <!-- Trigger a binding. -->
+    <s:Button label="Submit" click="textinput.text='Goodbye';"/>
+    <s:TextArea id="myTA1"/>
+</s:Application>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- menus/EventListener.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Menu;
+            import mx.events.MenuEvent;
+    
+            // Function to create and show a menu.
+            private function createAndShow():void {
+                var myMenu:Menu = Menu.createMenu(null, myMenuData, false);
+                myMenu.labelField="@label"
+                // Add an event listener for the itemClick event.
+                myMenu.addEventListener(MenuEvent.ITEM_CLICK, 
+                    itemClickInfo);
+                // Show the menu.
+                myMenu.show(25, 10);
+            }
+    
+            // The event listener for the itemClick event.
+            private function itemClickInfo(event:MenuEvent):void {
+                ta1.text="event.type: " + event.type;
+                ta1.text+="\nevent.index: " + event.index;
+                ta1.text+="\nItem label: " + event.item.@label
+                ta1.text+="\nItem selected: " + event.item.@toggled;
+                ta1.text+= "\nItem type: " + event.item.@type;
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- The XML-based menu data provider. -->
+        <fx:XML id="myMenuData">
+            <xmlRoot>
+                <menuitem label="MenuItem A" >
+                    <menuitem label="SubMenuItem A-1" enabled="false"/>
+                    <menuitem label="SubMenuItem A-2"/>
+                </menuitem>
+                <menuitem label="MenuItem B" type="check" toggled="true"/>
+                <menuitem label="MenuItem C" type="check" toggled="false"/>
+                <menuitem type="separator"/>     
+                <menuitem label="MenuItem D" >
+                    <menuitem label="SubMenuItem D-1" type="radio" 
+                        groupName="one"/>
+                    <menuitem label="SubMenuItem D-2" type="radio" 
+                        groupName="one" toggled="true"/>
+                    <menuitem label="SubMenuItem D-3" type="radio" 
+                        groupName="one"/>
+                </menuitem>
+            </xmlRoot>
+        </fx:XML>
+    </fx:Declarations>
+
+    <!-- Button controls to open the menus. -->
+    <mx:Button
+        label="Open Menu" 
+        click="createAndShow();"/>
+    <!-- Text area to display the event information -->
+    <mx:TextArea
+        width="200" height="100" 
+        id="ta1"/>
+</s:Application>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- printing\myComponents\MyPrintView.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    backgroundColor="#FFFFFF" 
+    height="300" width="500" 
+    paddingTop="50" paddingLeft="50" paddingRight="50">
+
+    <!-- The controls to print, a label and a PrintDataGrid control. -->
+    <mx:Label id="contact"/>
+    <mx:PrintDataGrid id="myDataGrid" width="100%">
+        <mx:columns>
+            <mx:DataGridColumn dataField="Product"/>
+            <mx:DataGridColumn dataField="Code"/>
+        </mx:columns>
+    </mx:PrintDataGrid>
+</mx:VBox>

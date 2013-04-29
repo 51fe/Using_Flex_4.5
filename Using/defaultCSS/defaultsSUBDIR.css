@@ -1,0 +1,12 @@
+@namespace "myComponents.*";
+StateComboBox
+{
+    arrowButtonWidth: 40;
+    cornerRadius: 10;
+    fontSize: "14";
+    fontWeight: "bold";
+    color: red;
+    leading: 0;
+    paddingLeft: 10;
+    paddingRight: 10;
+}

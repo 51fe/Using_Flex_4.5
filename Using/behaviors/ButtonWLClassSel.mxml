@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- behaviors\ButtonWLClassSel.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <!-- Define a class selector for a TextArea control -->
+    <fx:Style>
+        .textAreaStyle { mouseDownEffect: WipeLeft; } 
+    </fx:Style>
+
+    <fx:Declarations>
+        <mx:WipeLeft id="slowWipe" duration="5000"/>
+    </fx:Declarations>
+
+    <mx:TextArea id="myTA" 
+        styleName="textAreaStyle" 
+        text="This TextArea control quickly wipes in."/>
+</s:Application>

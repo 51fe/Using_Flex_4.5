@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- states\StatesAddRemove.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:states>
+        <mx:State name="NewParent">
+            <mx:RemoveChild target="{button1}"/>
+            <mx:AddChild target="{button1}" relativeTo="{v2}"/>
+        </mx:State>    
+    </mx:states>
+
+    <mx:VBox id="v1" borderStyle="solid">
+        <mx:Label text = "VBox v1"/>
+        <mx:Button id="button1" label="Click Me"/>
+    </mx:VBox>    
+
+    <mx:VBox id="v2" borderStyle="solid">
+        <mx:Label text = "VBox v2"/>
+        <mx:Button label="Change Parent" 
+            click="currentState = 
+                currentState=='NewParent' ? '':'NewParent';"/>
+    </mx:VBox>
+</mx:Application>

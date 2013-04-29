@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\TileSizing.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Tile id="myFlow" 
+        direction="horizontal" 
+        borderStyle="solid" 
+        paddingTop="10" paddingBottom="10" 
+        paddingRight="10" paddingLeft="10" 
+        verticalGap="15" horizontalGap="10" 
+        tileWidth="100">
+        
+        <mx:TextInput id="fname" text="1" height="50" width="100%"/>
+        <mx:TextInput id="lname" text="2" height="50" width="100%"/>
+        <mx:TextInput id="addr1" text="3" height="50" width="100%"/>
+        <mx:TextInput id="addr2" text="4" height="50" width="100%"/>
+        <mx:TextInput id="addr3" text="5" height="50" width="100%"/>
+    </mx:Tile>
+</s:Application>

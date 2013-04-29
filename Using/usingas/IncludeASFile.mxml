@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- usingas/IncludeASFile.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        /*  The myfunctions.as file defines two methods that 
+            return Strings. */
+        include "includes/myfunctions.as";
+
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton" 
+        label="Call Methods in Included File" 
+        click="ta1.text=doSomething();ta1.text+=doSomethingElse()"/>
+    <s:TextArea width="268" id="ta1"/>
+    <s:Button label="Clear" click="ta1.text=''"/>
+
+</s:Application>

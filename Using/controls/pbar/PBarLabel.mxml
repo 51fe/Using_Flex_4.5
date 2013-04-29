@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- controls\pbar\PBarLabel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+
+    <fx:Script>
+        <![CDATA[
+            public function initImage():void {
+              image1.load('../assets/DSC00034.JPG');
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox id="vbox0" 
+        width="600" height="600">
+        <mx:Canvas>
+            <mx:ProgressBar 
+                width="300" 
+                source="image1" 
+                mode="polled" 
+                label="Loading Image %1 out of %2 bytes, %3%%" 
+                labelWidth="400"
+            />        
+        </mx:Canvas>
+        <s:Button id="myButton" 
+            label="Show" 
+            click="initImage();"
+        />
+        <mx:Image id="image1" 
+            height="500" width="600" 
+            autoLoad="false" 
+            visible="true"
+        /> 
+    </mx:VBox>
+</s:Application>

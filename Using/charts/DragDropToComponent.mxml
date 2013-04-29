@@ -1,0 +1,94 @@
+<?xml version="1.0" ?> 
+<!--  charts/DragDropToComponent.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/medals-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/medals.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.collections.ArrayCollection;
+
+        import mx.events.DragEvent;
+        import mx.controls.List;
+        import mx.managers.DragManager;
+        import mx.core.DragSource;
+
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.events.ChartItemEvent;
+        import mx.charts.series.items.ColumnSeriesItem;
+
+        private function doDragEnter(event:DragEvent):void {
+            var dragTarget:TextArea = TextArea(event.currentTarget);
+            DragManager.acceptDragDrop(dragTarget);
+        }
+
+        private function doDragDrop(event:DragEvent):void {
+            var dropTarget:TextArea = TextArea(event.currentTarget);
+            
+            var curItem:ColumnSeriesItem = 
+                ColumnSeriesItem(event.dragSource.dataForFormat("chartitems")[0]);            
+            var curSeries:ColumnSeries = ColumnSeries(curItem.element);
+            
+            var medalType:String = curSeries.displayName;
+            var numMedals:String = curItem.yValue.toString();
+            var countryName:String = curItem.item.country;
+            
+            ta1.text = countryName + " earned " + numMedals + " " + medalType + " medals.";
+        }
+    ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Dropping ChartItem Objects">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart" 
+            height="225" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="single" 
+            dragEnabled="true">
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="country"/> 
+            </mx:horizontalAxis>
+            <mx:series>
+                <mx:ColumnSeries id="columnSeries1" 
+                    xField="country" 
+                    yField="gold" 
+                    displayName="Gold" 
+                    selectable="true"/> 
+                <mx:ColumnSeries id="columnSeries2" 
+                    xField="country" 
+                    yField="silver" 
+                    displayName="Silver" 
+                    selectable="true"/> 
+                <mx:ColumnSeries id="columnSeries3" 
+                    xField="country" 
+                    yField="bronze" 
+                    displayName="Bronze" 
+                    selectable="true"/> 
+            </mx:series>
+        </mx:ColumnChart>
+        <s:HGroup>
+            <mx:Legend dataProvider="{myChart}"/> 
+            <s:TextArea id="ta1" 
+                height="75" width="200" 
+                dragEnter="doDragEnter(event)" 
+                dragDrop="doDragDrop(event)"/>
+        </s:HGroup>
+    </s:Panel>    
+</s:Application>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- styles/ColorFormatNumericValue.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()">
+
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+
+     s|Button {
+        color: #66CCFF;
+     }
+  </fx:Style>
+
+  <fx:Script><![CDATA[
+     [Bindable]
+     private var n:Number;
+
+     private function initApp():void {
+        n = myButton.getStyle("color");
+     }
+
+     public function changeStyles(e:Event):void {
+        if (myButton.getStyle("color").toString(16) == "ff0000") {
+           myButton.setStyle("color", 0x66CCFF);            
+        } else {
+           myButton.setStyle("color", "Red");           
+        }
+        
+        n = myButton.getStyle("color"); // Returns 16711680
+     }
+  ]]></fx:Script>
+
+    <s:VGroup>  
+        <s:Button id="myButton" label="Click Me" click="changeStyles(event)"/>
+        <s:Label id="myLabel" text="0x{n.toString(16).toUpperCase()}"/>
+    </s:VGroup>
+    
+</s:Application>

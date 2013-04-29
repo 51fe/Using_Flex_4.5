@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleADGColumnStyleFunc.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+      <![CDATA[
+          import mx.collections.ArrayCollection;
+          import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+            
+          // Include the data for the AdvancedDataGrid control.
+          include "StyleData.as"
+            
+          // Artist name to highlight.    
+          protected var artistName:String;
+        
+          // Event handler to set the selected artist's name
+          // based on the selected Button control.
+          public function setArtistName(event:Event):void
+          {
+             artistName=Button(event.currentTarget).label; 
+             // Refresh row display.
+             myADG.invalidateList();
+          }
+        
+          // Callback function that highlights in red 
+          // all rows for the selected artist.
+          public function myStyleFunc(data:Object, 
+            col:AdvancedDataGridColumn):Object
+          {
+             if (data["Artist"] == artistName) 
+                return {color:0xFF0000}; 
+            
+             // Return null if the Artist name does not match.
+             return null;      
+          }
+
+         // Callback function that hightlights in green
+         // all entries in the Price column 
+         // with a value less than $11.00. 
+         public function myColStyleFunc(data:Object, 
+            col:AdvancedDataGridColumn):Object
+         {
+             if(data["Price"] <= 11.00)
+                 return {color:0x00FF00};
+ 
+             return null;
+         }                         
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid id="myADG"
+        width="100%" height="100%"
+        dataProvider="{dpADG}"
+        styleFunction="myStyleFunc">
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Artist"/>
+            <mx:AdvancedDataGridColumn dataField="Album"/>
+            <mx:AdvancedDataGridColumn dataField="Price" 
+                styleFunction="myColStyleFunc"/>
+        </mx:columns>
+    </mx:AdvancedDataGrid>        
+   
+    <mx:HBox>
+       <mx:Button label="Pavement" click="setArtistName(event);"/>
+       <mx:Button label="Saner" click="setArtistName(event);"/>
+       <mx:Button label="The Doors" click="setArtistName(event);"/>
+    </mx:HBox>
+</s:Application>

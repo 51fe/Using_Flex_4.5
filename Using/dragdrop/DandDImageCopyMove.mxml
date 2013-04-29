@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDImageCopyMove.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.events.DragEvent;
+            import flash.events.MouseEvent;
+
+            // Embed icon image.
+            [Embed(source='assets/globe.jpg')]
+            public var globeImage:Class;
+
+            // The mouseMove event handler for the Image control
+            // functioning as the drag initiator.
+            private function mouseOverHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget);
+                var ds:DragSource = new DragSource();
+                ds.addData(dragInitiator, "img");               
+
+                // The drag manager uses the image as the drag indicator
+                // and sets the alpha to 1.0 (opaque),
+                // so it appears to be dragged across the canvas.
+                var imageProxy:Image = new Image();
+                imageProxy.source = globeImage;
+                imageProxy.height=10;
+                imageProxy.width=10;                
+                DragManager.doDrag(dragInitiator, ds, event, 
+                    imageProxy, -15, -15, 1.00);
+            }
+            
+            // The dragEnter event handler for the Canvas container
+            // functioning as the drop target.
+            private function dragEnterHandler(event:DragEvent):void {
+              if (event.dragSource.hasFormat("img"))
+                DragManager.acceptDragDrop(Canvas(event.currentTarget));
+            }
+            
+            // The dragOver event handler for the Canvas container
+            // sets the type of drag-and-drop
+            // operation as either copy or move. 
+            // This information is then used in the 
+            // dragComplete event handler for the source Canvas container.
+            private function dragOverHandler(event:DragEvent):void
+            {
+                if (event.dragSource.hasFormat("img")) {
+                    if (event.ctrlKey) {                    
+                        DragManager.showFeedback(DragManager.COPY);
+                        return;
+                    }
+                    else {
+                        DragManager.showFeedback(DragManager.MOVE);
+                        return;
+                    }
+                }
+
+                DragManager.showFeedback(DragManager.NONE);
+            }
+            
+            // The dragDrop event handler for the Canvas container
+            // sets the Image control's position by 
+            // "dropping" it in its new location.
+            private function dragDropHandler(event:DragEvent):void {
+              if (event.dragSource.hasFormat("img")) {
+                  var draggedImage:Image = 
+                    event.dragSource.dataForFormat('img') as Image;
+                  var dropCanvas:Canvas = event.currentTarget as Canvas;
+              
+                  // Since this is a copy, create a new object to 
+                  // add to the drop target.
+                  var newImage:Image=new Image();
+                  newImage.source = draggedImage.source;
+                  newImage.x = dropCanvas.mouseX;
+                  newImage.y = dropCanvas.mouseY;
+                  dropCanvas.addChild(newImage);
+              }
+            }
+            
+            // The dragComplete event handler for the source Canvas container
+            // determines if this was a copy or move.
+            // If a move, remove the dragged image from the Canvas.
+            private function dragCompleteHandler(event:DragEvent):void {
+                var draggedImage:Image = 
+                    event.dragInitiator as Image;
+                var dragInitCanvas:Canvas = 
+                    event.dragInitiator.parent as Canvas;
+
+                if (event.action == DragManager.MOVE)
+                    dragInitCanvas.removeChild(draggedImage);
+            }            
+        ]]>
+    </fx:Script>
+
+    <!-- Canvas holding the Image control that is the drag initiator. --> 
+    <mx:Canvas 
+        width="250" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD">
+        
+    <!-- The Image control is the drag initiator and the drag indicator. -->
+        <s:Image id="myimg" 
+            source="@Embed(source='assets/globe.jpg')" 
+            mouseMove="mouseOverHandler(event);"
+            dragComplete="dragCompleteHandler(event);"/> 
+    </mx:Canvas>
+
+    <!-- This Canvas is the drop target. --> 
+    <mx:Canvas
+        width="250" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD"
+        dragEnter="dragEnterHandler(event);" 
+        dragOver="dragOverHandler(event);"
+        dragDrop="dragDropHandler(event);">        
+    </mx:Canvas>
+</s:Application>

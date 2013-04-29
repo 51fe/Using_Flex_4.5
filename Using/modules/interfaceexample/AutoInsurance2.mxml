@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- modules/interfaceexample/AutoInsurance2.mxml -->
+<s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%" implements="IModuleInterface">
+    
+    <s:Panel id="p1" title="Auto Insurance" 
+        width="100%" height="100%" 
+        backgroundColor="{bgcolor}">
+        <s:Label id="myLabel" text="ID: {adjuster}"/>
+    </s:Panel>
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            private var adjuster:String;
+            [Bindable]
+            private var bgcolor:Number;
+
+            public function setAdjusterID(s:String):void {
+                adjuster = s;
+            }
+            
+            public function setBackgroundColor(n:Number):void {
+                /* Use a bindable property to set values of controls
+                   in the module. This ensures that the property will be set
+                   even if Flex applies the property after the module is 
+                   loaded but before it is rendered by the player. */
+                bgcolor = n;
+                
+                /* Don't do this. The backgroundColor style might not be set
+                   by the time the ModuleLoader triggers the READY
+                   event: */
+                // p1.setStyle("backgroundColor", n);
+            }
+            
+            public function getModuleName():String {
+                return "Auto Insurance";
+            }
+        ]]>
+    </fx:Script>
+</s:Module>

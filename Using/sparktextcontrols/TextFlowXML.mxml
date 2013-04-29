@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TextFlowXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="doSomething()">
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Declarations>
+        <fx:XML id="myXML">
+            <div>            
+                <p>This is <span fontWeight='bold'>paragraph 1</span>.</p>
+                <p>This is <span fontWeight='bold'>paragraph 2</span>.</p>
+            </div>
+        </fx:XML>
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        import flashx.textLayout.elements.TextFlow;
+        import spark.utils.TextFlowUtil;
+        
+        private function doSomething():void {
+            var flow:TextFlow = TextFlowUtil.importFromXML(myXML);
+            myST.textFlow = flow;
+        }
+    ]]></fx:Script>
+
+    <s:RichText id="myST" width="175"/>
+
+</s:Application>

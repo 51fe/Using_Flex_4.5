@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- containers\intro\ContainerRemoveChild.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout> 
+
+    <fx:Script>
+        <![CDATA[
+            public function removeButton():void {
+                myGroup.removeElement(myButton);
+            }
+            
+            private function resetApp():void {
+                if (myGroup.numElements == 0) {
+                    myGroup.addElement(myButton); 
+                }
+            }
+        ]]> 
+    </fx:Script>
+
+    <s:Group id="myGroup">
+        <s:Button id="myButton" 
+            label="Remove Me" 
+            click="removeButton();"/>
+    </s:Group>
+    <s:Button label="Reset" click="resetApp();"/>
+</s:Application>

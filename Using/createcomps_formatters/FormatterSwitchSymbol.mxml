@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!-- createcomps_formatters/FormatterSwitchSymbol.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+        
+      import mx.formatters.SwitchSymbolFormatter;
+
+      // Event handler to validate and format input.            
+      private function formatVal():void {
+          
+        var switcher:SwitchSymbolFormatter=new SwitchSymbolFormatter('#');
+
+        formattedSCNumber.text = 
+          switcher.formatValue("Formatted Social Securty number: ###-##-#### ", scNum.text);
+      }
+    ]]>
+  </fx:Script>
+
+    <mx:Label 
+        text="Enter a 9 digit Social Security number with no separator characters:"/>
+    <mx:TextInput id="scNum" 
+        text="" 
+        maxChars="9" width="50%"/>
+
+  <mx:Button label="Format" 
+      click="formatVal();"/>
+  <mx:TextInput id="formattedSCNumber" 
+      editable="false" width="75%"/>
+</s:Application>

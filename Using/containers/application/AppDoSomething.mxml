@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppDoSomething.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:MyComps="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout> 
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+        
+            // Open an Alert control.
+            public function doSomething():void {
+                Alert.show("The doSomething() method was called.");
+            }
+        ]]>
+    </fx:Script>
+    
+    <!-- Include the ButtonMXML.mxml component. -->
+    <MyComps:ButtonMXML/>
+</s:Application>

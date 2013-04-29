@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataFromModel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <!-- Define data model. -->
+        <fx:Model id="myFormModel">
+            <info>
+                <fName>{firstName.text}</fName>
+                <lName>{lastName.text}</lName>
+                <department>Accounting</department>
+            </info>
+        </fx:Model>
+    </fx:Declarations>
+
+    <mx:Form>
+        <mx:FormItem label="First and Last Names">
+            <mx:TextInput id="firstName"/>
+            <mx:TextInput id="lastName"/>
+        </mx:FormItem>
+        <mx:FormItem label="Department">
+            <mx:TextInput id="dept" text="{myFormModel.department}"/>
+        </mx:FormItem>
+    </mx:Form>
+</s:Application>

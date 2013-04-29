@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- charts/GradientFillsInActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+     
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.graphics.LinearGradient;
+     import mx.graphics.GradientEntry;
+     import mx.collections.ArrayCollection;
+     
+     private function styleChart():void {
+          var ge1:GradientEntry = new GradientEntry(0xCCFF99, 0);
+          var ge2:GradientEntry = new GradientEntry(0x99FF00, .33);
+          var ge3:GradientEntry = new GradientEntry(0x669900, .66);
+          
+          var lg1:LinearGradient = new LinearGradient();
+          lg1.entries = [ge1, ge2, ge3];
+          
+          myChart.setStyle("fill", lg1);     
+     }
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Gradient Entries in ActionScript Fill">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:BarChart id="myChart"
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true"
+        creationComplete="styleChart()">
+        <mx:verticalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:verticalAxis>
+        <mx:series>
+           <mx:BarSeries xField="expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:BarChart>
+  </s:Panel>
+</s:Application>

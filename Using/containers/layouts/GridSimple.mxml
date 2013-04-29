@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\GridSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Grid id="myGrid">
+
+        <!-- Define Row 1. -->
+        <mx:GridRow id="row1">
+            <!-- Define the first cell of Row 1. -->
+            <mx:GridItem>
+                <mx:Button label="Button 1"/>
+            </mx:GridItem>
+            <!-- Define the second cell of Row 1. -->
+            <mx:GridItem>
+                <mx:Button label="2"/>
+            </mx:GridItem>
+            <!-- Define the third cell of Row 1. -->
+            <mx:GridItem>
+                <mx:Button label="Button 3"/>
+            </mx:GridItem>
+        </mx:GridRow>
+
+        <!-- Define Row 2. -->
+        <mx:GridRow id="row2">
+            <!-- Define a single cell to span three columns of Row 2. -->
+            <mx:GridItem colSpan="3" horizontalAlign="center">
+                <mx:Button label="Long-Named Button 4"/>
+            </mx:GridItem>
+        </mx:GridRow>
+
+        <!-- Define Row 3. -->
+        <mx:GridRow id="row3">
+            <!-- Define an empty first cell of Row 3. -->
+            <mx:GridItem/>
+            <!-- Define a cell to span columns 2 and 3 of Row 3. -->
+            <mx:GridItem colSpan="2" horizontalAlign="center">
+                <mx:Button label="Button 5"/>
+            </mx:GridItem>
+        </mx:GridRow>
+
+    </mx:Grid>
+</s:Application>

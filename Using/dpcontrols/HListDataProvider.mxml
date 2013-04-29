@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/HListDataProvider.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="450">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+            import mx.controls.Image;
+
+            private var catalog:ArrayList;
+            private static var cat:Array = [
+                "../assets/Nokia_6820.gif", "../assets/Nokia_3595.gif",
+                "../assets/Nokia_3650.gif", "../assets/Nokia_6010.gif"
+            ];
+
+            /* Initialize the HorizontalList control by setting its dataProvider
+                property to an ArrayList containing the items parameter. */
+            private function initCatalog(items:Array):void {
+                catalog = new ArrayList(items);
+                myList.dataProvider = catalog;
+            }
+        ]]>   
+    </fx:Script>
+
+    <!-- A four-column HorizontalList. The itemRenderer is a Flex Image control.
+       When the control is created, pass the cat array to the initialization routine. -->
+    <mx:HorizontalList id="myList" 
+        columnWidth="100" 
+        rowHeight="100" 
+        columnCount="4"
+        itemRenderer="mx.controls.Image" 
+        creationComplete="initCatalog(cat);"/>
+</s:Application>

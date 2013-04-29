@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- repeater\RepeaterIndicesProp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+      [Bindable]
+      public var myArray:Array = [1,2,3,4,5,6,7,8];
+    ]]>
+  </fx:Script>
+
+  <mx:Box>
+      <mx:Repeater id="list" dataProvider="{myArray}" 
+        startingIndex="2" count="4">
+            <mx:HBox>
+                <mx:Button id="b" label="Click Me"
+                    click="myText[event.target.repeaterIndices-list.startingIndex].text=
+                    event.target.repeaterIndices.toString();"/>
+                <mx:TextInput id="myText"/>
+            </mx:HBox>
+      </mx:Repeater>
+  </mx:Box>
+</s:Application>

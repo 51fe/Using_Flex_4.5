@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- cursors\ShowBusyCursorAppHighP.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script> 
+        <![CDATA[
+            import mx.managers.CursorManager;
+            import mx.managers.CursorManagerPriority;
+            import flash.events.*;
+            
+            // Define a variable to hold the cursor ID.
+            private var cursorID:Number = 0;
+                       
+            // Define event listener to display the busy cursor
+            // and to load the image.
+            private function initImage(event:MouseEvent):void {
+                // Set busy cursor.
+                cursorID = CursorManager.setCursor(
+styleManager.getStyleDeclaration("mx.managers.CursorManager").getStyle("busyCursor"),CursorManagerPriority.HIGH);
+                // Load large image.
+                image1.source = "assets/DSC00034.JPG";
+            }
+
+            // Define an event listener to remove the wait cursor.
+            private function loadComplete(event:Event):void {
+                CursorManager.removeCursor(cursorID);   
+            }               
+        ]]>
+    </fx:Script>
+
+    <s:VGroup>
+        <!-- Image control to load the image. -->
+        <s:Image id="image1" 
+            height="50"
+            width="100"
+            complete="loadComplete(event);"/>
+
+        <!-- Button triggers the load. --> 
+        <s:Button id="myButton" label="Show" click="initImage(event);"/>
+    </s:VGroup>
+</s:Application>

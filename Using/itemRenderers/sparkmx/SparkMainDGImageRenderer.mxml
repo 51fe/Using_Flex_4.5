@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\sparkmx\SparkMainDGImageRenderer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="650">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg'},
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg'}
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myGrid" height="400" width="600"
+        dataProvider="{initDG}">  
+        <mx:columns>
+            <mx:DataGridColumn dataField="Artist"/>
+            <mx:DataGridColumn dataField="Album"/>
+            <mx:DataGridColumn dataField="Cover" 
+                itemRenderer="myComponents.RendererDGImage"/>
+            <mx:DataGridColumn dataField="Price"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

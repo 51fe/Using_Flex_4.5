@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/GraphicCompMainMXML.mxml -->
+<s:Application backgroundColor="0xFFFFFF"      
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:Graphic>    
+         <s:Rect id="rect1" width="200" height="200">
+              <s:fill>
+                 <s:SolidColor color="0xFFFFCC"/>
+              </s:fill>
+              <s:stroke>
+                 <s:SolidColorStroke color="0x660099" weight="2"/>
+              </s:stroke>
+         </s:Rect>
+    </s:Graphic>
+</s:Application>

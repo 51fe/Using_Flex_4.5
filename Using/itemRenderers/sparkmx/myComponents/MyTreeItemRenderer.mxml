@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- itemRenderers\sparkmx\myComponents\MyTreeItemRenderer.mxml -->
+<s:MXTreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+
+            import mx.controls.treeClasses.*;
+            import mx.collections.*;
+            
+            // Override the set method for the data property
+            // to set the font color and style of each node.        
+            override public function set data(value:Object):void {
+                super.data = value;
+                if(treeListData.hasChildren)
+                {
+                    setStyle("color", 0xff0000);
+                    setStyle("fontWeight", 'bold');
+                    var tmp:XMLList = 
+                        new XMLList(treeListData.item);
+                    var myStr:int = tmp[0].children().length();
+                    labelDisplay.text =  treeListData.label + 
+                        "(" + myStr + ")";
+                }
+                else
+                {
+                    setStyle("color", 0x000000);
+                    setStyle("fontWeight", 'normal');
+                    labelDisplay.text =  treeListData.label;
+                }  
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:HGroup left="0" right="0" verticalCenter="0">
+        <s:Rect id="indentationSpacer" 
+            width="{treeListData.indent}" height="22" 
+            alpha="0">
+            <s:fill>
+                <s:SolidColor color="0xFFFFFF" />
+            </s:fill>
+        </s:Rect>
+        <s:Group id="disclosureGroup">
+            <s:BitmapImage source="{treeListData.disclosureIcon}" 
+                width="16" height="16" 
+                visible="{treeListData.hasChildren}" />
+        </s:Group>
+        <s:BitmapImage source="{treeListData.icon}" 
+            width="16" height="16"/>
+        <s:Label id="labelDisplay" />
+    </s:HGroup>
+</s:MXTreeItemRenderer>

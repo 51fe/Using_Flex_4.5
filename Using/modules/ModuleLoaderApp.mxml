@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- modules/ModuleLoaderApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.events.ModuleEvent;
+        import mx.modules.ModuleManager;
+        import mx.modules.IModuleInfo;        
+        import mx.core.IVisualElement;
+
+        public var info:IModuleInfo;
+        
+        private function initApp():void {
+            info = ModuleManager.getModule("ColumnChartModule.swf");
+            info.addEventListener(ModuleEvent.READY, modEventHandler);           
+
+            /* Load the module into memory. Calling load() makes the
+               IFlexModuleFactory available. You can then get an
+               instance of the class using the factory's create()
+               method. */
+            info.load(null, null, null, moduleFactory);
+        }
+
+        /* Add an instance of the module's class to the display list. */        
+        private function modEventHandler(e:ModuleEvent):void {
+            /* For MX containers, cast to a DisplayObject. */
+            vb1.addChild(info.factory.create() as DisplayObject);
+
+            /* For Spark containers, cast to a UIComponent. */
+            vg1.addElement(info.factory.create() as IVisualElement);
+        }
+        ]]>
+    </fx:Script>
+
+    <!-- MX container -->
+    <mx:VBox id="vb1">
+        <s:Label text="Module loaded in MX VBox container:"/>
+    </mx:VBox>
+
+    <!-- Spark container -->
+    <s:VGroup id="vg1">
+        <s:Label text="Module loaded in Spark VGroup container:"/>    
+    </s:VGroup>
+
+</s:Application>

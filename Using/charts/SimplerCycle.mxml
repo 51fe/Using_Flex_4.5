@@ -1,0 +1,85 @@
+<?xml version="1.0" ?> 
+<!--  charts/SimplerCycle.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();initApp();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.series.items.ColumnSeriesItem;        
+
+        
+        private function initApp():void {
+            // Select the first item on start up.
+            series1.selectedIndex = 0;
+        }
+        
+        private function getNext(e:Event):void {
+            series1.selectedIndex += 1;
+        }
+
+        private function getPrev(e:Event):void {
+            series1.selectedIndex -= 1;
+        }
+
+        private function getFirst(e:Event):void {
+            series1.selectedIndex = 0;
+        }
+
+        private function getLast(e:Event):void {
+            series1.selectedIndex = series1.items.length - 1;
+        }
+
+    ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel height="100%" width="100%">
+         <s:layout>
+             <s:VerticalLayout/>
+         </s:layout>
+        <mx:ColumnChart id="myChart" 
+            height="207" width="350" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="single">
+            <mx:series>
+                <mx:ColumnSeries id="series1" 
+                    yField="expenses" 
+                    displayName="Expenses" 
+                    selectable="true"/> 
+            </mx:series>
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="month"/>
+            </mx:horizontalAxis>            
+        </mx:ColumnChart>
+
+        <s:HGroup>
+            <s:Label id="label0" text="Value: "/>
+            <s:Label id="label1"/>
+        </s:HGroup>      
+    
+        <mx:Legend dataProvider="{myChart}" width="200"/> 
+
+        <s:HGroup>
+            <s:Button label="|&lt;" click="getFirst(event);" />
+            <s:Button label="&lt;" click="getPrev(event);" />
+            <s:Button label="&gt;" click="getNext(event);" />
+            <s:Button label="&gt;|" click="getLast(event);" />
+        </s:HGroup>
+    </s:Panel>
+</s:Application>

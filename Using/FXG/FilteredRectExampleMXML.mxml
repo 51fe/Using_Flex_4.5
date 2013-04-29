@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/FilteredRectExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*">
+     
+     <mx:Panel title="Rectangle With DropShadowFilter MXML Graphics Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <s:Group>
+            <s:filters>
+                <s:DropShadowFilter distance="12" alpha=".5" strength=".33"/>
+            </s:filters>
+            <s:Rect height="100" width="200">                              
+                 <s:stroke>
+                      <s:SolidColorStroke color="0x000000" weight="1"/>
+                 </s:stroke>
+                 <s:fill>
+                      <s:SolidColor color="0xFF0000"/>                
+                 </s:fill>
+            </s:Rect>
+        </s:Group>
+     </mx:Panel>
+</s:Application>

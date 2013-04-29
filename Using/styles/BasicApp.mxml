@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<!-- styles/BasicApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+        public function applyRuntimeStyleSheet():void {
+            styleManager.loadStyleDeclarations("assets/BasicStyles.swf")
+        }
+        ]]>
+    </fx:Script>    
+
+    <s:VGroup>
+        <s:Label text="Click the button to load a new CSS-based SWF file."/>
+        <s:Button id="b1" label="Click Me" click="applyRuntimeStyleSheet()"/>
+    </s:VGroup>
+    
+</s:Application>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- components\PadHBox.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    
+    <mx:HBox 
+        width="400" 
+        borderStyle="solid" 
+        paddingLeft="5" 
+        paddingRight="5" 
+        horizontalGap="5">
+        
+        <mx:Button label="Label 1" 
+            width="50%"/>
+        <mx:Button label="Label 2" 
+            width="40%" 
+            minWidth="150"/>
+        <mx:Button label="Label 3"/>
+    </mx:HBox>
+</mx:Application>

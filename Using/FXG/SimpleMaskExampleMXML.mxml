@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/SimpleMaskExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+      <s:VGroup gap="10" left="10" top="10">
+            <s:RichText text="Ellipse.maskType = 'alpha'"/>
+            <s:Ellipse width="400" height="200" maskType="alpha">
+                  <s:mask>
+                        <s:Group>
+                              <s:Rect width="100" height="100">
+                                    <s:fill>
+                                          <s:SolidColor alpha="0.1"/>
+                                    </s:fill>
+                              </s:Rect>
+                        </s:Group>
+                  </s:mask>
+                  <s:fill>
+                        <s:SolidColor color="#FF00FF"/>
+                  </s:fill>
+            </s:Ellipse>
+
+            <s:RichText text="Ellipse.maskType = 'clip'"/>
+            <s:Ellipse width="400" height="200" maskType="clip">
+                  <s:mask>
+                        <s:Group>
+                              <s:Rect width="100" height="100">
+                                    <s:fill>
+                                          <s:SolidColor/>
+                                    </s:fill>
+                              </s:Rect>
+                        </s:Group>
+                  </s:mask>
+                  <s:fill>
+                        <s:SolidColor color="#FF00FF"/>
+                  </s:fill>
+            </s:Ellipse>
+
+      </s:VGroup>
+</s:Application>

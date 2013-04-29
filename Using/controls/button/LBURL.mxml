@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- controls\button\LBURL.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <mx:LinkButton label="ADBE" 
+        width="100"
+        click="navigateToURL(new URLRequest('http://quote.yahoo.com/q?s=ADBE'), 'quote')"/>
+</s:Application>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\MainDGCheckBoxEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="650">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', Date: '5/5/05' , FollowUp: true },
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', Date: '5/6/05' , FollowUp: false} 
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        editable="true" >  
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="Date"/>
+            <mx:DataGridColumn dataField="FollowUp" 
+                width="150" 
+                headerText="Follow Up?" 
+                itemEditor="myComponents.EditorDGCheckBox" 
+                editorDataField="cbSelected"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

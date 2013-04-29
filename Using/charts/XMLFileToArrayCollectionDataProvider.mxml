@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- charts/XMLFileToArrayCollectionDataProvider.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+	height="600">
+    
+    <fx:Declarations>
+        <fx:Model id="results" source="../assets/data.xml"/>
+        <s:ArrayCollection id="myAC" 
+            source="{ArrayUtil.toArray(results.result)}"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        import mx.utils.ArrayUtil;
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Line Chart">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:LineChart id="myChart" 
+        dataProvider="{myAC}" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:LineSeries yField="banana" displayName="Banana"/>
+           <mx:LineSeries yField="apple" displayName="Apple"/>
+           <mx:LineSeries yField="orange" displayName="Orange"/>
+        </mx:series>
+     </mx:LineChart>
+     <mx:Legend dataProvider="{myChart}"/>     
+  </s:Panel>
+</s:Application>

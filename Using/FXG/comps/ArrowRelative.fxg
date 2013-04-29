@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/ArrowRelative.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <!-- Use compact syntax with relative coordinates. -->
+    <Path data="   
+              m 20 0 
+              c 30 0 30 35 0 35 
+              l -5 0
+              l 0 10
+              l -15 -13
+              l 15 -13
+              l 0 10
+              l 5 0
+              c 24 0 24 -23 0 -23">
+         <!-- Define the border color of the arrow. -->
+         <stroke>
+              <SolidColorStroke color="#888888"/>
+         </stroke>
+         <!-- Define the fill for the arrow. -->
+         <fill>
+              <LinearGradient rotation="90">
+                   <GradientEntry color="#000000" alpha="0.8"/>
+                   <GradientEntry color="#FFFFFF" alpha="0.8"/>
+              </LinearGradient>
+         </fill>
+    </Path>
+</Graphic>

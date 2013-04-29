@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- styles/LengthFormat2.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  <fx:Style>
+     .myFontStyle { 
+        fontSize: 20px;
+        color: #9933FF;
+     }
+     .myOtherFontStyle { 
+        fontSize: 20;
+        color: #9933FF;
+     }
+  </fx:Style>
+  <s:Button id="myButton" styleName="myFontStyle" label="Click Here"/>
+  <s:Button id="myButton2" styleName="myOtherFontStyle" label="Click Here"/>
+</s:Application>

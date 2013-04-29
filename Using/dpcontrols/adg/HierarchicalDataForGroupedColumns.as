@@ -1,0 +1,27 @@
+[Bindable]
+private var dpHierarchy:ArrayCollection = new ArrayCollection([
+  {Region:"Southwest", Territory:"Arizona", 
+      Territory_Rep:"Barbara Jennings", 
+      Revenues:{Actual:38865, Estimate:40000}}, 
+  {Region:"Southwest", Territory:"Arizona", 
+      Territory_Rep:"Dana Binn", 
+      Revenues:{Actual:29885, Estimate:30000}},  
+  {Region:"Southwest", Territory:"Central California", 
+      Territory_Rep:"Joe Smith", 
+      Revenues:{Actual:29134, Estimate:30000}},  
+  {Region:"Southwest", Territory:"Nevada", 
+      Territory_Rep:"Bethany Pittman", 
+      Revenues:{Actual:52888, Estimate:45000}},  
+  {Region:"Southwest", Territory:"Northern California", 
+      Territory_Rep:"Lauren Ipsum", 
+      Revenues:{Actual:38805, Estimate:40000}}, 
+  {Region:"Southwest", Territory:"Northern California", 
+      Territory_Rep:"T.R. Smith", 
+      Revenues:{Actual:55498, Estimate:40000}},  
+  {Region:"Southwest", Territory:"Southern California", 
+      Territory_Rep:"Alice Treu", 
+      Revenues:{Actual:44985, Estimate:45000}}, 
+  {Region:"Southwest", Territory:"Southern California", 
+      Territory_Rep:"Jane Grove", 
+      Revenues:{Actual:44913, Estimate:45000}}
+]);

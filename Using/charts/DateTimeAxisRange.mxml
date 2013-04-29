@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- charts/DateTimeAxisRange.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+    
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+
+     // To create a Date object, you pass "YYYY,MM,DD", 
+     // where MM is zero-based, to the Date() constructor.
+     [Bindable]
+     public var minDate:Date = new Date(2006, 11, 1);
+     [Bindable]
+     public var maxDate:Date = new Date(2007, 1, 1);
+
+     [Bindable] public var myData:ArrayCollection = new
+     ArrayCollection([
+        {date: "11/03/2006", amt: 12345},
+        {date: "12/02/2006", amt: 54331},
+        {date: "1/03/2007", amt: 34343},
+        {date: "2/05/2007", amt: 40299}
+     ]);
+
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="DateTimeAxis with range">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart"
+        dataProvider="{myData}"
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis 
+                dataUnits="months" 
+                minimum="{minDate}"
+                maximum="{maxDate}"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                yField="amt"
+                xField="date" 
+                displayName="My Data"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

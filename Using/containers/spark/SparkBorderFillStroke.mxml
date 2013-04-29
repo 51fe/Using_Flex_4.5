@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkBorderFillStroke.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     
+    <s:BorderContainer cornerRadius="10">
+        <s:layout>
+            <s:HorizontalLayout 
+                paddingLeft="5" paddingRight="5" 
+                paddingTop="5" paddingBottom="5"/>
+        </s:layout>
+        <s:backgroundFill>
+            <s:SolidColor 
+                color="red" 
+                alpha="100"/>
+        </s:backgroundFill>
+        <s:borderStroke>
+            <mx:SolidColorStroke 
+                color="black" 
+                weight="3"/>
+        </s:borderStroke>
+                
+        <s:Button label="Button 1"/>
+        <s:Button label="Button 2"/>
+        <s:Button label="Button 3"/>
+        <s:Button label="Button 4"/>
+    </s:BorderContainer> 
+</s:Application>

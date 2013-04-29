@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkBorderImage.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"> 
+    
+    <fx:Script> 
+        <![CDATA[
+            [Embed(source="/assets/logo.jpg")]
+            [Bindable]
+            public var imgCls:Class;
+        ]]>
+    </fx:Script> 
+     
+    <s:BorderContainer 
+        backgroundImage="{imgCls}" 
+        borderStyle="inset" borderWeight="2" 
+        width="150" height="180">
+    </s:BorderContainer> 
+</s:Application>

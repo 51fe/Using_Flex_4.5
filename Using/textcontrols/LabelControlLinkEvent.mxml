@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- textcontrols/LabelControlLinkEvent.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.events.TextEvent; 
+
+            public function linkHandler(event:TextEvent):void {
+                myTA.text="The link was clicked.";
+                
+                // Open the link in a new browser window.
+                navigateToURL(new URLRequest(event.text), '_blank')
+            }
+        ]]>
+    </fx:Script>
+    
+    <mx:Label selectable="true" link="linkHandler(event);">
+        <mx:htmlText>
+            <![CDATA[This link lets you <a href='event:http://www.adobe.com'>Navigate to Adobe.com.</a>]]>
+        </mx:htmlText>
+    </mx:Label>  
+
+    <mx:TextArea id="myTA"/>
+    
+</s:Application>

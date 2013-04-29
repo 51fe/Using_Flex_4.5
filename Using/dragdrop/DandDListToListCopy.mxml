@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDListToListCopy.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.DragEvent;
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.collections.IList;
+            import mx.collections.ArrayCollection;
+    
+            private function initApp():void {
+                firstList.dataProvider = new ArrayCollection([
+                    {label:"First", data:"1"},
+                    {label:"Second", data:"2"},
+                    {label:"Third", data:"3"},
+                    {label:"Fourth", data:"4"},
+                ]);
+                secondList.dataProvider = new ArrayCollection([]);
+            }
+
+            private function dragDropHandler(event:DragEvent):void {
+              if (event.dragSource.hasFormat("items"))
+              {                
+                // Explicitly handle the dragDrop event.            
+                event.preventDefault();
+
+                // Since you are explicitly handling the dragDrop event,
+                // call hideDropFeedback(event) to have the drop target
+                // hide the drop indicator. 
+                // The drop indicator is created
+                // automatically for the list controls by the built-in 
+                // event handler for the dragOver event.
+                event.currentTarget.hideDropFeedback(event);
+
+                // Get drop target.
+                var dropTarget:List=List(event.currentTarget);
+                
+                // Get the dragged item from the drag initiator.
+                // The List control always writes an Array 
+                // to the dragSource object,
+                // even if there is only one item being dragged.
+                var itemsArray:Array = 
+                    event.dragSource.dataForFormat("items") as Array;
+    
+                // Copy the dragged data into a new Object.
+                var tempItem:Object = 
+                    {label: itemsArray[0].label, data: itemsArray[0].data};
+    
+                // Get the drop location in the destination.
+                var dropLoc:int = dropTarget.calculateDropIndex(event);
+
+                // Add the new object to the drop target.       
+                IList(dropTarget.dataProvider).addItemAt(tempItem, dropLoc);
+              }                
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:HBox>
+        <mx:List  id="firstList" 
+            dragEnabled="true"/>
+
+        <mx:List  id="secondList" 
+            dropEnabled="true"
+            dragDrop="dragDropHandler(event);"/>
+    </mx:HBox>
+
+    <mx:Button id="b1" 
+        label="Reset"
+        click="initApp();"/>
+</s:Application>

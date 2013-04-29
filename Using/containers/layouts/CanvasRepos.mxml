@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\CanvasRepos.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Canvas 
+        width="300" height="185" 
+        backgroundColor="#FFFFFF">
+
+        <mx:TextInput id="text1" 
+            text="Move me" 
+            x="10" y="10"
+        />
+        <mx:Button id="button1" 
+            label="Move text1" 
+            x="10" y="150" 
+            click="text1.x=110; text1.y=110;"
+        />
+        <mx:Button label="Reset" 
+            click="text1.x=10; text1.y=10;" x="111" y="150"/>
+    </mx:Canvas>
+</s:Application>

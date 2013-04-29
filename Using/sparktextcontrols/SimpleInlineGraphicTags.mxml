@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SimpleInlineGraphicTags.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:Panel title="Simple Inline Graphic Image"
+        width="90%" height="90%"
+        horizontalCenter="0" verticalCenter="0">
+
+        <s:RichEditableText id="richTxt" textAlign="justify" width="100%">
+            <s:textFlow>
+                <s:TextFlow>
+                    <s:p>
+                        <s:img source="@Embed(source='../assets/butterfly.gif')" height="100" width="100"/>
+                    </s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+    </s:Panel>
+
+</s:Application>

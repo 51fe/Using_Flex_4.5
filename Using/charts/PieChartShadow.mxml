@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- charts/PieChartShadow.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/budget-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/budget.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Pie Chart">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PieChart id="pie" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <!-- Add a custom drop shadow to the PieChart control -->
+        <mx:filters>
+           <s:DropShadowFilter
+                distance="10"
+                color="0x666666"
+                alpha=".8"/>
+        </mx:filters>
+        <mx:series>
+           <fx:Array>
+                <mx:PieSeries field="amount" nameField="item"
+                labelPosition="callout" explodeRadius=".2">
+                    <!-- Clear default shadow on the PieSeries -->
+                    <mx:filters>
+                        <fx:Array/>
+                    </mx:filters>
+                </mx:PieSeries>
+           </fx:Array>
+        </mx:series>
+     </mx:PieChart>
+     <mx:Legend dataProvider="{pie}"/>
+  </s:Panel>
+</s:Application>

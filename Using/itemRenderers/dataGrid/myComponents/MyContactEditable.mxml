@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\myComponents\MyContactEditable.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+   <fx:Script>
+        <![CDATA[
+            // Define a property for returning the new value to the cell.
+            [Bindable]
+            public var newContact:String;
+        ]]>
+    </fx:Script>
+
+    <mx:Label id="title" text="{data.label1}"/>
+    <mx:Label id="contactLabel" text="Last Contacted By:"/>
+    <mx:TextInput id="contactTI" 
+        editable="true" 
+        text="{data.Contact}" 
+        change="newContact=contactTI.text;"/>
+</mx:VBox>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- controls\Scroller\ScrollerImage.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" >
+    <s:VGroup paddingLeft="10" paddingTop="10">
+        <s:Scroller width="400" height="400">
+            <s:Group id="myGroup" >
+                <s:Image id="loader1" 
+                          source="@Embed(source='../assets/strawberries.jpg')"/> 
+            </s:Group>
+        </s:Scroller>
+        <s:Label 
+            fontSize="14" fontFamily="Arial"
+            text= "Scroll to see fresh summer strawberries"/>
+    </s:VGroup>    
+</s:Application>

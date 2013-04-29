@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- events/KeyboardEventPrecedence.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();"
+    width="650">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.core.FlexGlobals;
+    
+        private function initApp():void {
+            FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_UP, keyHandler);
+            my_vgroup.addEventListener(KeyboardEvent.KEY_UP, keyHandler);
+            my_textinput.addEventListener(KeyboardEvent.KEY_UP, keyHandler);
+
+            // Set the focus somewhere inside the application.
+            my_textinput.setFocus();
+        }
+
+        private function keyHandler(event:KeyboardEvent):void {
+            ta1.text += event.target + "(" + event.currentTarget + "): " + 
+                event.keyCode + "/" + event.charCode + "\n";
+        }
+    ]]></fx:Script>
+    
+    <s:VGroup id="my_vgroup">
+        <s:TextInput id="my_textinput"/>
+    </s:VGroup>
+
+    <s:TextArea id="ta1" height="300" width="550"/>
+
+</s:Application>

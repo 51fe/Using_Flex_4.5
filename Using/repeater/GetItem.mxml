@@ -1,0 +1,39 @@
+<?xml version="1.0"?> 
+<!-- repeater\GetItem.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script> 
+    <![CDATA[
+      public function clicker(cName:String):void { 
+         foolabel.text=cName; 
+       }  
+    ]]>
+  </fx:Script> 
+
+  <s:Label id="foolabel" text="foo"/> 
+
+  <fx:Declarations> 
+      <fx:Model id="data"> 
+        <color>
+          <colorName>Red</colorName> 
+          <colorName>Yellow</colorName> 
+          <colorName>Blue</colorName>
+        </color>
+      </fx:Model> 
+      <s:ArrayCollection id="myAC" source="{data.colorName}"/>
+  </fx:Declarations> 
+
+  <mx:VBox>
+      <mx:Repeater id="myrep" dataProvider="{myAC}"> 
+        <mx:Button click="clicker(event.currentTarget.getRepeaterItem());"
+          label="{myrep.currentItem}"/> 
+      </mx:Repeater> 
+  </mx:VBox>
+</s:Application>

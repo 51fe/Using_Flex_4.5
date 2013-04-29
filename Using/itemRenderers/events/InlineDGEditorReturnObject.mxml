@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\events\InlineDGEditorReturnObject.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"  
+    width="700">
+    
+    <fx:Script>
+        <![CDATA[
+
+            import mx.events.DataGridEvent;
+            import mx.collections.ArrayCollection;
+            import mx.controls.TextInput;
+            
+            public var newCity:String;
+            public var newState:String;
+            
+            [Bindable]
+            public var initDG:ArrayCollection = new ArrayCollection([
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', City: 'Boston', State: 'MA'},
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', City: 'SanFrancisco', State: 'CA'} 
+             ]);
+                
+            public function processData(event:DataGridEvent):void {                 
+                if(event.dataField=='City/State')
+                {
+                    // Disable copying data back to the control.
+                    event.preventDefault();
+                   
+                    myGrid.editedItemRenderer.data.City=
+                        myEditor(myGrid.itemEditorInstance).setCity.text;
+                    myGrid.editedItemRenderer.data.State=
+                        myEditor(myGrid.itemEditorInstance).pickState.selectedItem;
+
+                    myGrid.destroyItemEditor();
+                    
+                    // Notify the list control to update its display.
+                    myGrid.dataProvider.itemUpdated(myGrid.editedItemRenderer);
+                }
+            }           
+        ]]>
+    </fx:Script>
+    
+    <mx:DataGrid id="myGrid" 
+        rowHeight="75" 
+        dataProvider="{initDG}" 
+        editable="true" 
+        itemEditEnd="processData(event);">  
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="City/State" width="150">
+                <mx:itemRenderer>
+                    <fx:Component>
+                        <mx:Text selectable="false" width="100%" 
+                            text="{data.City}, {data.State}"/>
+                    </fx:Component>
+                </mx:itemRenderer>
+
+                <mx:itemEditor>
+                    <fx:Component className="myEditor">
+                        <mx:VBox backgroundColor="yellow">
+
+                            <mx:TextInput id="setCity" width="130" 
+                                text="{data.City}"/>
+                            
+                            <mx:ComboBox id="pickState" 
+                                selectedItem="{data.State}">
+                                    <mx:dataProvider>
+                                        <fx:String>AL</fx:String>
+                                        <fx:String>AK</fx:String>
+                                        <fx:String>AR</fx:String>
+                                        <fx:String>CA</fx:String>
+                                        <fx:String>MA</fx:String>
+                                    </mx:dataProvider>
+                            </mx:ComboBox>
+                        </mx:VBox>
+                    </fx:Component>                 
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

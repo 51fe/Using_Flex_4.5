@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- charts/PlotRenderersAS.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();initSeriesStyles();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.charts.renderers.*;
+
+    private function initSeriesStyles():void {
+        // Second series uses CircleItemRenderer.
+        series2.setStyle("itemRenderer", new ClassFactory(mx.charts.renderers.CircleItemRenderer));
+
+        // Third series uses CrossItemRenderer.
+        series3.setStyle("itemRenderer", new ClassFactory(mx.charts.renderers.CrossItemRenderer));
+    }
+
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Plot Chart">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PlotChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}"
+        showDataTips="true">
+        <mx:series>
+           <mx:PlotSeries 
+                id="series1"
+                xField="expenses" 
+                yField="profit"
+                displayName="Plot 1"/>
+
+           <mx:PlotSeries 
+                id="series2"
+                xField="amount" 
+                yField="expenses"
+                displayName="Plot 2"/>
+
+           <mx:PlotSeries 
+                id="series3"
+                xField="profit" 
+                yField="amount" 
+                displayName="Plot 3"/>
+        </mx:series>
+     </mx:PlotChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

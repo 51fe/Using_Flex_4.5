@@ -1,0 +1,25 @@
+<Cube name="FlatSchemaCube">
+    <Dimension name="Sale">
+        <Hierarchy name="Customer-Product" 
+            hasAll="true">
+            <Level name="Customer" 
+                dataField="customer"/>
+            <Level name="Product" 
+                dataField="product"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Time">
+        <Hierarchy name="Time-Period" 
+            hasAll="true">
+            <Level name="Year" 
+                dataField="year"/>
+            <Level name="Quarter" 
+                dataField="quarter"/>
+        </Hierarchy> 
+    </Dimension>
+
+    <Measure name="Revenue" 
+        dataField="revenue" 
+        aggragator="SUM"/>
+</Cube>

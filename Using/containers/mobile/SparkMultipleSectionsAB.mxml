@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkMultipleSectionsAB.mxml -->
+<s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[
+            protected function button1_clickHandler(event:MouseEvent):void {
+                // Switch to the first section in the application.
+                tabbedNavigator.selectedIndex = 0;
+                // Switch to the first view in the section.
+                ViewNavigator(tabbedNavigator.selectedNavigator).popToFirstView();
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:navigators>
+        <s:ViewNavigator label="Employees" firstView="views.EmployeeMainView">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')" 
+                    click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+        <s:ViewNavigator label="Contacts" firstView="views.ContactsMainView">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')"
+                    click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+        <s:ViewNavigator label="Search" firstView="views.SearchView">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')"
+                    click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+    </s:navigators>
+    
+</s:TabbedViewNavigatorApplication>

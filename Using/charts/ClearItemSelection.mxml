@@ -1,0 +1,70 @@
+<?xml version="1.0" ?> 
+<!--  charts/ClearItemSelection.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();srv.send();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import flash.events.KeyboardEvent;
+        import mx.core.FlexGlobals;
+        
+        private function initApp():void {
+            FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_UP, keyHandler);
+        }
+        
+        // Clears all chart items selected when the user presses the ESC key.
+        private function keyHandler(event:KeyboardEvent):void {
+            var curKeyCode:int = event.keyCode;
+            if (curKeyCode == 27) { // 27 is the keycode value for ESC
+                myChart.clearSelection();
+            }
+        }
+    ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel height="100%" width="100%">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:PlotChart id="myChart" 
+            height="207" 
+            width="350" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="multiple">
+            <mx:series>
+                <mx:PlotSeries id="series1" 
+                    xField="expenses" 
+                    yField="profit" 
+                    displayName="Expenses/Profit" 
+                    selectable="true"/> 
+                <mx:PlotSeries id="series2" 
+                    xField="amount" 
+                    yField="expenses" 
+                    displayName="Amount/Expenses" 
+                    selectable="true"/> 
+                <mx:PlotSeries id="series3" 
+                    xField="profit" 
+                    yField="amount" 
+                    displayName="Profit/Amount" 
+                    selectable="true"/> 
+            </mx:series>
+        </mx:PlotChart>
+        <mx:Legend dataProvider="{myChart}" width="200"/>  
+        <s:Label text="Press ESC to clear selection."/>     
+    </s:Panel>
+</s:Application>

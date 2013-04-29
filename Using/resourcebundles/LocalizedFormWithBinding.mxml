@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/LocalizedFormWithBinding.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script><![CDATA[
+        import mx.resources.ResourceBundle;
+        import mx.controls.Alert;
+
+        private function registrationComplete():void {
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks'));
+        }  
+    ]]></fx:Script>
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Metadata>
+        [ResourceBundle("RegistrationForm")]
+    </fx:Metadata> 
+
+    <s:Form>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','city')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','state')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}">
+            <s:TextInput/>
+        </s:FormItem>
+    </s:Form>
+    <s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/>
+</s:Application>

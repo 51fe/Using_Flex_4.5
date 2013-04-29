@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/MainZoomerPattern4.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+     <fx:Script>
+          <![CDATA[
+               /* The PopUpManager must be linked in to all applications that are 
+                  at the same security sandbox root. Because the sub-application
+                  in this example uses the PopUpManager, the main application must also
+                  link it it. */
+               import mx.managers.PopUpManager; PopUpManager;
+          ]]>
+     </fx:Script>
+
+     <mx:Text text="Portal (untrusted versioning application):"/>
+     
+     <mx:SWFLoader id="swf1" 
+          loadForCompatibility="true" 
+          trustContent="false" 
+          source="ZoomerPattern4.swf"/>
+          
+</s:Application>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- components\HiddenBoxLayout.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="500">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <s:SkinnableContainer>
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:Panel id="p1" 
+            title="Panel 1"/>
+        <s:Panel id="p2" 
+            title="Panel 2"/>
+        <s:Panel id="p3" 
+            title="Panel 3"/>
+    </s:SkinnableContainer>
+
+    <s:SkinnableContainer>
+        <s:layout>
+            <s:HorizontalLayout/>
+        </s:layout>
+        <s:Button label="Toggle Panel 2 Visible" 
+            click="{p2.visible=!p2.visible;}"/>
+        <s:Button label="Toggle Panel 2 in Layout" 
+            click="{p2.includeInLayout=!p2.includeInLayout;}"/>
+    </s:SkinnableContainer>
+</s:Application>

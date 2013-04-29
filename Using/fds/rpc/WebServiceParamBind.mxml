@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\WebServiceParamBind.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="10">
+    <mx:Script>
+        <![CDATA[
+            import mx.utils.ArrayUtil;
+            import mx.controls.Alert;
+        ]]>
+    </mx:Script>
+
+    <mx:WebService
+        id="employeeWS"
+        destination="wsDest"
+        showBusyCursor="true"
+        fault="Alert.show(event.fault.faultString)">
+        <mx:operation name="getList">
+            <mx:request>
+                <deptId>{dept.selectedItem.data}</deptId>
+            </mx:request>
+        </mx:operation>
+    </mx:WebService>
+    <mx:ArrayCollection
+        id="employeeAC"
+        source="{ArrayUtil.toArray(employeeWS.getList.lastResult)}"/>
+    <mx:HBox>
+        <mx:Label text="Select a department:"/>
+        <mx:ComboBox id="dept" width="150">
+            <mx:dataProvider>
+                <mx:ArrayCollection>
+                    <mx:source>
+                        <mx:Object label="Engineering" data="ENG"/>
+                        <mx:Object label="Product Management" data="PM"/>
+                        <mx:Object label="Marketing" data="MKT"/>
+                    </mx:source>
+                </mx:ArrayCollection>
+            </mx:dataProvider>
+        </mx:ComboBox>
+            <mx:Button label="Get Employee List"
+                click="employeeWS.getList.send()"/>
+    </mx:HBox>
+    <mx:DataGrid dataProvider="{employeeAC}" width="100%">
+        <mx:columns>
+                <mx:DataGridColumn dataField="name" headerText="Name"/>
+                <mx:DataGridColumn dataField="phone" headerText="Phone"/>
+                <mx:DataGridColumn dataField=" to email" headerText="Email"/>
+        </mx:columns>
+    </mx:DataGrid>
+</mx:Application>

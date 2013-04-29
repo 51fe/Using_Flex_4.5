@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- states\StatesAddRelative.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:states>
+        <mx:State name="NewButton">
+            <mx:AddChild relativeTo="{h1}" position="firstChild">
+                <mx:Button id="buttonNew" label="New Button"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+    
+    <mx:HBox id="h1">
+        <mx:Button label="Change State" 
+            click=
+              "currentState = currentState=='NewButton' ? '':'NewButton';"/>
+    </mx:HBox>    
+</mx:Application>

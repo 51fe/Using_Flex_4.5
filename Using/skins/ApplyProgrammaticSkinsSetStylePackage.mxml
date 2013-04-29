@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- skins/ApplyProgrammaticSkinsSetStylePackage.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>  
+    
+    <fx:Script>
+        <![CDATA[        
+            import myComponents.*;
+            
+            public function changeSkins():void {
+                if (cb1.selected) {
+                    b1.setStyle("upSkin", myComponents.ButtonStatesSkin);
+                    b1.setStyle("downSkin", myComponents.ButtonStatesSkin);
+                    b1.setStyle("overSkin", myComponents.ButtonStatesSkin);
+                    b1.setStyle("disabledSkin", myComponents.ButtonStatesSkin);
+                } else {
+                    b1.setStyle("upSkin", null);
+                    b1.setStyle("downSkin", null);
+                    b1.setStyle("overSkin", null);
+                    b1.setStyle("disabledSkin", null);
+                }               
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Button id="b1" label="Click Me"/>
+
+    <mx:CheckBox id="cb1" label="Apply custom skin class" click="changeSkins();"/>
+  
+</s:Application>

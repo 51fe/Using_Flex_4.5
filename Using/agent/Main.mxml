@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- agent/Main.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" height="100%" width="100%">
+    <mx:Script><![CDATA[
+        private function changeLabel(newLabel:String):void {
+            b1.label = newLabel;
+        }        
+    ]]></mx:Script>
+    <mx:TextInput id="ti1" text=""/>
+    <mx:Button id="b1" label="Change Label" click="changeLabel(ti1.text)" />
+</mx:Application>

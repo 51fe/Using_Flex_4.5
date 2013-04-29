@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\EmployeeMainViewTransEaser.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    title="Employees">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import spark.events.IndexChangeEvent;
+            import spark.transitions.CrossFadeViewTransition; 
+            
+            // Define two transitions: a cross fade and a flip.
+            public var xFadeTrans:CrossFadeViewTransition = new CrossFadeViewTransition();
+            
+            // Use the cross fade transition on a push(), 
+            // with a duration of 100 ms.
+            protected function myList_changeHandler(event:IndexChangeEvent):void {
+                xFadeTrans.duration = 1000;
+                navigator.pushView(views.EmployeeView, myList.selectedItem, null, xFadeTrans);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Label text="Select an employee name"/>
+    <s:List id="myList"
+            width="100%" height="100%"
+            labelField="firstName"
+            change="myList_changeHandler(event);">
+        <s:ArrayCollection>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/>
+        </s:ArrayCollection>
+    </s:List>
+</s:View>

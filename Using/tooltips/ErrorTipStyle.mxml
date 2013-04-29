@@ -1,0 +1,61 @@
+﻿<?xml version="1.0"?>
+<!-- tooltips/ErrorTipStyle.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+     import mx.controls.ToolTip;
+     import mx.managers.ToolTipManager;
+     import mx.core.IUIComponent;
+     
+     private var errorTip:ToolTip;
+     private var myError:String;
+  
+     private function validateEntry(type:String, event:Object):void {
+        if (errorTip) {
+            resetApp();
+        }
+        
+        // NOTE: Validation logic would go here.
+        switch(type) {
+           case "ssn":
+            myError="Use SSN format (NNN-NN-NNNN)";
+            break;
+           case "phone":
+            myError="Use phone format (NNN-NNN-NNNN)";
+            break;
+        }
+        
+        // Use the target's x and y positions to set position of error tip.
+        trace("event.currentTarget.width" + event.currentTarget.width);
+        trace("event.currentTarget.x" + event.currentTarget.x);
+        
+        errorTip = ToolTipManager.createToolTip(
+            myError, event.currentTarget.x + event.currentTarget.width, event.currentTarget.y, null, IUIComponent(event.currentTarget)) as ToolTip;
+      
+        // Apply the errorTip class selector.
+        errorTip.setStyle("styleName", "errorTip");
+     }
+     
+     private function resetApp():void {
+        if (errorTip) {
+            ToolTipManager.destroyToolTip(errorTip);
+            errorTip = null;
+        }
+     }
+    ]]>
+  </fx:Script>
+
+    <s:TextInput id="ssn" enter="validateEntry('ssn',event)"/>
+    <s:TextInput id="phone" enter="validateEntry('phone',event)"/>
+    <s:Label text="Press the enter key after entering text in each text input."/>
+    <s:Button id="b1" label="Reset" click="resetApp()"/>
+
+</s:Application>

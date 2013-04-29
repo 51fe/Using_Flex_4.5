@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- usingas/SourceInclude.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script source="includes/IncludedFile.as"/>
+
+    <s:TextInput id="ta1st" text="3" width="40" x="170" y="24" textAlign="right"/>
+    <s:TextInput id="ta2nd" text="3" width="40" x="170" y="52" textAlign="right"/>
+
+    <s:TextArea id="taMain" height="25" width="78" x="132" y="82" textAlign="right"/>
+
+    <s:Button id="b1" label="Compute Sum" 
+        click="taMain.text=String(computeSum(Number(ta1st.text), Number(ta2nd.text)));" 
+        x="105" y="115"/>
+
+    <s:Label x="148" y="52" text="+" fontWeight="bold" fontSize="17" width="23"/>
+
+</s:Application>

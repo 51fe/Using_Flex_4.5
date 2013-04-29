@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TLFClearFloats.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:HGroup>
+        <s:Label text="clearFloats for second paragraph (default:none):"/>
+        <s:ComboBox id="cb1" 
+            change="p2.clearFloats = cb1.selectedItem" 
+            creationComplete="cb1.selectedIndex=0">
+            <s:ArrayCollection>
+                <fx:String>none</fx:String>
+                <fx:String>left</fx:String>
+                <fx:String>right</fx:String>
+                <fx:String>start</fx:String>
+                <fx:String>end</fx:String>
+                <fx:String>both</fx:String>
+            </s:ArrayCollection>
+        </s:ComboBox>
+    </s:HGroup>
+
+    <s:RichEditableText id="myRET1" width="300" height="400">
+        <s:textFlow>
+            <s:TextFlow columnWidth="275">
+                <s:p id="p0" fontWeight="bold">Heading 1</s:p> 
+                <s:p id="p1">Images in a flow are a good thing. <s:img id="image1" float="left" source="@Embed(source='../assets/bulldog.jpg')" paddingRight="10" paddingTop="10" paddingBottom="10" paddingLeft="10"></s:img> You can use the ComboBox to change the clearFloats value on the second paragraph ("Heading 2"). This should ensure that Heading 2 starts on a new line after the image.</s:p>
+                <s:p id="p2" fontWeight="bold">Heading 2</s:p> 
+            </s:TextFlow>
+        </s:textFlow>
+    </s:RichEditableText>   
+    
+</s:Application>

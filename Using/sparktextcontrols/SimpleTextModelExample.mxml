@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SimpleTextModelExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        import flashx.textLayout.elements.*;
+
+        private var textFlow:TextFlow = new TextFlow();
+        private var paragraph1:ParagraphElement = new ParagraphElement();
+        private var paragraph2:ParagraphElement = new ParagraphElement();
+        private var span1:SpanElement = new SpanElement();
+        private var span2:SpanElement = new SpanElement();
+            
+        private function initApp():void {
+            span1.text = "This is paragraph one in myRET.";
+            span2.text = "This is paragraph two in myRET.";
+
+            paragraph1.addChild(span1);
+            paragraph2.addChild(span2);
+
+            textFlow.addChild(paragraph1);            
+            textFlow.addChild(paragraph2);  
+            
+            myRET.textFlow = textFlow;
+        }
+    </fx:Script>
+  
+    <s:RichEditableText id="myRET" height="100" width="200"/>
+
+</s:Application>

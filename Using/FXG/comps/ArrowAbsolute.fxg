@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/ArrowAbsolute.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <!-- Use Use compact syntax with absolute coordinates. -->
+    <Path data="
+         M 20 0 
+         C 50 0 50 35 20 35
+         L 15 35 
+         L 15 45 
+         L 0 32 
+         L 15 19 
+         L 15 29 
+         L 20 29 
+         C 44 29 44 6 20 6">
+         <!-- Define the border color of the arrow. -->
+         <stroke>
+              <SolidColorStroke color="#888888"/>
+         </stroke>
+         <!-- Define the fill for the arrow. -->
+         <fill>
+              <LinearGradient rotation="90">
+                   <GradientEntry color="#000000" alpha="0.8"/>
+                   <GradientEntry color="#FFFFFF" alpha="0.8"/>
+              </LinearGradient>
+         </fill>
+    </Path>
+</Graphic>

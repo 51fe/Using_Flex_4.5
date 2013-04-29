@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/GraphicComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+     <Rect id="rect1" width="200" height="200">
+          <fill>
+             <SolidColor color="#FFFFCC"/>
+          </fill>
+          <stroke>
+             <SolidColorStroke color="#660099" weight="2"/>
+          </stroke>
+     </Rect>
+</Graphic>

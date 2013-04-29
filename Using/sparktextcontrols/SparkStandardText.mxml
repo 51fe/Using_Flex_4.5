@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SparkStandardText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="400">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <s:Label width="400" 
+    text="This string contains a less than, &lt;, 
+    greater than, &gt;, ampersand, &amp;, apostrophe, ', and
+    quotation mark &quot;."/>
+
+  <s:Label width="400" 
+    text='This string contains a less than, &lt;, 
+    greater than, &gt;, ampersand, &amp;, apostrophe, &apos;, and
+    quotation mark, ".'/>
+
+  <s:Label width="400">
+     <s:text>
+        This string contains a less than, &lt;, greater than, 
+        &gt;, ampersand, &amp;, apostrophe, ', and quotation mark, ".
+     </s:text>
+  </s:Label>
+
+</s:Application>

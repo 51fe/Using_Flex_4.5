@@ -1,0 +1,104 @@
+<?xml version="1.0" ?> 
+<!--  charts/SimpleCycle.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx" result="resultHandler()"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.series.items.ColumnSeriesItem;  
+        import mx.collections.ArrayCollection;
+        
+        [Bindable]
+        private var myAC:ArrayCollection = new ArrayCollection();
+        
+        private function resultHandler():void {
+            myAC = srv.lastResult.data.result;
+            series1.selectedIndex = 0;
+        }
+        
+        private function getNext(e:Event, dir:*):void {
+            // Ensure that Flash Player doesn't try to select items outside of the bounds.
+            if (series1.selectedIndex < series1.items.length - 1) {
+                var curItem:ChartItem = series1.selectedItem;      
+                var newItem:ChartItem = myChart.getNextItem(dir);
+                applyNewItem(newItem);
+            }
+        }
+
+        private function getPrev(e:Event, dir:*):void {
+            // Ensure that Flash Player doesn't try to select items outside of the bounds.
+            if (series1.selectedIndex > 0) {
+                var curItem:ChartItem = series1.selectedItem;            
+                var newItem:ChartItem = myChart.getPreviousItem(dir);
+                applyNewItem(newItem);
+            }
+        }
+
+        private function getFirst(e:Event, dir:*):void {
+            var newItem:ChartItem = myChart.getFirstItem(dir);
+            applyNewItem(newItem);
+        }
+
+        private function getLast(e:Event, dir:*):void {
+            var newItem:ChartItem = myChart.getLastItem(dir);
+            applyNewItem(newItem);
+        }
+
+        private function applyNewItem(n:ChartItem):void {
+            trace(series1.selectedIndex + " of " + series1.items.length);
+            series1.selectedItem = n;       
+        }
+    ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel height="100%" width="100%">
+         <s:layout>
+             <s:VerticalLayout/>
+         </s:layout>
+        <mx:ColumnChart id="myChart" 
+            height="207" 
+            width="350" 
+            showDataTips="true" 
+            dataProvider="{myAC}" 
+            selectionMode="single">
+            <mx:series>
+                <mx:ColumnSeries id="series1" 
+                    yField="expenses" 
+                    displayName="Expenses" 
+                    selectable="true"/> 
+            </mx:series>          
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="month"/>
+            </mx:horizontalAxis>                     
+        </mx:ColumnChart>
+    
+        <mx:Legend dataProvider="{myChart}" width="200"/> 
+
+        <s:HGroup>
+            <s:Button label="|&lt;" 
+                click="getFirst(event, ChartBase.HORIZONTAL);"/>
+            <s:Button label="&lt;" 
+                click="getPrev(event, ChartBase.HORIZONTAL);"/>
+            <s:Button label="&gt;" 
+                click="getNext(event, ChartBase.HORIZONTAL);"/>
+            <s:Button label="&gt;|" 
+                click="getLast(event, ChartBase.HORIZONTAL);"/>
+        </s:HGroup>
+    </s:Panel>
+</s:Application>

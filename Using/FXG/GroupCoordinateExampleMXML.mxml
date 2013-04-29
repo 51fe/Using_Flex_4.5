@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/GroupCoordinateExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*">
+
+     <fx:Library>
+          <fx:Definition name="YellowRect">
+               <s:Group>
+                   <s:Rect height="10" width="10">                              
+                         <s:stroke>
+                              <s:SolidColorStroke color="#000000" weight=".5"/>
+                         </s:stroke>
+                         <s:fill>
+                              <s:SolidColor color="#FFFF00"/>
+                         </s:fill>
+                   </s:Rect>
+                </s:Group>          
+          </fx:Definition>
+     </fx:Library> 
+
+     <mx:Panel title="Group Coordinate MXML Graphics Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+       <s:Group>
+                 <fx:YellowRect x="0" y="0"/>
+                 <fx:YellowRect x="0" y="12"/>
+                 <fx:YellowRect x="12" y="0"/>
+                 <fx:YellowRect x="12" y="12"/>
+       </s:Group>
+
+     </mx:Panel>
+</s:Application>

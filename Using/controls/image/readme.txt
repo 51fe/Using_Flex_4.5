@@ -1,0 +1,1 @@
+For the ImageLoad.mxml and ImageSimpleAssetsURL.mxml examples, you need to use a web server to serve logowithtext.jpg and logo.jpg.

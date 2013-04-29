@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkNativeApplicationEvent.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    firstView="views.EmployeeMainView"
+    creationComplete="creationCompleteHandler(event);">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+
+            protected function creationCompleteHandler(event:FlexEvent):void {
+                // Reference NativeApplication to assign the event handler.
+                NativeApplication.nativeApplication.addEventListener(Event.EXITING, myExiting);
+            }
+            
+            protected function myExiting(event:Event):void {
+                // Handle exiting event.
+            }
+        ]]>
+    </fx:Script>
+    
+</s:ViewNavigatorApplication>

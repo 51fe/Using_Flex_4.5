@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- binding/WholeObjectBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initObj();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import myComponents.NonBindableObject;
+
+            [Bindable]
+            public var myObj:NonBindableObject = new NonBindableObject();
+
+            [Bindable]            
+            public var anotherObj:NonBindableObject = 
+                new NonBindableObject();
+
+            public function initObj():void {
+                anotherObj.stringProp = 'anotherObject';
+                anotherObj.intProp = 8;
+            }                
+        ]]>    
+    </fx:Script>
+
+    <!-- Data binding updated at application startup. -->
+    <s:Label id="text1" text="{myObj.stringProp}"/>
+
+    <!-- Data binding updated at application startup. -->
+    <s:Label id="text2" text="{myObj.intProp}"/>
+
+    <!-- Data bindings to stringProp not updated. -->
+    <s:Button label="Change myObj.stringProp" 
+        click="myObj.stringProp = 'new string';"/>
+        
+    <!-- Data bindings to intProp not updated. -->
+    <s:Button label="Change myObj.intProp" 
+        click="myObj.intProp = 10;"/>
+        
+    <!-- Data bindings to myObj and to myObj properties updated. -->
+    <s:Button label="Change myObj" 
+        click="myObj = anotherObj;"/>
+</s:Application>

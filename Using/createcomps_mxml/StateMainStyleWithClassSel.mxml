@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- createcomps_mxml/stateMainStyleWithClassSel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Style>
+        .StateCB { fontSize: 5; color: green; }
+    </fx:Style> 
+
+    <MyComp:StateComboBoxWithStyleClassSel/>
+    <MyComp:StateComboBoxWithStyleClassSel fontSize="30"/>
+    <MyComp:StateComboBoxWithStyleClassSel styleName="StateCB"/>
+
+    <mx:ComboBox>
+        <mx:dataProvider>   
+            <fx:Array>
+                <fx:String>AK</fx:String>
+                <fx:String>AL</fx:String>
+            </fx:Array>
+        </mx:dataProvider>
+    </mx:ComboBox>
+</s:Application>

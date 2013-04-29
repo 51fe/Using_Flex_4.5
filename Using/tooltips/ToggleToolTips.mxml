@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToggleToolTips.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <fx:Script>
+    <![CDATA[
+     import mx.managers.ToolTipManager;
+
+     private function toggleToolTips():void {
+        if (ToolTipManager.enabled) {
+           ToolTipManager.enabled = false;
+        } else {
+           ToolTipManager.enabled = true;
+        }
+     }
+    ]]>
+  </fx:Script>
+
+  <s:Button id="b1"
+    label="Toggle ToolTips" 
+    width="150" 
+    click="toggleToolTips();" 
+    toolTip="Click me to enable/disable tooltips."
+  />
+  
+</s:Application>

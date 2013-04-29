@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataSubmitServerEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+
+            private function processValues():void {
+                // Check to see if ZIP code is valid.
+                WeatherService.GetWeather.send();
+            }
+    
+            private function successfulCall():void {
+                vs1.selectedIndex=1;
+            }
+    
+            private function errorCall():void {
+                Alert.show("Web service failed!", "Alert Box", Alert.OK);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Define the web service connection. 
+            The specified WSDL URI is not functional. -->
+        <mx:WebService id="WeatherService"
+            wsdl="/ws/WeatherService?wsdl"  
+            result="successfulCall();" 
+            fault="errorCall();">   
+            <mx:operation name="GetWeather">
+                <mx:request>
+                    <ZipCode>{zipCode.text}</ZipCode>
+                </mx:request>
+            </mx:operation>
+        </mx:WebService>
+    </fx:Declarations>
+
+    <mx:ViewStack id="vs1">
+        <mx:Form>
+            <mx:FormItem label="ZIP Code">
+                <mx:TextInput id="zipCode" 
+                    width="200" 
+                    text="ZIP code please."/>
+                <mx:Button width="60" 
+                    label="Submit" 
+                    click="processValues();"/>
+            </mx:FormItem>
+        </mx:Form>
+    
+        <mx:VBox>
+            <mx:TextArea
+                text=
+                    "{WeatherService.GetWeather.lastResult.CityShortName}"/>
+            <mx:TextArea 
+                text=
+                    "{WeatherService.GetWeather.lastResult.CurrentTemp}"/>
+            <mx:TextArea 
+                text=
+                    "{WeatherService.GetWeather.lastResult.DayForecast}"/>
+        </mx:VBox>
+    </mx:ViewStack>
+</s:Application>

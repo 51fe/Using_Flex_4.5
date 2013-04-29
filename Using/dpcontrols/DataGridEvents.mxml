@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/DataGridEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.ListEvent;
+            private function itemClickEvent(event:ListEvent):void {
+                clickColumn.text=String(event.columnIndex);
+                clickRow.text=String(event.rowIndex);
+                eventType.text=event.type;
+            }
+        ]]>
+    </fx:Script>
+    
+    <mx:DataGrid id="myGrid" width="350" height="150"
+        itemClick="itemClickEvent(event);">
+        <mx:ArrayList>
+            <fx:Object Artist="Pavement" Price="11.99" 
+                Album="Slanted and Enchanted" />
+            <fx:Object Artist="Pavement" Album="Brighten the Corners"
+                Price="11.99" />
+        </mx:ArrayList>
+    </mx:DataGrid> 
+
+    <s:Form>
+        <s:FormItem label="Column Index:">
+            <s:Label id="clickColumn"/>                
+        </s:FormItem>
+        <s:FormItem label="Row Index:">
+            <s:Label id="clickRow"/>               
+        </s:FormItem>
+        <s:FormItem label="Type:">
+            <s:Label id="eventType"/>              
+        </s:FormItem>
+    </s:Form>
+</s:Application> 

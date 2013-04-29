@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- usingas/IntrospectionObjectUtil.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="650">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.controls.Alert;
+        import mx.utils.ObjectUtil;
+
+        private function showProps(b:Button):void {
+            var o:Object = ObjectUtil.getClassInfo(b);
+            ta1.text = ObjectUtil.toString(o);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Show Properties" click="showProps(b1)"/>
+    <s:TextArea id="ta1" width="300" height="500"/>
+
+</s:Application>

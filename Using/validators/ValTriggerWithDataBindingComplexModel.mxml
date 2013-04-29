@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- validators\ValTriggerWithDataBindingComplexModel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Define a data model for storing the phone number. -->
+        <fx:Model id="userInfo">
+            <user>
+                <phoneInfo>
+                    <homePhoneNum>{homePhoneInput.text}</homePhoneNum>
+                    <cellPhoneNum>{cellPhoneInput.text}</cellPhoneNum>
+                </phoneInfo>
+            </user>
+        </fx:Model>
+    
+        <!-- Define the PhoneNumberValidator. -->
+        <mx:PhoneNumberValidator id="hPNV" 
+            source="{userInfo.phoneInfo}" 
+            property="homePhoneNum" 
+            trigger="{homePhoneInput}" 
+            listener="{homePhoneInput}"/>
+    
+        <!-- Define the PhoneNumberValidator. -->
+        <mx:PhoneNumberValidator id="cPNV" 
+            source="{userInfo.phoneInfo}" 
+            property="cellPhoneNum" 
+            trigger="{cellPhoneInput}" 
+            listener="{cellPhoneInput}"/>
+    </fx:Declarations>
+
+    <!-- Define the TextInput controls for entering the phone number. -->
+    <s:Label text="Home Phone:"/>
+    <s:TextInput id="homePhoneInput"/>
+
+    <s:Label text="Cell Phone:"/>
+    <s:TextInput id="cellPhoneInput"/>
+</s:Application>

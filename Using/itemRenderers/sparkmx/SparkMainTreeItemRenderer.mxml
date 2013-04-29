@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- itemRenderers\tree\SparkMainTreeItemRenderer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initCollections();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+   
+            import mx.collections.*;
+    
+            public var xmlBalanced:XMLList =
+                <>
+                    <node label="Containers">
+                        <node label="DividedBoxClasses">
+                            <node label="BoxDivider" data="BoxDivider.as"/>
+                        </node>
+                        <node label="GridClasses">
+                            <node label="GridRow" data="GridRow.as"/>
+                            <node label="GridItem" data="GridItem.as"/>
+                            <node label="Other File" data="Other.as"/>
+                        </node>
+                    </node>
+                    <node label="Data">
+                        <node label="Messages">
+                            <node label="DataMessage" 
+                                data="DataMessage.as"/>
+                            <node label="SequenceMessage" 
+                                data="SequenceMessage.as"/>
+                        </node>
+                        <node label="Events">
+                            <node label="ConflictEvents" 
+                                data="ConflictEvent.as"/>
+                            <node label="CommitFaultEvent" 
+                                data="CommitFaultEvent.as"/>
+                        </node>
+                    </node>
+                </>;
+                
+            [Bindable]
+            public var xlcBalanced:XMLListCollection;
+    
+            private function initCollections():void {
+                xlcBalanced = new XMLListCollection(xmlBalanced);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Text width="400" 
+        text="The nodes with children are in bold red text, with the number of children in parenthesis.)"/>
+
+    <mx:Tree id="compBalanced" 
+        width="400" height="500" 
+        dataProvider="{xlcBalanced}" 
+        labelField="@label"  
+        itemRenderer="myComponents.MyTreeItemRenderer"/>
+</s:Application>

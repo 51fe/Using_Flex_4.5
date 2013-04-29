@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- controls\bar\BBarLogo.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+ 
+    <mx:ButtonBar horizontalGap="5">
+        <mx:dataProvider>
+            <fx:Object label="Flash" 
+                icon="@Embed(source='assets/Flashlogo.gif')"/>
+            <fx:Object label="Director" 
+                icon="@Embed(source='assets/Dirlogo.gif')"/>
+            <fx:Object label="Dreamweaver" 
+                icon="@Embed(source='assets/Dlogo.gif')"/>
+            <fx:Object label="ColdFusion" 
+                icon="@Embed(source='assets/CFlogo.gif')"/>
+        </mx:dataProvider>
+    </mx:ButtonBar>
+</s:Application>

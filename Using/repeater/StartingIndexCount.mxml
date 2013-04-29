@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- repeater\StartingIndexCount.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var myArray:Array=[100,200,300,400,500,600];
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:ArrayCollection id="myAC" source="{myArray}"/>
+    </fx:Declarations>
+
+    <mx:VBox>
+        <mx:Repeater id="myrep" dataProvider="{myAC}" count="6"> 
+            <mx:Label id="Label1" 
+                text="Value: {myrep.currentItem}, Loop #{myrep.currentIndex+1} of {myrep.count}"/>
+        </mx:Repeater> 
+    </mx:VBox>
+
+    <mx:HRule/>
+
+    <mx:VBox>
+        <mx:Repeater id="myrep2" dataProvider="{myAC}" 
+                count="4" startingIndex="1"> 
+            <mx:Label id="Label2" 
+                text="Value: {myrep2.currentItem}, Loop #{myrep2.currentIndex-myrep2.startingIndex+1} of {myrep2.count}"/>
+        </mx:Repeater> 
+    </mx:VBox>
+
+    <mx:HRule/>
+
+    <mx:VBox>
+        <mx:Repeater id="myrep3" dataProvider="{myAC}" count="6"
+                startingIndex="3"> 
+            <mx:Label id="Label3" 
+                text="Value: {myrep3.currentItem}, Loop #{myrep3.currentIndex-myrep3.startingIndex+1} of {myrep3.count}"/>
+        </mx:Repeater> 
+    </mx:VBox>
+</s:Application>

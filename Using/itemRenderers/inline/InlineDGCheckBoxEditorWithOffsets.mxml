@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\inline\InlineDGCheckBoxEditorWithOffsets.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="650">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', Date: '5/5/05' , FollowUp: true },
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', Date: '5/6/05' , FollowUp: false} 
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        editable="true" >  
+        <mx:columns>
+            <mx:DataGridColumn dataField="Company" editable="false"/>
+            <mx:DataGridColumn dataField="Contact"/>
+            <mx:DataGridColumn dataField="Phone"/>
+            <mx:DataGridColumn dataField="Date"/>
+            <mx:DataGridColumn dataField="FollowUp" 
+                width="150" 
+                headerText="Follow Up?" 
+                editorDataField="cbSelected" 
+                editorXOffset="15" 
+                editorYOffset="15">
+                
+                <mx:itemEditor>
+                    <fx:Component>
+                        <mx:VBox backgroundColor="yellow">          
+                            <fx:Script>
+                                <![CDATA[
+                                    // Define a property for returning 
+                                    // the new value to the cell.
+                                    [Bindable]
+                                    public var cbSelected:Boolean;
+                                ]]>     
+                            </fx:Script>
+                       
+                            <mx:CheckBox id="followUpCB" 
+                                label="Follow up needed" 
+                                height="100%" width="100%" 
+                                selected="{data.FollowUp}" 
+                                click="cbSelected=followUpCB.selected"/>
+                        </mx:VBox>
+                    </fx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

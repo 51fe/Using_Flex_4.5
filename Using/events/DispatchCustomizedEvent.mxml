@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- events/DispatchCustomizedEvent.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="addListeners()">
+    
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        private function customLogEvent(e:MouseEvent):void {
+            l1.text = String(e.currentTarget.id);
+            l2.text = String(e.type);
+            l3.text = String(e.shiftKey);
+
+            // Remove current listener to avoid recursion.
+            e.currentTarget.removeEventListener("doubleClick", customLogEvent);
+        }
+
+        private function handleEvent(e:MouseEvent):void {
+            // Add new handler for custom event about to be dispatched.
+            e.currentTarget.addEventListener("doubleClick", customLogEvent);
+
+            // Create new event object.
+            var mev:MouseEvent = new MouseEvent("doubleClick");
+
+            // Customize event object.
+            mev.shiftKey = true;
+
+            // Dispatch custom event.
+            e.currentTarget.dispatchEvent(mev);
+        }
+
+        private function addListeners():void {
+            b1.addEventListener("click",handleEvent);
+            b2.addEventListener("click",handleEvent);
+        }
+
+    ]]></fx:Script>
+
+        <s:Button id="b1" label="Click Me (b1)"/>
+        <s:Button id="b2" label="Click Me (b2)"/>
+        
+        <s:Form>
+            <s:FormItem label="Current Target:">
+                <s:Label id="l1"/>
+            </s:FormItem>
+            <s:FormItem label="Event Type:">
+                <s:Label id="l2"/>
+            </s:FormItem>
+            <s:FormItem label="Shift Key Pressed:">
+                <s:Label id="l3"/>
+            </s:FormItem>
+        </s:Form>
+
+</s:Application>

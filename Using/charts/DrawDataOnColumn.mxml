@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- charts/DrawDataOnColumn.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+    
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+     import mx.controls.Label;
+     [Bindable]
+     public var expenses:ArrayCollection = new ArrayCollection([
+        {Month:"Jan", Profit:2000, Expenses:1500},
+        {Month:"Feb", Profit:1000, Expenses:200},
+        {Month:"Mar", Profit:1500, Expenses:500}
+     ]);
+     
+     private function connectTwoPoints(p1:String, p2:String):void {
+        canvas.clear();
+        canvas.lineStyle(4, 0xCCCCCC, 1, true, LineScaleMode.NORMAL, CapsStyle.SQUARE, JointStyle.MITER, 2);
+        canvas.moveTo(p1, 500);
+        canvas.lineTo(p2, 1000);
+     }
+     
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <mx:ColumnChart id="myChart" dataProvider="{expenses}">
+        <mx:annotationElements>
+            <mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
+        </mx:annotationElements>
+
+        <mx:horizontalAxis>
+            <mx:CategoryAxis 
+                dataProvider="{expenses}" 
+                categoryField="Month"/>
+        </mx:horizontalAxis>
+        <!--
+        <mx:verticalAxis>
+            <mx:LinearAxis id="v1"
+                minimum="0" 
+                maximum="2500"/>
+        </mx:verticalAxis>
+        -->
+        <mx:series>
+            <mx:ColumnSeries 
+                xField="Month" 
+                yField="Profit" 
+                displayName="Profit"/>
+            <mx:ColumnSeries 
+                xField="Month" 
+                yField="Expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+     
+     <s:Button id="b1" 
+        label="Connect Two Points" 
+        click="connectTwoPoints('Jan', 'Mar');"/>     
+  </s:Panel>
+</s:Application>

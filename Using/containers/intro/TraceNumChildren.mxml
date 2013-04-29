@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- containers\intro\TraceNumChildren.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+
+            private function clickHandler():void {
+                var numC:Number = myContainer.numElements;
+
+                for (var i:int = 0; i < numC; i++) {
+                    trace(myContainer.getElementAt(i));
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Group id="myContainer">
+        <s:layout>
+            <s:HorizontalLayout/>
+        </s:layout>
+        <s:Button click="clickHandler();"/>
+        <s:TextInput/>
+        <s:TextArea id="myTA"/>
+    </s:Group>
+</s:Application>

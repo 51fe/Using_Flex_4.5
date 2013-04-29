@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SelectScrollableRET.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private function scrollToLine():void {
+                myRET.selectRange(440, 471);
+                myRET.scrollToRange(440, 471);
+            }
+        ]]>
+    </fx:Script>
+  
+    <s:Scroller>  
+        <s:RichEditableText id="myRET" 
+            selectionHighlighting="always" 
+            selectable="true" 
+            height="100" width="200">
+            <s:text>
+                This text scrolls vertically1!
+                This text scrolls vertically2!
+                This text scrolls vertically3!
+                This text scrolls vertically4!
+                This text scrolls vertically5!
+                This text scrolls vertically6!
+                This text scrolls vertically7!
+                This text scrolls vertically8!
+                This text scrolls vertically9!
+                This text scrolls vertically10!
+                This text scrolls vertically11!
+                This text scrolls vertically12!
+                This text scrolls vertically13!
+                This text scrolls vertically14!
+            </s:text>
+        </s:RichEditableText>
+    </s:Scroller>
+
+    <s:Button label="Select and Scroll to Line 10" click="scrollToLine()"/>
+
+</s:Application>

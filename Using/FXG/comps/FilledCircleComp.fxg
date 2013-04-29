@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/FilledCircleComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <Ellipse height="100" width="250">
+          <stroke>
+               <SolidColorStroke color="#000000" weight="2"/>
+          </stroke>
+        <fill>
+           <RadialGradient>
+             <GradientEntry color="#0056FF" ratio="0" alpha=".5"/>
+             <GradientEntry color="#00CC99" ratio=".33" alpha=".5"/>
+             <GradientEntry color="#ECEC21" ratio=".66" alpha=".5"/>
+         </RadialGradient>
+        </fill>
+    </Ellipse>
+</Graphic>

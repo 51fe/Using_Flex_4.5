@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/LinearGradientLineComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <Line xFrom="0" xTo="200" yFrom="0" yTo="0">
+         <stroke>
+              <LinearGradientStroke weight="20" caps="square">
+                    <GradientEntry color="#0056FF" ratio="0" alpha=".5"/> 
+                    <GradientEntry color="#ECEC21" ratio=".66" alpha=".5"/> 
+              </LinearGradientStroke>                         
+         </stroke>
+    </Line>
+</Graphic>

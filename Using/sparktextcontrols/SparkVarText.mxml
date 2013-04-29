@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SparkVarText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            //The following is on one line.
+            public var myText:String ="This string contains a return, \n, tab, \t, and quotation mark, \". This string also contains less than, <, greater than, <, ampersand, <;, and apostrophe, ', characters.";
+        ]]>
+    </fx:Script>
+
+    <s:RichText width="450" text="{myText}" tabStops="100 200 300 400"/>
+    
+</s:Application>

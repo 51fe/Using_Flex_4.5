@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\events\EndEditEventFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    
+    <fx:Script>
+        <![CDATA[
+        
+            import mx.controls.TextInput;
+            import mx.events.DataGridEvent;
+            import mx.events.DataGridEventReason;
+            import mx.formatters.NumberFormatter;
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99},
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99 }
+            ]);
+            
+            // Define the number formatter.
+            private var myFormatter:NumberFormatter=new NumberFormatter();
+            
+            // Define the eventlistner for the itemEditEnd event.
+            public function formatData(event:DataGridEvent):void {   
+                // Check the reason for the event.
+                if (event.reason == DataGridEventReason.CANCELLED)
+                {
+                    // Do not update cell.
+                    return;
+                }            
+
+                // Get the new data value from the editor.
+                var newData:String= 
+                    TextInput(event.currentTarget.itemEditorInstance).text;
+
+                // Determine if the new value is an empty String. 
+                if(newData == "") {
+                    // Prevent the user from removing focus, 
+                    // and leave the cell editor open.
+                    event.preventDefault();
+                    // Write a message to the errorString property. 
+                    // This message appears when the user 
+                    // mouses over the editor.
+                    TextInput(myGrid.itemEditorInstance).errorString=
+                        "Enter a valid string.";
+                    return;
+                }
+
+                // For the Price column, return a value 
+                // with a precision of 2.
+                if(event.dataField == "Price") {
+                    myFormatter.precision=2;
+                    TextInput(myGrid.itemEditorInstance).text=
+                        myFormatter.format(newData);
+                }
+            }           
+        ]]>
+    </fx:Script>
+    
+    <mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        editable="true" 
+        itemEditEnd="formatData(event);" > 
+        <mx:columns>
+            <mx:DataGridColumn dataField="Artist"/>
+            <mx:DataGridColumn dataField="Album"/>
+            <mx:DataGridColumn dataField="Price"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

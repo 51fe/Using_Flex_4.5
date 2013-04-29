@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- states/ThreePanelGroups.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" width="400">
+
+    <!-- Define the two view states, in addition to the default state.-->
+    <s:states>
+        <s:State name="default" stateGroups="grpDefaultOne, grpDefaultTwo"/>
+        <s:State name="One" stateGroups="grpDefaultOne, grpOneTwo "/>
+        <s:State name="Two" stateGroups="grpDefaultTwo, grpDefaultTwo, grpOneTwo"/>
+    </s:states>
+
+    <!-- Define the Group container holding the three Panel containers.-->
+    <s:Group width="100%" height="100%">
+        <s:Panel id="p1" title="One" 
+                x.grpDefaultTwo="0" y.grpDefaultTwo="0" 
+                x.One="110" y.One="0" 
+                width.grpDefaultTwo="100" height.grpDefaultTwo="100"
+                width.One="200" height.One="210"
+                click="currentState='One'">
+            <s:Label fontSize="24" text="One"/>
+        </s:Panel>
+        
+        <s:Panel id="p2" title="Two" 
+                x="0" y="110" 
+                x.One="0" y.One="0" 
+                x.Two="110" y.Two="0" 
+                width.grpDefaultOne="100" height.grpDefaultOne="100"
+                width.Two="200" height.Two="210"
+                click="currentState='Two'">
+            <s:Label fontSize="24" text="Two"/>
+        </s:Panel>
+        
+        <s:Panel id="p3" title="Three" 
+                x="110" y="0" 
+                x.grpOneTwo="0" y.grpOneTwo="110" 
+                width="200" height="210" 
+                width.grpOneTwo="100" height.grpOneTwo="100" 
+                click="currentState='default'">
+            <s:Label fontSize="24" text="Three"/>
+        </s:Panel>
+    </s:Group>
+</s:Application>

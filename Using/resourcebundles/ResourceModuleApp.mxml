@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/ResourceModuleApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"> 
+
+    <fx:Script><![CDATA[
+        import mx.resources.ResourceBundle;
+        import mx.controls.Alert;
+        import mx.events.ResourceEvent;
+
+        [Bindable]
+        private var locales:Array = [ "es_ES","en_US" ];
+
+        private function initApp():void {
+            /* Set the index to -1 so that the prompt appears 
+               when the application first loads. */
+            localeComboBox.selectedIndex = -1;            
+        }
+
+        private function registrationComplete():void {
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks'));
+        }  
+
+        private function comboChangeHandler():void {
+            var newLocale:String = String(localeComboBox.selectedItem);
+
+            /* Ensure that you are not loading the same resource module more than once. */
+            if (resourceManager.getLocales().indexOf(newLocale) != -1) {
+                completeHandler(null);
+            } else {
+                // Build the file name of the resource module.
+                var resourceModuleURL:String = newLocale + "_ResourceModule.swf";
+                
+                var eventDispatcher:IEventDispatcher = 
+                    resourceManager.loadResourceModule(resourceModuleURL);
+                eventDispatcher.addEventListener(ResourceEvent.COMPLETE, completeHandler);
+            }            
+        }
+        
+        private function completeHandler(event:ResourceEvent):void {
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];
+
+            /* This style is not bound to the resource bundle, so it must be reset when 
+               the new locale is selected. */
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+        }        
+    ]]></fx:Script>
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Metadata>
+        [ResourceBundle("RegistrationForm")]
+    </fx:Metadata> 
+
+    <s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/>
+
+    <mx:ComboBox id="localeComboBox" 
+        prompt="Select One..."
+        dataProvider="{locales}"
+        change="comboChangeHandler()"/>
+
+    <s:Form>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','city')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','state')}">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}">
+            <s:TextInput/>
+        </s:FormItem>
+    </s:Form>
+    
+    <s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/>
+    
+</s:Application>

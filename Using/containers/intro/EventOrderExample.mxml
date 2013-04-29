@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" >
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            private function preinitHandler(event:Event, oName:String):void 
+            {
+                myTA.text += oName + " " + String(event.type) + "\n";
+            }
+
+            private function initHandler(event:Event, oName:String):void 
+            {
+                myTA.text += oName + " " + String(event.type) + "\n";
+            }
+
+            private function createCompHandler(event:Event, oName:String):void 
+            {
+                myTA.text += oName + " " + String(event.type) + "\n";
+            }
+
+            private function contentCreateCompHandler(event:Event, oName:String):void 
+            {
+                myTA.text += oName + " " + String(event.type) + "\n";
+            }
+        ]]>
+    </fx:Script>
+
+    <s:SkinnableContainer id="OuterFxContainer" preinitialize="preinitHandler(event, 'OuterFxContainer');"
+        initialize="initHandler(event, 'OuterFxContainer');"
+        creationComplete="createCompHandler(event, 'OuterFxContainer');"
+        contentCreationComplete="contentCreateCompHandler(event, 'OuterFxContainer');">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        
+        <s:SkinnableContainer id="InnerFxContainer1" preinitialize="preinitHandler(event, 'InnerFxContainer1');"
+            initialize="initHandler(event, 'InnerFxContainer1');"
+            creationComplete="createCompHandler(event, 'InnerFxContainer1');"
+            contentCreationComplete="contentCreateCompHandler(event, 'InnerFxContainer1');">
+            <s:layout>
+                <s:VerticalLayout/>
+            </s:layout>
+            
+            <mx:Label id="InnerLabel1" preinitialize="preinitHandler(event, 'InnerLabel1');"
+                initialize="initHandler(event, 'InnerLabel1');"
+                creationComplete="createCompHandler(event, 'InnerLabel1');"/>
+        </s:SkinnableContainer>
+
+        <s:SkinnableContainer id="InnerFxContainer2" preinitialize="preinitHandler(event, 'InnerFxContainer2');"
+            initialize="initHandler(event, 'InnerFxContainer2');"  
+            creationComplete="createCompHandler(event, 'InnerFxContainer2');"
+            contentCreationComplete="contentCreateCompHandler(event, 'InnerFxContainer2');">
+            <s:layout>
+                <s:VerticalLayout/>
+            </s:layout>
+            
+            <mx:Label id="InnerLabel2" preinitialize="preinitHandler(event, 'InnerLabel2');"
+                initialize="initHandler(event, 'InnerLabel2');"
+                creationComplete="createCompHandler(event, 'InnerLabel2');"/>
+        </s:SkinnableContainer>
+    </s:SkinnableContainer>
+
+    <s:TextArea id="myTA" width="75%" height="75%"/>
+</s:Application>

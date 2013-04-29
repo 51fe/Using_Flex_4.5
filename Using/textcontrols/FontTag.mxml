@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- textcontrols/FontTag.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+  <mx:TextArea height="100" width="250">
+     <mx:htmlText>
+        <![CDATA[
+           You can vary the <font size='20'>font size</font>,<br><font color="#0000FF">color</font>,<br><font face="CourierNew, Courier, Typewriter">face</font>, or<br><font size="18" color="#FF00FF"face="Times, Times New Roman, _serif">any combination of the three.</font>
+        ]]>
+     </mx:htmlText>
+  </mx:TextArea>
+</s:Application>

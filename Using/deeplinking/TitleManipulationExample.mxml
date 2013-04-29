@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/TitleManipulationExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();">    
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.managers.BrowserManager;
+        import mx.managers.IBrowserManager;
+        import mx.events.BrowserChangeEvent;
+
+        private var bm:IBrowserManager;
+
+        private function init():void {
+            bm = BrowserManager.getInstance();
+            bm.init("", "Welcome!");
+        }
+
+        public function updateTitle(e:Event):void {
+            bm.setTitle("Welcome " + ti1.text + " from " + ti2.text + "!");
+        }
+    ]]>
+    </fx:Script>
+    
+    <mx:Form>
+        <mx:FormItem label="Name:">
+            <mx:TextInput id="ti1"/>
+        </mx:FormItem>
+        <mx:FormItem label="Hometown:">
+            <mx:TextInput id="ti2"/>
+        </mx:FormItem>
+        <mx:Button id="b1" click="updateTitle(event)" label="Submit"/>
+    </mx:Form>
+
+</s:Application>

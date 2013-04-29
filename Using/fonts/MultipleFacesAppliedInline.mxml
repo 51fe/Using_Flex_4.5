@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- fonts/MultipleFacesAppliedInline.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFont;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        src:url("../assets/MyriadWebPro-Bold.ttf");
+        fontFamily: myFont;
+        fontWeight: bold;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        src:url("../assets/MyriadWebPro-Italic.ttf");
+        fontFamily: myFont;
+        fontStyle: italic;
+        embedAsCFF: true;
+     }
+     
+     .myStyle1 {
+        fontSize: 32;
+        fontFamily: myFont;
+     }
+  </fx:Style>
+
+  <s:VGroup styleName="myStyle1"> 
+     <s:Label text="Plain Text"/> 
+     <s:Label text="Italic Text" fontStyle="italic"/> 
+     <s:Label text="Bold Text" fontWeight="bold"/> 
+  </s:VGroup>
+
+</s:Application>

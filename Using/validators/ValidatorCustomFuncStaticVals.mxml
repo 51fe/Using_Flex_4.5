@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- validators\ValidatorCustomFuncStaticVals.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+    
+            // Import event class.
+            import mx.events.ValidationResultEvent;
+    
+            // Define variable for storing the validation event object.
+            private var vResult:ValidationResultEvent;
+    
+            private function validateZipPhone():void {       
+                // Validate the ZIP code. 
+                vResult = zipV.validate();                
+                // If the ZIP code is invalid, 
+                // do not move on to the next field.
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return;
+            
+                // Validate the phone number. 
+                vResult = pnV.validate();
+                // If the phone number is invalid, 
+                // do not move on to the validation.
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return;
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:Model id="person">
+            <userInfo>
+                <zipCode>{zipCodeInput.text}</zipCode>
+                <phoneNumber>{phoneNumberInput.text}</phoneNumber>
+            </userInfo>
+        </fx:Model>
+
+        <!-- Define the validators. -->
+        <mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text"/>
+        <mx:PhoneNumberValidator id="pnV" 
+            source ="{phoneNumberInput}" 
+            property="text"/>
+    </fx:Declarations>
+    
+    <s:Form>
+        <s:FormItem>
+            <s:TextInput id="zipCodeInput"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:TextInput id="phoneNumberInput"/>
+        </s:FormItem>
+    </s:Form>
+    
+    <s:Button label="Validate" 
+        click="validateZipPhone();"/> 
+</s:Application>

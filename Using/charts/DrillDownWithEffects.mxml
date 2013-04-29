@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!-- charts/DrillDownWithEffects.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();"
+    height="600">
+     
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/networth-xml.aspx" result="resultHandler()"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/networth.aspx -->  
+
+        <mx:SeriesSlide id="slideIn" duration="1000" direction="down"/>
+        <mx:SeriesSlide id="slideOut" duration="1000" direction="up"/>
+
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+        import mx.charts.HitData;
+        import mx.charts.events.ChartItemEvent;
+          
+        [Bindable]
+        public var drillDownDataSet:ArrayCollection;
+
+        [Bindable]
+        public var dp:ArrayCollection;
+
+          // level is a temporary variable used to determine when to drill down.
+          private var level:int =  1;
+
+        private function resultHandler():void {
+          dp = ArrayCollection(srv.lastResult.data.result);
+        }
+        
+        private function zoomIntoSeries(e:ChartItemEvent):void {
+            if (level == 1) {
+                drillDownDataSet = new ArrayCollection(genData(e));
+                cs1.displayName = "Assets";
+                cs1.yField = "amount";
+                cs1.xField = "type";
+
+                ca1.categoryField = "type";
+                
+                p1.title = "Asset breakdown for " + e.hitData.item.date;
+                dp = drillDownDataSet;
+                
+                // Remove the Legend. It is not needed in this view because 
+                // each asset class is its own column in the drill down.
+                p1.removeElement(myLegend);
+                
+                level = 2;
+            } else {
+                cs1.displayName = "All Assets";
+                cs1.yField = "assets";
+                cs1.xField = "date";
+                
+                ca1.categoryField = "date";
+                
+                p1.title = "Net Worth";
+                
+                // Add the Legend back to the Panel.
+                p1.addElement(myLegend);
+                
+                // Reset chart to original data provider.
+                resultHandler();
+                
+                level = 1;
+            }
+        }
+
+          // Build an ArrayCollection of objects to make up the new data set.
+        private function genData(e:ChartItemEvent):Array {
+                var result:Array = [];
+
+                trace("Cash: " + e.hitData.item.cash);
+                trace("Stocks: " + e.hitData.item.stocks);
+                trace("Retirement: " + e.hitData.item.retirement);
+                trace("Home: " + e.hitData.item.home);
+                trace("Other: " + e.hitData.item.other);
+                
+                var o1:Object = {
+                    type:"cash",
+                    amount:e.hitData.item.cash
+                };                      
+                var o2:Object = {
+                    type:"stocks",
+                    amount:e.hitData.item.stocks
+                };                      
+                var o3:Object = {
+                    type:"retirement",
+                    amount:e.hitData.item.retirement
+                };                      
+                var o4:Object = {
+                    type:"home",
+                    amount:e.hitData.item.home
+                };                      
+                var o5:Object = {
+                    type:"other",
+                    amount:e.hitData.item.other
+                };                      
+                trace(o1.type + ":" + o1.amount);
+                
+                result.push(o1);
+                result.push(o2);
+                result.push(o3);
+                result.push(o4);
+                result.push(o5);
+                return result;               
+        }
+        
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel id="p1" title="Net Worth">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="chart" 
+            showDataTips="true" 
+            itemClick="zoomIntoSeries(event)" 
+            dataProvider="{dp}">
+            <mx:series> 
+                <mx:ColumnSeries id="cs1" 
+                    displayName="All Assets" 
+                    yField="assets" 
+                    xField="date" 
+                    hideDataEffect="slideOut" 
+                    showDataEffect="slideIn"/>
+            </mx:series>            
+
+            <mx:horizontalAxis>
+                <mx:CategoryAxis id="ca1" categoryField="date"/>
+            </mx:horizontalAxis>
+        </mx:ColumnChart> 
+        
+        <mx:Legend id="myLegend" dataProvider="{chart}"/>
+    </s:Panel>
+</s:Application>

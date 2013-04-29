@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\ROParamBind22.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout gap="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.utils.ArrayUtil;
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <mx:RemoteObject
+            id="employeeRO"
+            destination="roDest"
+            showBusyCursor="true"
+            fault="Alert.show(event.fault.faultString, 'Error');">
+            <mx:method name="getList">
+                <mx:arguments>
+                    <deptId>{dept.selectedItem.data}</deptId>
+                </mx:arguments>
+            </mx:method>
+        </mx:RemoteObject>
+
+        <mx:ArrayCollection id="employeeAC" 
+            source="{ArrayUtil.toArray(employeeRO.getList.lastResult)}"/>
+    </fx:Declarations>
+
+    <s:HGroup>
+        <s:Label text="Select a department:"/>
+        <s:ComboBox id="dept" width="150">
+            <s:dataProvider>
+                <mx:ArrayCollection>
+                    <mx:source>
+                        <fx:Object label="Engineering" data="ENG"/>
+                        <fx:Object label="Product Management" data="PM"/>
+                        <fx:Object label="Marketing" data="MKT"/>
+                    </mx:source>
+                </mx:ArrayCollection>
+            </s:dataProvider>
+        </s:ComboBox>
+        <s:Button label="Get Employee List"
+            click="employeeRO.getList.send()"/>
+    </s:HGroup>
+    
+    <mx:DataGrid dataProvider="{employeeAC}" width="100%">
+        <mx:columns>
+            <mx:DataGridColumn dataField="name" headerText="Name"/>
+            <mx:DataGridColumn dataField="phone" headerText="Phone"/>
+            <mx:DataGridColumn dataField="email" headerText="Email"/>
+        </mx:columns>
+    </mx:DataGrid>
+</s:Application>

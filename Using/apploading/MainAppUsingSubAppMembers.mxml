@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/MainAppUsingSubAppMembers.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+     <fx:Script>
+          <![CDATA[
+               import mx.managers.SystemManager;
+
+               private function getValueFromSubApp():void { 
+                    /* Cast the SWFLoader's content as a SystemManager 
+                      to access the sub-application. */
+                    var subApp:SubApp2 = 
+                         (contentLoader.content as SystemManager).application as SubApp2;
+
+                    /* Call a method and access a property of the 
+                      sub-application. */
+                    label1.text = subApp.doSomething() + subApp.answer;
+               }
+          ]]>
+     </fx:Script>
+     
+     <mx:SWFLoader id="contentLoader" visible="false" 
+          height="0" width="0" 
+          trustContent="true" 
+          source="http://yourdomain.com/SubApp2.swf"/>   
+
+     <mx:Panel id="myPanel2" 
+          paddingLeft="10" paddingBottom="10" 
+          paddingTop="10" paddingRight="10">
+          <s:Label id="label1"/>
+          <s:Button id="b2" label="Call SubApp2" click="getValueFromSubApp()"/>
+     </mx:Panel>
+     
+</s:Application>

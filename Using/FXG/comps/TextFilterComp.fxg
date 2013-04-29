@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/TextFilterComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+   <Group>
+        <filters>
+            <BlurFilter/>
+        </filters>
+        <RichText>
+           <content>Hello World!</content>
+        </RichText>
+   </Group>
+</Graphic>

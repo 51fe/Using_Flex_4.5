@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- controls\button\ButtonSkin.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+<mx:Button label="Image Button" 
+    toggle="true" 
+    color="0xFFFFAA" 
+    textRollOverColor="0xAAAA55" 
+    textSelectedColor="0xFFFF00"
+    upSkin="@Embed(source='assets/buttonUp.gif')"
+    overSkin="@Embed(source='assets/buttonOver.gif')"
+    downSkin="@Embed(source='assets/buttonDown.gif')"
+    disabledSkin="@Embed(source='assets/buttonDisabled.gif')"
+    icon="@Embed(source='assets/logo.gif')"/>
+</s:Application>

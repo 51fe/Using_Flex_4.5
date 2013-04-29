@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- behaviors\Spark3DMoveEffect.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Move3D id="moveEffect" target="{targetImg}" 
+            xBy="100" zBy="100" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;"
+            effectEnd="playButton.enabled=true;"/>
+    </fx:Declarations>
+
+    <s:Panel title="Move3D Effect Example"
+        width="75%" height="75%" >
+ 
+        <s:Image id="targetImg" 
+            horizontalCenter="0"
+            verticalCenter="0"
+            source="@Embed(source='assets/Nokia_6630.png')"/>
+            
+        <s:Button id="playButton"
+            left="5" bottom="5"
+            label="Move3D" 
+            click="moveEffect.play();"/>
+    </s:Panel>
+</s:Application>

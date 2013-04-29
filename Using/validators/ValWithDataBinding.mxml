@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- validators\ValWithDataBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Define a data model for storing the phone number. -->
+        <fx:Model id="userInfo">
+            <phoneInfo>
+                <phoneNum>{phoneInput.text}</phoneNum>
+            </phoneInfo>
+        </fx:Model>
+    </fx:Declarations>
+
+    <!-- Define the TextInput control for entering the phone number. -->
+    <s:TextInput id="phoneInput"/>
+    <s:TextInput id="zipCodeInput"/>
+</s:Application>

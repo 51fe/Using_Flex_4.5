@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- mxmlAdvanced/myComponents/TextAreaEnabled.mxml -->
+<s:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+    <fx:Metadata>
+        [Event(name="enableChanged", type="flash.events.Event")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+
+            // Define private variable to hold the enabled state.
+            private var __enableTA:Boolean;
+
+            // Define a setter method for the private variable.
+            public function set enableTA(val:Boolean):void {
+                __enableTA = val;
+                enabled = val;
+                
+                // Define event object, initialize it, then dispatch it.
+                dispatchEvent(new Event("enableChanged"));
+            }
+
+            // Define a getter method for the private variable.
+            public function get enableTA():Boolean {
+               return __enableTA;
+            }
+        ]]>
+    </fx:Script>
+</s:TextArea>

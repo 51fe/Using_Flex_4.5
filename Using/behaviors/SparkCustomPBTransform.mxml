@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkCustomPBTransform.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+ 
+     <fx:Script> 
+          <![CDATA[ 
+
+            // Embed the .pbj file. 
+            [Embed(source="assets/twist.pbj", mimeType="application/octet-stream")]
+            private static var CustomShaderClass:Class;
+            [Bindable]
+            private static var customShaderCode:ByteArray = new CustomShaderClass();
+          ]]> 
+     </fx:Script> 
+     
+     <fx:Declarations> 
+        <!-- Use the custom pixel shader with an effect. -->
+        <s:AnimateTransitionShader  id="shadeAnim" 
+            shaderByteCode="{customShaderCode}" 
+            target="{btn2}" 
+            repeatCount="2" 
+            repeatBehavior="reverse"/> 
+     </fx:Declarations> 
+
+     <s:Button id="btn2" label="Click Me" click="shadeAnim.play();"/> 
+</s:Application>

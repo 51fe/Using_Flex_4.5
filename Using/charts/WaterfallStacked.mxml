@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- charts/WaterfallStacked.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+  
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+     [Bindable]
+     public var expenses:ArrayCollection = new ArrayCollection([
+        {Month:"2005", top:25, middle:20, bottom:17, Invisible:0},
+        {Month:"Jan", top:14, middle:12, bottom:10, Invisible:62},
+        {Month:"Feb", top:8, middle:6, bottom:4, Invisible:98},
+        {Month:"Mar", top:6, middle:5, bottom:5, Invisible:116},
+        {Month:"Apr", top:5, middle:4, bottom:4, Invisible:132},
+        {Month:"May", top:5, middle:3, bottom:5, Invisible:140},
+        {Month:"Jun", top:4, middle:3, bottom:2, Invisible:155},
+        {Month:"2006", top:68, middle:57, bottom:39, Invisible:0}
+     ]);
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Stacked Waterfall">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="myChart"
+        dataProvider="{expenses}"
+        columnWidthRatio=".9"
+        showDataTips="true"
+        type="stacked">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis
+                dataProvider="{expenses}"
+                categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries yField="Invisible">
+                <mx:fill>
+                    <!--Set alpha to 0 to hide invisible column.-->
+                    <mx:SolidColor color="0xFFFFFF" alpha="0"/>
+                </mx:fill>
+           </mx:ColumnSeries>
+           <mx:ColumnSeries yField="bottom" displayName="Profit"/>
+           <mx:ColumnSeries yField="middle" displayName="Expenses"/>
+           <mx:ColumnSeries yField="top" displayName="Profit"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

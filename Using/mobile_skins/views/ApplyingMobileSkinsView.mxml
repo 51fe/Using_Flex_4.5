@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/views/ApplyingMobileSkinsView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="Home">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import customSkins.CustomButtonSkin;
+            private function changeSkin():void {
+                b3.setStyle("skinClass", customSkins.CustomButtonSkin);
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        .customButtonStyle {
+            skinClass: ClassReference("customSkins.CustomButtonSkin");
+        }
+    </fx:Style>
+    
+    <s:Button id="b1" label="Click Me" skinClass="customSkins.CustomButtonSkin"/>
+    <s:Button id="b2" label="Click Me" styleName="customButtonStyle"/>
+    <s:Button id="b3" label="Click Me" click="changeSkin()"/>
+    
+</s:View>

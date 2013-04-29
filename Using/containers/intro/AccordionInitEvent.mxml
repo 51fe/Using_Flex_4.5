@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- containers\intro\AccordionInitEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+
+            public function pane2_initialize():void {
+                Alert.show("Pane 2 has been created.");
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Accordion width="200" height="100" creationPolicy="auto">
+        <mx:VBox id="pane1" label="Pane 1">
+            <mx:Label text="This is pane 1."/>
+        </mx:VBox>
+        <mx:VBox id="pane2" 
+            label="Pane 2" 
+            creationComplete="pane2_initialize();">
+            <mx:Label text="This is pane 2."/>
+        </mx:VBox>
+    </mx:Accordion>
+</s:Application>

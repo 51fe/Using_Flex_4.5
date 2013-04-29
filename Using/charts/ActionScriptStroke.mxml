@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- charts/ActionScriptStroke.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns="*"
+    creationComplete="srv.send()"
+    height="600">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script><![CDATA[
+     import mx.graphics.SolidColorStroke;
+
+     public function changeStroke(e:Event):void {
+        var s:SolidColorStroke = new SolidColorStroke(0x001100,2);
+        s.alpha = .5;
+        s.color = 0x0000FF;
+        har1.setStyle("axisStroke",s);
+        var1.setStyle("axisStroke",s);
+     }
+  ]]></fx:Script>
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+
+        <mx:SolidColorStroke id="baseAxisStroke" 
+            color="0x884422" 
+            weight="10" 
+            alpha=".25" 
+            caps="square"/>
+    </fx:Declarations>
+
+  <s:Panel title="Column Chart">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+     <mx:ColumnChart id="myChart" dataProvider="{srv.lastResult.data.result}" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis id="a1" categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:verticalAxis>
+          <mx:LinearAxis id="a2"/>
+        </mx:verticalAxis>
+
+        <mx:horizontalAxisRenderers>
+           <mx:AxisRenderer id="har1" axis="{a1}">
+                <mx:axisStroke>{baseAxisStroke}</mx:axisStroke>
+           </mx:AxisRenderer>
+        </mx:horizontalAxisRenderers>
+
+        <mx:verticalAxisRenderers>
+           <mx:AxisRenderer id="var1" axis="{a2}">
+                <mx:axisStroke>{baseAxisStroke}</mx:axisStroke>
+           </mx:AxisRenderer>
+        </mx:verticalAxisRenderers>
+
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="expenses"
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+  <s:Button id="b1"
+    click="changeStroke(event)"
+    label="Change SolidColorStroke"/>
+</s:Application>

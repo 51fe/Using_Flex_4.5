@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- behaviors\EmbedFont.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="650">
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        @font-face {
+            src:url("../assets/MyriadWebPro.ttf");
+            font-family: myMyriadWebPro;
+            embedAsCFF: true;
+        }
+
+        @font-face {
+            src:url("../assets/MyriadWebPro.ttf");
+            font-family: myMyriadWebProMX;
+            embedAsCFF: false;
+        }
+</fx:Style>
+
+    <fx:Declarations>
+        <s:Rotate id="rotateForward" 
+            angleFrom="0" angleTo="45"/>
+        <s:Rotate id="rotateBack" 
+            angleFrom="45" angleTo="0"/>
+    </fx:Declarations>
+
+    <s:VGroup>
+        <s:Button label="Rotate Forward"
+            click="rotateForward.end();rotateForward.play([l1]);"/>
+        <s:Button label="Rotate Backward"
+            click="rotateBack.end();rotateBack.play([l1]);"/>
+        <s:TextArea id="l1" height="75"
+            fontFamily="myMyriadWebPro" 
+            text="FTE supported. This text will rotate."/>
+    </s:VGroup>
+
+    <s:VGroup>
+        <s:Button label="Rotate Forward"
+            click="rotateForward.end();rotateForward.play([l2]);"/>
+        <s:Button label="Rotate Backward"
+            click="rotateBack.end();rotateBack.play([l2]);"/>
+        <mx:TextArea id="l2" height="75"
+            fontFamily="myMyriadWebProMX" 
+            text="Embedded font. This text will rotate."/>
+    </s:VGroup>
+
+    <s:VGroup>
+        <s:Button label="Rotate Forward"
+            click="rotateForward.end();rotateForward.play([l3]);"/>
+        <s:Button label="Rotate Backward"
+            click="rotateBack.end();rotateBack.play([l3]);"/>
+        <mx:TextArea id="l3" height="75"
+            text="System font. This text will not rotate."/>    
+    </s:VGroup>
+</s:Application>

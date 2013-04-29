@@ -1,0 +1,151 @@
+<?xml version="1.0" ?> 
+<!--  charts/DragDropCustomDragImage.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();initApp();" 
+    xmlns:local="*"
+    height="800">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+
+        <mx:SeriesInterpolate id="interpol" 
+            duration="1000" 
+            elementOffset="0" 
+            minimumElementDuration="200"/>
+    </fx:Declarations>
+    
+    <fx:Script>
+    <![CDATA[ 
+        import mx.collections.ArrayCollection;
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.PieChart;
+        import mx.charts.series.PieSeries;
+        import mx.charts.events.ChartItemEvent;
+        import mx.events.DragEvent;
+        import mx.controls.List;
+        import mx.managers.DragManager;
+        import mx.core.DragSource;
+        import mx.controls.Image;
+        import flash.events.MouseEvent;
+        import mx.charts.Legend;
+
+        [Bindable]
+        public var newDataProviderAC:ArrayCollection;
+        
+        [Bindable]
+        private var expensesAC:ArrayCollection = new ArrayCollection([
+            { Month: "Jan", Expenses: 1500 },
+            { Month: "Feb", Expenses: 200 },
+            { Month: "Mar", Expenses: 500 },
+            { Month: "Apr", Expenses: 1200 },
+            { Month: "May", Expenses: 575 } ]);
+        
+        private function initApp():void {
+            setupPieChart();
+        }
+        
+        private var newChart:PieChart;
+        private var newSeries:PieSeries;
+        
+        [Bindable]
+        private var explodedPiece:Array;
+
+        private function explodePiece(e:Event):void {
+            explodedPiece = new Array();           
+            explodedPiece[newSeries.selectedIndex] = .2;
+            newSeries.perWedgeExplodeRadius = explodedPiece;
+        }
+
+        private function setupPieChart():void {     
+            newChart  = new PieChart();
+            newChart.showDataTips = true;            
+            newChart.selectionMode = "multiple";
+            newChart.dropEnabled= true;
+            newChart.dragEnabled= false;
+
+            newChart.height = 350;
+            newChart.width = 350;
+            
+            newChart.addEventListener("dragEnter", doDragEnter);
+            newChart.addEventListener("dragDrop", doDragDrop);
+
+            newChart.dataProvider = newDataProviderAC;
+
+            newSeries = new PieSeries();
+            newSeries.field = "expenses";
+            newSeries.nameField = "month";
+            newSeries.setStyle("labelPosition", "callout");
+            newSeries.setStyle("showDataEffect", "interpol");
+
+            var newSeriesArray:Array = new Array();
+            newSeriesArray.push(newSeries);
+            newChart.series = newSeriesArray;
+
+            newChart.addEventListener(ChartItemEvent.CHANGE, explodePiece);
+
+            // Create a legend for the new chart.
+            var newLegend:Legend = new Legend();
+            newLegend.dataProvider = newChart;
+
+            p2.addElement(newChart);
+            p2.addElement(newLegend);
+        }
+
+        private function doDragEnter(event:DragEvent):void {
+            var dragTarget:ChartBase = ChartBase(event.currentTarget);
+            DragManager.acceptDragDrop(dragTarget);
+        }
+
+        private function doDragDrop(event:DragEvent):void {
+            var dropTarget:ChartBase=ChartBase(event.currentTarget);
+
+            var items:Array = event.dragSource.dataForFormat("chartitems") as Array;
+
+            for(var i:uint=0; i < items.length; i++) {
+                if (dropTarget.dataProvider.contains(items[i].item)) {
+                } else {
+                    dropTarget.dataProvider.addItem(items[i].item);                
+                }                
+            }
+        }
+    ]]> 
+    </fx:Script>   
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel id="p1" title="Source Chart" 
+        height="250" width="400">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <local:MyColumnChart id="myChart" 
+            height="207" width="350" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="multiple"
+            dragEnabled="true" 
+            dropEnabled="false">
+            <local:series>
+                <mx:ColumnSeries id="series1" 
+                    yField="expenses" 
+                    displayName="Expenses" 
+                    selectable="true"/> 
+            </local:series>            
+            <local:horizontalAxis>
+                <mx:CategoryAxis categoryField="month"/>
+            </local:horizontalAxis>                        
+        </local:MyColumnChart>
+    </s:Panel>
+    
+    <s:Panel id="p2" title="Target Chart" 
+        height="400" width="400">
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/CircleComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <Ellipse height="200" width="200">
+          <stroke>
+               <SolidColorStroke color="#000000" weight="1"/>
+          </stroke>
+    </Ellipse>
+</Graphic>

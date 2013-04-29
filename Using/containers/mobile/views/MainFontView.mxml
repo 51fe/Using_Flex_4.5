@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\MainFontView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Font Size"
+    add="addHandler(event);">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            
+            // Change to the SelectFont view, and pass the current data property.
+            // The data property contains the fontSize field with the current font size.
+            protected function clickHandler(event:MouseEvent):void {
+                navigator.pushView(views.SelectFont, data);
+            }
+
+            // Set the font size in the event handler for the add event.
+            protected function addHandler(event:FlexEvent):void {
+                // If the data property is null, 
+                // initialize it and create the data.fontSize field.
+                if (data == null) {
+                   data = new Object(); 
+                   data.fontSize = getStyle('fontSize');
+                   return;
+                }
+                
+                // Otherwise, set data.fontSize to the retured value,
+                // and set the font size. 
+                data.fontSize = navigator.poppedViewReturnedObject.object;
+                setStyle('fontSize', data.fontSize);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:actionContent>
+        <s:Button label="Set Font&gt;"
+            click="clickHandler(event);"/>
+    </s:actionContent>
+       
+    <s:Label text="Text to size."/>
+</s:View>

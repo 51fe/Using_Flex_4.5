@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- charts/PieWedgeFills.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/budget-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/budget.aspx -->  
+    </fx:Declarations>
+
+  <fx:Style>
+     @namespace mx "library://ns.adobe.com/flex/mx";
+     
+     mx|PieSeries {
+         fills:#FF0000, #FF3333, #FF6666, #FF9999, #FFAAAA, #FFCCCC;
+      }
+  </fx:Style>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Setting Pie Wedge Fills with CSS">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PieChart id="pie" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:series>
+           <mx:PieSeries 
+                field="amount" 
+                nameField="item"
+                labelPosition="callout"/>
+        </mx:series>
+     </mx:PieChart>
+     <mx:Legend dataProvider="{pie}"/>
+  </s:Panel>
+</s:Application>

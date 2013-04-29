@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- textcontrols/TextRangeExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script><![CDATA[
+     import mx.controls.textClasses.TextRange
+
+    private function resetText():void {
+        ta1.text = "This is a test of the emergency broadcast system. It is only a test.";
+    }
+
+     public function alterText():void {
+        // Create a TextRange object starting with "the" and ending at the 
+        // first period. Replace it with new formatted HTML text.
+        var tr1:TextRange = new TextRange(
+            ta1, false, ta1.text.indexOf("the", 0), ta1.text.indexOf(".", 0)
+        );
+        tr1.htmlText="<i>italic HTML text</i>"
+
+        // Create a TextRange object with the remaining text.
+        // Select the text and change its formatting.
+        var tr2:TextRange = new TextRange(
+            ta1, true, ta1.text.indexOf("It", 0), ta1.text.length-1
+        );
+        tr2.color=0xFF00FF;
+        tr2.fontSize=18;
+        tr2.fontStyle = "italic"; // any other value turns italic off
+        tr2.fontWeight = "bold"; // any other value turns bold off
+        ta1.setSelection(0, 0);
+     }
+  ]]></fx:Script>
+
+  <mx:TextArea id="ta1" fontSize="12" fontWeight="bold" width="100%" height="100">
+     <mx:text>
+        This is a test of the emergency broadcast system. It is only a test.
+     </mx:text>
+  </mx:TextArea>
+  <s:HGroup>
+    <mx:Button label="Alter Text" click="alterText();"/>
+    <mx:Button label="Reset" click="resetText();"/>     
+  </s:HGroup>
+</s:Application>

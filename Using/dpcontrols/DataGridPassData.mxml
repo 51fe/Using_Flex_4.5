@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/DataGridPassData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+   initialize="initData();">
+   
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+            private var DGArray:Array = [
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99},
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}];
+         
+            [Bindable]
+            public var initDG:ArrayList;
+
+            //Initialize initDG ArrayList variable from the Array.
+            //If you use this technique to process an HTTPService, 
+            //WebService, or RemoteObject result, use an ArrayCollection
+            //rather than an ArrayList.
+            public function initData():void {
+                initDG=new ArrayList(DGArray);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myGrid" width="350" height="200" 
+        dataProvider="{initDG}" >
+        <mx:columns>
+            <mx:DataGridColumn dataField="Album" />
+            <mx:DataGridColumn dataField="Price" />
+        </mx:columns> 
+    </mx:DataGrid>
+</s:Application>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- Models\ModelTagEmptyString.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Declarations>
+        <fx:Model id="employeemodel">
+            <employee>
+                <name>
+                    <!--Fill the first property with empty string.-->
+                    <first>{""}</first> 
+                    <!--Fill the last property with empty string.-->
+                    <last>{""}</last> 
+                </name>
+                <!--department is null-->
+                <department/> 
+                <!--email is null-->
+                <email/> 
+            </employee>
+        </fx:Model>    
+    </fx:Declarations>
+</s:Application>

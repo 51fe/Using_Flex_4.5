@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- charts/TickStyles.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600" width="700">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+    </fx:Declarations>
+
+  <fx:Style>
+     .myAxisStyle {
+        placement:bottom;
+        minorTickPlacement:none;
+        tickLength:12;
+        tickPlacement:inside;
+        tickStroke: myStroke;
+     }
+  </fx:Style>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Tick Styles">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+    <mx:HLOCChart id="mychart"
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+    <mx:horizontalAxisRenderers>
+        <mx:AxisRenderer axis="{a2}" styleName="myAxisStyle">
+               <mx:tickStroke>
+                    <mx:SolidColorStroke color="#999966" weight="1"/>
+                </mx:tickStroke>
+        </mx:AxisRenderer>
+    </mx:horizontalAxisRenderers>
+
+    <mx:verticalAxis>
+        <mx:LinearAxis id="a1" minimum="30" maximum="50"/>
+    </mx:verticalAxis>
+
+    <mx:horizontalAxis>
+        <mx:LinearAxis id="a2"/>
+    </mx:horizontalAxis>
+
+    <mx:series>
+        <mx:HLOCSeries openField="open" highField="high"
+            lowField="low" closeField="close"
+            displayName="Ticker Symbol: FRED"/>
+     </mx:series>
+  </mx:HLOCChart>
+  <mx:Legend dataProvider="{mychart}"/>
+  </s:Panel>
+</s:Application>

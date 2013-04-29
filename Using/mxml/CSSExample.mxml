@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- mxml/CSSExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        
+        /* class selector */
+        .myClass { 
+            color: Red 
+        } 
+        
+        /* type selector */
+        s|Button { 
+            font-size: 18pt
+        }
+    </fx:Style>
+
+    <s:Panel title="My Application">
+        <s:Button styleName="myClass" label="This is red 18 point text."/>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- charts/FindDataPoints.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.charts.HitData;
+
+     public function handleMouseMove(e:MouseEvent):void {
+        // Use coordinates to get HitData object of 
+        // current data point.
+        var hda:Array = 
+            chart.findDataPoints(e.currentTarget.mouseX, 
+            e.currentTarget.mouseY);
+        if (hda[0]) {
+           ta.text = "Found data point " + 
+                hda[0].chartItem.index + " (x/y):" + 
+                Math.round(hda[0].x) + "," + 
+                Math.round(hda[0].y) + "\n";
+           ta.text += "Expenses:" + hda[0].item.expenses;
+        } else {
+           ta.text = "No data point found  (x/y):" +
+                Math.round(e.currentTarget.mouseX) + 
+                "/" + Math.round(e.currentTarget.mouseY);
+        }
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Plot Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:PlotChart id="chart" 
+        mouseMove="handleMouseMove(event)"
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true"
+        mouseSensitivity="5">
+        <mx:series>
+           <mx:PlotSeries 
+                xField="profit" 
+                yField="expenses"/>
+        </mx:series>
+     </mx:PlotChart>
+  </s:Panel>
+  <s:TextArea id="ta" width="300" height="50"/>
+</s:Application>

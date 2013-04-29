@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkMultipleSectionsSimple.mxml -->
+<s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:ViewNavigator label="Contacts" firstView="views.ContactsHome"/>
+    <s:ViewNavigator label="Email" firstView="views.EmailHome"/>
+    <s:ViewNavigator label="Favorites" firstView="views.FavoritesHome"/>
+
+</s:TabbedViewNavigatorApplication>

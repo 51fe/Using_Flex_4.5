@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\BoxSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Box direction="vertical" 
+        borderStyle="solid" 
+        paddingTop="10" 
+        paddingBottom="10" 
+        paddingLeft="10" 
+        paddingRight="10">
+
+        <mx:Button id="fname" label="Button 1"/>
+        <mx:Button id="lname" label="Button 2"/>
+        <mx:Button id="addr1" label="Button 3"/>
+        <mx:ComboBox id="state">
+              <mx:ArrayList>
+                 <fx:String>ComboBox 1</fx:String>
+              </mx:ArrayList>
+        </mx:ComboBox>
+    </mx:Box>
+</s:Application>

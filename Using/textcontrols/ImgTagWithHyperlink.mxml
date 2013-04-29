@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- textcontrols/ImgTagWithHyperlink.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:TextArea width="100%" height="100%">
+     <mx:htmlText>
+        <![CDATA[
+           <a href='http://www.adobe.com'><img src='assets/butterfly.gif'/></a>
+           Click the image to go to the Adobe home page.
+        ]]>
+     </mx:htmlText>
+  </mx:TextArea> 
+
+</s:Application>

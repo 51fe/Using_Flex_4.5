@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tooltips/CustomToolTipInActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import spark.components.Button;
+            import mx.core.IToolTip;
+            import mx.events.ToolTipEvent;
+            import mx.managers.ToolTipManager;
+            import mx.core.FlexGlobals;
+            
+            public var myTip:IToolTip;
+            public var b:Button;
+            
+            private function initApp():void {           
+                b = new Button();
+                b.addEventListener("toolTipShown", createCustomTip);
+                b.label = "Click Me";
+                
+                /* You must create a blank ToolTip so that the control
+                   can dispatch ToolTip-related events. The new ToolTip
+                   will replace this empty ToolTip. */
+                b.toolTip = " ";
+                
+                addElement(b);
+            }
+            
+            private function createCustomTip(e:ToolTipEvent):void {
+                var s:String = "This is a ToolTip for the button.";
+                myTip = ToolTipManager.currentToolTip;
+                
+                // Customize the text of the ToolTip.
+                myTip.text = s; 
+                
+                // Customize the alpha of the ToolTip.
+                myTip.alpha = .6;
+                
+                // Customize the position of the ToolTip.
+                myTip.x = FlexGlobals.topLevelApplication.mouseX + 20;
+                myTip.y = FlexGlobals.topLevelApplication.mouseY;
+            }
+        ]]>
+    </fx:Script>
+</s:Application>

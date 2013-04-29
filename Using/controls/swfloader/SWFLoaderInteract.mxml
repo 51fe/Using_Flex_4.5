@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- controls\swfloader\SWFLoaderInteract.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    backgroundColor="gray"
+    height="200">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.SystemManager;
+            
+            [Bindable]
+            public var loadedSM:SystemManager;
+
+            // Initialize variables with information from
+            // the loaded application.
+            private function initNestedAppProps():void {
+                loadedSM = SystemManager(myLoader.content);
+                
+                // Enable the buttons after the application loads.
+                b1.enabled = true;
+                b2.enabled = true;
+                b3.enabled = true;
+            }
+
+            // Update the Label control in the outer application
+            // from the Label control in the loaded application.
+            public function updateLabel():void {
+                lbl.text=loadedSM.application["lblOne"].text;
+            }
+
+            // Write to the Label control in the loaded application.
+            public function updateNestedLabels():void {
+                loadedSM.application["lblOne"].text = "I was just updated.";
+                loadedSM.application["varOne"] = "I was just updated.";
+            } 
+            
+            // Write to the varOne variable in the loaded application
+            // using the setVarOne() method of the loaded application.
+            public function updateNestedVarOne():void {
+                loadedSM.application["setVarOne"]("Updated varOne!");
+            }
+        ]]>
+    </fx:Script>
+    <s:VGroup> 
+        <s:Label id="lbl"/>
+        <mx:SWFLoader id="myLoader" width="300"
+            source="FlexApp.swf"
+            complete="initNestedAppProps();"/>
+        <s:Button id="b1" label="Update Label Control in Outer Application" 
+            click="updateLabel();"
+            enabled="false"/>
+        <s:Button id="b2" label="Update Nested Controls" 
+            click="updateNestedLabels();"
+            enabled="false"/>    
+        <s:Button id="b3" label="Update Nested varOne" 
+            click="updateNestedVarOne();"
+            enabled="false"/>
+    </s:VGroup>
+</s:Application>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- fonts/InheritableExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="600">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>    
+    @namespace s "library://ns.adobe.com/flex/spark";
+  
+     s|VGroup {
+        fontFamily: Helvetica; 
+        fontSize: 13pt;
+     }
+     
+     s|HGroup {
+        fontFamily: Times; 
+        fontSize: 13pt;
+     }
+  </fx:Style>
+
+  <s:Panel title="Styles Inherited from VGroup Type Selector">
+     <s:VGroup>  
+        <s:Button label="This Button uses Helvetica"/>
+        <s:Label text="This Label control is in Helvetica."/> 
+        <s:RichText height="75" width="200">
+            <s:text>
+            The text in this RichText control uses the Helvetica font 
+            because it is inherited from the VGroup style.
+            </s:text>
+        </s:RichText>
+     </s:VGroup>
+  </s:Panel>
+  <s:Panel title="Styles Inherited from HGroup Type Selector">
+     <s:HGroup>
+        <s:Button label="This Button uses Times"/>
+        <s:Label text="This Label control is in Times."/> 
+        <s:RichText height="75" width="200">
+            <s:text>
+            The text in this RichText control uses the Times font 
+            because it is inherited from the HGroup style.
+            </s:text>
+        </s:RichText> 
+     </s:HGroup>
+  </s:Panel>
+</s:Application>

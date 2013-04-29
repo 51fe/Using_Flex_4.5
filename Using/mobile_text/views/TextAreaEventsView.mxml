@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_text/views/TextAreaEventsView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="TextArea swipe event" 
+        viewActivate="view1_viewActivateHandler(event)">
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+            import flash.events.TransformGestureEvent;          
+            import mx.events.FlexEvent;
+            
+            protected function swipeHandler(event:TransformGestureEvent):void {
+                // event.offsetX shows the horizontal direction of the swipe (1 is right, -1 is left)
+                swipeEvent.text = event.type + " " + event.offsetX;
+                if (swipeText.text.length == 0) {
+                    swipeText.text = "Swipe again to make text go away."
+                }
+                else {
+                    swipeText.text = "";
+                }
+            }
+            
+            protected function view1_viewActivateHandler(event:FlexEvent):void {
+                swipeText.addEventListener(TransformGestureEvent.GESTURE_SWIPE,swipeHandler);
+            }
+            
+        ]]>
+    </fx:Script>
+    <s:VGroup>
+        <s:TextArea id="swipeText" height="379" 
+            editable="false" selectable="false"
+            text="Swipe to make text go away."/>
+        <s:TextInput id="swipeEvent" />
+    </s:VGroup>
+    
+</s:View>

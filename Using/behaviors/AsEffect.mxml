@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- behaviors\AsEffect.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createEffect(event);" >
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <!-- Define effect. -->
+    <fx:Script>
+        <![CDATA[
+
+            // Import the effect class.
+            import mx.effects.*;
+            
+            // Define effect variable.
+            private var myWL:WipeLeft;
+
+            private function createEffect(eventObj:Event):void {
+                // Create the WipeLeft effect object.
+                myWL=new WipeLeft();
+                
+                // Set the effect duration.
+                myWL.duration=1000;
+                            
+                // Assign the effects to the targets.
+                myButton.setStyle('mouseDownEffect', myWL);
+                myOtherButton.setStyle('mouseDownEffect', myWL);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Button id="myButton" label="Click Me"/>
+    <mx:Button id="myOtherButton" label="Click Me"/>
+
+</s:Application>

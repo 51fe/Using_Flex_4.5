@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- textcontrols/StyleSheetExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.text.StyleSheet;
+
+            private function initApp():void {            
+                    var ss:StyleSheet = new StyleSheet;         
+
+                    // Define an object for the "hover" state of the "a" tag.
+                    var hoverStyles:Object = new Object;            
+                    hoverStyles.textDecoration = "underline";
+                    hoverStyles.color = "#FF00CC";
+
+                    // Define an object for the non-hover state of the "a" tag.
+                    var linkStyles:Object = new Object;         
+                    linkStyles.color = "#FF00CC";
+
+                    // Apply the newly defined styles.
+                    ss.setStyle("a:hover", hoverStyles);
+                    ss.setStyle("a", linkStyles);
+            
+                    // Apply the StyleSheet to the TextArea control.
+                    myTA.styleSheet = ss;                   
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|TextArea {
+            fontFamily:Courier;
+            linkcolor:#CC3300;      
+        }
+    </fx:Style>
+    
+    <mx:TextArea id="myTA" height="100" width="200">
+        <mx:htmlText>
+            <![CDATA[<a href="http://www.adobe.com">This</a> is a link.]]>
+        </mx:htmlText>
+    </mx:TextArea>
+</s:Application>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- embed/EmbedWithStyleSheet.mxml -->
+<s:Application name="Spark_Button_icon_test"
+        xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout>
+        <s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+    </s:layout>
+ 
+    <fx:Script>
+        <![CDATA[
+            [Embed("logo.gif")]
+            protected const ICON:Class;
+        ]]>
+    </fx:Script>
+ 
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+ 
+        s|Button#btn1 {
+            icon: "logo.gif";
+        }
+ 
+        s|Button#btn2 {
+            icon: Embed("logo.gif");
+        }
+ 
+        s|Button#btn3 {
+            icon: PropertyReference("ICON");
+        }
+    </fx:Style>
+ 
+    <s:Button id="btn1" label="Spark Button with dynamic icon"/>
+    <s:Button id="btn2" label="Spark Button with inline embedded icon"/>
+    <s:Button id="btn3" label="Spark Button with metadata [Embed] icon"/>
+ 
+</s:Application>

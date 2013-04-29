@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- binding/BasicBindingMXML.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Binding source="myTI.text" destination="myText.text"/>
+
+    <s:TextInput id="myTI"/>
+    <s:Label id="myText"/>   
+</s:Application>

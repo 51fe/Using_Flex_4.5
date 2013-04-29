@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- charts/DateTimeAxisParseFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+  <fx:Script>
+    <![CDATA[
+     import mx.collections.ArrayCollection;
+     [Bindable]
+     public var ABC:ArrayCollection = new ArrayCollection([
+        {date:"2005, 8, 1", close:42.71},
+        {date:"2005, 8, 2", close:42.99},
+        {date:"2005, 8, 3", close:44}
+     ]);
+
+     public function myParseFunction(s:String):Date {
+        // Get an array of Strings from the 
+        // comma-separated String passed in.
+        var a:Array = s.split(",");
+
+        // Trace out year, month, and day values.
+        trace("y:" + a[0]);
+        trace("m:" + a[1]);
+        trace("d:" + a[2]);
+
+        // To create a Date object, you pass "YYYY,MM,DD", 
+        // where MM is zero-based, to the Date() constructor.
+        var newDate:Date = new Date(a[0],a[1]-1,a[2]);
+        return newDate;
+     }
+    ]]>
+  </fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="DateTimeAxis with parseFunction">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+    <mx:LineChart id="myChart" 
+        dataProvider="{ABC}" 
+        showDataTips="true">
+     <mx:horizontalAxis>
+        <mx:DateTimeAxis 
+            dataUnits="days" 
+            parseFunction="myParseFunction"/>
+     </mx:horizontalAxis>
+     <mx:series>
+        <mx:LineSeries 
+            yField="close" 
+            xField="date" 
+            displayName="ABC"/>
+     </mx:series>
+    </mx:LineChart>
+    <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

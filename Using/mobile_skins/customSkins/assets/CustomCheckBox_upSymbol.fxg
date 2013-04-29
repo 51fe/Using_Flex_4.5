@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- mobile_skins/customSkins/assets/CustomCheckBox_upSymbol.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2.0"
+    viewWidth="32" viewHeight="32">
+
+    <!-- Main Outer Border -->
+    <Rect x="1" y="1" height="30" width="30" radiusX="2" radiusY="2">
+        <stroke>
+            <SolidColorStroke weight="1" color="#282828"/>
+        </stroke>
+    </Rect>     
+
+    <!-- Replace check mark with an "x" -->
+    <Group x="2" y="2">
+        <Line xFrom="3" yFrom="3" xTo="25" yTo="25">
+            <stroke>
+                <LinearGradientStroke caps="none" weight="8" joints="miter" miterLimit="4">
+                    <GradientEntry color="#FF0033"/>
+                    <GradientEntry color="#0066FF"/>
+                </LinearGradientStroke>
+            </stroke>
+        </Line>
+        <Line xFrom="25" yFrom="3" xTo="3" yTo="25">
+            <stroke>
+            <stroke>
+                <LinearGradientStroke caps="none" weight="8" joints="miter" miterLimit="4">
+                    <GradientEntry color="#FF0033"/>
+                    <GradientEntry color="#0066FF"/>
+                </LinearGradientStroke>
+            </stroke>
+            </stroke>
+        </Line>
+    </Group>
+</Graphic>

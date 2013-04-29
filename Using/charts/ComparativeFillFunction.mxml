@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- charts/ComparativeFillFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script>
+    <![CDATA[
+     import mx.graphics.IFill;
+     import mx.graphics.SolidColor;
+     import mx.charts.ChartItem;
+     import mx.charts.series.items.ColumnSeriesItem;
+
+    private function myFillFunction(element:ChartItem, index:Number):IFill {
+        // Default to green.
+        var c:SolidColor = new SolidColor(0x00FF00);
+
+        var item:ColumnSeriesItem = ColumnSeriesItem(element);
+        var profit:Number = Number(item.yValue);       
+
+        if (index == 0) {
+            // The first column should be green, no matter the value.
+            return c;        
+        } else {
+            var prevVal:Number = 
+                Number(currSalesSeries.items[index - 1].yValue);  
+            var curVal:Number = 
+                Number(currSalesSeries.items[index].yValue);
+            var diff:Number = curVal - prevVal;
+
+            if (diff >= 0) {
+                // Current column's value is greater than the previous.
+                return c;
+            } else {
+                // Previous column's value is greater than the current.
+                c.color = 0xFF0000;
+            }
+        }
+        return c;
+    }
+    ]]>
+  </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Using a custom fillFunction in a Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis 
+                title="Month"
+                categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:verticalAxis>
+            <mx:LinearAxis title="Profit (in $USD)"/>
+        </mx:verticalAxis>
+        
+        <mx:series>
+           <mx:ColumnSeries id="currSalesSeries" 
+                xField="month" 
+                yField="profit" 
+                fillFunction="myFillFunction" 
+                displayName="Profit"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend>
+        <mx:LegendItem label="More than Previous" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="0x00FF00"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0x000000" weight="1"/>
+           </mx:stroke>
+        </mx:LegendItem>
+        <mx:LegendItem label="Less than Previous" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="0xFF0000"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0x000000" weight="1"/>
+           </mx:stroke>
+         </mx:LegendItem>
+     </mx:Legend>
+  </s:Panel>
+</s:Application>

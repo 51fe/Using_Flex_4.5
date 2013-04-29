@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!-- validators\FullApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.ValidationResultEvent;
+
+            private var vResult:ValidationResultEvent;
+
+            // Function to validate data and submit it to the server. 
+            private function validateAndSubmit():void           {
+                // Validate the required fields. 
+                vResult = fNameV.validate();
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return;
+        
+                vResult = lNameV.validate();
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return;
+
+                // Since the date requires 3 fields, perform the validation 
+                // when the Submit button is clicked. 
+                vResult = dayV.validate();
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return;
+    
+                // Invoke any other validators or validation logic to make
+                // an additional check before submitting the data.
+
+                // Submit data to server.
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Define the data model. -->
+        <fx:Model id="formInfo">
+            <formData>
+                <date>
+                    <month>{monthInput.text}</month>
+                    <day>{dayInput.text}</day>
+                    <year>{yearInput.text}</year>
+                </date>
+                <name>
+                    <firstName>{fNameInput.text}</firstName>
+                    <lastName>{lNameInput.text}</lastName>
+                </name>
+                <phoneNum>{phoneInput.text}</phoneNum>
+            </formData>
+        </fx:Model>
+    
+        <!-- Define the validators. -->
+        <mx:StringValidator id="fNameV" 
+            required="true"
+            source="{fNameInput}" 
+            property="text"/>
+        <mx:StringValidator id="lNameV" 
+            required="true" 
+            source="{lNameInput}" 
+            property="text"/>
+        <mx:PhoneNumberValidator id="pnV"
+            source="{phoneInput}" 
+            property="text"/>
+
+        <!-- Invoke the DataValidator programmatically. -->
+        <mx:DateValidator id="dayV" 
+            triggerEvent="" 
+            daySource="{dayInput}" dayProperty="text" 
+            monthSource="{monthInput}" monthProperty="text" 
+            yearSource="{yearInput}" yearProperty="text"/>
+    </fx:Declarations>
+
+    <!-- Define the form to populate the model. -->
+    <s:Form>
+        <s:FormItem label="Month">
+            <s:TextInput id="monthInput"/>
+        </s:FormItem>
+        <s:FormItem label="Day">
+            <s:TextInput id="dayInput"/>
+        </s:FormItem>
+        <s:FormItem label="Year">
+            <s:TextInput id="yearInput"/>
+        </s:FormItem>
+        <s:FormItem label="First name">
+            <s:TextInput id="fNameInput"/>
+        </s:FormItem>
+        <s:FormItem label="Last name">
+            <s:TextInput id="lNameInput"/>
+        </s:FormItem>
+        <s:FormItem label="Phone">
+            <s:TextInput id="phoneInput"/>
+        </s:FormItem>
+    </s:Form>
+
+    <!-- Define the button to trigger validation. -->
+    <s:Button label="Submit"
+        click="validateAndSubmit();"/>
+</s:Application>

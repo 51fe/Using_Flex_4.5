@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- asdoc\MyVBox.mxml -->
+<!--- 
+    The class level comment for the component. 
+    This tag supports all ASDoc tags, 
+    and does not require a CDATA block.
+-->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <!--- 
+        Comment for button
+     --> 
+    <s:Button id="myButton" label="This button has a comment"/>
+</mx:VBox>

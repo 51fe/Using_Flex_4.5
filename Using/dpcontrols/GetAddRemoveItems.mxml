@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\GetAddRemoveItems.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+        
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+            public var myArray:Array = [{label:"MA", data:"Massachusetts"}, 
+            {label:"MN", data:"Minnesota"}, {label:"MO", data:"Missouri"}];
+            [Bindable]
+            public var myAC:ArrayCollection; 
+            public var myCursor:IViewCursor;
+
+            /* Initialize the ArrayCollection when you
+               initialize the application. */
+            public function initData():void {
+                myAC = new ArrayCollection(myArray); 
+            }
+
+            /* The function to change the collection,
+               and therefore the Array. */
+            public function testCollection():void {
+                /* Get an IViewCursor object for accessing the collection data. */
+                myCursor=myAC.createCursor();
+                ta1.text="At start, the cursor is at: " + myCursor.current.label + ".";
+                var removedItem:String=String(myCursor.remove());
+                ta1.text+="\nAfter removing the current item, the cursor is at: " 
+                    + myCursor.current.label + ".";
+                myCursor.insert({label:"ME", data:"Augusta"});
+                ta1.text+="\nAfter adding an item, the cursor is at: " 
+                    + myCursor.current.label + ".";
+            }
+        ]]>
+    </fx:Script>
+
+    <s:ComboBox id="myCB" dataProvider="{myAC}"/>
+    <s:TextArea id="ta1" height="75" width="350"/> 
+    <s:Button label="Run Test" click="testCollection();"/>
+</s:Application>

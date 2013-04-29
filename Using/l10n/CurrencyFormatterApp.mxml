@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/CurrencyFormatterApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx"               
+               minWidth="955" minHeight="600">             
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout> 
+    <fx:Declarations>
+        <!-- Get the client's default locale from the OS 
+            by using the LocaleID.DEFAULT constant. -->
+        <s:CurrencyFormatter id="curFormatter" 
+            useCurrencySymbol="true" 
+            locale="{LocaleID.DEFAULT}"/>
+        <s:NumberFormatter id="numFormatter" 
+            locale="{LocaleID.DEFAULT}"/>
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.globalization.LocaleID;            
+        ]]>
+    </fx:Script>
+    
+    <s:Label id="la1" text="{curFormatter.format(4500000)}"/>
+    <s:Label id="la2" text="{numFormatter.format(4500000)}"/>
+    
+</s:Application>

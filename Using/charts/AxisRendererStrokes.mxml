@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- charts/AxisRendererStrokes.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+  <fx:Declarations>
+      <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+      <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx"/>
+      <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+  </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="HighLowOpenClose Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+    <mx:HLOCChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxisRenderers>
+            <mx:AxisRenderer 
+                placement="bottom" 
+                canDropLabels="true"
+                tickPlacement="inside" 
+                tickLength="10" 
+                minorTickPlacement="inside" 
+                minorTickLength="5"
+                axis="{a1}">
+                <mx:axisStroke>
+                    <mx:SolidColorStroke color="#000080" weight="1"/>
+                </mx:axisStroke>
+
+                <mx:tickStroke>
+                    <mx:SolidColorStroke color="#000060" weight="1"/>
+                </mx:tickStroke>
+
+                <mx:minorTickStroke>
+                    <mx:SolidColorStroke color="#100040" weight="1"/>
+                </mx:minorTickStroke>
+            </mx:AxisRenderer>
+        </mx:horizontalAxisRenderers>
+
+        <mx:verticalAxis>
+            <mx:LinearAxis id="a1" minimum="30"  maximum="50"/>
+        </mx:verticalAxis>
+
+        <mx:series>
+            <mx:HLOCSeries 
+                openField="open"
+                highField="high" 
+                lowField="low" 
+                closeField="close"
+                displayName="FRED">
+            </mx:HLOCSeries>
+        </mx:series>
+    </mx:HLOCChart>
+    <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- controls\bar\TBarVar.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var STATE_ARRAY:ArrayCollection = new ArrayCollection([
+                {label:"Alabama", data:"Montgomery"},
+                {label:"Alaska", data:"Juneau"},
+                {label:"Arkansas", data:"LittleRock"} 
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:TabBar >
+        <mx:dataProvider>
+            {STATE_ARRAY}
+        </mx:dataProvider> 
+    </mx:TabBar>
+</s:Application>

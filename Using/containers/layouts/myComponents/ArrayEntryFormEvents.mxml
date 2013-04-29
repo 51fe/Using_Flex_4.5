@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\myComponents\ArrayEntryFormEvents.mxml -->
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    showCloseButton="true" 
+    width="200" 
+    borderAlpha="1">
+ 
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            
+            // Variables whose values are set by the main application.
+            // Data provider array for the component's ComboBox control.
+            [Bindable]
+            public var myArray:Array;
+
+        ]]>
+    </fx:Script>
+
+    <mx:ComboBox id="cb1" dataProvider="{myArray}"/>
+    <mx:HBox>
+        <mx:Button id="okButton" label="OK"/>
+        <mx:Button id="cancelButton" label="Cancel"/>
+    </mx:HBox>
+</mx:TitleWindow>  

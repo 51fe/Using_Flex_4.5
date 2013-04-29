@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- sparksparktextcontrols/ImportToFlowExample.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:mx="library://ns.adobe.com/flex/mx"> 
+ 
+    <fx:Script> 
+        <![CDATA[ 
+            import flashx.textLayout.conversion.TextConverter; 
+            
+            XML.ignoreWhitespace = false; 
+        ]]> 
+    </fx:Script> 
+ 
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout> 
+ 
+    <fx:Declarations> 
+        <!-- Define a String to use with HTML and plain text format. --> 
+        <fx:String id="htmlTextAsHTML"><![CDATA[<p>Hello <b>world!</b></p>]]></fx:String> 
+        
+        <!-- Define an XML object to use with TLF format. --> 
+        <fx:XML id="tfTextAsTextFlow"> 
+            <TextFlow xmlns="http://ns.adobe.com/textLayout/2008"> 
+                <p>Hello <span fontWeight="bold">world!</span></p> 
+            </TextFlow> 
+        </fx:XML> 
+    </fx:Declarations> 
+ 
+    <s:RichText id="richTxt" 
+            textFlow="{TextConverter.importToFlow(htmlTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}" 
+            horizontalCenter="0" verticalCenter="0" /> 
+ 
+     <s:RichText id="richTxt2" 
+             textFlow="{TextConverter.importToFlow(htmlTextAsHTML, TextConverter.PLAIN_TEXT_FORMAT)}" 
+             horizontalCenter="0" verticalCenter="0" /> 
+ 
+     <s:RichText id="richTxt3" 
+             textFlow="{TextConverter.importToFlow(tfTextAsTextFlow, TextConverter.TEXT_LAYOUT_FORMAT)}" 
+             horizontalCenter="0" verticalCenter="0" /> 
+ 
+</s:Application>

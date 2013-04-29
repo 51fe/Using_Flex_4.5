@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- agent/NestedButton.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:Panel title="ComboBox Control Example">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:HGroup id="hg">
+            <s:VGroup id="vg1" showInAutomationHierarchy="true">
+                <mx:Canvas id="c1">
+                    <s:Button id="b1" 
+                        automationName="Nested Button 1" 
+                        label="Click Me"/>
+                </mx:Canvas>
+            </s:VGroup>         
+            <s:VGroup id="vg2" showInAutomationHierarchy="true">
+                <mx:Canvas id="c2">
+                    <s:Button id="b2" 
+                        automationName="Nested Button 2" 
+                        label="Click Me 2"/>
+                </mx:Canvas>
+            </s:VGroup>         
+        </s:HGroup>
+    </s:Panel>    
+</s:Application>       

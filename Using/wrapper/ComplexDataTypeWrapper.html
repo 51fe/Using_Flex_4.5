@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>Complex Data Type Sender Test</title>
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+            var swfVersionStr = "0";
+            var xiSwfUrlStr = "";
+            var flashvars = {};
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            var attributes = {};
+            attributes.id = "ComplexDataTypeSender";
+            attributes.name = "ComplexDataTypeSender";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "ComplexDataTypeSender.swf", "flashContent",
+                "100%", "100%",
+                swfVersionStr, xiSwfUrlStr,
+                flashvars, params, attributes);
+        </script>
+    </head>
+
+	<SCRIPT LANGUAGE="JavaScript">
+		function receiveComplexDataTypes(o) {
+			// Get value of fname and lname properties.
+			var s = ("Welcome " + o.fname + " " + o.lname + "!\n");
+			// Iterate over embedded object's properties.
+			for (i=0; i<o.b.length; i++) {
+				s +=  i + ": " + o.b[i] + "\n";
+			}
+			alert(s);
+		}
+	</SCRIPT>
+
+    <body>
+        <div id="flashContent"/>
+   </body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- controls\videodisplay\VideoDisplayCP.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="450"
+    creationComplete="myVid.pause();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <fx:Script>
+        <![CDATA[
+            import mx.events.CuePointEvent;
+            import mx.controls.videoClasses.CuePointManager;
+
+            private function cpHandler(event:CuePointEvent):void {
+                cp.text+="Got to " + event.cuePointName + " cuepoint @ " + 
+                    String(event.cuePointTime) + " seconds in.\n";
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox>
+        <mx:VideoDisplay id="myVid"          
+            source="../assets/MyVideo.flv"
+            cuePointManagerClass="mx.controls.videoClasses.CuePointManager"
+            cuePoint="cpHandler(event);"
+            height="250" 
+            width="250"
+        >
+            <mx:cuePoints>
+                <fx:Object name="first" time="5"/>
+                <fx:Object name="second" time="10"/>
+            </mx:cuePoints>
+        </mx:VideoDisplay>
+        <mx:Label text="{myVid.playheadTime}"/>
+        <mx:TextArea id="cp" height="100" width="250"/>
+    </mx:VBox>
+    <mx:HBox>
+        <mx:Button label="||" click="myVid.pause();"/>
+        <mx:Button label="&gt;" click="myVid.play();"/>         
+    </mx:HBox>
+</s:Application>

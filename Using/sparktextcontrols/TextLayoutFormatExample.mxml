@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TextLayoutFormatExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        import flashx.textLayout.formats.*;
+    
+        private function initApp():void {
+            var textLayoutFormat:TextLayoutFormat = new TextLayoutFormat();
+            textLayoutFormat.color = 0x336633;
+            textLayoutFormat.fontFamily = "Arial, Helvetica, _sans";
+            textLayoutFormat.fontSize = 14;
+            textLayoutFormat.paragraphSpaceBefore = 15;
+            textLayoutFormat.paragraphSpaceAfter = 15;
+            textLayoutFormat.typographicCase = TLFTypographicCase.LOWERCASE_TO_SMALL_CAPS;
+
+            textFlow.hostFormat = textLayoutFormat;
+        
+        }
+    </fx:Script>
+
+        <s:RichEditableText id="richTxt" 
+            editable="false" 
+            focusEnabled="false">
+            <s:textFlow>
+                <s:TextFlow id="textFlow">
+                    <s:p>
+                        The following link takes you to <s:a href="http://www.adobe.com">Adobe.com</s:a>
+                    </s:p>
+                    <s:p>
+                        The following link takes you to <s:a href="http://www.omniture.com">Omniture.com</s:a>
+                    </s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+
+</s:Application>

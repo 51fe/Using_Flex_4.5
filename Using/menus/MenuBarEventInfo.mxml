@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- menus/MenuBarEventInfo.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initCollections();">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.MenuEvent;
+            import mx.controls.Alert;
+            import mx.collections.*;
+
+            [Bindable]
+            public var menuBarCollection:XMLListCollection;
+    
+            private var menubarXML:XMLList =<>
+                <menuitem label="Menu1">
+                    <menuitem label="MenuItem 1-A" data="1A"/>
+                    <menuitem label="MenuItem 1-B" data="1B"/>
+                </menuitem>
+                <menuitem label="Menu2">
+                    <menuitem label="MenuItem 2-A" data="2A"/>
+                    <menuitem label="MenuItem 2-B" data="2B"/>
+                </menuitem>
+                <menuitem label="Menu3" data="M3"/>
+                </>
+                
+            // Event handler to initialize the MenuBar control.
+            private function initCollections():void {
+                menuBarCollection = new XMLListCollection(menubarXML);
+            }
+            
+            // Event handler for the MenuBar control's change event.
+            private function changeHandler(event:MenuEvent):void  {
+                // Only open the Alert for a selection in a pop-up submenu.
+                // The MenuEvent.menu property is null for a change event 
+                // dispatched by the menu bar.
+                if (event.menu != null) {
+                    Alert.show("Label: " + event.item.@label + "\n" + 
+                        "Data: " + event.item.@data, "Clicked menu item");
+                }                    
+            }
+
+            // Event handler for the MenuBar control's itemRollOver event.
+            private function rollOverHandler(event:MenuEvent):void {
+                rollOverTextArea.text = "type: " + event.type + "\n";
+                rollOverTextArea.text += "target menuBarIndex: " + 
+                    event.index + "\n";
+            }           
+
+            // Event handler for the MenuBar control's itemClick event.
+            private function itemClickHandler(event:MenuEvent):void {
+                itemClickTextArea.text = "type: " + event.type + "\n";
+                itemClickTextArea.text += "target menuBarIndex: " + 
+                    event.index + "\n";
+            }           
+        ]]>
+    </fx:Script>
+
+    <mx:Panel title="MenuBar Control Example" 
+        height="75%" width="75%" 
+        paddingTop="10" paddingLeft="10">
+
+        <mx:Label 
+            width="100%" 
+            color="blue" 
+            text="Select a menu item."/>
+        <mx:MenuBar labelField="@label"  
+            dataProvider="{menuBarCollection}"
+            change="changeHandler(event);" 
+            itemClick="itemClickHandler(event);" 
+            itemRollOver="rollOverHandler(event);"/>        
+        <mx:TextArea id="rollOverTextArea" 
+            width="200" height="100"/>
+        <mx:TextArea id="itemClickTextArea" 
+            width="200" height="100"/>         
+    </mx:Panel>
+</s:Application>

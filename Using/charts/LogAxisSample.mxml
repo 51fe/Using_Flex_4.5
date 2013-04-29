@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- charts/LogAxisSample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_fe.send();srv_big.send()"
+    height="600">
+
+     <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+
+    <fx:Declarations>
+        <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv_fe" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FE"/>
+        <mx:HTTPService id="srv_big" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=BIG"/>
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="LineChart control with a logarithmic axis">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:LineChart id="myChart" 
+            showDataTips="true" 
+            height="300" width="400">
+            <mx:verticalAxis>
+                <mx:LogAxis title="Log axis" 
+                    interval="10" 
+                    minimum="1"
+                    maximum="5000"/>
+            </mx:verticalAxis>
+
+            <mx:horizontalAxis>
+               <mx:DateTimeAxis id="h1" dataUnits="days"/>
+            </mx:horizontalAxis>
+
+            <mx:series>
+                <mx:LineSeries dataProvider="{srv_fe.lastResult.data.result}" 
+                    yField="close" 
+                    displayName="FE close"/>
+                <mx:LineSeries dataProvider="{srv_big.lastResult.data.result}" 
+                    yField="close" 
+                    displayName="BIG close"/>
+            </mx:series>
+        </mx:LineChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,91 @@
+<?xml version="1.0" ?> 
+<!--  charts/ConditionallySelectChartItems.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx" result="resultHandler()"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[ 
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            private var expensesAC:ArrayCollection;
+
+            private function resultHandler():void {
+              expensesAC = ArrayCollection(srv.lastResult.data.result);
+            }
+
+            private function selectItems(event:Event):void {
+                // Create an array of all the chart's series.           
+                var allSeries:Array = myChart.series;
+
+                // Iterate over each series.           
+                for (var i:int=0; i<allSeries.length; i++) {
+                    var selectedData:Array = [];
+                    // Iterate over each item in the series.
+                    for (var j:int=0; j<expensesAC.length; j++) {
+                        if (expensesAC.getItemAt(j).expenses >= 
+                            Number(threshold.text)) {
+                            selectedData.push(j);
+                        }
+                    }
+
+                    // Use the series' selectedIndices property to select all the
+                    // chart items that met the criteria.
+                    allSeries[i].selectedIndices = selectedData;
+                }
+            }        
+        ]]> 
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel height="100%" width="100%">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:PlotChart id="myChart" 
+            height="207" 
+            width="350" 
+            showDataTips="true" 
+            dataProvider="{expensesAC}" 
+            selectionMode="multiple">
+            <mx:series>
+                <mx:PlotSeries id="series1" 
+                    xField="expenses" 
+                    yField="profit" 
+                    displayName="Expenses/Profit" 
+                    selectable="true"/> 
+                <mx:PlotSeries id="series2" 
+                    xField="amount" 
+                    yField="expenses" 
+                    displayName="Amount/Expenses" 
+                    selectable="true"/> 
+                <mx:PlotSeries id="series3" 
+                    xField="profit" 
+                    yField="amount" 
+                    displayName="Profit/Amount" 
+                    selectable="true"/> 
+            </mx:series>
+        </mx:PlotChart>
+        <mx:Legend dataProvider="{myChart}" width="200"/> 
+        
+        <s:HGroup>
+            <s:Label text="'Expenses' Threshold:"/>
+            <s:TextInput id="threshold" text="1500"/>        
+        </s:HGroup>
+        <s:Button label="Select Items" click="selectItems(event)"/>
+        
+    </s:Panel>
+</s:Application>

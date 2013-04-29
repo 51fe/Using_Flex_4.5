@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/InlineFXGExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="500" height="300">
+
+    <fx:Library>
+        <fx:Definition name="star">
+            <s:Graphic>    
+                <s:Path x="9.399" y="10.049" data="M 82.016 78.257 L 51.895 69.533 L 27.617 89.351 L 26.621 58.058 L 0.231 41.132 L 29.749 30.52 L 37.714 0.241 L 56.944 24.978 L 88.261 23.181 L 70.631 49.083 Z">
+                    <s:fill>
+                        <s:SolidColor color="#FFFFFF"/>
+                    </s:fill>
+                    <s:stroke>
+                        <s:SolidColorStroke caps="none" color="#4769C4" joints="miter" miterLimit="4" weight="20"/>
+                    </s:stroke>
+                </s:Path>
+            </s:Graphic>    
+        </fx:Definition>
+    </fx:Library>
+
+    <s:Group>
+        <fx:star height="100" width="100" x="50" y="50"/>
+        <fx:star rotationX="20" height="70" width="70" x="150" y="50" alpha=".75"/>
+        <fx:star rotationX="40" height="50" width="50" x="220" y="50" alpha=".5"/>
+        <fx:star rotationX="60" height="30" width="30" x="270" y="50" alpha=".3"/>
+        <fx:star rotationX="80" height="10" width="10" x="300" y="50" alpha=".1"/>
+    </s:Group>
+
+</s:Application> 

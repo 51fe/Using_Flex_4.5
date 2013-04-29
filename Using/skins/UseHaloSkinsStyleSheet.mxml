@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- skins/UseHaloSkinsStyleSheet.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>  
+    
+    <fx:Style source="../assets/UseHaloSkins.css"/>
+
+    <mx:CheckBox id="cb1" label="Click Me"/>
+    
+    <mx:RadioButton id="rb1" label="Click Me"/>
+
+</s:Application>

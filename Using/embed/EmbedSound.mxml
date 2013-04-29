@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- embed/EmbedSound.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+        
+            import flash.media.*; 
+        
+            [Embed(source="sample.mp3")]
+            [Bindable]
+            public var sndCls:Class;
+            
+            public var snd:Sound = new sndCls() as Sound; 
+            public var sndChannel:SoundChannel;
+            
+            public function playSound():void {
+                sndChannel=snd.play();
+            }   
+            
+            public function stopSound():void {
+                sndChannel.stop();
+            }   
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:Button label="play" click="playSound();"/>
+        <s:Button label="stop" click="stopSound();"/>
+    </s:HGroup>
+</s:Application>

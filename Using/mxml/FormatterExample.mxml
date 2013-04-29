@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- mxml/FormatterExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            private var storedZipCode:Number=123456789;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Declare a ZipCodeFormatter and define parameters. -->
+        <mx:ZipCodeFormatter id="ZipCodeDisplay" formatString="#####-####"/>
+    </fx:Declarations>
+
+    <s:Panel title="My Application">
+        <!-- Trigger the formatter while populating a string with data. -->
+        <s:TextInput text="{ZipCodeDisplay.format(storedZipCode)}"/> 
+    </s:Panel>
+</s:Application>

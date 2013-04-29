@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- states\StatesSimpleBasedOn.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:states>
+        <mx:State name="NewButton">
+            <mx:AddChild relativeTo="{v1}">
+                <mx:Button id="b2" label="New Button B2"/>
+            </mx:AddChild>
+
+            <mx:SetProperty target="{b1}" 
+                name="enabled" value="false"/>
+        </mx:State>
+
+        <!-- Define a view state based on the NewButton state. -->
+        <mx:State name="NewButton2" basedOn="NewButton">
+            <mx:AddChild relativeTo="{v1}">
+                <mx:Button id="b3" label="New Button B3"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>    
+
+    <mx:VBox id="v1">
+        <mx:Button id="b1" label="Initial Button"/>
+
+        <mx:Button label="Change to NewButton state" 
+            click="currentState = 'NewButton';"/>            
+
+        <mx:Button label="Change to New Button 2 State" 
+            click="currentState = 'NewButton2';"/>            
+
+        <mx:Button label="Change to base view state" 
+            click="currentState = '';"/>
+    </mx:VBox>    
+</mx:Application>

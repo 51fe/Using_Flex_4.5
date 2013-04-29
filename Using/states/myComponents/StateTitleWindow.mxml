@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- states\myComponents\StateTitleWindow.mxml -->
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    close="checkCollapse();" headerHeight="40" showCloseButton="true"
+    height.collapsed="{getStyle('headerHeight')};" 
+    closeButtonSkin.collapsed="{closeBUp};"
+    closeButtonDownSkin.collapsed="{closeBDown};"
+    closeButtonOverSkin="{closeBOver}">
+     
+    <fx:Script>
+        <![CDATA[
+
+            // Skins for the close button when the 
+            // TitleWindow container is collapsed.
+            [Embed(source="closeButtonUpSkin.jpg")]
+            [Bindable]
+            public var closeBUp:Class;        
+        
+            [Embed(source="closeButtonDownSkin.jpg")]
+            [Bindable]
+            public var closeBDown:Class;        
+
+            [Embed(source="closeButtonOverSkin.jpg")]
+            [Bindable]
+            public var closeBOver:Class;        
+
+            private function checkCollapse():void {
+                if (currentState == "collapsed")
+                    currentState = "default";       
+                else     
+                    currentState = "collapsed";
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:states>
+        <s:State name="default"/>
+        <s:State name="collapsed"/>
+    </mx:states>
+</mx:TitleWindow> 

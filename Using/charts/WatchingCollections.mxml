@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!-- charts/WatchingCollections.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initData();"
+    height="600">
+
+    <fx:Declarations>
+        <mx:SeriesInterpolate id="interp"
+            elementOffset="0"
+            duration="300"
+            minimumElementDuration="0"
+        />
+    </fx:Declarations>
+    
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        public var dataSet:ArrayCollection;
+
+        [Bindable]
+        public var revenue:Number = 100;
+
+        private var t:Timer;
+
+        private function initData():void {
+            dataSet = new ArrayCollection();
+            t = new Timer(500);     
+        }   
+
+        private function startApp():void {
+            t.addEventListener(TimerEvent.TIMER, addData);
+            t.start();
+        }
+
+        private function addData(e:Event):void {
+            /* Add a maximum of 100 data points before user has to click
+               the Start button again. */
+            if (dataSet.length > 100) {
+                stopApp();
+            }
+
+            dataSet.addItem( { revenue: revenue } );
+            revenue += Math.random() * 10 - 5;          
+        }
+        
+        private function stopApp():void {
+            t.stop();
+            t.removeEventListener(TimerEvent.TIMER, addData);        
+        }
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Line Chart">
+         <s:layout>
+             <s:HorizontalLayout/>
+         </s:layout>
+        <mx:LineChart id="myChart" dataProvider="{dataSet}">
+            <mx:series>
+                <mx:LineSeries 
+                    yField="revenue" 
+                    showDataEffect="{interp}"
+                    displayName="Revenue"/>
+            </mx:series>
+            <mx:horizontalAxis>
+                <mx:LinearAxis autoAdjust="false"/>
+            </mx:horizontalAxis>
+        </mx:LineChart>        
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+
+    <s:HGroup>
+        <s:Button id="b1" label="Start" click="startApp()"/>
+        <s:Button id="b2" label="Stop" click="stopApp()"/>
+    </s:HGroup>
+
+</s:Application>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- behaviors\PanelResize.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <mx:Resize id="myResizeOne" heightTo="300"
+            target="{panelOne}"
+            hideChildrenTargets="{[panelOne]}"/>
+        <mx:Resize id="myResizeTwo" heightTo="300"
+            target="{panelTwo}"/>
+    </fx:Declarations>
+
+    <s:Button id="b1"
+        label="Reset" 
+        click="panelOne.height=200;panelTwo.height=200;"/>
+
+    <mx:Panel id="panelOne" title="Panel 1" height="200" 
+        mouseDown="myResizeOne.end();myResizeOne.play();">
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+    </mx:Panel>
+ 
+    <mx:Panel id="panelTwo" title="Panel 2" height="200" 
+        mouseDown="myResizeTwo.end();myResizeTwo.play();">
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+        <s:Button label="Click Me"/>
+    </mx:Panel>
+</s:Application>

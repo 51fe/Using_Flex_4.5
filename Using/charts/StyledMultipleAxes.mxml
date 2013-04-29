@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!-- charts/StyledMultipleAxes.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_fe.send();srv_strk.send()"
+    height="600">
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var c1:Number = 0x224488;
+
+            [Bindable]
+            public var c2:Number = 0x884422;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+
+        <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv_fe" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FE"/>
+        <mx:HTTPService id="srv_strk" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=STRK"/>
+
+        <mx:SolidColorStroke id="h1Stroke" color="{c1}" 
+            weight="8" alpha=".75" caps="square"/>
+
+        <mx:SolidColorStroke id="h2Stroke" 
+            color="{c2}" weight="8" alpha=".75" caps="square"/>
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Multiple Axes with Multiple Data Series" 
+    width="400" height="400">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="myChart"
+        showDataTips="true"
+        height="250" width="350">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis id="h1" dataUnits="days"/>
+        </mx:horizontalAxis>
+        
+          <mx:horizontalAxisRenderers>
+            <mx:AxisRenderer placement="bottom" axis="{h1}"/>
+        </mx:horizontalAxisRenderers>
+
+        <mx:verticalAxisRenderers>
+            <mx:AxisRenderer placement="left" axis="{v1}">
+                <mx:axisStroke>{h1Stroke}</mx:axisStroke>
+               </mx:AxisRenderer>            
+            <mx:AxisRenderer placement="right" axis="{v2}">
+                <mx:axisStroke>{h2Stroke}</mx:axisStroke>            
+               </mx:AxisRenderer>                        
+        </mx:verticalAxisRenderers>
+
+        <mx:series>
+           <mx:ColumnSeries
+                dataProvider="{srv_fe.lastResult.data.result}"
+                xField="date" yField="close"
+                displayName="FE">
+                  <mx:verticalAxis>
+                     <mx:LinearAxis id="v1" minimum="2" maximum="5"/>
+                  </mx:verticalAxis>
+                <mx:fill>
+                    <mx:SolidColor color="{c1}"/>
+                </mx:fill>
+               </mx:ColumnSeries>
+           <mx:LineSeries
+                dataProvider="{srv_strk.lastResult.data.result}"
+                xField="date" yField="close"
+                displayName="STRK">
+                  <mx:verticalAxis>
+                     <mx:LinearAxis id="v2" minimum="40" maximum="50"/>
+                  </mx:verticalAxis>
+               <mx:lineStroke>
+                    <mx:SolidColorStroke color="{c2}" weight="4" alpha="1"/>
+                </mx:lineStroke>
+               </mx:LineSeries>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

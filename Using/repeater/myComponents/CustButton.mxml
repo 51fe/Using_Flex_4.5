@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- repeater\myComponents\CustButton.mxml -->
+<mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <fx:Script>
+    <![CDATA[
+      [Bindable]
+      public var dp:Array=[1,2,3,4];
+    ]]>
+  </fx:Script>
+
+  <fx:Declarations>    
+      <s:ArrayCollection id="myAC" source="{dp}"/>
+  </fx:Declarations>    
+    
+  <mx:Box>    
+      <mx:Repeater id="r" dataProvider="{myAC}">
+        <mx:Button id="repbutton" label="button {r.currentItem}"/>
+      </mx:Repeater>
+  </mx:Box>    
+</mx:VBox>

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!-- charts/ComplexFillFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+  <fx:Script>
+    <![CDATA[
+
+     import mx.controls.Alert;     
+     import mx.graphics.IFill;
+     import mx.graphics.SolidColor;
+     import mx.collections.ArrayCollection;
+     import mx.charts.ChartItem;
+     import mx.charts.series.items.ColumnSeriesItem;
+
+     [Bindable]
+     public var sales:ArrayCollection = new ArrayCollection([
+        { Name:"Reiner", SalesGoal:65000, CurrentAmount:69000 },
+        { Name:"Alan", SalesGoal:40000, CurrentAmount:44000 },
+        { Name:"Wolfgang", SalesGoal:48000, CurrentAmount:33000 },
+        { Name:"Francis", SalesGoal:22000, CurrentAmount:20000 },
+        { Name:"Klaus", SalesGoal:50000, CurrentAmount:55000 },
+        { Name:"Martin", SalesGoal:44000, CurrentAmount:70000 },
+        { Name:"Mac", SalesGoal:40000, CurrentAmount:35000 },
+        { Name:"Friedemann", SalesGoal:38000, CurrentAmount:38000 },
+        { Name:"Bruno", SalesGoal:42000, CurrentAmount:40000 }
+     ]);
+
+    private function myFillFunction(element:ChartItem, index:Number):IFill {
+        var item:ColumnSeriesItem = ColumnSeriesItem(element);
+
+        // Set default color.
+        var c:SolidColor = new SolidColor(0xFF3366, 1);
+        
+        /* Use the yNumber properties rather than the yValue properties
+           because the conversion to a Number is already done for 
+           you. As a result, you do not have to cast them to a Number,
+           which would be less efficient. */
+       
+        var currentAmount:Number = currSalesSeries.items[index].yNumber;
+        var goal:Number = item.yNumber;
+
+        // Determine if the goal was met or not.
+        var diff:Number = currentAmount - goal;      
+        
+        if (diff >= 0) {
+            // Sales person met their goal.
+            return c; 
+        } else if (diff < 0) {
+            // Sales person did not meet their goal.
+            c.color = 0xFF0000;
+            c.alpha = 1;
+        }
+
+        return c;
+
+    }    
+    
+    private function showDataPoints():void {
+        var s:String = "";
+        for (var i:int = 0; i<currSalesSeries.items.length; i++) {       
+            if (salesGoalSeries.items[i].yNumber != null && currSalesSeries.items[i].yNumber != null) {
+                var currentAmount:Number = currSalesSeries.items[i].yNumber;    
+                var goal:Number = salesGoalSeries.items[i].yNumber;
+                var diff:Number = currentAmount - goal;
+                s += "c:" + currentAmount.toString() + ", g:" + goal.toString() + ", d:" + diff.toString() + "\n";
+            }
+        }
+        Alert.show(s);
+    }
+    ]]>
+  </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Using a custom fillFunction in a Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{sales}" 
+        type="overlaid" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis 
+                title="Sales Person"
+                categoryField="Name"/>
+        </mx:horizontalAxis>
+        <mx:verticalAxis>
+            <mx:LinearAxis title="Sales (in $USD)"/>
+        </mx:verticalAxis>
+        
+        <mx:series>
+           <mx:ColumnSeries id="salesGoalSeries" 
+                xField="Name" 
+                yField="SalesGoal" 
+                fillFunction="myFillFunction" 
+                displayName="Sales Goal">
+           </mx:ColumnSeries>
+           <mx:ColumnSeries id="currSalesSeries" 
+                xField="Name" 
+                yField="CurrentAmount" 
+                displayName="Current Sales">
+                <mx:fill>
+                    <mx:SolidColor color="0x00FF00"/>
+                </mx:fill>
+           </mx:ColumnSeries>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend>
+        <mx:LegendItem label="Current Sales" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="0x00FF00"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0x000000" weight="1"/>
+           </mx:stroke>
+        </mx:LegendItem>
+        <mx:LegendItem label="Missed Goal" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="0xFF0000"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0x000000" weight="1"/>
+           </mx:stroke>
+         </mx:LegendItem>
+     </mx:Legend>
+     <s:Button click="showDataPoints()" label="Show Data"/>
+  </s:Panel>
+</s:Application>

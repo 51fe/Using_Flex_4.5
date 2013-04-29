@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\SortFilterArrayCollection.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            import spark.collections.Sort;
+            import spark.collections.SortField;
+    
+            /* Function to sort the ICollectionView
+               in ascending order. */
+            public function sortAC():void {
+                var sortA:Sort = new Sort();
+                sortA.fields=[new SortField("label")];
+                myAC.sort=sortA;
+                //Refresh the collection view to show the sort.
+                myAC.refresh();
+            }
+
+            /* Function to filter out all items with labels
+               that are not in the range of M-N. */
+            public function stateFilterFunc(item:Object):Boolean {
+                return item.label >= "M" && item.label < "O";
+            }
+            
+            /* Function to apply the filter function the ICollectionView. */
+            public function filterAC():void {
+                myAC.filterFunction=stateFilterFunc;
+                /* Refresh the collection view to apply the filter. */
+                myAC.refresh();
+            }
+
+            /* Function to Reset the view to its original state. */
+            public function resetAC():void {
+                myAC.filterFunction=null;
+                myAC.sort=null;
+                //Refresh the collection view.
+                myAC.refresh();
+            }
+
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- An ArrayCollection with an array of objects. -->
+        <mx:ArrayCollection id="myAC">
+            <fx:Array id="myArray">
+                <fx:Object label="LA" data="Baton Rouge"/>
+                <fx:Object label="NH" data="Concord"/>
+                <fx:Object label="TX" data="Austin"/>
+                <fx:Object label="MA" data="Boston"/>
+                <fx:Object label="AZ" data="Phoenix"/>
+                <fx:Object label="OR" data="Salem"/>
+                <fx:Object label="FL" data="Tallahassee"/>
+                <fx:Object label="MN" data="Saint Paul"/>
+                <fx:Object label="NY" data="Albany"/>
+            </fx:Array> 
+        </mx:ArrayCollection>
+    </fx:Declarations>
+
+    <!-- Buttons to filter, sort, or reset the view in the second ComboBox
+            control. -->
+    <s:HGroup width="100%">
+        <s:Button id="sortButton" label="Sort" click="sortAC();"/>
+        <s:Button id="filterButton" label="Filter" click="filterAC();"/>
+        <s:Button id="resetButton" label="Reset" click="resetAC();"/>
+    </s:HGroup>
+    <s:ComboBox id="cb1" dataProvider="{myAC}"/>
+</s:Application>

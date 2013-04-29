@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- controls\date\DateChooserEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <fx:Script>
+        <![CDATA[
+
+        import mx.events.CalendarLayoutChangeEvent;
+        
+        private function useDate(eventObj:CalendarLayoutChangeEvent):void {
+            // Make sure selectedDate is not null.
+            if (eventObj.currentTarget.selectedDate == null) {
+                return 
+            }
+
+            //Access the Date object from the event object.         
+            day.text=eventObj.currentTarget.selectedDate.getDay();
+            date.text=eventObj.currentTarget.selectedDate.getDate();
+            month.text=eventObj.currentTarget.selectedDate.getMonth() + 1;
+            year.text=eventObj.currentTarget.selectedDate.getFullYear();
+            
+            wholeDate.text= (eventObj.currentTarget.selectedDate.getMonth() + 1) +
+                "/" + (eventObj.currentTarget.selectedDate.getDate() +            
+                "/" + eventObj.currentTarget.selectedDate.getFullYear());
+        }
+        ]]>
+    </fx:Script>
+
+    <mx:DateChooser id="date1" change="useDate(event)"/>
+
+    <s:Form x="200">
+        <s:FormItem label="Day of week">
+            <s:TextInput id="day" width="100"/>
+        </s:FormItem>
+        <s:FormItem label="Day of month">
+            <s:TextInput id="date" width="100"/>
+        </s:FormItem>
+        <s:FormItem label="Month">
+            <s:TextInput id="month" width="100"/>
+        </s:FormItem>
+        <s:FormItem label="Year">
+            <s:TextInput id="year" width="100"/>
+        </s:FormItem>
+        <s:FormItem label="Date">
+            <s:TextInput id="wholeDate" width="100"/>
+        </s:FormItem>
+    </s:Form>      
+</s:Application>

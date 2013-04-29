@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- modules/CustomModuleLoader.mxml -->
+<s:ModuleLoader 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns="*" 
+    creationComplete="init()">
+    
+  <fx:Script>
+    <![CDATA[
+        import mx.core.UIComponent;
+    
+        public var standin:UIComponent;
+
+        public function init():void {
+            addEventListener("urlChanged", onUrlChanged);
+            addEventListener("loading", onLoading);
+            addEventListener("progress", onProgress);
+            addEventListener("setup", onSetup);
+            addEventListener("ready", onReady);
+            addEventListener("error", onError);
+            addEventListener("unload", onUnload);
+
+            standin = panel;
+            removeElement(standin);        
+        }
+
+        public function onUrlChanged(event:Event):void {
+            if (url == null) {
+                if (contains(standin))
+                    removeElement(standin);
+            } else {
+                if (!contains(standin))
+                    addElement(standin);
+            }
+            progress.indeterminate=true;
+            unload.enabled=false;
+            reload.enabled=false;
+        }
+
+        public function onLoading(event:Event):void {
+            progress.label="Loading module " + url;
+            if (!contains(standin))
+                addElement(standin);
+
+            progress.indeterminate=true;
+            unload.enabled=false;
+            reload.enabled=false;
+        }
+
+        public function onProgress(event:Event):void {
+            progress.label="Loaded %1 of %2 bytes...";
+            progress.indeterminate=false;
+            unload.enabled=true;
+            reload.enabled=false;
+        }
+
+        public function onSetup(event:Event):void {
+            progress.label="Module " + url + " initialized!";
+            progress.indeterminate=false;
+            unload.enabled=true;
+            reload.enabled=true;
+        }
+
+        public function onReady(event:Event):void {
+            progress.label="Module " + url + " successfully loaded!";
+            unload.enabled=true;
+            reload.enabled=true;
+
+            if (contains(standin))
+                removeElement(standin);
+        }
+
+        public function onError(event:Event):void {
+            progress.label="Error loading module " + url;
+            unload.enabled=false;
+            reload.enabled=true;
+        }
+
+        public function onUnload(event:Event):void {
+            if (url == null) {
+                if (contains(standin))
+                    removeElement(standin);
+            } else {
+                if (!contains(standin))
+                    addElement(standin);
+            }
+            progress.indeterminate=true;
+            progress.label="Module " + url + " was unloaded!";
+            unload.enabled=false;
+            reload.enabled=true;
+        }
+    ]]>
+  </fx:Script>
+
+  <s:Panel id="panel" width="100%" title="Status &amp; Operations">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <mx:ProgressBar width="100%" id="progress" source="{this}"/>
+    <s:HGroup width="100%">
+      <s:Button id="unload" label="Unload Module" click="unloadModule()"/>
+      <s:Button id="reload" label="Reload Module" click="unloadModule();loadModule()"/>
+    </s:HGroup>
+  </s:Panel>
+</s:ModuleLoader>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkDataGroupContainerInlineScope.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            // Variable in the Application scope. 
+            [Bindable]                        
+            public var localVar:String="Application scope"; 
+        ]]>
+    </fx:Script>
+
+    <s:SkinnableDataContainer> 
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ArrayList>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/>
+        </mx:ArrayList>            
+        <s:itemRenderer>
+            <fx:Component>
+                <s:ItemRenderer>
+                    <fx:Script>
+                        <![CDATA[
+                            // Variable in the Renderer scope. 
+                            [Bindable]                        
+                            public var localVar:String="Renderer scope";
+                        ]]>
+                    </fx:Script>
+                    <s:Group verticalCenter="0" left="2" right="2" top="2" bottom="2">
+                        <s:layout> 
+                            <s:HorizontalLayout/> 
+                        </s:layout>
+                        <s:Label text="{data.lastName}, {data.firstName}"/>               
+                        <s:Label text="{data.companyID}"/>             
+                        <s:Label text="{'Renderer localVar = ' + localVar}"/> 
+                        <s:Label text="{'Application localVar = ' + outerDocument.localVar}"/>
+                    </s:Group> 
+                </s:ItemRenderer>
+            </fx:Component>
+        </s:itemRenderer>  
+    </s:SkinnableDataContainer> 
+</s:Application>

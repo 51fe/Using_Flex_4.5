@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- optimize/CreateStyledButton.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)">
+
+    <fx:Script><![CDATA[
+        import spark.components.Button;
+    
+        public function initApp(e:Event):void {
+            var b:Button = new Button();
+            b.label="Click Me";
+            b.setStyle("color", 0x00CCFF);
+            panel1.addElement(b);
+        }
+    ]]></fx:Script>
+        
+    <s:Panel id="panel1"/>
+    
+</s:Application>

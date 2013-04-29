@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- binding/WholeObjectBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+            import myComponents.BindableObject;
+            import myComponents.OuterBindableObject;
+
+            [Bindable]
+            public var myObj:OuterBindableObject = new OuterBindableObject();
+        ]]>    
+    </fx:Script>
+
+    <!-- Data binding updated at application startup. -->
+    <mx:Text id="text1" text="{myObj.bindableObjProp.stringProp}"/>
+
+    <!-- Data binding updated at application startup. -->
+    <mx:Text id="text2" text="{myObj.bindableObjProp.intProp}"/>
+
+    <!-- Data binding not updated. -->
+    <mx:Button label="Change myObj.bindableObjProp.stringProp" 
+        click="myObj.bindableObjProp.stringProp = 'new string';"/>
+        
+    <!-- Data binding not updated. -->
+    <mx:Button label="Change myObj.bindableObjProp.intProp" 
+        click="myObj.bindableObjProp.intProp = 10;"/>
+</s:Application>

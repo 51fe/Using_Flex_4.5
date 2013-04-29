@@ -1,0 +1,14 @@
+<?xml version="1.0"?> 
+<!-- containers\application\MainDPB.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    preloader="myComponents.MyDownloadProgressBar">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout> 
+ 
+    <!-- Add a couple of controls that don't do anything. -->
+    <s:Button label="Click Me"/>
+    <s:TextInput text="This is a TextInput control."/>
+</s:Application>

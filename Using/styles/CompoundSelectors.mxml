@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- styles/CompoundSelectors.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+     
+     s|Label { 
+        fontSize: 10pt;
+     }
+     .myLabel { 
+        color: Blue;
+     }
+  </fx:Style>
+
+  <s:Label styleName="myLabel" text="This Label is 10pt Blue"/>
+
+</s:Application>

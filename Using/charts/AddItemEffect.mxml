@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- charts/AddItemEffect.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+    
+     <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/widgets-xml.aspx" result="resultHandler(event)"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/widgets.aspx -->  
+
+        <!-- Define chart effect -->    
+        <mx:SeriesSlide id="slideIn" 
+            duration="1000" 
+            direction="up"
+        />  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+
+          [Bindable]
+          public var items:ArrayCollection;
+     
+        public function addDataItem():void {
+            // Add a randomly generated value to 
+            // the data provider.
+            var n:Number = Math.random() * 3000;
+            var o:Object = {item: n};
+            items.addItem(o);
+        }
+        
+        private function resultHandler(e:Event):void {
+          items = ArrayCollection(srv.lastResult.data.result);
+        }
+    ]]></fx:Script>
+
+    <s:Panel title="Column Chart with Series Effect">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart" dataProvider="{items}">        
+            <mx:series>
+                <mx:ColumnSeries yField="item" 
+                    displayName="Quantity" 
+                    showDataEffect="slideIn"/>
+            </mx:series>
+        </mx:ColumnChart>
+    </s:Panel>
+    <s:Button id="b1" click="addDataItem()" label="Add Data Item"/>
+</s:Application>

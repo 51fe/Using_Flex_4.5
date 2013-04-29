@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- behaviors\ASplayVBox.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createEffect(event);">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            // Import effect class.
+            import spark.effects.Resize;
+
+            // Create a resize effect 
+            private var resizeLarge:Resize = new Resize();
+
+            private function createEffect(eventObj:Event):void {
+                // Set the TextArea as the effect target.
+                resizeLarge.target=myTA;
+                
+                // Set resized width and height, and effect duration.
+                resizeLarge.widthTo=150;
+                resizeLarge.heightTo=150;
+                resizeLarge.duration=750;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button label="Start" 
+        click="resizeLarge.end();resizeLarge.play();"/>
+    <s:Button label="Reset" 
+        click="myTA.width=100;myTA.height=100;"/>
+    <s:TextArea id="myTA" 
+        height="100" width="100" 
+        text="Here is some text."/>
+</s:Application>

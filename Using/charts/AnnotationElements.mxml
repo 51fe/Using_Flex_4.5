@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!-- charts/AnnotationElements.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script><![CDATA[
+      import mx.graphics.SolidColor;
+      import mx.charts.GridLines;
+
+      [Embed(source="../assets/butterfly.gif")]
+      public var butterfly:Class;
+
+      public function updateGridLines():void {
+         var bgi:GridLines = new GridLines();
+
+         var s:SolidColorStroke = new SolidColorStroke(0xff00ff, 3);
+         bgi.setStyle("horizontalStroke",s);
+
+         var c:SolidColor = new SolidColor(0x990033, .2);
+         bgi.setStyle("horizontalFill",c);
+
+         var c2:SolidColor = new SolidColor(0x999933, .2);
+         bgi.setStyle("horizontalAlternateFill",c2);
+
+         myChart.annotationElements = [bgi]
+
+         var b:Object = new butterfly();
+         b.alpha = .2;
+         b.height = 150;
+         b.width = 150;
+
+         myChart.backgroundElements = [ b ];
+      }
+  ]]></fx:Script>
+  <s:Panel title="Annotation Elements Example">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="expenses"
+                displayName="Expenses"/>
+        </mx:series>
+
+        <mx:annotationElements>
+           <mx:GridLines>
+            <mx:horizontalStroke>
+                <mx:SolidColorStroke 
+                    color="#191970" 
+                    weight="2" 
+                    alpha=".3"/>
+            </mx:horizontalStroke>
+           </mx:GridLines>
+        </mx:annotationElements>
+
+        <mx:backgroundElements>
+           <s:Image 
+                source="@Embed('../assets/butterfly.gif')" 
+                alpha=".2"/>
+        </mx:backgroundElements>
+
+     </mx:ColumnChart>
+     <!--
+     <mx:Legend dataProvider="{myChart}"/>
+     -->
+  </s:Panel>
+  <s:Button id="b1" 
+    click="updateGridLines()" 
+    label="Update Grid Lines"/>
+</s:Application>

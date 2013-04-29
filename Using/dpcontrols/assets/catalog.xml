@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<catalog>
+    <product id="1">
+        <name>Nokia Model 3595</name>
+        <price>129.99</price>
+        <image>assets/products/Nokia_3595.gif</image>
+        <thumbnail>assets/products/Nokia_3595_sm.gif</thumbnail>
+    </product>
+    <product id="2">
+        <name>Nokia Model 3650</name>
+        <price>99.99</price>
+        <image>assets/products/Nokia_3650.gif</image>
+        <thumbnail>assets/products/Nokia_3650_sm.gif</thumbnail>
+    </product>
+    <product id="3">
+        <name>Nokia Model 6010</name>
+        <price>49.99</price>
+        <image>assets/products/Nokia_6010.gif</image>
+        <thumbnail>assets/products/Nokia_6010_sm.gif</thumbnail>
+    </product>
+    <product id="4">
+        <name>Nokia Model 6360</name>
+        <price>19.99</price>
+        <image>assets/products/Nokia_6360.gif</image>
+        <thumbnail>assets/products/Nokia_6360_sm.gif</thumbnail>
+    </product>
+    <product id="5">
+        <name>Nokia Model 6680</name>
+        <price>19.99</price>
+        <image>assets/products/Nokia_6680.gif</image>
+        <thumbnail>assets/products/Nokia_6680_sm.gif</thumbnail>
+    </product>
+    <product id="6">
+        <name>Nokia Model 6820</name>
+        <price>49.99</price>
+        <image>assets/products/Nokia_6820.gif</image>
+        <thumbnail>assets/products/Nokia_6820_sm.gif</thumbnail>
+    </product>
+</catalog>

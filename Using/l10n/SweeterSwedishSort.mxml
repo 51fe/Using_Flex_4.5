@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/SweeterSwedishSort.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="500"
+    creationComplete="initApp()">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ISort;
+            import mx.collections.ISortField;
+            import mx.collections.ArrayCollection;
+            import spark.collections.Sort;
+            import spark.collections.SortField;
+            
+            private var defaultSort:ISort = new Sort();
+            private var swedishSort:ISort = new Sort();
+
+            private var a:Array = new Array('Öhlund','Oehland','Zorn','Ohlin');
+            private var names:ArrayCollection = new ArrayCollection(a);
+
+            private var sortField:SortField = new SortField(null);                
+
+            private function initApp():void {
+                originalOrder.text = "Original Order: " + names.toString();
+
+                /* Add a style client, so sortField can pick up the locale style. */
+                addStyleClient(sortField as spark.collections.SortField);
+
+                /* Add the sortField to the fields array of the sorts. */
+                defaultSort.fields = [sortField];
+                swedishSort.fields = [sortField];                
+            }
+            
+            private function changeSortOrder(s:String):void {
+                if (s=="en-US") {
+                    /* Set the locale for the SortField. */
+                    sortField.setStyle("locale","en-US");
+
+                    names.sort = defaultSort;
+
+                    /* Refresh the ArrayCollection after changing the sort property. */
+                    names.refresh();
+
+                    ta1.text = "Default Order: " + names.toString();                
+                } else {
+                    /* Set the locale for the SortField. */
+                    sortField.setStyle("locale","sv-SE");
+
+                    names.sort = swedishSort;
+
+                    /* Refresh the ArrayCollection after changing the sort property. */
+                    names.refresh();
+
+                    ta1.text = "Swedish Order: " + names.toString();                
+                }
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Label id="originalOrder" paddingTop="10" fontWeight="bold"/>
+    <s:TextArea id="ta1" height="200" width="400"/>
+    <s:HGroup>
+        <s:Button label="Show Default Sort Order" click="changeSortOrder('en-US')"/>
+        <s:Button label="Show Swedish Sort Order" click="changeSortOrder('sv-SE')"/>
+    </s:HGroup>
+</s:Application>

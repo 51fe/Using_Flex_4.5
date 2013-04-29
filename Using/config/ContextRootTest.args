@@ -1,0 +1,1 @@
+--strict=true  --show-actionscript-warnings=true --use-network=true -context-root="myRoot" 

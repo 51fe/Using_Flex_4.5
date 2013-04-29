@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SummaryGroupADGTopLevel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+                  
+            include "SimpleFlatData.as"
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid id="myADG" 
+        width="100%" height="100%" 
+        initialize="gc.refresh();">        
+        <mx:dataProvider>
+            <mx:GroupingCollection2 id="gc" source="{dpFlat}">
+                <mx:summaries>
+                    <mx:SummaryRow summaryPlacement="last">
+                        <mx:fields>
+                            <mx:SummaryField2 dataField="Actual" 
+                                label="Min Actual" summaryOperation="MIN"/>
+                            <mx:SummaryField2 dataField="Actual" 
+                                label="Max Actual" summaryOperation="MAX"/>
+                        </mx:fields>
+                      </mx:SummaryRow>
+                    </mx:summaries>
+                <mx:Grouping label="Region">
+                    <mx:GroupingField name="Region"/>
+                    <mx:GroupingField name="Territory"/>
+                </mx:Grouping>
+            </mx:GroupingCollection2>
+        </mx:dataProvider>        
+        
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Region"/>
+            <mx:AdvancedDataGridColumn dataField="Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Estimate"/>
+            <mx:AdvancedDataGridColumn dataField="Min Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Max Actual"/>
+        </mx:columns>
+   </mx:AdvancedDataGrid>
+</s:Application>

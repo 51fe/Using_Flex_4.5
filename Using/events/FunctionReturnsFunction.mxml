@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- events/FunctionReturnsFunction.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="foo()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[    
+        [Bindable]
+        private var answer:String;
+
+        private function foo():Function {
+            var x:int = int(ti1.text);
+            function rectArea(y:int):int { // function closure defined
+                return x * y;
+            } 
+            return rectArea;
+        }
+
+        private function bar():void {
+            var x:int = 2; // ignored
+            var y:int = 4; // ignored
+            var myProduct:Function = foo();
+            answer = myProduct(int(ti2.text)); // function closure called
+        }
+    
+        ]]>
+    </fx:Script>
+
+    <s:Form width="107">
+        <s:FormItem label="X">
+            <s:TextInput id="ti1" text="10" width="37" textAlign="right"/>
+        </s:FormItem>
+        <s:FormItem label="Y" width="71">
+            <s:TextInput id="ti2" text="20" width="38" textAlign="right"/>
+        </s:FormItem>
+        <s:Label id="label1" text="{answer}" width="71" textAlign="right"/>
+    </s:Form>
+
+    <s:Button id='b1' label="Compute Product" click="bar()"/>
+    
+</s:Application>

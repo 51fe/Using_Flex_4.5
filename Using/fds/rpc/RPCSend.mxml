@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCSend.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:Script>
+        <![CDATA[
+            public function callService():void {
+                // Cancel all previous pending calls.
+                myService.cancel();
+
+                var params:Object = new Object();
+                params.param1 = 'val1';
+                myService.send(params);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:HTTPService
+        id="myService"
+        destination="Dest"
+        useProxy="true"/>
+<!-- HTTP service call with a send() method that takes a variable as its parameter. The value of the variable is an Object. -->     
+    <mx:Button click="myService.send({param1: 'val1'});"/>
+    
+<!-- HTTP service call with an object as a send() method parameter that provides query parameters. -->      
+    <mx:Button click="callService();"/>
+</mx:Application>

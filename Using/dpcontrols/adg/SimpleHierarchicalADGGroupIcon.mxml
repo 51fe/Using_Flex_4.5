@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleHierarchicalADGGroupIcon.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <fx:Script>
+    <![CDATA[
+          import mx.collections.ArrayCollection;
+                    
+          include "SimpleHierarchicalData.as";
+
+         // Embed the icon for the groups.
+         [Bindable]
+         [Embed(source="assets/topTreeIcon.png")] 
+         public var icn:Class;
+        
+         // Define the groupIconFunction callback function.
+         public function myIconFunc(item:Object, depth:int):Class {
+             if(depth == 1)
+                 // If this is the top-level of the tree, return the icon.
+                 return icn;
+             else
+                 // If this is any other level, return null.
+                 return null;
+         }
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid 
+        width="100%" height="100%"
+        groupIconFunction="myIconFunc">
+        <mx:dataProvider>
+            <mx:HierarchicalData source="{dpHierarchy}"/>
+        </mx:dataProvider>
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Region"/>
+            <mx:AdvancedDataGridColumn dataField="Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Estimate"/>
+        </mx:columns>
+    </mx:AdvancedDataGrid>    
+</s:Application>

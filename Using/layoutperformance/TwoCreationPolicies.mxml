@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- layoutperformance/TwoCreationPolicies.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Panel title="Outer Panel where creationPolicy=all" creationPolicy="all">
+        <s:Panel title="Inner Panel where creationPolicy=none" creationPolicy="none">
+            <s:Button id="button1" label="Click Me"/>
+        </s:Panel>
+    </s:Panel>
+</s:Application>

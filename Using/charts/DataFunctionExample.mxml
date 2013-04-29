@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!-- charts/DataFunctionExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="600">
+
+  <fx:Script><![CDATA[
+    import mx.charts.chartClasses.AxisBase;
+    import mx.charts.chartClasses.Series;
+    import mx.charts.CategoryAxis;
+    import mx.charts.chartClasses.IAxis;
+    import mx.charts.chartClasses.ChartBase;        
+    import mx.charts.chartClasses.CartesianTransform;
+    
+    // This data provider contains complex, nested objects.
+    [Bindable]
+    public var SMITH:Array = [
+        {month: "Aug", close: {High:45.87,Low:12.2}, open:25.19},
+        {month: "Sep", close: {High:45.74,Low:10.23}, open:35.29},
+        {month: "Oct", close: {High:45.77,Low:12.13}, open:45.19},
+        {month: "Nov", close: {High:46.06,Low:10.45}, open:15.59},
+    ];
+
+    private function dataFunc(series:Series, item:Object, fieldName:String):Object {
+        trace("fieldName: " + fieldName);
+        if(fieldName == "yValue" && series.id=="highClose")
+            return(item.close.High);
+        else if(fieldName == "yValue" && series.id=="lowClose")
+            return(item.close.Low);
+        else if(fieldName == "xValue")
+            return(item.month);
+        else
+            return null;
+      }
+    private function catFunc(axis:AxisBase, item:Object):Object {
+        for (var s:String in item) {
+            trace(s + ":" + item[s]);
+        }
+      
+        return(item.month);
+    }
+   ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="ColumnChart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="chart" 
+            dataProvider="{SMITH}" 
+            showDataTips="true" 
+            width="100%" 
+            height="100%">
+            <mx:horizontalAxis>
+                <!-- The dataFunction replaces "categoryField='month'. -->
+                <mx:CategoryAxis id="h1" dataFunction="catFunc"/>
+            </mx:horizontalAxis>
+            <mx:series>
+                <!-- The dataFunction replaces yField value, which cannot drill 
+                down into an object (close.High is not valid). -->
+                <mx:ColumnSeries id="highClose" 
+                    displayName="Close (High)" 
+                    dataFunction="dataFunc"/>
+
+                <!-- The dataFunction replaces yField value, which cannot drill 
+                down into an object (close.Low is not valid). -->
+                <mx:ColumnSeries id="lowClose" 
+                    displayName="Close (Low)" 
+                    dataFunction="dataFunc"/>
+            </mx:series>
+        </mx:ColumnChart>
+    </s:Panel>
+</s:Application>

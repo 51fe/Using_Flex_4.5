@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- tooltips/ErrorString.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+     import mx.controls.ToolTip;
+     import mx.managers.ToolTipManager;
+     
+     private var errorTip:ToolTip;
+     private var myError:String;
+  
+     private function validateEntry(type:String, event:Object):void {
+        // NOTE: Validation logic would go here.
+        switch(type) {
+           case "ssn":
+            myError="Use SSN format";
+            break;
+           case "phone":
+            myError="Use phone format";
+            break;
+        }
+
+        event.currentTarget.errorString = myError;
+
+     }
+    ]]>
+  </fx:Script>
+
+  <s:TextInput id="ssn" enter="validateEntry('ssn',event)"/>
+  <s:TextInput id="phone" enter="validateEntry('phone',event)"/>
+
+</s:Application>

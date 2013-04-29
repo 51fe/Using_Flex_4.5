@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- styles/ApplyFilterInline.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <s:VGroup>
+        <!-- Apply filter using MXML syntax to set properties. -->
+        <s:Label text="DropShadowFilter" fontSize="20">
+            <s:filters>
+                <s:DropShadowFilter distance="10" angle="45"/>
+            </s:filters>
+        </s:Label>
+
+        <!-- Apply filter and set properties inline. -->
+        <s:Label text="DropShadowFilter (inline)" 
+            fontSize="20" 
+            filters="{[new DropShadowFilter(10, 45)]}"/>
+    </s:VGroup>
+</s:Application>

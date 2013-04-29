@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\MainMyLoginFormCast.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+          import mx.managers.PopUpManager;
+          import mx.core.IFlexDisplayObject;
+          import myComponents.MyLoginForm;
+
+          // Additional import statement to use the TitleWindow container.
+          import mx.containers.TitleWindow;
+
+          private function showLogin():void {
+            // Create the TitleWindow container.
+            var helpWindow:TitleWindow = 
+          TitleWindow(PopUpManager.createPopUp(this, MyLoginForm, false));
+
+            // Add title to the title bar.
+            helpWindow.title="Enter Login Information";
+
+            // Make title bar slightly transparent.
+            helpWindow.setStyle("borderAlpha", 0.9);
+
+            // Add a close button.
+            // To close the container, your must also handle the close event.
+            helpWindow.showCloseButton=true;
+          }
+        ]]>
+    </fx:Script>
+    
+    <mx:VBox width="300" height="300">  
+        <mx:Button click="showLogin();" label="Login"/>
+    </mx:VBox>
+</s:Application>

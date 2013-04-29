@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SimpleInlineGraphic.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="doSomething()">
+
+    <fx:Script>
+        <![CDATA[
+            import flashx.textLayout.elements.*;
+            import flashx.textLayout.*;
+            
+            [Bindable]
+            private var textFlow:TextFlow;
+
+            private var img:InlineGraphicElement;
+            
+            private function doSomething():void {
+                textFlow = new TextFlow();
+
+                var p:ParagraphElement = new ParagraphElement();
+                img = new InlineGraphicElement();
+                img.source = "assets/butterfly.gif";
+                img.height = 100;
+                img.width = 100;
+                p.addChild(img);
+                textFlow.addChild(p);
+            }
+            ]]>
+    </fx:Script>
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:Panel title="Simple Inline Graphic Image"
+        width="90%" height="90%"
+        horizontalCenter="0" verticalCenter="0">
+
+        <s:RichEditableText id="richTxt" textAlign="justify" width="100%"
+            textFlow="{textFlow}" />
+
+    </s:Panel>
+
+</s:Application>

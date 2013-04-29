@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- skins/ApplyContainerBorderSkin.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <mx:VBox id="vb1"
+     borderSkin="CustomContainerBorderSkin" 
+     backgroundColor="0xCCCC99"
+     backgroundAlpha="0.8" 
+     cornerRadius="14" 
+     paddingLeft="20" 
+     paddingTop="20"
+     paddingRight="20"
+     paddingBottom="20">
+
+     <mx:Label text="This is a VBox with a custom skin."/>
+
+  </mx:VBox>
+
+</s:Application>

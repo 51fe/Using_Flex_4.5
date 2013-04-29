@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkDataGroupContainerCheckBoxData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Scroller>      
+        <s:DataGroup itemRenderer="myComponents.MySimpleItemRendererCBData" 
+            height="100" width="250"> 
+            <s:layout>
+                <s:VerticalLayout useVirtualLayout="true"/> 
+            </s:layout>
+            <mx:ArrayCollection>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/> 
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>  
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/>   
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>  
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>  
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/>   
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>  
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>  
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/>   
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>  
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>  
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/>   
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>  
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+                <fx:Object firstName="Bill" lastName="Smith" companyID="11233" manager="yes"/>  
+                <fx:Object firstName="Dave" lastName="Jones" companyID="13455" manager="no"/>   
+                <fx:Object firstName="Mary" lastName="Davis" companyID="11543" manager="yes"/>  
+                <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266" manager="no"/>
+            </mx:ArrayCollection>            
+        </s:DataGroup> 
+    </s:Scroller>
+</s:Application>

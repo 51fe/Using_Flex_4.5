@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- mxml/StoringData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <!-- A data model called "contact" stores contact information.
+            The text property of each TextInput control shown above
+            is passed to a field of the data model by using data binding. -->
+        <fx:Model id="contact">
+            <info>
+                <homePhone>{homePhoneInput.text}</homePhone>
+                <cellPhone>{cellPhoneInput.text}</cellPhone>
+                <email>{emailInput.text}</email>
+            </info>
+        </fx:Model>
+    </fx:Declarations>
+
+    <s:Panel title="My Application">
+        <s:VGroup left="10" right="10" top="10" bottom="10">
+            <!-- The user enters contact information in TextInput controls. -->
+            <s:TextInput id="homePhoneInput"
+                text="This isn't a valid phone number."/>
+            <s:TextInput id="cellPhoneInput" 
+                text="(999)999-999"/>
+            <s:TextInput id="emailInput" 
+                text="me@somewhere.net"/>
+        </s:VGroup>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/NavigateToMultipleURLs.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     <s:layout> 
+      <s:HorizontalLayout/> 
+     </s:layout>
+  <fx:Script><![CDATA[
+     import flash.net.navigateToURL;
+     private var listingData:Array=[
+        "http://flex.org", 
+        "http://www.adobe.com", 
+        "http://aspexamples.adobe.com"
+     ];
+
+     private function openWindows(n: Number):void {
+        if (n < listingData.length) {
+           navigateToURL(new URLRequest(listingData[n]), '_blank');
+           callLater(callLater, [openWindows, [n+1]]);
+        }
+     }
+  ]]></fx:Script>  
+  <s:Button label="Click Me to Open Multiple Windows" 
+    click="openWindows(0)"/> 
+</s:Application>

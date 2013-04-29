@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--controls\DataGridConfigAS.mxml-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.collections.ArrayCollection;
+            
+            private function myGrid_initialize():void { 
+              myGrid.dataProvider = new ArrayCollection([ 
+                {Artist:'Steve Goodman', Album:'High and Outside', Price:8.99}, 
+                {Artist:'Carole King', Album:'Tapestry', Price:11.99}, 
+                {Artist:'The Beach Boys', Album:'Pet Sounds', Price:13.99}, 
+                {Artist:'Original Cast', Album:'Camelot', Price:9.99} ]); 
+            } 
+        ]]> 
+    </fx:Script> 
+    
+    <s:DataGrid id="myGrid" 
+        width="350" height="150" 
+        color="#7B0974" 
+        creationComplete="myGrid_initialize();"/> 
+ 
+</s:Application>

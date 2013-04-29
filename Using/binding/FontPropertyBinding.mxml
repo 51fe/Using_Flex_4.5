@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- binding/FontPropertyBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            // Define public vars for tracking font size.
+            [Bindable]
+            public var maxFontSize:Number = 15;
+
+            [Bindable]
+            public var minFontSize:Number = 5;
+        ]]>    
+    </fx:Script>
+    
+    <s:Label text="{maxFontSize}"/>
+    <s:Label text="{minFontSize}"/>
+
+    <s:Button click="maxFontSize=20; minFontSize=10;"/>
+</s:Application>

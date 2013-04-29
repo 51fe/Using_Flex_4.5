@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/MultipleLineComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <Line xFrom="0" xTo="0" yFrom="0" yTo="100">
+         <!-- Define the border color of the line. -->
+         <stroke>
+              <SolidColorStroke color="#000000" weight="1" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="6" xTo="6" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="1" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="12" xTo="12" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="2" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="20" xTo="20" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="3" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="30" xTo="30" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="5" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="43" xTo="43" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="8" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="58" xTo="58" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="13" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="84" xTo="84" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="21" caps="square"/>
+         </stroke>
+    </Line>
+    <Line xFrom="123" xTo="123" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="34" caps="square"/>
+         </stroke>
+    </Line>
+</Graphic>

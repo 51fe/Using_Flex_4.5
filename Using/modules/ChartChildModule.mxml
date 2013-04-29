@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- modules/ChartChildModule.mxml -->
+<s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%" 
+    creationComplete="getDataFromParent()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[    
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            private var expenses:ArrayCollection;
+
+            // Access properties of the parent application.
+            private function getDataFromParent():void {
+                expenses = parentApplication.expenses;
+            }        
+        ]]>
+    </fx:Script>
+    
+    <mx:ColumnChart id="myChart" dataProvider="{expenses}">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis dataProvider="{expenses}" categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries xField="Month" yField="Profit" 
+                displayName="Profit"/>
+           <mx:ColumnSeries xField="Month" yField="Expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+     
+     <s:Button id="b1" 
+        click="expenses = parentApplication.getNewData();" 
+        label="Get New Data"/>
+     
+</s:Module>

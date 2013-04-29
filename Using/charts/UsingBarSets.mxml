@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!-- charts/UsingBarSets.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()"
+    height="1050" width="600">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script><![CDATA[
+     import mx.charts.Legend;
+     import mx.charts.BarChart;
+     import mx.charts.series.BarSet;
+     import mx.charts.series.BarSeries;
+     import mx.collections.ArrayCollection;
+
+     [Bindable]
+     private var yearlyData:ArrayCollection = new ArrayCollection([
+        {month:"January", revenue:120, costs:45,
+            overhead:102, oneTime:23},
+        {month:"February", revenue:108, costs:42,
+            overhead:87, oneTime:47},
+        {month:"March", revenue:150, costs:82,
+            overhead:32, oneTime:21},
+        {month:"April", revenue:170, costs:44,
+            overhead:68},
+        {month:"May", revenue:250, costs:57,
+            overhead:77, oneTime:17},
+        {month:"June", revenue:200, costs:33,
+            overhead:51, oneTime:30},
+        {month:"July", revenue:145, costs:80,
+            overhead:62, oneTime:18},
+        {month:"August", revenue:166, costs:87,
+            overhead:48},
+        {month:"September", revenue:103, costs:56,
+            overhead:42},
+        {month:"October", revenue:140, costs:91,
+            overhead:45, oneTime:60},
+        {month:"November", revenue:100, costs:42,
+            overhead:33, oneTime:67},
+        {month:"December", revenue:182, costs:56,
+            overhead:25, oneTime:48},
+        {month:"May", revenue:120, costs:57,
+            overhead:30}
+     ]);
+
+     private function initApp():void {
+        var c:BarChart = new BarChart();
+        c.dataProvider = yearlyData;
+        c.showDataTips = true;
+
+        var vAxis:CategoryAxis = new CategoryAxis();
+        vAxis.categoryField = "month";
+        c.verticalAxis = vAxis;
+
+        var mySeries:Array = new Array();
+
+        var outerSet:BarSet = new BarSet();
+        outerSet.type = "clustered";
+        var series1:BarSeries = new BarSeries();
+        series1.xField = "revenue";
+        series1.displayName = "Revenue";
+        outerSet.series = [series1];
+
+        var innerSet:BarSet = new BarSet();
+        innerSet.type = "stacked";
+        var series2:BarSeries = new BarSeries();
+        var series3:BarSeries = new BarSeries();
+        series2.xField = "costs";
+        series2.displayName = "Recurring Costs";
+        series3.xField = "oneTime";
+        series3.displayName = "One-Time Costs";
+        innerSet.series = [series2, series3];
+
+        c.series = [outerSet, innerSet];
+
+        var l:Legend = new Legend();
+        l.dataProvider = c;
+
+        panel2.addElement(c);
+        panel2.addElement(l);
+     }
+  ]]></fx:Script>
+
+  <s:Panel title="Mixed Sets Chart Created in MXML" id="panel1">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:BarChart id="myChart" 
+        dataProvider="{yearlyData}" showDataTips="true">
+        <mx:verticalAxis>
+            <mx:CategoryAxis categoryField="month"/>
+        </mx:verticalAxis>
+        <mx:series>
+            <mx:BarSet type="clustered">
+                <mx:BarSeries xField="revenue" 
+                    displayName="Revenue"/>
+                <mx:BarSet type="stacked">
+                    <mx:BarSeries 
+                        xField="costs" 
+                        displayName="Recurring Costs"/>
+                    <mx:BarSeries 
+                        xField="oneTime" 
+                        displayName="One-Time Costs"/>
+                </mx:BarSet>
+            </mx:BarSet>
+        </mx:series>
+     </mx:BarChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+  <s:Panel title="Mixed Sets Chart Created in ActionScript" id="panel2">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>  
+  </s:Panel>
+</s:Application>

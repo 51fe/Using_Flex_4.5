@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- charts/ExplodingPiePerWedge.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/budget-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/budget.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     // Create a bindable Array of explode radii.
+     [Bindable]
+     public var explodingArray:Array = [0,0,0,.2,0,0]
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Exploding Pie Chart Per Wedge">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:PieChart id="pie" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:series>
+           <!--Apply the Array of radii to the PieSeries.-->
+           <mx:PieSeries
+                field="amount"
+                nameField="item"
+                perWedgeExplodeRadius="{explodingArray}"
+                labelPosition="callout"/>
+        </mx:series>
+     </mx:PieChart>
+     <mx:Legend dataProvider="{pie}"/>
+  </s:Panel>
+</s:Application>

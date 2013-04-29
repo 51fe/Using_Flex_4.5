@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/SubComponentStylesSelector.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+    
+    <fx:Style>
+        .DCStyle {
+            color:blue;
+        }
+    </fx:Style>
+    <s:VGroup>       
+        <s:Label text="Overrides the color property of the subcontrol:"/>
+        <mx:DateField 
+            id="dateField1" 
+            yearNavigationEnabled="true" 
+            color="red"
+            dateChooserStyleName="DCStyle"/>
+    </s:VGroup>
+
+    <mx:HRule width="200" height="1"/>
+
+    <s:VGroup>       
+        <s:Label text="Applies the color property to the subcontrol:"/>
+        <mx:DateField 
+            id="dateField2" 
+            yearNavigationEnabled="true" 
+            color="red"/>
+    </s:VGroup>
+</s:Application>

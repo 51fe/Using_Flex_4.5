@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- controls\rule\RuleStyles.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        
+        .thickRule {strokeWidth:5}
+        mx|HRule {strokeColor:#00FF00; shadowColor:#0000FF}
+    </fx:Style>
+
+    <mx:HRule styleName="thickRule"/>
+</s:Application>

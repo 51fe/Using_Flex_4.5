@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            private function processValues(zip:String, pn:String):void {
+                // Validate and process data.
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Form id="myForm" defaultButton="{mySubmitButton}">
+
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zipCode"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone Number">
+            <mx:TextInput id="phoneNumber"/>
+        </mx:FormItem>
+    
+        <mx:FormItem>
+            <mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues(zipCode.text, phoneNumber.text);"/>
+        </mx:FormItem>
+    
+    </mx:Form>
+</s:Application>

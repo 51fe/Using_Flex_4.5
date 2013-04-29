@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkViewTransEasier.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    firstView="views.EmployeeMainViewTransEaser"
+    creationComplete="creationCompleteHandler(event);">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            import spark.transitions.FlipViewTransition;
+            
+            // Define a flip transition.
+            public var flipTrans:FlipViewTransition = new FlipViewTransition(); 
+            
+            // Set the default push and pop transitions of the navigator 
+            // to use the flip transition. 
+            // Specify the Bounce class as the easer for the flip.
+            protected function creationCompleteHandler(event:FlexEvent):void {
+                flipTrans.easer = bounceEasing;
+                flipTrans.duration = 1000;
+                navigator.defaultPopTransition = flipTrans;
+                navigator.defaultPushTransition = flipTrans;
+            }
+            
+            protected function button1_clickHandler(event:MouseEvent):void {
+                // Switch to the first view in the section.
+                // Use the default pop view transition defined by 
+                // the ViewNavigator.defaultPopTransition property.
+                navigator.popToFirstView();
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations> 
+        <s:Bounce id="bounceEasing"/> 
+    </fx:Declarations> 
+    
+    <s:navigationContent>
+        <s:Button icon="@Embed(source='assets/Home.png')" 
+                  click="button1_clickHandler(event)"/>
+    </s:navigationContent>
+</s:ViewNavigatorApplication>

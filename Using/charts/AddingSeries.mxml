@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- charts/AddingSeries.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_fred.send();srv_fe.send();srv_strk.send();"
+    height="600">
+
+    <fx:Declarations>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+         <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv_fred" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FRED"/>
+         <mx:HTTPService id="srv_fe" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FE"/>
+         <mx:HTTPService id="srv_strk" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=STRK"/>
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import mx.charts.series.ColumnSeries;
+        import mx.collections.ArrayCollection;
+
+        private var series1:ColumnSeries;
+        private var series2:ColumnSeries;
+
+        private function addMoreSeries():void {
+            if (!series1 || !series2) {
+                series1 = new ColumnSeries();
+                series1.dataProvider = srv_fe.lastResult.data.result;
+                series1.yField = "close";
+                series1.xField = "date";
+                series1.displayName = "FE";
+
+                series2 = new ColumnSeries();
+                series2.dataProvider = srv_strk.lastResult.data.result;
+                series2.yField = "close";
+                series2.xField = "date";
+                series2.displayName = "STRK";
+
+                var currentSeries:Array = myChart.series;
+
+                currentSeries.push(series1);
+                currentSeries.push(series2);
+
+                myChart.series = currentSeries;
+            }
+        }
+
+        private function resetApp():void {
+            myChart.series = [ series0 ];
+            series1 = null;
+            series2 = null;
+        }
+    ]]></fx:Script>
+
+    <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart" showDataTips="true">
+            <mx:horizontalAxis>
+                <mx:DateTimeAxis dataUnits="days"/>
+            </mx:horizontalAxis>
+            <mx:series>
+                <mx:ColumnSeries dataProvider="{srv_fred.lastResult.data.result}"
+                    id="series0"
+                    yField="close"
+                    xField="date"
+                    displayName="FRED"/>
+            </mx:series>
+        </mx:ColumnChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+    <s:HGroup>
+        <s:Button id="b1" label="Add More Series To Chart" click="addMoreSeries()"/>
+        <s:Button id="b2" label="Reset" click="resetApp()"/>
+    </s:HGroup>
+</s:Application>

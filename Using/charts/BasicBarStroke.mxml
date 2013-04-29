@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- charts/BasicBarStroke.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+    
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Bar Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:BarChart id="myChart" dataProvider="{srv.lastResult.data.result}" showDataTips="true">
+        <mx:verticalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:verticalAxis>
+        <mx:series>
+           <mx:BarSeries 
+                yField="month" 
+                xField="profit" 
+                displayName="Profit">
+            <mx:stroke>
+                <mx:SolidColorStroke 
+                    color="0x808080" 
+                    weight="2" alpha=".8"/>
+            </mx:stroke>
+           </mx:BarSeries>
+           <mx:BarSeries 
+                yField="month" 
+                xField="expenses" 
+                displayName="Expenses">
+            <mx:stroke>
+                <mx:SolidColorStroke 
+                    color="0xC0C0C0" 
+                    weight="2" alpha=".8"/>
+            </mx:stroke>
+           </mx:BarSeries>
+        </mx:series>
+     </mx:BarChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

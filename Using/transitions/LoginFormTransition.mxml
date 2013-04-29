@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!-- transitions\LoginFormTransition.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <!-- The Application class states property defines the view states.-->
+    <s:states>
+        <s:State name="default"/>    
+        <s:State name="Register"/>
+    </s:states>
+ 
+    <!-- Define the transition to animate the change of view state. -->
+    <s:transitions>
+       <s:Transition fromState="default">
+            <s:Parallel>
+                <s:Wipe direction="right" target="{confirm}"/>
+                <s:Resize target="{loginPanel}" duration="100"/>
+            </s:Parallel> 
+        </s:Transition>
+       <s:Transition fromState="Register">
+            <s:Sequence>
+                <s:Resize target="{loginPanel}" duration="100"/>
+            </s:Sequence>
+        </s:Transition>
+    </s:transitions>
+        
+    <!-- Set title of the Panel container based on the view state.-->
+    <s:Panel id="loginPanel" 
+        title="Login" title.Register="Register">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>        
+        <s:Form id="loginForm">
+            <s:FormItem label="Username:">
+                <s:TextInput/>
+            </s:FormItem>
+            <s:FormItem label="Password:">
+                <s:TextInput/>
+            </s:FormItem>
+            <!-- Add a TextInput control to the form for the Register view state. -->
+            <s:FormItem id="confirm" label="Confirm:" includeIn="Register">
+                <s:TextInput id="myTI"/>
+            </s:FormItem>            
+            <s:FormItem>
+                <!-- Use the LinkButton to change to the Register view state.-->
+                <!-- Exclude the LinkButton from the Register view state.-->    
+                <!-- Add a LinkButton to the form for the Register view state. -->
+                <mx:LinkButton label="Return to Login" 
+                    includeIn="Register"
+                    click="currentState=''"/>
+                <mx:LinkButton id="registerLink"
+                    includeIn="default" 
+                    label="Need to Register?" 
+                    click="currentState='Register'"/>
+                <s:Button id="loginButton" 
+                    label="Login" label.Register="Register"/>
+            </s:FormItem>            
+        </s:Form>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- events/SinglePropertyAccess.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="addListeners()">
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+        private function customLogEvent(e:Event):void {
+            Alert.show("Y: " + MouseEvent(e).localY + "\n" + "X: " + MouseEvent(e).localX);
+        }
+
+        private function addListeners():void {
+            b1.addEventListener(MouseEvent.CLICK, customLogEvent);
+        }
+        ]]>
+    </fx:Script>
+    
+    <s:Button id="b1" label="Click Me"/>
+
+</s:Application>

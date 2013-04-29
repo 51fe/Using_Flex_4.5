@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- mxml/myComponents/boxes/MyComboBox.mxml -->
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+     <s:ComboBox>
+        <s:dataProvider>
+            <s:ArrayCollection>
+                <fx:String>Dogs</fx:String>
+                <fx:String>Cats</fx:String>
+                <fx:String>Mice</fx:String>
+            </s:ArrayCollection>
+        </s:dataProvider>
+    </s:ComboBox>
+</s:VGroup>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- behaviors\Easing.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="650">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+ 
+    <fx:Script>
+        <![CDATA[
+            private function myEasingFunction(t:Number, b:Number, 
+                    c:Number, d:Number):Number {
+              if ((t /= d) < (1 / 2.75)) {
+                  return c * (7.5625 * t * t) + b;
+              }
+              else if (t < (2 / 2.75)) {
+                  return c * (7.5625 * (t-=(1.5/2.75)) * t + .75) + b;
+              }
+              else if (t < (2.5 / 2.75)) {
+                  return c * (7.5625 * (t-=(2.25/2.75)) * t + .9375) + b;
+              }
+              else {
+                  return c * (7.5625 * (t-=(2.625/2.75)) * t + .984375) + b;
+              }
+            };
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:Move id="moveLeftShow" 
+            xFrom="600" xTo="0" yTo="0" 
+            duration="3000" 
+            easingFunction="myEasingFunction"/>
+        <mx:Move id="moveRightHide" 
+            xFrom="0" xTo="600" 
+            duration="3000" 
+            easingFunction="myEasingFunction"/>    
+    </fx:Declarations>
+    
+    <mx:LinkBar dataProvider="myVS"/>
+    <mx:ViewStack id="myVS" borderStyle="solid">
+        <mx:Canvas id="Canvas0" label="Canvas0" 
+            creationCompleteEffect="{moveLeftShow}" 
+            showEffect="{moveLeftShow}"
+            hideEffect="{moveRightHide}" >
+                <mx:Box height="300" width="600" backgroundColor="#00FF00">
+                    <mx:Label text="Screen 0" color="#FFFFFF" fontSize="40"/>
+                </mx:Box>
+        </mx:Canvas>            
+        <mx:Canvas id="Canvas1" label="Canvas1" 
+            showEffect="{moveLeftShow}" hideEffect="{moveRightHide}" >
+                <mx:Box height="300" width="600" backgroundColor="#0033CC">
+                    <mx:Label text="Screen 1" color="#FFFFFF" fontSize="40"/>
+                </mx:Box>
+            </mx:Canvas>
+    </mx:ViewStack>  
+</s:Application>

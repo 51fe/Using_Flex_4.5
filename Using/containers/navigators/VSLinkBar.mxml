@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- containers\navigators\VSLinkBar.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:VGroup>
+        <!-- Create a LinkBar control to navigate 
+            the ViewStack container. -->
+        <mx:LinkBar dataProvider="{myViewStack}" borderStyle="solid"/>
+
+        <!-- Define the ViewStack and the three child containers. -->
+        <mx:ViewStack id="myViewStack" 
+            borderStyle="solid" 
+            width="100%">
+            
+            <mx:Canvas id="search" label="Search">
+                <mx:Label text="Search Screen"/>
+            </mx:Canvas>
+
+            <mx:Canvas id="custInfo" label="Customer Info">
+                <mx:Label text="Customer Info"/>
+            </mx:Canvas>
+
+            <mx:Canvas id="accountInfo" label="Account Info">
+                <mx:Label text="Account Info"/>
+            </mx:Canvas>
+        </mx:ViewStack>
+    </s:VGroup>
+</s:Application>

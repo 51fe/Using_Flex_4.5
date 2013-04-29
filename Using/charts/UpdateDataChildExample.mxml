@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- charts/UpdateDataChildExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+  <fx:Script><![CDATA[
+    import mx.controls.Label;
+    import mx.charts.chartClasses.CartesianCanvasValue;
+     import mx.collections.ArrayCollection;
+     [Bindable]
+     public var expenses:ArrayCollection = new ArrayCollection([
+        {Month:"Jan", Profit:2000, Expenses:1500, Amount:450},
+        {Month:"Feb", Profit:1000, Expenses:200, Amount:600},
+        {Month:"Mar", Profit:1500, Expenses:500, Amount:300}
+     ]);
+     
+     public function drawData():void
+     {
+        canvas.clear();
+        canvas.beginFill(0xFF0033, 1);      
+        canvas.drawCircle("Feb", 1000, 20);      
+        canvas.endFill();
+        
+        var myLabel:Label = new Label();
+        myLabel.text = "X";
+        myLabel.setStyle("fontWeight", "bold");
+        myLabel.setStyle("fontSize", 20);
+        canvas.addChild(myLabel);
+        canvas.updateDataChild(myLabel, "Feb", 1100);   
+     }
+     
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Line Chart">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:LineChart id="myChart" dataProvider="{expenses}" 
+        showDataTips="true" creationComplete="drawData()">
+        <mx:annotationElements>
+            <mx:CartesianDataCanvas id="canvas" includeInRanges="true" />
+        </mx:annotationElements>
+        <mx:horizontalAxis>
+           <mx:CategoryAxis dataProvider="{expenses}" categoryField="Month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:LineSeries yField="Profit" displayName="Profit"/>
+           <mx:LineSeries yField="Expenses" displayName="Expenses"/>
+        </mx:series>
+     </mx:LineChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

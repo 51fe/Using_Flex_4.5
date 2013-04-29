@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\list\RendererState.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">    
+
+    <fx:Script>
+        <![CDATA[
+            // Import Event and URLRequest classes.
+            import flash.events.Event;
+            import flash.net.URLRequest;
+                
+            private var u:URLRequest;
+            
+            // Event handler to open URL using navigateToURL().
+            private function handleClick(eventObj:Event):void {
+                u = new URLRequest(data.webPage);
+                navigateToURL(u);
+            }   
+        ]]>
+    </fx:Script>
+    
+    <mx:HBox >  
+        <!-- Use Label controls to display state and capital names. -->
+        <mx:Label id="State" text="State: {data.label}"/>
+        <mx:Label id="Statecapital" text="Capital: {data.data}" />
+    </mx:HBox>
+
+    <!-- Define the Link control to open a URL. -->
+    <mx:LinkButton id="webPage" label="Official {data.label} web page" 
+        click="handleClick(event);" color="blue"  />
+</mx:VBox>

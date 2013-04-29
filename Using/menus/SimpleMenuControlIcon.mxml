@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- SimpleMenuControlIcon.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            // Import the Menu control.
+            import mx.controls.Menu;
+    
+            [Bindable]
+            [Embed(source="assets/topIcon.jpg")]
+            public var myTopIcon:Class;
+    
+            [Bindable]
+            [Embed(source="assets/radioIcon.jpg")]
+            public var myRadioIcon:Class;
+    
+            [Bindable]
+            [Embed(source="assets/checkIcon.gif")]
+            public var myCheckIcon:Class;
+
+            // Create and display the Menu control.
+            private function createAndShow():void {
+                var myMenu:Menu = Menu.createMenu(null, myMenuData, false);
+                myMenu.labelField="@label";
+
+                // Specify the check icon.
+                myMenu.setStyle('checkIcon', myCheckIcon);
+
+                // Specify the radio button icon.
+                myMenu.setStyle('radioIcon', myRadioIcon);
+
+                // Specify the icon for the topmenu items.
+                myMenu.iconField="@icon";
+                myMenu.show(10, 10);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Define the menu data. -->
+        <fx:XML format="e4x" id="myMenuData">
+            <root>
+                <menuitem label="MenuItem A" icon="myTopIcon">
+                    <menuitem label="SubMenuItem A-1" enabled="false"/>
+                    <menuitem label="SubMenuItem A-2"/>
+                </menuitem>
+                <menuitem label="MenuItem B" type="check" toggled="true"/>
+                <menuitem label="MenuItem C" type="check" toggled="false" 
+                    icon="myTopIcon"/>
+                <menuitem type="separator"/>     
+                <menuitem label="MenuItem D" icon="myTopIcon">
+                    <menuitem label="SubMenuItem D-1" type="radio" 
+                        groupName="one"/>
+                    <menuitem label="SubMenuItem D-2" type="radio" 
+                        groupName="one" toggled="true"/>
+                    <menuitem label="SubMenuItem D-3" type="radio" 
+                        groupName="one"/>
+                </menuitem>
+            </root>
+        </fx:XML>
+    </fx:Declarations>
+
+    <mx:VBox>
+        <!-- Define a Button control to open the menu -->
+        <mx:Button id="myButton" 
+            label="Open Menu" 
+            click="createAndShow();"/>
+    </mx:VBox>
+</s:Application>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- modules/InterModuleLoader.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[           
+        ]]>
+    </fx:Script>
+    
+    <s:ModuleLoader url="InterModule1.swf" id="m1"/>
+    
+    <s:ModuleLoader url="InterModule2.swf" id="m2"/>
+
+</s:Application>

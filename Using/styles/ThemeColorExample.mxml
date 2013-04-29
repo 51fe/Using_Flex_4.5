@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- styles/ThemeColorExample.mxml -->
+<!-- Compile this example by setting the theme compiler argument to Halo.swc. -->
+<mx:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    themeColor="haloOrange">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.core.FlexGlobals;
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            public var themes:ArrayCollection = new ArrayCollection(
+                [ "haloOrange", "haloBlue", "haloSilver", "haloGreen"]);
+                
+            private function closeHandler(e:Event):void {
+                FlexGlobals.topLevelApplication.setStyle("themeColor", ComboBox(e.target).selectedItem);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:ComboBox dataProvider="{themes}" width="150" close="closeHandler(event);"/>
+
+    <mx:Button id="myButton" label="Click Me" toolTip="Click me"/>
+
+</mx:Application>

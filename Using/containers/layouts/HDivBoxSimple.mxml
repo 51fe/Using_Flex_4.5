@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\HDivBoxSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    backgroundColor="white">
+
+    <fx:Script>
+      <![CDATA[
+        private function myGrid_initialize():void {
+          myGrid.dataProvider = [
+            {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                Price:11.99, Comment:'One of their best. 4 Stars.'},
+            {Artist:'Pavement', Album:'Brighten the Corners', 
+                Price:11.99, Comment:'My favorite.'}
+          ];
+        }
+      ]]>
+    </fx:Script>
+
+    <mx:HDividedBox width="100%" height="100%">
+        <mx:Tree id="tree1" 
+            width="30%" height="100%"
+            labelField="@label" 
+            showRoot="true">
+            <fx:XMLList>
+                <fx:menuitem label="Products">
+                    <fx:menuitem label="Posters" isBranch="true"/>
+                    <fx:menuitem label="CDs">
+                        <fx:menuitem label="Pavement"/>
+                        <fx:menuitem label="Pavarotti"/>
+                        <fx:menuitem label="Phish"/>
+                    </fx:menuitem>
+                    <fx:menuitem label="T-shirts" isBranch="true"/>
+                    <fx:menuitem label="Tickets" isBranch="true"/>
+                </fx:menuitem>
+            </fx:XMLList>
+        </mx:Tree>
+
+        <mx:VDividedBox width="70%" height="100%">
+            <mx:DataGrid id="myGrid" 
+                width="100%" height="100%" 
+                initialize="myGrid_initialize();"
+                change="currentMessage.text=
+                    event.currentTarget.selectedItem.Comment;"/>
+            <mx:TextArea id="currentMessage" 
+                width="100%" 
+                height="60" 
+                text="One of their best. 4 Stars."/>
+        </mx:VDividedBox>
+    </mx:HDividedBox>
+</s:Application>

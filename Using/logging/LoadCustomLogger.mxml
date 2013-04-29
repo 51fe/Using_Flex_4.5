@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- logging/LoadCustomLogger.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns="*" >
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Declarations>
+        <mx:TraceTarget level="0" 
+            includeDate="true" 
+            includeTime="true" 
+            includeCategory="true" 
+            includeLevel="true">
+            <mx:filters>
+                <fx:Array>
+                    <fx:String>*</fx:String>
+                </fx:Array>
+            </mx:filters>
+        </mx:TraceTarget>
+    </fx:Declarations>
+
+    <MyCustomLogger label="Click Me"/>
+
+</s:Application>

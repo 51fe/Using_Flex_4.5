@@ -1,0 +1,27 @@
+/* assets/ComplexStyles.css */
+
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+mx|Application {
+    backgroundImage: "greenBackground.gif";
+    theme-color: #9DBAEB;
+}
+mx|Button {
+    fontFamily: Tahoma;
+    color: #000000;
+    fontSize: 11;
+    fontWeight: normal;
+    text-roll-over-color: #000000; 
+    upSkin: Embed(source="orb_up_skin.gif");
+    overSkin: Embed(source="orb_over_skin.gif");
+    downSkin: Embed(source="orb_down_skin.gif");
+}
+
+.noMargins {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    horizontal-gap: 0;
+    vertical-gap: 0;
+}

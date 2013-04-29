@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- charts/BasicChartEvent.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600" width="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+    
+	<fx:Script><![CDATA[
+		import mx.charts.events.ChartEvent;
+
+		private function chartEventHandler(event:ChartEvent):void {
+			/*
+			 * The ChartEvent will only be dispatched if the mouse is _not_ over a 
+			 * chart item or if it is outside of the range defined by the 
+			 * mouseSensitivity property.
+			*/
+			ta1.text += "Event of type " + event.type + " was triggered.\n";        
+		}
+	]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Style>
+    @namespace s "library://ns.adobe.com/flex/spark";
+    
+    s|Panel {
+        paddingLeft:5;
+        paddingRight:5;
+        paddingTop:5;
+        paddingBottom:5;
+    }
+  </fx:Style>
+  
+  <s:Panel title="Chart click events">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <s:HGroup>
+         <mx:PlotChart id="myChart" 
+            dataProvider="{srv.lastResult.data.result}" 
+            showDataTips="true"
+            mouseSensitivity="10"
+            doubleClickEnabled="true"
+            chartClick="chartEventHandler(event)"
+            chartDoubleClick="chartEventHandler(event)">
+            <mx:series>
+               <mx:PlotSeries 
+                    xField="expenses" 
+                    yField="profit"
+                    displayName="Plot 1"/>
+               <mx:PlotSeries 
+                    xField="amount" 
+                    yField="expenses"
+                    displayName="Plot 2"/>
+               <mx:PlotSeries 
+                    xField="profit" 
+                    yField="amount" 
+                    displayName="Plot 3"/>
+            </mx:series>
+         </mx:PlotChart>
+         <s:TextArea id="ta1" width="150" height="300"/>
+       </s:HGroup>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+
+</s:Application>

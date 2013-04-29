@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\myComponents\MySimpleColorRenderer.mxml -->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    autoDrawBackground="false">
+    
+    <fx:Script> 
+        <![CDATA[    
+            
+            // Property to hold the RGB color value.
+            [Bindable]
+            public var myColor:uint;
+        
+            // Write String to labelDisplay component. 
+            override public function set label(value:String):void 
+            { 
+                super.label = value; 
+                labelDisplay.text = label; 
+                
+                // Determine the RGB color value from the data item.
+                if (label == "red")
+                    myColor = 0xFF0000;
+                if (label == "green")
+                    myColor = 0x00FF00;
+                if (label == "blue")
+                    myColor = 0x0000FF;
+            } 
+        ]]> 
+    </fx:Script>
+    
+    <!-- Set the background color to the RGB color value.-->
+    <s:Rect width="100%" height="100%" alpha="0.5">
+        <s:fill>
+            <s:SolidColor color="{myColor}" />
+        </s:fill>
+    </s:Rect>
+
+    <!-- Display the color name -->
+    <s:Label id="labelDisplay"/>
+</s:ItemRenderer>

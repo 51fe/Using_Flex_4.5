@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\list\myComponents\EditorStateInfo.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <mx:TextInput id="newLabel" text="{data.label}" />
+    <mx:TextInput id="newData" text="{data.data}" />
+    <mx:TextInput id="newWebPage" text="{data.webPage}" />
+</mx:VBox>

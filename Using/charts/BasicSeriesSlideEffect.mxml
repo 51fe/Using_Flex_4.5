@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- charts/BasicSeriesSlideEffect.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_fred.send();srv_strk.send()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+
+         <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv_fred" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FRED"/>
+         <mx:HTTPService id="srv_strk" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=STRK"/>
+
+        <!-- Define chart effects -->
+        <mx:SeriesSlide 
+            id="slideIn" 
+            duration="1000" 
+            direction="up"/>
+        <mx:SeriesSlide 
+            id="slideOut" 
+            duration="1000" 
+            direction="down"/>
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        public function changeProvider():void {
+            if (series1.displayName == "STRK") {
+                myChart.dataProvider = srv_fred.lastResult.data.result;
+                series1.displayName = "FRED";
+                lbl.text = "Ticker: " + series1.displayName;
+            } else {
+                myChart.dataProvider = srv_strk.lastResult.data.result;
+                series1.displayName = "STRK";
+                lbl.text = "Ticker: " + series1.displayName;
+            }
+        }
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Column Chart with Basic Series Slide Effect" 
+        height="493">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:Label id="lbl" text="Ticker: FRED" 
+            width="233.5" height="44" 
+            fontSize="24" color="#091D96" 
+            top="5" right="10"/>
+        <mx:ColumnChart id="myChart" 
+            dataProvider="{srv_fred.lastResult.data.result}">
+            <mx:horizontalAxis>
+                <mx:DateTimeAxis dataUnits="days"/>
+            </mx:horizontalAxis>
+
+            <mx:verticalAxis>
+                <mx:LinearAxis minimum="0" maximum="100"/>
+            </mx:verticalAxis>
+
+            <mx:series>
+                <mx:ColumnSeries id="series1"
+                    xField="date" yField="close"
+                    displayName="FRED"
+                    showDataEffect="slideIn"
+                    hideDataEffect="slideOut"/>
+            </mx:series>
+        </mx:ColumnChart>
+        <mx:Legend dataProvider="{myChart}" bottom="0"/>
+    </s:Panel>
+    <s:Button id="b1" click="changeProvider()" label="Toggle Ticker"/>
+</s:Application>

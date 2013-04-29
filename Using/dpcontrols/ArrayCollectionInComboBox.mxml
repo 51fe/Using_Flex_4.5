@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\ArrayCollectionInComboBox.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <s:ComboBox id="myCB"> 
+        <s:ArrayList id="stateArray">
+            <fx:Object label="AL" data="Montgomery"/>
+            <fx:Object label="AK" data="Juneau"/>
+            <fx:Object label="AR" data="Little Rock"/>
+        </s:ArrayList>
+    </s:ComboBox>
+</s:Application>

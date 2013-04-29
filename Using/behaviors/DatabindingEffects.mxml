@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- behaviors\DatabindingEffects.mxml  -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <s:Resize id="myResizeEffect"
+            target="{myImage}"
+            heightBy="{Number(resizeHeightInput.text)}" 
+            widthBy="{Number(resizeWidthInput.text)}"/>        
+    </fx:Declarations>
+
+    <s:Form>
+        <s:FormItem label="Resize Height:">
+            <s:TextInput id="resizeHeightInput" 
+                text="0" width="30"/>          
+        </s:FormItem>
+        <s:FormItem label="Resize Width:">
+            <s:TextInput id="resizeWidthInput" 
+                text="0" width="30"/>
+        </s:FormItem>
+    </s:Form>
+
+    <s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/>
+    <s:Button label="Resize Image" click="myResizeEffect.play();"/>
+</s:Application>

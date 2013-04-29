@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- controls\date\DateChooserInitializeEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <fx:Script>
+        <![CDATA[
+            import mx.events.DateChooserEvent;
+
+            private function dateChooser_init():void {
+                myDC.dayNames=['Sun', 'Mon', 'Tue', 
+                    'Wed', 'Th', 'Fri', 'Sat'];
+                myDC.firstDayOfWeek = 3;
+                myDC.setStyle("headerColor", 0xff0000);
+                myDC.selectableRange = {rangeStart: new Date(2009,0,1), 
+                    rangeEnd: new Date(2012,0,10)};
+            }
+        
+            private function onScroll():void {
+                myDC.setStyle("fontStyle", "italic");
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:DateChooser id="myDC" 
+        width="200" 
+        creationComplete="dateChooser_init();" 
+        scroll="onScroll();"/>
+</s:Application>

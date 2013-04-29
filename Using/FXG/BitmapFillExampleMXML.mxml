@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- fxg/BitmapFillExampleMXML.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*"> 
+ 
+     <mx:Panel title="BitmapFill MXML Graphic Example" 
+        height="75%" width="75%" layout="horizontal" 
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"> 
+        <s:Graphic>    
+           <!-- Draw rectangle that is filled with a repeating bitmap. --> 
+           <s:Rect height="100" width="200">                              
+                 <s:stroke> 
+                      <s:SolidColorStroke color="0x000000" weight="2"/> 
+                 </s:stroke> 
+                 <s:fill> 
+                      <s:BitmapFill 
+                        source="@Embed('../assets/AirIcon12x12.gif')"
+                        fillMode="repeat"/> 
+                 </s:fill> 
+           </s:Rect> 
+        </s:Graphic>
+     </mx:Panel> 
+</s:Application>

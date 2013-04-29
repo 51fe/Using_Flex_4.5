@@ -1,0 +1,15 @@
+/* assets/FlashTypeStyles.css */
+@font-face {
+    src:url("../assets/MyriadWebProEmbed.swf");
+    fontFamily: "Myriad Web Pro";
+}
+@font-face {
+    src:url("../assets/MyriadWebProEmbed.swf");
+    fontFamily: "Myriad Web Pro";
+    fontWeight: bold;
+}
+@font-face {
+    src:url("../assets/MyriadWebProEmbed.swf");
+    fontFamily: "Myriad Web Pro";
+    fontStyle: italic;
+}       

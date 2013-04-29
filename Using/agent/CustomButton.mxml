@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- agent/CustomButton.mxml -->
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+        <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+            import flash.events.MouseEvent;
+            import mx.automation.Automation;
+            import mx.automation.IAutomationObjectHelper;
+
+            override public function 
+                replayAutomatableEvent(event:Event):Boolean {
+
+                trace('in replayAutomatableEvent()');
+
+                var help:IAutomationObjectHelper = Automation.automationObjectHelper;
+        
+                if (event is MouseEvent && event.type == MouseEvent.MOUSE_MOVE) {
+                    return help.replayMouseEvent(this, MouseEvent(event));
+                } else {
+                    return super.replayAutomatableEvent(event);                
+                }
+            }
+        ]]>
+    </fx:Script>
+</s:Button>

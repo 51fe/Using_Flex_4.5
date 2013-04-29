@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- skins/SubComponentSkins.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  <fx:Script><![CDATA[
+     [Bindable] 
+     private var theText:String = "Lorem ipsum dolor sit amet, consectetur " +
+        "adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore " +
+        "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
+        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor " +
+        "in reprehenderit in voluptate velit esse cillum dolore eu fugiat " +
+        "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
+        "in culpa qui officia deserunt mollit anim id est laborum.";     
+  ]]></fx:Script>
+
+  <fx:Style>
+     .myScrollStyle {
+        upArrowUpSkin: Embed("../assets/uparrow_up_skin.gif");                  
+        downArrowUpSkin: Embed("../assets/downarrow_up_skin.gif");                  
+     }
+  </fx:Style>
+
+  <mx:TextArea id="ta1" 
+     width="400" 
+     height="50" 
+     verticalScrollPolicy="on" 
+     verticalScrollBarStyleName="myScrollStyle" 
+     text="{theText}"
+  />
+
+</s:Application>

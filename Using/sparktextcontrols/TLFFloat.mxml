@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TLFFloat.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private function changeSelection(event:Event):void {
+                image1.float = event.currentTarget.selectedItem;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:Label text="float for the image (default:none):"/>
+        <s:ComboBox id="cb1" 
+            change="changeSelection(event)" 
+            creationComplete="cb1.selectedIndex=0">
+            <s:ArrayCollection>
+                <fx:String>none</fx:String>
+                <fx:String>left</fx:String>
+                <fx:String>right</fx:String>
+                <fx:String>start</fx:String>
+                <fx:String>end</fx:String>
+            </s:ArrayCollection>
+        </s:ComboBox>
+    </s:HGroup>
+    
+    <s:RichEditableText id="myRET1" width="300">
+        <s:textFlow>
+            <s:TextFlow columnWidth="290">
+                <s:p id="p1">Images in a flow are a good thing. For example, here is a float. <s:img id="image1" float="none" source="@Embed(source='../assets/bulldog.jpg')" paddingRight="10" paddingTop="10" paddingBottom="10" paddingLeft="10"></s:img>Don't you agree? 
+                It should show on the left. If it doesn't show up on the left, then it is a bug. You can submit bugs at http://bugs.adobe.com/jira/. You can set how the float is positioned within
+                the paragraph by using the ComboBox below. You can select left, right, start, end, or none. This example does not use the clearFloats property. That is in a different example.</s:p>
+            </s:TextFlow>
+        </s:textFlow>
+    </s:RichEditableText>   
+
+    
+</s:Application>

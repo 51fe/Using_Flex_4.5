@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/IterateOverLeaves.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import flashx.textLayout.elements.*;
+
+            private function copyContents():void {            
+                /* Get the first leaf in the TextFlow. */
+                var leaf:SpanElement = new SpanElement();                
+                leaf = SpanElement(richTxt1.textFlow.getFirstLeaf());
+                
+                /* Write the contents of the first leaf to the second RET control. */
+                richTxt2.text = "LEAF:" + leaf.text + "\n";
+
+                /* Iterate over the remaining leaves and write their contents
+                   to the second RET control. */
+                while(leaf = SpanElement(leaf.getNextLeaf())) {
+                    richTxt2.text += "LEAF:" + leaf.text + "\n";
+                }
+            }
+
+        ]]>
+    </fx:Script>
+    
+    <s:Panel>
+        <s:RichEditableText id="richTxt1" selectable="true" editable="true" textAlign="justify" percentWidth="100">
+            <s:textFlow>
+                <s:TextFlow>
+                    <s:p><s:span>1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s:span></s:p>
+                    <s:p><s:span>2) Cras posuere posuere sem, eu congue orci mattis quis.</s:span></s:p>
+                    <s:p><s:span>3) Curabitur pulvinar tellus venenatis ipsum tempus lobortis.</s:span></s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+    </s:Panel>
+
+    <s:HGroup>
+        <s:Button label="Copy Contents" click="copyContents()"/>
+        <s:Button label="Clear" click="richTxt2.text=''"/>
+    </s:HGroup>
+
+    <s:Panel>
+        <s:RichEditableText id="richTxt2" textAlign="justify" percentWidth="100"/>
+    </s:Panel>
+
+</s:Application>

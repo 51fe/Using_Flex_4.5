@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!-- menus/ExtendedMenuExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[    
+        /* Import the Menu control and MenuEvent class. */
+        import mx.controls.Menu;
+        import mx.events.MenuEvent;
+        
+        /* Define a variable for the Menu control. */
+        private var myMenu:Menu;
+
+        /* The event listener that creates menu with an XML data 
+           provider and adds event listeners for the menu. */
+        private function createAndShow():void {
+            /* Clear the event output display. */
+            ta1.text="";
+            /* Don't show the (single) XML root node in the menu. */
+            myMenu = Menu.createMenu(null, myMenuData, false);
+            /* Set the labelField explicitly for XML data providers. */
+            myMenu.labelField="@label" 
+            myMenu.addEventListener(MenuEvent.ITEM_CLICK, menuShowInfo);
+            myMenu.addEventListener(MenuEvent.MENU_SHOW, menuShowInfo);
+            myMenu.addEventListener(MenuEvent.MENU_HIDE, menuShowInfo);
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OUT, menuShowInfo);
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OVER, menuShowInfo);
+            myMenu.show(275, 10);
+        }
+
+        /* The event listener for the menu events.
+           Retain information on all events for a menu instance. */
+        private function menuShowInfo(event:MenuEvent):void {
+            ta1.text="event.type: " + event.type;
+            ta1.text+="\nevent.label: " + event.label;
+            /* The index value is -1 for menuShow and menuHide events. */
+            ta1.text+="\nevent.index: " + event.index;
+            /* The item field is null for show and hide events. */
+            if (event.item) {
+                ta1.text+="\nItem label: " + event.item.@label
+                ta1.text+="\nItem selected: " + event.item.@toggled;
+                ta1.text+= "\nItem type: " + event.item.@type;
+            }
+        }
+
+        /* The event listener that creates an object-based menu 
+           and adds event listeners for the menu. */
+        private function createAndShow2():void {
+            /* Show the top (root) level objects in the menu. */
+            myMenu = Menu.createMenu(null, menuData, true);
+            myMenu.addEventListener(MenuEvent.ITEM_CLICK, menuShowInfo2);
+            myMenu.addEventListener(MenuEvent.MENU_SHOW, menuShowInfo2);
+            /* The following line is commented out so that you can see the 
+               results of an ITEM_CLICK event. 
+               (The menu hides immediately after the click.)
+               myMenu.addEventListener(MenuEvent.MENU_HIDE, menuShowInfo2); */
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OVER, menuShowInfo2);
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OUT, menuShowInfo2);
+            myMenu.show(275, 10);
+        }
+
+        /* The event listener for the object-based Menu events. */
+        private function menuShowInfo2(event:MenuEvent):void {
+            ta1.text="event.type: " + event.type;
+            ta1.text+="\nevent.label: " + event.label;
+            /* The index value is -1 for menuShow and menuHide events. */
+            ta1.text+="\nevent.index: " + event.index;
+            /* The item field is null for show and hide events. */
+            if (event.item) {
+                ta1.text+="\nItem label: " + event.item.label
+                ta1.text+="\nItem selected: " + event.item.toggled;
+                ta1.text+= "\ntype: " + event.item.type;
+            }
+        }
+
+        /* The object-based data provider, an Array of objects.
+           Its contents is identical to that of the XML data provider. */
+        [Bindable] 
+        public var menuData:Array = [
+            {label: "MenuItem A", children: [
+                {label: "SubMenuItem A-1", enabled: false},
+                {label: "SubMenuItem A-2", type: "normal"} 
+            ]},
+            {label: "MenuItem B", type: "check", toggled: true},
+            {label: "MenuItem C", type: "check", toggled: false},
+            {type: "separator"},
+            {label: "MenuItem D", children: [
+                {label: "SubMenuItem D-1", type: "radio", groupName: "g1"},
+                {label: "SubMenuItem D-2", type: "radio", groupName: "g1", toggled: true}, 
+                {label: "SubMenuItem D-3", type: "radio", groupName: "g1"} 
+            ]} 
+        ];
+    ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- The XML-based menu data provider. The XML tag requires a single root. -->
+        <fx:XML id="myMenuData">
+            <xmlRoot>
+                <menuitem label="MenuItem A" >
+                    <menuitem label="SubMenuItem A-1" enabled="false"/>
+                    <menuitem label="SubMenuItem A-2"/>
+                </menuitem>
+                <menuitem label="MenuItem B" type="check" toggled="true"/>
+                <menuitem label="MenuItem C" type="check" toggled="false"/>
+                <menuitem type="separator"/>     
+                <menuitem label="MenuItem D" >
+                    <menuitem label="SubMenuItem D-1" type="radio" groupName="one"/>
+                    <menuitem label="SubMenuItem D-2" type="radio" groupName="one" toggled="true"/>
+                    <menuitem label="SubMenuItem D-3" type="radio" groupName="one"/>
+                </menuitem>
+            </xmlRoot>
+        </fx:XML>
+    </fx:Declarations>
+        
+    <!-- Text area to display the event information. -->
+    <mx:TextArea id="ta1" width="264" height="168" x="11" y="38"/>
+    
+    <!-- Button controls to open the menus. -->
+    <mx:Button id="b1"
+        label="Open XML Popup" 
+        click="createAndShow();" x="10" y="10"/>
+    <mx:Button id="b2"
+        label="Open Object Popup" 
+        click="createAndShow2();" x="139" y="10"/>
+</s:Application>

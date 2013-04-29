@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- charts/ColumnWithDropShadow.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+     
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="ColumnChart with drop shadow example">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="column" dataProvider="{srv.lastResult.data.result}" showDataTips="true">
+        <!-- Add a custom drop shadow filter to the ColumnChart control. -->
+        <mx:filters>
+           <s:DropShadowFilter 
+                distance="10" 
+                color="0x666666"
+                alpha=".8"/>
+        </mx:filters>
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="expenses"
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{column}"/>
+  </s:Panel>
+</s:Application>

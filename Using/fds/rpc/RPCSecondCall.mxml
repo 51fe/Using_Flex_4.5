@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCSecondCall.mxml. --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:WebService id="ws" destination="wsDest">
+        <mx:operation name="getCurrentSales" result="resultHandler(event.result.resultString)"/>
+        <mx:operation name="setForecastWithSalesInput"/>
+    </mx:WebService>
+    <mx:Script>
+        <![CDATA[
+            // Call the getForecastWithSalesInput operation with the result of the 
+            // getCurrentSales operation.
+            public function resultHandler(currentsales:String):void {
+                ws.setForecastWithSalesInput(currentsales);
+                //Or some variation that uses data binding.
+            }
+        ]]>
+    </mx:Script>
+</mx:Application>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- menus/ArrayDataProvider.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Menu;
+
+            // Method to create an Array-based menu. 
+            private function createAndShow():void {
+                // The third parameter sets the showRoot property to false.
+                // You must set this property in the createMenu method, 
+                // not later.
+                var myMenu:Menu = Menu.createMenu(null, menuData, true);
+                myMenu.show(10, 10);
+            }
+
+            // The Array data provider
+            [Bindable] 
+            public var menuData:Array = [
+                {label: "MenuItem A", children: [
+                    {label: "SubMenuItem A-1", enabled: false},
+                    {label: "SubMenuItem A-2", type: "normal"} 
+                    ]},
+                {label: "MenuItem B", type: "check", toggled: true},
+                {label: "MenuItem C", type: "check", toggled: false},
+                {type: "separator"},
+                {label: "MenuItem D", children: [
+                    {label: "SubMenuItem D-1", type: "radio", 
+                        groupName: "g1"},
+                    {label: "SubMenuItem D-2", type: "radio", 
+                        groupName: "g1", toggled: true}, 
+                    {label: "SubMenuItem D-3", type: "radio", 
+                        groupName: "g1"} 
+                    ]} 
+                ];
+        ]]>
+    </fx:Script>
+
+    <!-- Button control to create and open the menu. -->
+    <mx:Button x="300" y="10" 
+        label="Open Menu" 
+        click="createAndShow();"/>
+</s:Application>

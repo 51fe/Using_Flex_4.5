@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- styles/UsingStyleManager.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)">
+
+    <fx:Style>    
+        .myStyle {
+            color: red;
+        }
+    </fx:Style>   
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+
+    <fx:Script><![CDATA[
+        /* To get a reference to the top-level StyleManager, use the Application object's
+           styleManager property. */
+    
+        public function initApp(e:Event):void {
+            /* Type selector; applies to all Buttons and subclasses of Button. */
+            styleManager.getStyleDeclaration("spark.components.Button").setStyle("fontSize",24); 
+
+            /* Class selector; applies to controls using the style 
+               named myStyle. Note that class selectors must be prefixed 
+               with a period. */
+            styleManager.getStyleDeclaration(".myStyle").setStyle("color",0xCC66CC);
+
+            /* Global style: applies to all controls. */
+            styleManager.getStyleDeclaration("global").setStyle("fontStyle","italic");
+        }
+    ]]></fx:Script>
+
+    <s:Button id="myButton" label="Click Me" styleName="myStyle"/>
+
+    <s:Label id="myLabel" text="This is a Label control." styleName="myStyle"/>
+
+</s:Application>

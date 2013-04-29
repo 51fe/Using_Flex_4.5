@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- components\LabelInitAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:VGroup>
+        <s:Label id="label1" 
+            text="Today's Date:" 
+            initialize="label1.text += new Date();"/>
+    </s:VGroup>
+</s:Application>

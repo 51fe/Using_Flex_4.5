@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- containers\application\myComponents\AccChildObject.mxml -->
+<mx:Accordion xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="{parentDocument.width*.80}" 
+    height="{parentDocument.height*.50}">
+    
+    <mx:HBox label="Child HBox"/>
+    
+</mx:Accordion>

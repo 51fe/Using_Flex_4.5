@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- validators\RegExpExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+
+    <fx:Script>
+        <![CDATA[
+          import mx.events.ValidationResultEvent;
+          import mx.validators.*;
+    
+          private function handleResult(event:ValidationResultEvent):void {
+              if (event.type == "valid")
+              {
+                  // For valid events, the results Array contains
+                  // RegExpValidationResult objects.
+                  var xResult:RegExpValidationResult;
+                  myTA.text="";
+                  for (var i:uint = 0; i < event.results.length; i++)
+                  {
+                      xResult = event.results[i];
+                      myTA.text=myTA.text + xResult.matchedIndex + " " +
+                          xResult.matchedString + "\n";
+                  }
+              }
+              else
+              {
+                  // Not necessary, but if you needed to access it, 
+                  // the results array contains ValidationResult objects. 
+                  var result:ValidationResult;
+                  myTA.text="";           
+              }       
+          }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:RegExpValidator id="regExpV" 
+            source="{exp}" property="text" 
+            flags="g" 
+            expression="{source.text}" 
+            valid="handleResult(event);" 
+            invalid="handleResult(event);"/>
+    </fx:Declarations>
+    
+    <s:Form>
+        <s:FormItem label="Search string">
+            <s:TextInput id="exp"/>
+        </s:FormItem>
+        <s:FormItem label="Regular expression">
+            <s:TextInput id="source" text="ABC\d"/>
+        </s:FormItem>
+        <s:FormItem label="Results">
+            <s:TextArea id="myTA"/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

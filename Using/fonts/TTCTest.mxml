@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- fonts/TTCTest.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+
+        @font-face {
+            src:url("../assets/CAMBRIA.TTC");
+            fontFamily: "Cambria Math";
+            embedAsCFF: true;
+        }
+
+        @font-face {
+            src:url("../assets/CAMBRIA.TTC");
+            fontFamily: "Cambria";
+            embedAsCFF: true;
+        }
+
+        .useCambriaMath { 
+            fontFamily: "Cambria Math"; 
+            fontSize:24;
+        }     
+
+        .useCambria { 
+            fontFamily: "Cambria"; 
+            fontSize:24;
+        }     
+    </fx:Style>
+
+    <s:HGroup>
+        <s:Button label="Default Font" fontSize="24"/> 
+        <s:Button label="Cambria Math" styleName="useCambriaMath"/> 
+        <s:Button label="Cambria" styleName="useCambria"/> 
+    </s:HGroup>
+
+</s:Application>

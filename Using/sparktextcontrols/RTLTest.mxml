@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/RTLTest.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="addText()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFontFamily;
+        advancedAntiAliasing: true;
+        embedAsCFF: true;
+        unicodeRange:
+           U+0041-005A, /* Latin upper-case [A..Z] */
+           U+0061-007A, /* Latin lower-case a-z */
+           U+002E-002E, /* Latin period [.] */           
+           U+05E1,      /* The necessary Hebrew letters */
+           U+05B5, 
+           U+05E4, 
+           U+05B6, 
+           U+05E8, 
+           U+0645,      /* The necessary Arabic letters */
+           U+062F, 
+           U+0631, 
+           U+0633, 
+           U+0629; 
+     }
+     
+     s|RichText {
+        fontFamily: myFontFamily;
+        fontSize: 32;
+        paddingTop: 10;
+     }     
+  </fx:Style>
+  
+  <fx:Script>
+  import flashx.textLayout.formats.*;
+  import spark.utils.TextFlowUtil; 
+
+    private function addText():void {
+        myRT.textFlow = TextFlowUtil.importFromString("school is written " + 
+            String.fromCharCode(0x0645, 0x062f, 0x0631, 0x0633, 0x0629) +
+            " in Arabic and " + String.fromCharCode(0x05E1, 0x05B5, 0x05E4, 0x05B6, 0x05E8) + 
+            " in Hebrew.");
+    }
+
+    private function mirrorText():void {
+        if (myRT.getStyle("direction")=="ltr") {
+            myRT.setStyle("direction", flashx.textLayout.formats.Direction.RTL);
+        } else {
+            myRT.setStyle("direction", flashx.textLayout.formats.Direction.LTR);        
+        }
+    }
+  </fx:Script>
+
+  <s:Panel title="RTL and LTR with embedded font">
+        <s:RichText id="myRT" width="400" height="150"/>
+  </s:Panel>
+
+  <s:Button click="mirrorText()" label="Toggle Direction"/>
+
+</s:Application>

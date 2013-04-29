@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- skins/ApplyButtonStatefulSkin.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Button {
+          skin: ClassReference("myComponents.MyButtonStatefulSkin");
+          disabledSkin: ClassReference("mx.skins.halo.ButtonSkin");
+          selectedUpSkin: ClassReference("mx.skins.halo.ButtonSkin");
+          selectedOverSkin: ClassReference("mx.skins.halo.ButtonSkin");
+          selectedDownSkin: ClassReference("mx.skins.halo.ButtonSkin");
+          selectedDisabledSkin: ClassReference("mx.skins.halo.ButtonSkin");
+        } 
+    </fx:Style>  
+
+    <mx:Button label="Hello" id="b" />
+</s:Application> 

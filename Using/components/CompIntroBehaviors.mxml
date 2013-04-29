@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- components\CompIntroBehaviors.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+ 
+    <fx:Declarations>
+        <s:Resize id="myResizeEffectUp" 
+            target="{myImage}"
+            widthBy="10" heightBy="10"/>
+        <s:Resize id="myResizeEffectDown" 
+            target="{myImage}"
+            widthBy="-10" heightBy="-10"/>
+    </fx:Declarations>
+
+    <mx:Image id="myImage" 
+        source="@Embed(source='assets/flexlogo.jpg')"/>
+
+    <s:Button label="Resize Me Up" 
+        click="myResizeEffectUp.end();myResizeEffectUp.play();"/>
+
+    <s:Button label="Resize Me Down" 
+        click="myResizeEffectDown.end();myResizeEffectDown.play();"/>
+</s:Application>

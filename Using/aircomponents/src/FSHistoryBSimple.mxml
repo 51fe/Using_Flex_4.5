@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/FSHistoryBSimple.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:HGroup> 
+        <mx:FileSystemHistoryButton label="Back" 
+            dataProvider="{fileList.backHistory}" 
+            enabled="{fileList.canNavigateBack}" 
+            click="fileList.navigateBack();" 
+            itemClick="fileList.navigateBack(event.index)"/> 
+        <mx:FileSystemHistoryButton label="Forward" 
+            dataProvider="{fileList.forwardHistory}" 
+            enabled="{fileList.canNavigateForward}" 
+            click="fileList.navigateForward();" 
+            itemClick="fileList.navigateForward(event.index)"/> 
+    </s:HGroup> 
+    <mx:FileSystemList id="fileList"/> 
+</s:WindowedApplication>

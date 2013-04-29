@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- events/TrapQKey.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.core.FlexGlobals;
+        
+        private function initApp():void {
+            FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_UP,keyHandler);
+            
+            // Set the focus somewhere inside the application.
+            ta1.setFocus();
+        }
+
+        //This function quits the application if the user presses Shift+Q.
+        private function keyHandler(event:KeyboardEvent):void {
+            var bShiftPressed:Boolean = event.shiftKey;
+            if (bShiftPressed) {
+                var curKeyCode:int = event.keyCode;
+                if (curKeyCode == 81) { // 81 is the keycode value for the Q key
+
+                    /* Quit the application by closing the browser using JavaScript.
+                       This may not work in all browsers. */
+                    var url:URLRequest = new
+                    URLRequest("javascript:window.close()");
+                    navigateToURL(url,"_self");             
+                }
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="ta1" text="Focus here so that Shift+Q will quit the browser."/>
+
+</s:Application>

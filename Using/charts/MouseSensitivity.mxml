@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- charts/MouseSensitivity.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Mouse Sensitivity">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PlotChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true"
+        mouseSensitivity="{mySlider.value}">
+        <mx:series>
+           <mx:PlotSeries 
+                xField="expenses" 
+                yField="profit"
+                displayName="Plot 1"/>
+           <mx:PlotSeries 
+                xField="amount" 
+                yField="expenses"
+                displayName="Plot 2"/>
+           <mx:PlotSeries 
+                xField="profit" 
+                yField="amount" 
+                displayName="Plot 3"/>
+        </mx:series>
+     </mx:PlotChart>
+
+     <s:HGroup>
+         <mx:Legend dataProvider="{myChart}"/>
+         <s:VGroup>
+             <s:Label text="Mouse Sensitivity:"/>
+             <mx:HSlider id="mySlider"
+                minimum="0"
+                maximum="300"
+                value="20"
+                dataTipPlacement="top"
+                tickColor="black"
+                snapInterval="1"
+                tickInterval="20"
+                labels="['0','300']"
+                allowTrackClick="true"
+                liveDragging="true"/>
+        </s:VGroup>
+      </s:HGroup>
+  </s:Panel>
+</s:Application>

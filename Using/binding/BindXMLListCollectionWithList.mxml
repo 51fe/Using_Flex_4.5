@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- binding\BindXMLListCollectionWithList.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">    
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.XMLListCollection;
+            import mx.collections.ArrayCollection;
+    
+            /* An XML object with categorized produce. */
+            [Bindable]
+            public var myData:XML=
+                <catalog>
+                  <category name="Meat">
+                      <product name="Buffalo"/>
+                      <product name="T Bone Steak"/>
+                      <product name="Whole Chicken"/>
+                  </category>
+                  <category name="Vegetables">
+                      <product name="Broccoli"/>                         
+                      <product name="Vine Ripened Tomatoes"/>
+                      <product name="Yellow Peppers"/>
+                  </category>
+                  <category name="Fruit">
+                      <product name="Bananas"/>
+                      <product name="Grapes"/>
+                      <product name="Strawberries"/>
+                  </category>
+              </catalog>;
+
+            /* An XMLListCollection representing the data
+               for the shopping List. */
+           [Bindable]
+           public var listDP:XMLListCollection = new XMLListCollection(new XMLList());
+    
+           /* Add the item selected in the Tree to the List XMLList data provider. */
+           private function doTreeSelect():void {
+               if (prodTree.selectedItem)
+               listDP.addItem(prodTree.selectedItem.copy());
+           }
+
+           /* Remove the selected in the List from the XMLList data provider. */
+           private function doListRemove():void {
+               if (prodList.selectedItem)
+                   listDP.removeItemAt(prodList.selectedIndex);
+           }
+        ]]>
+    </fx:Script>
+    
+    <s:HGroup>
+        <mx:Tree id="prodTree" dataProvider="{myData}" width="200"
+            showRoot="false" labelField="@name"/>           
+        <s:VGroup>
+            <s:Button id="treeSelect" label="Add to List"
+                click="doTreeSelect()"/>
+            <s:Button id="listRemove" label="Remove from List"
+                click="doListRemove()"/>
+        </s:VGroup>         
+        <s:List id="prodList" dataProvider="{listDP}" width="200"
+            labelField="@name"/>        
+    </s:HGroup>
+</s:Application>

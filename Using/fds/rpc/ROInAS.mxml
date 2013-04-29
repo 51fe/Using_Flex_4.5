@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\ROInAS.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.rpc.remoting.RemoteObject;
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+
+            [Bindable]
+            public var empList:Object;          
+            public var employeeRO:RemoteObject;
+
+            public function useRemoteObject(intArg:int, strArg:String):void {
+                employeeRO = new RemoteObject();
+                employeeRO.destination = "SalaryManager";
+                employeeRO.getList.addEventListener("result", getListResultHandler);
+                employeeRO.addEventListener("fault", faultHandler);
+                employeeRO.getList(deptComboBox.selectedItem.data);
+            }
+
+            public function getListResultHandler(event:ResultEvent):void {
+                 // Do something
+                empList=event.result;
+            }
+
+            public function faultHandler (event:FaultEvent):void {
+             // Deal with event.fault.faultString, etc.
+                Alert.show(event.fault.faultString, 'Error');
+            }
+        ]]>
+    </mx:Script>
+    <mx:ComboBox id="deptComboBox"/>
+</mx:Application>

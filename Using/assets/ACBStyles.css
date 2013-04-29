@@ -1,0 +1,11 @@
+/* assets/ACBStyles.css */
+
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+mx|ApplicationControlBar {
+    borderStyle:     "solid";
+    cornerRadius:    10;
+    backgroundColor: #FF9933;
+    alpha:           1;
+    dottedMap:       "beige_dotted_map.png";
+}

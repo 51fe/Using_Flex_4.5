@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\component\myComponents\RendererDGImageSelect.mxml -->
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    horizontalAlign="center">
+
+    <fx:Script>
+        <![CDATA[
+
+            import mx.events.FlexEvent;
+
+            [Embed(source="saleIcon.jpg")]
+            [Bindable]
+            public var sale:Class;
+            
+            [Embed(source="noSaleIcon.jpg")]
+            [Bindable]
+            public var noSale:Class;            
+
+            override public function set data(value:Object):void {      
+                if(value != null)  {
+                    super.data = value;
+                    if (value.SalePrice == true) onSale.source=new sale();
+                    else onSale.source=new noSale();
+                }   
+                // Dispatch the dataChange event.
+                dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+            }   
+        ]]>
+    </fx:Script>
+
+    <mx:Image id="onSale" height="20"/>
+</mx:HBox>

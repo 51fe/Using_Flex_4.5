@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- createcomps_styles/DefaultCSSApplication.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <mx:Label text="Custom MXML component using defaults.css from SWC file."/>
+    <MyComp:StateComboBox/>
+
+    <mx:Label text="Default ComboBox control using the default defaults.css file."/>
+    <mx:ComboBox>
+        <mx:dataProvider>
+            <fx:String>AK</fx:String>
+            <fx:String>AL</fx:String>
+        </mx:dataProvider>
+    </mx:ComboBox>
+</s:Application>

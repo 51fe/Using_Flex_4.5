@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- states\NewStatesReparent.mxml --> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:states> 
+        <s:State name="Parent1"/> 
+        <s:State name="Parent2"/> 
+    </s:states> 
+    
+    <s:HGroup>
+        <s:Panel id="Panel1" 
+            height="100" width="100"
+            title="Panel 1"> 
+            <s:Button id="setCB" includeIn="Parent1"/> 
+        </s:Panel> 
+        <s:Panel id="Panel2" 
+            height="100" width="100"
+            title="Panel 2"> 
+            <fx:Reparent target="setCB" includeIn="Parent2"/> 
+        </s:Panel>     
+    </s:HGroup>
+ 
+    <s:HGroup>
+        <s:Button label="Parent 1" 
+            click="currentState='Parent1'" 
+            enabled.Parent1="false"/> 
+        <s:Button label="Parent 2"
+            click="currentState='Parent2'" 
+            enabled.Parent2="false"/> 
+    </s:HGroup>
+</s:Application>

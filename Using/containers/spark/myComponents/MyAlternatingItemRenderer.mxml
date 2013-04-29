@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\myComponents\MyAlternatingItemRenderer.mxml -->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    autoDrawBackground="false">
+    
+    <fx:Script>
+        <![CDATA[
+            
+            // Make the default background color white.
+            [Bindable]
+            public var myBGColor:int = 0xFFFFFF;
+            
+            // Override the itemIndex set function to draw a 
+            // white background behind even number items, 
+            // and a green background behind odd numbered items.
+            override public function set itemIndex(value:int):void { 
+                if ((value%2) == 0) {
+                    myBGColor= 0xFFFFFF;
+                }
+                if ((value%2) == 1) {
+                    myBGColor= 0xCCFF66;
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:states> 
+        <s:State name="normal"/> 
+        <s:State name="hovered"/> 
+    </s:states> 
+
+    <s:Rect id="myRect" 
+        left="0" right="0" top="0" bottom="0" 
+        alpha="1.0"> 
+        <s:stroke> 
+            <s:SolidColorStroke 
+                color="0xA8C6EE" 
+                weight="1"/> 
+        </s:stroke> 
+        <s:fill> 
+            <!-- Bind the myBGColor property to the fill color. -->
+            <s:SolidColor
+                color="{myBGColor}"/> 
+        </s:fill> 
+    </s:Rect>     
+    
+    <s:Label id="labelDisplay" 
+        verticalCenter="0" 
+        left="3" right="3" top="6" bottom="4" 
+        fontSize.hovered='14' fontStyle.hovered="italic"/> 
+</s:ItemRenderer>

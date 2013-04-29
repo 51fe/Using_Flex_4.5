@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- textcontrols/MyTitleWindow.mxml -->
+<!-- A TitleWindow that displays the X close button. Clicking the close button 
+only generates a CloseEvent event, so it must handle the event to close the control. -->
+<mx:TitleWindow 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    title="Find/Replace" 
+    showCloseButton="true" 
+    close="closeDialog();">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.TextArea;
+            import mx.managers.PopUpManager;
+
+            /* Reference to the RichTextArea textArea subcomponent.
+               It is set by the application findReplaceDialog method
+               and used in the replaceAndClose method, below. */
+            public var RTETextArea:TextArea;
+
+            /* The event handler for the Replace button's click event.
+               Replace the text in the RichTextEditor TextArea and
+               close the dialog box. */
+            public function replaceAndClose():void{
+                RTETextArea.text = RTETextArea.text.replace(ti1.text, ti2.text);
+                PopUpManager.removePopUp(this);
+            }
+
+            /* The event handler for the TitleWindow close button. */
+            public function closeDialog():void {
+                PopUpManager.removePopUp(this);
+            }
+
+        ]]>
+    </fx:Script>
+
+    <!-- The TitleWindow subcomponents: the find and replace inputs, 
+         their labels, and a button to initiate the operation. -->
+    <mx:Label text="Find what:"/>
+    <mx:TextInput id="ti1"/>
+    
+    <mx:Label text="Replace with:"/>
+    <mx:TextInput id="ti2"/>
+    
+    <mx:Button label="Replace" click="replaceAndClose();"/> 
+</mx:TitleWindow>

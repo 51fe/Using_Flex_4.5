@@ -1,0 +1,1 @@
+-locale=en_US,es_ES -source-path=locale/{locale} -allow-source-path-overlap=true

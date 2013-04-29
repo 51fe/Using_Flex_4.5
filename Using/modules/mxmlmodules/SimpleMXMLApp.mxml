@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- modules/mxmlmodules/SimpleMXMLApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+        import mx.modules.IModuleInfo;
+        import mx.modules.ModuleManager;
+
+        public var assetModule:IModuleInfo;
+        public var sm:Object;
+        
+        [Bindable]
+        public var answer:Number = 0;
+
+        public function initApp():void {        
+            /* Get the IModuleInfo interface for the specified URL. */
+            assetModule = ModuleManager.getModule("SimpleModule.swf");    
+            assetModule.addEventListener("ready", getModuleInstance);
+            assetModule.load(null, null, null, moduleFactory);
+        }
+
+        public function getModuleInstance(e:Event):void {
+            /* Get an instance of the module. */
+            sm = assetModule.factory.create() as SimpleModule;
+        }            
+        
+        public function addNumbers():void {
+            var a:Number = Number(ti1.text);
+            var b:Number = Number(ti2.text);
+
+            /* Call a method on the module. */
+            answer = sm.computeAnswer(a, b).toString();
+        }
+    ]]>
+  </fx:Script>
+
+   <s:Form>
+        <s:FormHeading label="Enter values to sum."/>
+        <s:FormItem label="First Number">
+            <s:TextInput id="ti1" width="50"/>
+        </s:FormItem>
+        <s:FormItem label="Second Number">
+            <s:TextInput id="ti2" width="50"/>
+        </s:FormItem>
+        <s:FormItem label="Result">
+            <s:Label id="ti3" width="100" text="{answer}"/>
+        </s:FormItem>
+        <s:Button id="b1" label="Compute" click="addNumbers()"/>
+    </s:Form>
+</s:Application>

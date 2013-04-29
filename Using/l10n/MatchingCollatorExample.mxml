@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/MatchingCollatorExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <fx:Declarations>
+        <s:MatchingCollator id="matchingCollator" 
+            ignoreCase="false" 
+            ignoreCharacterWidth="false" 
+            ignoreDiacritics="{cb1.selected}" 
+            ignoreKanaType="false" 
+            ignoreSymbols="false" 
+            numericComparison="false"
+            locale="{myDDL.selectedItem}"/>
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+            private function doCompares():void {
+                label1.text = matchingCollator.compare('ä','vu').toString();
+                label2.text = matchingCollator.compare('a','ä').toString();
+                label3.text = matchingCollator.compare('coté','côte').toString();
+            }
+        ]]>
+    </fx:Script>    
+
+    <s:HGroup>
+        <s:Label text="Select Locale ID: "/>
+        <s:DropDownList id="myDDL"
+            change="doCompares()"
+            width="200"
+            prompt="Select One">
+            <mx:ArrayCollection>
+                <fx:String>en-US</fx:String>
+                <fx:String>fr-FR</fx:String>
+            </mx:ArrayCollection>           
+        </s:DropDownList>
+        <s:CheckBox id="cb1" 
+            label="Ignore Diacritics"
+            change="doCompares()"/>         
+    </s:HGroup>
+
+    <s:Form>
+        <s:FormItem label="{matchingCollator.actualLocaleIDName}"/>
+        <s:FormItem label="String1: ä, String2: vu">
+            <s:Label id="label1" text=""/>
+        </s:FormItem>
+        <s:FormItem label="String1: a, String2: ä">
+            <s:Label id="label2" text=""/>
+        </s:FormItem>
+        <s:FormItem label="String1: coté, String2: côte">
+            <s:Label id="label3" text=""/>
+        </s:FormItem>
+    </s:Form>
+
+    <s:Label text="-1: string1 is less than string 2; 0: strings are equal; 1: string1 is greater than string2"/>
+</s:Application>

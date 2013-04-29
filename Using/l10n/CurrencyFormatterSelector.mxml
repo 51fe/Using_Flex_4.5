@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- l10n/CurrencyFormatterSelector.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600">
+    <fx:Declarations>
+        <s:CurrencyFormatter id="curFormatter" 
+            useCurrencySymbol="true" 
+            locale="{myDDL.selectedItem}"/> 
+    </fx:Declarations>
+    
+    <fx:Script>    
+        import flash.globalization.LocaleID;
+    
+        private function updateLocaleDetails():void {
+            var locale:LocaleID = new LocaleID(myDDL.selectedItem);
+            l6.text = "Locale Script: " + locale.getScript();
+            l7.text = "Locale Region: " + locale.getRegion();
+            l8.text = "Locale Language: " + locale.getLanguage();
+        }
+    </fx:Script>
+    
+    <s:VGroup>
+        <s:HGroup>
+            <s:Label text="Select Locale ID: "/>
+            <s:DropDownList id="myDDL"
+                change="updateLocaleDetails()"
+                width="200"
+                prompt="Select One"
+                labelField="product">
+                <mx:ArrayCollection>
+                    <fx:String>ar-SA</fx:String>
+                    <fx:String>da-DK</fx:String>
+                    <fx:String>de-DE</fx:String>
+                    <fx:String>en-GB</fx:String>
+                    <fx:String>en-US</fx:String>
+                    <fx:String>es-ES</fx:String>
+                    <fx:String>fi-FI</fx:String>
+                    <fx:String>fr-FR</fx:String>
+                    <fx:String>it-IT</fx:String>
+                    <fx:String>ja-JP</fx:String>
+                    <fx:String>ko-KR</fx:String>
+                    <fx:String>nb-NO</fx:String>
+                    <fx:String>nl-NL</fx:String>
+                    <fx:String>pt-BR</fx:String>
+                    <fx:String>ru-RU</fx:String>
+                    <fx:String>sv-SE</fx:String>
+                    <fx:String>zh-CN</fx:String>
+                    <fx:String>zh-TW</fx:String>
+                </mx:ArrayCollection>           
+            </s:DropDownList>
+        </s:HGroup>
+
+        <s:Label id="currencyLabel" 
+            fontWeight="bold" 
+            fontSize="16" 
+            text="{curFormatter.format(4500000)}"/>
+        <s:Label id="l2" text="Actual Locale ID Name: {curFormatter.actualLocaleIDName}"/>
+        <s:Label id="l4" text="Currency Symbol: {curFormatter.currencySymbol}"/>
+        <s:Label id="l5" text="Currency ISO Code: {curFormatter.currencyISOCode}"/>
+        <s:Label id="l6" text="Locale Script: "/>
+        <s:Label id="l7" text="Locale Region: "/>
+        <s:Label id="l8" text="Locale Language: "/>
+
+        <s:Label text="All Available Locale ID Names: "/>
+        <s:TextArea id="ta1" 
+            text="{String(CurrencyFormatter.getAvailableLocaleIDNames())}" 
+            width="300" height="400"/>
+
+    </s:VGroup>
+</s:Application>

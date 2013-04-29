@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SelectAllExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private function selectText(e:Event):void {
+                e.currentTarget.selectAll();
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="sparkTextArea" 
+        text="Spark TextArea control." focusIn="selectText(event)"/>
+    <s:TextInput id="sparkTextInput" text="Spark TextInput control." focusIn="selectText(event)"/>
+    
+</s:Application>

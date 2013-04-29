@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/TileListDataProvider.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();" >
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Button;
+            import mx.collections.*;
+      
+            private var listArray:Array=[
+                {label: "item0", data: 0},{label: "item1", data: 1},
+                {label: "item2", data: 2},{label: "item3", data: 3},
+                {label: "item4", data: 4},{label: "item5", data: 5},
+                {label: "item6", data: 6},{label: "item7", data: 7},
+                {label: "item8", data: 8}];
+      
+            [Bindable]
+            public var TileListdp:ArrayList;
+      
+            private function initData():void {
+                TileListdp = new ArrayList(listArray);
+            }
+        ]]>
+    </fx:Script>
+
+   <mx:TileList dataProvider="{TileListdp}"
+      itemRenderer="mx.controls.Button"/>
+</s:Application>

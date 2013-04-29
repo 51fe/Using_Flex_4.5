@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SparkTextAreaStyles.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            /*
+            Non-inheriting styles you must set on textDisplay:
+                columnCount
+                columnGap
+                columnWidth
+            
+            Non-inheriting styles that you can set on TextArea because
+            they are passed to the subcomponent through the TextAreaSkin class:
+                lineBreak
+                paddingTop/Bottom/Left/Right
+                verticalAlign
+            */       
+            
+            import spark.components.RichEditableText;
+            
+            private function initApp():void {
+                RichEditableText(ta1.textDisplay).setStyle("columnCount", 3);
+                RichEditableText(ta1.textDisplay).setStyle("columnWidth", 100);
+                RichEditableText(ta1.textDisplay).setStyle("columnGap", 15);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="ta1" height="100" width="400" verticalAlign="bottom" paddingBottom="20">
+        This is a text area control. Because the text rendering is done by a RichEditableText subcontrol, 
+        you have to use the textDisplay property to set the values of some non-inheriting styles. 
+        Other non-inheriting styles are defined in the skin class and are passed through to the 
+        subcomponent.
+        For inheriting styles, they are inherited by the RichEditableText subcontrol.
+    </s:TextArea>
+
+</s:Application>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\SparkMobileKeyboardHomeView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        title="Compose Email">
+        
+    <s:Scroller width="100%" top="10" bottom="50">
+        <s:VGroup paddingTop="3" paddingLeft="5" paddingRight="5" paddingBottom="3">
+            <s:TextInput prompt="To" width="100%"/>
+            <s:TextInput prompt="CC" width="100%"/>
+            <s:TextInput prompt="Subject" width="100%"/>
+            <s:TextArea height="400" width="100%" prompt="Compose Mail"/>
+        </s:VGroup>
+    </s:Scroller>
+    
+    <s:HGroup width="100%" gap="20" 
+        bottom="5" horizontalAlign="left">
+        <s:Button label="Send" height="40"/>
+        <s:Button label="Cancel" height="40"/>
+    </s:HGroup>
+</s:View>

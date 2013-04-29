@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleHierarchicalADG.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">  
+
+    <fx:Script>
+      <![CDATA[
+          import mx.collections.ArrayCollection;
+                    
+          include "SimpleHierarchicalData.as";
+          
+          private function displayOpenItems():void
+          {
+              myTA.text="";
+              
+              if (myADG.hierarchicalCollectionView.openNodes.length != 0)
+              {
+                myTA.text="At least one opennode" + String(myADG.hierarchicalCollectionView.openNodes.length);
+                for (var i:uint = 0; i < myADG.hierarchicalCollectionView.openNodes.length; i++)
+                {
+                    myTA.text += 'Opened Item:' + myADG.hierarchicalCollectionView.openNodes[i]['Region'];
+                    myTA.text += ', Number of children: ' + String(myADG.hierarchicalCollectionView.openNodes[i]['children'].length);                    
+                    myTA.text += "\n";            
+                }
+              }
+
+              else 
+                myTA.text="No items open.";
+          }
+      ]]>
+    </fx:Script>    
+    
+    <mx:AdvancedDataGrid id="myADG"
+        width="100%" height="100%">
+        <mx:dataProvider>
+            <mx:HierarchicalData source="{dpHierarchy}"/>
+        </mx:dataProvider>
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Region"/>
+            <mx:AdvancedDataGridColumn dataField="Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Estimate"/>
+        </mx:columns>
+    </mx:AdvancedDataGrid>    
+    
+    <mx:Button label="Display Open Items" click="displayOpenItems();"/>
+    
+    <mx:TextArea id="myTA" width="100%" height="20%"/>
+</s:Application>

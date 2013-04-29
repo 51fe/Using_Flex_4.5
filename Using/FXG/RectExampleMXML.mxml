@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/RectExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     
+     <mx:Panel title="Rectangle MXML Graphics Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <s:VGroup>
+           <s:Rect height="100" width="200">                              
+                 <s:stroke>
+                      <s:SolidColorStroke color="0x000000" weight="2"/>
+                 </s:stroke>
+                 <s:fill>
+                      <s:RadialGradient>
+                                <s:GradientEntry color="0x0056FF" ratio="0" alpha=".5"/>
+                                <s:GradientEntry color="0x00CC99" ratio=".33" alpha=".5"/>
+                                <s:GradientEntry color="0xECEC21" ratio=".66" alpha=".5"/>
+                      </s:RadialGradient>
+                 </s:fill>
+           </s:Rect>
+            <s:Rect height="100" width="200" radiusX="25" radiusY="25">                              
+                 <s:stroke>
+                      <s:SolidColorStroke color="0x000000" weight="2"/>
+                 </s:stroke>
+                 <s:fill>
+                      <s:RadialGradient>
+                                <s:GradientEntry color="0x0056FF" ratio="0" alpha=".5"/>
+                                <s:GradientEntry color="0x00CC99" ratio=".33" alpha=".5"/>
+                                <s:GradientEntry color="0xECEC21" ratio=".66" alpha=".5"/>
+                      </s:RadialGradient>
+                 </s:fill>
+            </s:Rect>
+        </s:VGroup>
+     </mx:Panel>
+</s:Application>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- components\CompSizing.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="logSizes();">
+
+    <fx:Script>
+        <![CDATA[
+            private function logSizes():void {
+                trace("HGroup: "+ hb1.width);
+                trace("Label: "+ lb1.width);
+                trace("Image: "+ img1.width);
+                trace("Button: "+ b1.width);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:HGroup id="hb1" width="250">
+        <s:Label id="lb1" 
+            text="Hello" 
+            width="50"/>
+        <mx:Image id="img1" 
+            source="@Embed(source='assets/flexlogo.jpg')" 
+            width="75%"/>
+        <s:Button id="b1" 
+            label="Button" 
+            width="25%"/>
+    </s:HGroup>
+</s:Application>

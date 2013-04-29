@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- asAdvancedSpark\myComponents\ModalTextStatesSkin.mxml -->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    minWidth="100" minHeight="25">
+
+    <!-- Define ModalTextState as the host component of the skin. --> 
+    <fx:Metadata>
+        <![CDATA[ 
+            [HostComponent("myComponents.ModalTextStates")]
+        ]]>
+    </fx:Metadata> 
+
+    <!-- Define the view states. --> 
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="normalDisabled" stateGroups="disabledGroup"/>
+        <s:State name="textLeft"/>
+        <s:State name="textLeftDisabled" stateGroups="disabledGroup"/>
+    </s:states>
+
+    <!-- Define the border around the RichEditableText control. --> 
+    <s:Rect x="{myScroller.x}" 
+        width="{myScroller.width}" 
+        height="{myScroller.height}">
+        <s:stroke>
+            <s:SolidColorStroke color="0x686868" weight="1"/>
+        </s:stroke>
+    </s:Rect>
+
+    <!--- Defines the appearance of the Button subcomponent. -->
+    <s:Button id="modeButton" 
+        width="150"
+        x="0" 
+        x.textLeft="206" 
+        x.textLeftDisabled="206"
+        minHeight="25" height="100%"/>
+                           
+    <!--- Defines the appearance of the RichEditableText subcomponent. -->
+    <s:Scroller id="myScroller"
+        width="200"
+        x="156" 
+        x.textLeft="0" 
+        x.textLeftDisabled="0">
+        <s:RichEditableText id="textInput" 
+            alpha="1.0" alpha.disabledGroup="0.5"
+            minHeight="25"
+            heightInLines="4"
+            widthInChars="20" 
+            paddingLeft="4" paddingTop="4"
+            paddingRight="4" paddingBottom="4"/>
+    </s:Scroller>
+</s:SparkSkin>

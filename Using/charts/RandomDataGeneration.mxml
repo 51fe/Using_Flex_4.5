@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- charts/RandomDataGeneration.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()"
+    height="600">
+  
+  <fx:Script><![CDATA[
+     import mx.collections.*;
+
+     // Define data provider array for the chart data.
+     [Bindable]
+     public var dataSet:ArrayCollection;
+
+     // Define the number of elements in the array.
+     public var dsLength:Number = 10;
+
+     public function initApp():void {
+        // Initialize data provider array.
+        dataSet = new ArrayCollection(genData());
+     }
+
+     public function genData():Array {
+        var result:Array = [];
+
+        for (var i:int=0;i<dsLength;i++) {
+           var localVals:Object = {
+                valueA:Math.random()*100,
+                valueB:Math.random()*100,
+                valueX:Math.random()*100,
+                valueY:Math.random()*100
+           };
+
+           // Push new object onto the data array.
+           result.push(localVals);
+        }
+        return result;
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Plot Chart">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:PlotChart id="myChart" 
+        dataProvider="{dataSet}" showDataTips="true">
+        <mx:series>
+           <mx:PlotSeries 
+                xField="valueX" 
+                yField="valueY" 
+                displayName="Series 1"/>
+           <mx:PlotSeries 
+                xField="valueA" 
+                yField="valueB" 
+                displayName="Series 2"/>
+        </mx:series>
+     </mx:PlotChart>
+     <mx:Legend id="l1" dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

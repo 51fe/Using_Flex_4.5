@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+      xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minWidth="112" minHeight="112"
+      alpha.disabled="0.5" blendMode="normal"> 
+    
+    <fx:Metadata>
+    <![CDATA[ 
+        [HostComponent("spark.components.List")]
+    ]]>
+    </fx:Metadata> 
+    
+    <fx:Script fb:purpose="styling">
+        static private const exclusions:Array = ["scroller", "background"];
+
+        override public function get colorizeExclusions():Array {return exclusions;}
+        
+        static private const contentFill:Array = ["bgFill"];
+        
+        override public function get contentItems():Array {return contentFill};
+        
+        override protected function initializationComplete():void
+        {
+            useChromeColor = true;
+            super.initializationComplete();
+        }
+ 
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+        {
+            if (getStyle("borderVisible") == true)
+            {
+                border.visible = true;
+                background.left = background.top = background.right = background.bottom = 1;
+                scroller.minViewportInset = 1;
+            }
+            else
+            {
+                border.visible = false;
+                background.left = background.top = background.right = background.bottom = 0;
+                scroller.minViewportInset = 0;
+            }
+            
+            borderStroke.color = getStyle("borderColor");
+            borderStroke.alpha = getStyle("borderAlpha");
+            
+            super.updateDisplayList(unscaledWidth, unscaledHeight);
+        }
+    </fx:Script>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <fx:Declarations>
+        <fx:Component id="dropIndicator">
+            <s:Group includeInLayout="false" minWidth="4" minHeight="4" maxWidth="4" maxHeight="4">
+                <s:Line xFrom="0" xTo="10" yFrom="5" yTo="5">
+                    <s:stroke>
+                        <s:SolidColorStroke color="blue" weight="2"/>
+                    </s:stroke>
+                </s:Line>        
+                <s:Line xFrom="5" xTo="10" yFrom="0" yTo="5">
+                    <s:stroke>
+                        <s:SolidColorStroke color="blue" weight="2"/>
+                    </s:stroke>
+                </s:Line>        
+                <s:Line xFrom="5" xTo="10" yFrom="10" yTo="5">
+                    <s:stroke>
+                        <s:SolidColorStroke color="blue" weight="2"/>
+                    </s:stroke>
+                </s:Line>        
+            </s:Group>
+        </fx:Component>
+    </fx:Declarations>
+
+    <s:Rect left="0" right="0" top="0" bottom="0" id="border">
+        <s:stroke>
+            <s:SolidColorStroke id="borderStroke" weight="1"/>
+        </s:stroke>
+    </s:Rect>
+    
+    <s:Rect id="background" left="1" right="1" top="1" bottom="1" >
+        <s:fill>
+            <s:SolidColor id="bgFill" color="0xFFFFFF" />
+        </s:fill>
+    </s:Rect>
+
+    <s:Scroller left="0" top="0" right="0" bottom="0" id="scroller" minViewportInset="1" focusEnabled="false">
+        <s:DataGroup id="dataGroup" itemRenderer="spark.skins.spark.DefaultItemRenderer">
+            <s:layout>
+                <s:VerticalLayout gap="0" horizontalAlign="contentJustify" />
+            </s:layout>
+        </s:DataGroup>
+    </s:Scroller>
+</s:SparkSkin>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- controls\slider\HSliderSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <s:Group>
+        <s:layout>
+            <s:HorizontalLayout paddingTop="10" 
+                paddingLeft="10"/>
+            </s:layout>
+        <s:HSlider id="horizontalBar" 
+            snapInterval=".25"/>
+        <s:VSlider id="volumeBar" 
+            showDataTip="false"
+            toolTip="Volume"/>
+    </s:Group>
+</s:Application>

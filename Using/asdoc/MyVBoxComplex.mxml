@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- asdoc\MyVBoxComplex.mxml -->
+<!--- 
+    The class level comment for the component. 
+    This tag supports all ASDoc tags, 
+    and does not require a CDATA block.
+-->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <!--- 
+        Comment for language element - this comment will be ignored.
+    --> 
+    <fx:Script>
+        <![CDATA[
+            import flash.events.MouseEvent;
+
+            /** 
+             * For a method in an &lt;Script&gt; block,
+             * same rules as in an AS file.
+             *
+             * @param eventObj The event object.
+             */
+            public function handleClickEvent(eventObj:MouseEvent):void {
+                dispatchEvent(eventObj);
+            }   
+            
+            /** 
+             * For a property in an &lt;Script&gt; block,
+             * same rules as in an AS file.
+             */
+            public var myString:String = new String();
+            
+        ]]>
+    </fx:Script>
+
+    <!--- 
+        Comment for first button appears in the output.
+     --> 
+    <s:Button id="myButton" label="This button has a comment"
+        click="handleClickEvent(event);"/>
+
+    <s:Button id="myButton2" 
+        label="Has id but no comment so appears in output"/>
+
+    <!--- 
+        Comment for button with no id is ignored by ASDoc. 
+     --> 
+    <s:Button label="This button has no id"/>
+</mx:VBox>

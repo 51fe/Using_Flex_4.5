@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- modules/PreloadModulesApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="preloadModules()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+        import mx.events.ModuleEvent;
+        import mx.modules.ModuleManager;
+        import mx.modules.IModuleInfo;
+        
+        private function preloadModules():void {
+            /* Get a reference to the module's interface. */
+            var info:IModuleInfo = 
+                ModuleManager.getModule("BarChartModule.swf");
+            info.addEventListener(ModuleEvent.READY, modEventHandler);
+            
+            /* Load the module into memory. The module will be
+               displayed when the user navigates to the second
+               tab of the TabNavigator. */
+            info.load();
+        }
+        
+        private function modEventHandler(e:ModuleEvent):void {
+            trace("module event: " + e.type); // "ready"
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Panel title="Module Example" width="100%" height="100%">
+        <mx:TabNavigator id="tn"          
+            paddingTop="10" 
+            paddingLeft="10" 
+            paddingRight="10" 
+            paddingBottom="10"
+            width="100%" height="100%"
+            creationPolicy="auto">
+            <s:ModuleLoader label="ColumnChartModule" 
+                url="ColumnChartModule.swf"/>
+            <s:ModuleLoader label="BarChartModule" 
+                url="BarChartModule.swf"/>
+        </mx:TabNavigator>
+    </s:Panel>
+</s:Application>

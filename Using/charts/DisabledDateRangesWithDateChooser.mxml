@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!-- charts/DisabledDateRangesWithDateChooser.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init()"
+    height="600">
+  
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+
+     [Bindable]
+     public var deck:ArrayCollection = new ArrayCollection([
+        {date:"08/01/2007", close:42},
+        {date:"08/02/2007", close:43},
+        {date:"08/03/2007", close:43},
+        {date:"08/06/2007", close:42},
+        {date:"08/07/2007", close:38},
+        {date:"08/08/2007", close:37},
+        {date:"08/09/2007", close:39},
+        {date:"08/10/2007", close:41},
+        {date:"08/13/2007", close:45},
+        {date:"08/14/2007", close:47},
+        {date:"08/15/2007", close:48},
+        {date:"08/16/2007", close:42},
+        {date:"08/17/2007", close:43},
+        {date:"08/20/2007", close:45},
+        {date:"08/21/2007", close:50},
+        {date:"08/22/2007", close:51},
+        {date:"08/23/2007", close:55},
+        {date:"08/24/2007", close:51},
+        {date:"08/27/2007", close:49},
+        {date:"08/28/2007", close:51},
+        {date:"08/29/2007", close:50},
+        {date:"08/30/2007", close:49},
+        {date:"08/31/2007", close:54}
+     ]);
+
+     // Define weekend days to be removed from chart.
+     [Bindable]
+     private var offDays:Array = [0,6];     
+     
+     [Bindable]
+     private var dateChooserDisabledRanges:Array = [];
+     
+     private function init():void {
+        // Limit selectable range to August of 2007 on DateChooser.
+        dateChooserDisabledRanges = [
+            {rangeEnd: new Date(2007, 6, 31)}, 
+            {rangeStart: new Date(2007, 8, 1)}
+        ];
+        // Disable weekend days on DateChooser.
+        dc1.disabledDays = [0, 6];
+     }
+     
+     [Bindable]
+     private var offRanges:Array = new Array([]);
+
+     private function onDateChange(e:Event):void {
+        // Get the start and end date of the range.
+        var startDate:Date = e.currentTarget.selectedRanges[0].rangeStart;
+        var endDate:Date = e.currentTarget.selectedRanges[0].rangeEnd;
+        var d:Object = {rangeStart:startDate, rangeEnd:endDate};        
+        
+        // Add object to list of ranges to disable on chart.
+        offRanges.push(d);
+                        
+        // Refresh the chart series with the new offRanges.
+        var mySeries:Array = [];       
+        mySeries.push(series1);
+        myChart.series = mySeries;        
+
+        // Show the current ranges.
+        ta1.text = "";        
+        for (var i:int = 0; i < offRanges.length; i++) { 
+            for (var s:String in offRanges[i]) {
+                ta1.text += s + ":" + offRanges[i][s] + "\n";
+            }
+        }        
+     }     
+
+     private function clearAllDisabledDates():void {
+        offRanges = [];
+        dc1.selectedDate = null;
+        ta1.text = "";
+     }
+     
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Disabled date ranges">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <mx:LineChart id="myChart" 
+       dataProvider="{deck}" 
+       showDataTips="true">
+       <mx:horizontalAxis>
+          <mx:DateTimeAxis
+             id="dtAxis"
+             dataUnits="days" 
+             disabledDays="{offDays}"
+             disabledRanges="{offRanges}"/>
+       </mx:horizontalAxis>
+
+       <mx:verticalAxis>
+           <mx:LinearAxis minimum="30" maximum="60"/>
+       </mx:verticalAxis>
+
+       <mx:series>
+          <mx:LineSeries id="series1"
+               yField="close" 
+               xField="date" 
+               displayName="DECK"/>
+       </mx:series>
+    </mx:LineChart>
+    <mx:DateChooser id="dc1" 
+        showToday="false" 
+        click="onDateChange(event)"
+        displayedMonth="7" 
+        displayedYear="2007" 
+        disabledRanges="{dateChooserDisabledRanges}"/>
+    <mx:Legend dataProvider="{myChart}"/>
+    
+    <s:Button id="b1" label="Refresh" click="clearAllDisabledDates()"/>
+    <s:TextArea id="ta1" width="600" height="400"/>
+  </s:Panel>
+</s:Application>

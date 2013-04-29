@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!-- itemRenderers\validator\MainDGValidatorEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {name: 'Bob Jones', phone: '413-555-1212', 
+                    email: 'bjones@acme.com'},
+                {name: 'Sally Smith', phone: '617-555-5833', 
+                    email: 'ssmith@acme.com'},
+            ]);
+        ]]>
+    </fx:Script>
+    
+    <mx:DataGrid id="dg" 
+        width="500" height="200" 
+        editable="true" 
+        dataProvider="{initDG}">
+        <mx:columns>
+            <mx:DataGridColumn dataField="name" 
+                headerText="Name" />
+            <mx:DataGridColumn dataField="phone" 
+                headerText="Phone" 
+                itemEditor="myComponents.EditorPhoneValidator" 
+                editorDataField="returnPN"/>
+            <mx:DataGridColumn dataField="email" headerText="Email" />
+        </mx:columns>
+    </mx:DataGrid>
+</s:Application>

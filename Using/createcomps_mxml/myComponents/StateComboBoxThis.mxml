@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- createcomps_mxml/myComponents/StateComboBoxThis.mxml -->
+<s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    close="handleCloseEvent(event);">
+
+    <fx:Script>
+        <![CDATA[
+
+            import flash.events.Event;
+
+            // Define a property to hold the current index.
+            public var stateIndex:Number;               
+
+            private function handleCloseEvent(eventObj:Event):void {
+                stateIndex = this.selectedIndex;
+            }   
+        ]]>
+    </fx:Script>
+
+    <s:dataProvider>   
+        <s:ArrayList>
+            <fx:String>AK</fx:String>
+            <fx:String>AL</fx:String>
+        </s:ArrayList>
+    </s:dataProvider>
+</s:ComboBox>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\myComponents\MySimpleItemRendererWithTrans.mxml -->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    autoDrawBackground="false">
+
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="hovered"/>
+    </s:states>
+
+    <s:transitions>
+        <s:Transition fromState="normal">
+            <s:Sequence>
+                <s:Resize target="{this}" />
+                <mx:SetPropertyAction targets="{[cID, empPhone]}" 
+                    name="visible" value="true" />
+             </s:Sequence>
+        </s:Transition>
+        <s:Transition toState="normal">
+            <s:Sequence>
+                <mx:SetPropertyAction targets="{[cID, empPhone]}" 
+                    name="visible" value="false" />
+                <s:Resize target="{this}" />
+            </s:Sequence>
+        </s:Transition>
+    </s:transitions>
+
+    <s:VGroup verticalCenter="0" horizontalCenter="0">
+        <s:Label text="{data.lastName}, {data.firstName}"
+            color.hovered="blue"
+            fontWeight.hovered="bold"/>               
+        <s:Label id="cID"
+            includeIn="hovered" 
+            includeInLayout.hovered="true"
+            includeInLayout.normal="false"
+            text="{data.companyID}"/>
+        <s:Label id="empPhone"
+            includeIn="hovered" 
+            includeInLayout.hovered="true"
+            includeInLayout.normal="false"
+            text="{data.phone}"/>
+    </s:VGroup>
+</s:ItemRenderer>

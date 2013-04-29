@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fonts/TextFieldClassExampleInline.mxml -->
+<!-- This example is not embedded in the Frame file, but a line from it is used.
+     Having this checked into Perforce lets us make sure it still compiles. -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"           
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout>
+        <s:VerticalLayout 
+            paddingLeft="20" paddingRight="20"
+            paddingTop="20" paddingBottom="20" />
+    </s:layout>
+
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        @font-face {
+            src:url("../assets/MyriadWebPro.ttf");
+            fontFamily: cffFont;
+            embedAsCFF: true; 
+        }
+
+        mx|Label, s|Label {
+            fontFamily: cffFont;
+            color: haloBlue;
+            fontSize: 22;            
+        }
+    </fx:Style>
+
+    <mx:Label text="Hello World 1234567890 [MX Label]" width="100%" textFieldClass="mx.core.UIFTETextField"/>
+
+    <s:Label text="Hello World 1234567890 [Spark Label]" width="100%"/>
+
+</s:Application>

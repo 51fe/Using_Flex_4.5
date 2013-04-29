@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- controls\slider\HSliderEventLiveDrag.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    
+    <mx:Script>
+        <![CDATA[
+            import mx.events.SliderEvent;
+            import mx.controls.sliderClasses.Slider;
+
+            private function sliderChangeLive(event:SliderEvent):void {
+                var currentSlider:Slider=Slider(event.currentTarget);
+                thumbLive.text=String(currentSlider.value);
+            }
+        ]]>
+    </mx:Script>
+    
+    <mx:HSlider 
+        liveDragging="true" 
+        change="sliderChangeLive(event);"/>
+    <mx:TextArea id="thumbLive"/>
+</mx:Application>

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDListToListShowFeedback.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.DragManager;
+            import mx.events.DragEvent;
+            import mx.collections.ArrayCollection;
+    
+            private function initApp():void {
+                firstList.dataProvider = new ArrayCollection([
+                    {label:"First", data:"1"},
+                    {label:"Second", data:"2"},
+                    {label:"Third", data:"3"},
+                    {label:"Fourth", data:"4"}
+                ]);
+                secondList.dataProvider = new ArrayCollection([]);
+            }
+
+            // Variable to store original border color.
+            private var tempBorderColor:uint;
+            
+            // Flag to indicate that tempBorderColor has been set.
+            private var borderColorSet:Boolean = false;
+
+            private function dragOverHandler(event:DragEvent):void {
+            
+                // Explpicitly handle the dragOver event.            
+                event.preventDefault();
+                
+                // Since you are explicitly handling the dragOver event,
+                // call showDropFeedback(event) to have the drop target
+                // display the drop indicator.
+                // The drop indicator is removed
+                // automatically for the list controls by the built-in 
+                // event handler for the dragDrop event.
+                event.currentTarget.showDropFeedback(event);
+            
+                if (event.dragSource.hasFormat("items"))
+                {
+                    // Set the border to green to indicate that 
+                    // this is a drop target.
+                    // Since the dragOver event is dispatched continuosly 
+                    // as you move over the drop target, only set it once.
+                    if (borderColorSet == false) {                 
+                        tempBorderColor = 
+                            event.currentTarget.getStyle('borderColor');
+                        borderColorSet = true;
+                    }
+                
+                    // Set the drag-feedback indicator based on the 
+                    // type of drag-and-drop operation.
+                    event.currentTarget.setStyle('borderColor', 'green');
+                    if (event.ctrlKey) {                    
+                        DragManager.showFeedback(DragManager.COPY);
+                        return;
+                    }
+                    else if (event.shiftKey) {
+                        DragManager.showFeedback(DragManager.LINK);
+                        return;
+                    }
+                    else {
+                        DragManager.showFeedback(DragManager.MOVE);
+                        return;
+                    }
+                }
+
+                // Drag not allowed.
+                DragManager.showFeedback(DragManager.NONE);                
+            }
+            
+            private function dragDropHandler(event:DragEvent):void {
+                dragExitHandler(event);
+            }            
+
+            // Restore the border color.
+            private function dragExitHandler(event:DragEvent):void {
+              event.currentTarget.setStyle('borderColor', tempBorderColor);
+              borderColorSet = true;
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:HBox id="myHB">
+        <mx:List  id="firstList" 
+            dragEnabled="true"
+            dragMoveEnabled="true"/>
+
+        <mx:List  id="secondList" 
+            dropEnabled="true"
+            dragOver="dragOverHandler(event);"
+            dragDrop="dragExitHandler(event);"
+            dragExit="dragExitHandler(event);"/>
+    </mx:HBox>
+    
+    <mx:Button id="b1" 
+        label="Reset"
+        click="initApp();"/>
+</s:Application>

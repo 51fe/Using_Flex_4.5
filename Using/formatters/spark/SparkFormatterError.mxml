@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- formatters\sparkformatters\SparkFormatterError.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout> 
+        <s:VerticalLayout paddingTop="10" paddingLeft="5"/> 
+    </s:layout> 
+    
+    <fx:Declarations> 
+        <!-- Declare a Spark DateTimeFormatter and 
+        define formatting parameters.--> 
+        <s:DateTimeFormatter id="dateTimeFormatter" 
+            dateTimePattern="month: MM, day: DD, year: YYYY"
+            errorText="Invalid input value"/> 
+    </fx:Declarations> 
+    
+    <s:Label text="Enter date (mm/dd/yyyy):"/> 
+    <s:TextInput id="dob" text=""/> 
+    
+    <s:Label text="Formatted date: "/> 
+    <s:TextInput id="formattedDate" 
+        text="" width="300"
+        editable="false"/> 
+    
+    <!-- Format and update the date.--> 
+    <s:Button label="Format Input" 
+        click="formattedDate.text=dateTimeFormatter.format(dob.text);"/> 
+</s:Application>

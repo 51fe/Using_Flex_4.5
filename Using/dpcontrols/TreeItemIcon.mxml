@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/TreeItemIcon.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+   <fx:Script>
+      <![CDATA[
+         [Bindable]
+         [Embed(source="assets/radioIcon.jpg")] 
+         public var iconSymbol1:Class; 
+         [Bindable]
+         [Embed(source="assets/topIcon.jpg")] 
+         public var iconSymbol2:Class; 
+         
+         private function setIcons():void {
+            myTree.setItemIcon(myTree.dataProvider.getItemAt(0), 
+               iconSymbol1, iconSymbol2);
+            myTree.setItemIcon(myTree.dataProvider.getItemAt(1), 
+               iconSymbol2, null);
+         }
+      ]]>
+   </fx:Script>
+
+   <mx:Tree id="myTree" labelField="@label" 
+      showRoot="false" 
+      width="160" initialize="setIcons();">
+      <fx:XMLList>
+         <node label="New">
+            <node label="HTML Document"/>
+            <node label="Text Document"/>
+         </node>
+         <node label="Close"/>
+      </fx:XMLList>
+   </mx:Tree>
+</s:Application>

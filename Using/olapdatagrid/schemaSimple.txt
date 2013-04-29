@@ -1,0 +1,55 @@
+    <mx:OLAPCube name="FlatSchemaCube" 
+        dataProvider="{flatData}" 
+        id="myMXMLCube"
+        complete="runQuery(event);">
+     
+        <mx:dimensions>
+            <mx:ArrayCollection>
+                <mx:OLAPDimension name="CustomerDim">
+                    <mx:ArrayCollection>
+                        <mx:OLAPHierarchy name="CustomerHier" 
+                            hasAll="true">
+                            <mx:ArrayCollection>
+                                <mx:OLAPLevel name="Customer" 
+                                    dataField="customer"/>
+                            </mx:ArrayCollection>
+                        </mx:OLAPHierarchy>
+                    </mx:ArrayCollection>
+                </mx:OLAPDimension>
+    
+                <mx:OLAPDimension name="ProductDim">
+                    <mx:ArrayCollection>
+                        <mx:OLAPHierarchy name="ProductHier" 
+                            hasAll="true">
+                            <mx:ArrayCollection>
+                                <mx:OLAPLevel name="Product" 
+                                    dataField="product"/>
+                            </mx:ArrayCollection>
+                        </mx:OLAPHierarchy>
+                    </mx:ArrayCollection>
+                </mx:OLAPDimension>
+
+                <mx:OLAPDimension name="TimeDim">
+                    <mx:ArrayCollection>
+                        <mx:OLAPHierarchy name="Time-PeriodHier" 
+                            hasAll="true">
+                            <mx:ArrayCollection>
+                                <mx:OLAPLevel name="Year" 
+                                    dataField="year"/>
+                                <mx:OLAPLevel name="Quarter" 
+                                    dataField="quarter"/>
+                            </mx:ArrayCollection>
+                        </mx:OLAPHierarchy> 
+                    </mx:ArrayCollection>
+                </mx:OLAPDimension>
+            </mx:ArrayCollection>
+        </mx:dimensions>
+    
+        <mx:measures>
+            <mx:ArrayCollection>
+                <mx:OLAPMeasure name="Revenue" 
+                    dataField="revenue" 
+                    aggregator="SUM"/>
+            </mx:ArrayCollection>
+       </mx:measures>
+    </mx:OLAPCube>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- dpcontrols\CustDataDescriptor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*" 
+    creationComplete="initCollections();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*;
+            import mx.controls.treeClasses.*;
+            import myComponents.*;
+    
+            /* Variables used to construct the ArrayCollection data provider
+               First top-level node and its children. */
+            public var nestArray1:Array = [
+                {label:"item1", children: [
+                    {label:"item1 child", children:     [
+                        {label:"item 1 child child", data:"child data"}
+                    ]}
+                ]}
+            ]; 
+            /* Second top-level node and its children. */
+            public var nestArray2:Array = [
+                {label:"item2", children: [
+                    {label:"item2 child", children: [
+                        {label:"item 2 child child", data:"child data"}
+                    ]}
+                ]}
+            ];
+            /* Second top-level node and its children. */
+            public var nestArray3:Array = [
+                {label:"item3", children: [
+                    {label:"item3 child", children: [
+                        {label:"item 3 child child", data:"child data"}
+                    ]}
+                ]}
+            ]; 
+            /* Variable for the tree array. */
+            public var treeArray:Array
+            /* Variables for the three Array collections that correspond to the 
+               top-level nodes. */
+            public var col1:ArrayCollection;
+            public var col2:ArrayCollection;
+            public var col3:ArrayCollection;
+            
+            /* Variable for the ArrayCollection used as the Tree data provider. */
+            [Bindable]
+            public var ac:ArrayCollection;
+            
+            /* Build the ac ArrayCollection from its parts. */
+            public function initCollections():void{
+                /* Wrap each top-level node in an ArrayCollection. */
+                col1 = new ArrayCollection(nestArray1);
+                col2 = new ArrayCollection(nestArray2);
+                col3 = new ArrayCollection(nestArray3);
+
+                /* Put the three top-level node
+                   ArrayCollections in the treeArray. */
+                treeArray = [
+                    {label:"first thing", children: col1},
+                    {label:"second thing", children: col2},
+                    {label:"third thing", children: col3},
+                ]; 
+
+                /* Wrap the treeArray in an ArrayCollection. */
+                ac = new ArrayCollection(treeArray);
+            }
+
+            /* Adds a child node as the first child of the selected node,
+               if any. The default selectedItem is null, which causes the
+               data descriptor addChild method to add it as the first child
+               of the ac ArrayCollection. */
+            public function clickAddChildren():void {
+                var newChild:Object = new Object();
+                newChild.label = "New Child";
+                newChild.children = new ArrayCollection();
+                tree.dataDescriptor.addChildAt(tree.selectedItem, newChild, 0, ac);
+            }
+
+        ]]>
+    </fx:Script>
+
+    <mx:Tree width="200" id="tree" dataProvider="{ac}" 
+        dataDescriptor="{new MyCustomTreeDataDescriptor()}"/>    
+    <s:Button label="Add Child" click="clickAddChildren();"/>
+</s:Application>

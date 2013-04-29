@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ListIconFunction.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[   
+            // Embed icons.
+            [Embed(source="assets/radioIcon.jpg")] 
+            public var pavementSymbol:Class; 
+
+            [Embed(source="assets/topIcon.jpg")] 
+            public var normalSymbol:Class;   
+      
+            // Define data provider.
+            private var myDP: Array;
+            private function initList():void {
+                myDP = [
+                    {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99},
+                    {Artist:'Pavarotti', Album:'Twilight', Price:11.99},
+                    {Artist:'Other', Album:'Other', Price:5.99}];
+   
+                list1.dataProvider = myDP;
+            }
+   
+            // Determine icon based on artist. Pavement gets a special icon. 
+            private function myiconfunction(item:Object):Class {
+                var type:String = item.Artist;
+                if (type == "Pavement") {
+                    return pavementSymbol;
+                } 
+                return normalSymbol;       
+            }
+        ]]>
+    </fx:Script>
+   
+    <mx:VBox >
+        <mx:List id="list1" 
+            initialize="initList();" 
+            labelField="Artist" 
+            iconFunction="myiconfunction" />
+    </mx:VBox>
+</s:Application>

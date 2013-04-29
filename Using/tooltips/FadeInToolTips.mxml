@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- tooltips/FadeInToolTips.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="600" height="600" 
+    initialize="app_init();">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Declarations>
+        <s:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="1000"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.ToolTipManager;
+
+            public function app_init():void {
+                ToolTipManager.showEffect = fadeIn;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Click Me" 
+        toolTip="This is a ToolTip that fades in."/>
+
+</s:Application>

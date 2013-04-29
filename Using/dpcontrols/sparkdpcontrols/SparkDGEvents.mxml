@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    minWidth="450" minHeight="450">
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout> 
+    
+    <fx:Script> 
+        <![CDATA[ 
+            import spark.events.GridEvent;
+            
+            private function gridClickEvent(event:GridEvent):void { 
+                // Access the colunm index, row index, and event type 
+                // by using the GridEvent object.
+                clickColumn.text = String(event.columnIndex); 
+                clickRow.text = String(event.rowIndex); 
+                eventType.text = event.type; 
+
+                // Access the selection mode of the Grid control.
+                selectionType.text = String(event.grid.selectionMode); 
+            } 
+        ]]> 
+    </fx:Script> 
+    
+    <s:DataGrid id="myGrid" width="350" height="150"
+        selectionMode="multipleCells" 
+        gridClick="gridClickEvent(event);"> 
+        <s:ArrayCollection> 
+            <fx:Object Artist="Pavement" Price="11.99" 
+                Album="Slanted and Enchanted" /> 
+            <fx:Object Artist="Pavement" Album="Brighten the Corners" 
+                Price="11.99" /> 
+        </s:ArrayCollection> 
+    </s:DataGrid> 
+    
+    <s:Form> 
+        <s:FormItem label="Column Index:"> 
+            <s:Label id="clickColumn"/>
+        </s:FormItem> 
+        <s:FormItem label="Row Index:"> 
+            <s:Label id="clickRow"/> 
+        </s:FormItem> 
+        <s:FormItem label="Selection type:"> 
+            <s:Label id="selectionType"/>
+        </s:FormItem> 
+        <s:FormItem label="Type:"> 
+            <s:Label id="eventType"/>
+        </s:FormItem> 
+    </s:Form> 
+</s:Application>

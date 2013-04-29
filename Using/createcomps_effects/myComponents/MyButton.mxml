@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- createcomps_effects\myComponents\MyButton.mxml -->
+<mx:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+    <fx:Metadata>
+        <!-- Define the metadata for the events and effect triggers. -->
+        [Event(name="darken", type="flash.events.Event")]
+        [Event(name="brighten", type="flash.events.Event")]
+        [Effect(name="darkenEffect", event="darken")]
+        [Effect(name="brightenEffect", event="brighten")]
+    </fx:Metadata>
+  
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+
+            // Define the private variable for the bright setting.
+            private var _bright:Boolean = true;
+    
+            // Define the setter to dispatch the events 
+            // corresponding to the effect triggers.
+            public function set bright(value:Boolean):void {
+                _bright = value;
+                      
+                if (_bright)
+                    dispatchEvent(new Event("brighten"));
+                else
+                    dispatchEvent(new Event("darken"));
+            }
+    
+            // Define the getter to return the current bright setting.
+            public function get bright():Boolean {
+                return _bright;
+            }
+        ]]>
+    </fx:Script>
+</mx:Button>

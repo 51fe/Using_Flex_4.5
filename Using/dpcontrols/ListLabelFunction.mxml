@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ListLabelFunction.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    
+    <fx:Script>
+        <![CDATA[
+            public function myLabelFunc(item:Object):String {
+                return item.data + ", " + item.label; 
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:ArrayList id="myDP">
+            <mx:source>
+                <fx:Object label="AL" data="Montgomery"/>
+                <fx:Object label="AK" data="Juneau"/>
+                <fx:Object label="AR" data="Little Rock"/>
+            </mx:source>
+        </mx:ArrayList>       
+    </fx:Declarations>
+
+    <mx:List dataProvider="{myDP}" labelFunction="myLabelFunc"/>
+</s:Application>

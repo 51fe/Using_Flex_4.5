@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/SimplePathShorthandExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+     <s:Panel title="Rectangle MXML Graphics Example" height="75%" width="75%">
+        <s:Path x="10" y="10" data="M 0 0 L 0 100 L 100 100 L 100 0 L 0 0">
+             <!-- Define the border color of the rectangle. -->
+             <s:stroke>
+                  <s:SolidColorStroke color="0x888888"/>
+             </s:stroke>
+        </s:Path>
+     </s:Panel>
+</s:Application>

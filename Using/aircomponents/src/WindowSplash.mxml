@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/WindowSplash.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init();"> 
+    
+    <fx:Script> 
+        <![CDATA[ 
+            import myComponents.DocumentWindow;
+            private const LOAD_DELAY:int = 4; 
+            private var timeElapsed:int = 0; 
+            private var loadTimer:Timer; 
+             
+            private var docWindow:myComponents.DocumentWindow; 
+             
+            private function init():void { 
+                // center the window on the screen 
+                var screenBounds:Rectangle = Screen.mainScreen.bounds; 
+                nativeWindow.x = (screenBounds.width - nativeWindow.width) / 2; 
+                nativeWindow.y = (screenBounds.height - nativeWindow.height) / 2; 
+                 
+                // start the timer, which simulates a loading delay 
+                loadTimer = new Timer(1000); 
+                loadTimer.addEventListener(TimerEvent.TIMER, incrementTime); 
+                loadTimer.start(); 
+                 
+                updateStatus(); 
+            } 
+             
+            private function incrementTime(event:TimerEvent):void { 
+                timeElapsed++; 
+                 
+                updateStatus(); 
+                 
+                // if the loading delay has passed, stop the timer,  
+                // close the splash screen, and open the document window 
+                if ((LOAD_DELAY - timeElapsed) == 0) 
+                { 
+                    loadTimer.stop(); 
+                    loadTimer.removeEventListener(TimerEvent.TIMER, incrementTime); 
+                    loadTimer = null; 
+                     
+                    nativeWindow.close(); 
+                     
+                    // open a new instance of the document window 
+                    docWindow = new DocumentWindow(); 
+                    docWindow.open(); 
+                } 
+            } 
+             
+            private function updateStatus():void { 
+                var timeRemaining:uint = LOAD_DELAY - timeElapsed; 
+                var timeRemainingMsg:String = timeRemaining.toString() + " second"; 
+                if (timeRemaining != 1) { timeRemainingMsg += "s"; } 
+                timeRemainingMsg += " remaining."; 
+                 
+                loadStatusMessage.text = "initializing... " + timeRemainingMsg; 
+            } 
+        ]]> 
+    </fx:Script> 
+    
+    <s:VGroup horizontalCenter="0" verticalCenter="0"> 
+        <s:Label text="My Splash Screen" 
+            fontFamily="Courier New" 
+            fontSize="36"/> 
+        <s:Label id="loadStatusMessage" 
+            text="initializing..."/> 
+    </s:VGroup>     
+</s:WindowedApplication>

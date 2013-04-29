@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- behaviors\AnimateHScrollPos.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <mx:Sequence id="animateScaleXUpDown" >
+            <mx:AnimateProperty 
+                property="scaleX" 
+                fromValue="1.0" 
+                toValue="1.5"/>
+            <mx:AnimateProperty 
+                property="scaleX" 
+                fromValue="1.5" 
+                toValue="1.0"/>    
+        </mx:Sequence>
+    </fx:Declarations>
+
+    <mx:Button label="Scale Button"
+        mouseDownEffect="{animateScaleXUpDown}"/>
+</s:Application>

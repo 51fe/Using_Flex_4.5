@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- modules/QueryStringApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="500" width="400">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[        
+            public function initModule():void {
+                // Build query string so that it looks something like this:
+                // "QueryStringModule.swf?firstName=Nick&lastName=Danger"
+                var s:String = "QueryStringModule.swf?" + "firstName=" +                 
+                    ti1.text + "&lastName=" + ti2.text;
+
+                // Changing the url property of the ModuleLoader causes
+                // the ModuleLoader to load a new module.
+                m1.url = s;
+            }        
+        ]]>
+    </fx:Script>
+
+    <s:Form>
+        <s:FormItem id="fi1" label="First Name:">
+            <s:TextInput id="ti1"/>
+        </s:FormItem>
+        <s:FormItem id="fi2" label="Last Name:">
+            <s:TextInput id="ti2"/>
+        </s:FormItem>  
+    </s:Form>
+
+    <s:ModuleLoader id="m1"/>
+    
+    <s:Button id="b1" label="Submit" click="initModule()"/>
+
+</s:Application>

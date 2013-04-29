@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\WebServiceInAS.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+        import mx.rpc.soap.WebService;
+        import mx.rpc.events.ResultEvent;
+        import mx.rpc.events.FaultEvent;
+        private var ws:WebService;
+        public function useWebService(intArg:int, strArg:String):void {
+            ws = new WebService();
+            ws.wsdl="http://myserver:8500/flexapp/app1.cfc?wsdl";
+            ws.echoArgs.addEventListener("result", echoResultHandler);
+            ws.addEventListener("fault", faultHandler);
+            ws.loadWSDL();
+            ws.echoArgs(intArg, strArg);
+        }
+
+        public function echoResultHandler(event:ResultEvent):void {
+            var retStr:String = event.result.echoStr;
+            var retInt:int = event.result.echoInt;
+         //Do something.
+        }
+
+        public function faultHandler(event:FaultEvent):void {
+      //deal with event.fault.faultString, etc
+        }
+        ]]>
+    </mx:Script>
+</mx:Application>

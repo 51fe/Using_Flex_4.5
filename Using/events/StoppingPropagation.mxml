@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- events/StoppingPropagation.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="init(event);">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.controls.Alert;
+        import flash.events.MouseEvent;
+        import flash.events.Event;
+
+        public function init(e:Event):void {
+            p1.addEventListener(MouseEvent.MOUSE_DOWN, showAlert);
+            tw1.addEventListener(MouseEvent.MOUSE_DOWN, showAlert);
+            tw1.addEventListener(Event.CLOSE, closeWindow);
+
+            p2.addEventListener(MouseEvent.MOUSE_DOWN, showAlertWithoutStoppingPropagation);
+            tw2.addEventListener(MouseEvent.MOUSE_DOWN, showAlertWithoutStoppingPropagation);
+            tw2.addEventListener(Event.CLOSE, closeWindow);
+        }
+
+        public function showAlert(e:Event):void {
+            Alert.show("Alert!\n" + "Current Target: " + e.currentTarget + "\n" + 
+                "Phase: " + e.eventPhase);
+            e.stopImmediatePropagation();
+        }
+
+        public function showAlertWithoutStoppingPropagation(e:Event):void {
+            Alert.show("Alert!\n" + "Current Target: " + e.currentTarget + "\n" + 
+                "Phase: " + e.eventPhase);          
+        }
+
+        public function closeWindow(e:Event):void {
+            p1.removeChild(tw1);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Panel id="p1" title="Stops Propagation">
+        <mx:TitleWindow id="tw1" 
+            width="300" 
+            height="100" 
+            showCloseButton="true" 
+            title="Title Window 1">
+            <s:Button label="Click Me"/>
+            <s:TextArea id="ta1"/>
+        </mx:TitleWindow>
+    </s:Panel>
+
+    <s:Panel id="p2" title="Does Not Stop Propagation">
+        <mx:TitleWindow id="tw2" 
+            width="300" 
+            height="100" 
+            showCloseButton="true" 
+            title="Title Window 2">
+            <s:Button label="Click Me"/>
+            <s:TextArea id="ta2"/>
+        </mx:TitleWindow>
+    </s:Panel>
+
+</s:Application>

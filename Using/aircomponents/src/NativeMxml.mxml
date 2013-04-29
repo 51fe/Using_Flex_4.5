@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMxml.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();"> 
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.controls.FlexNativeMenu; 
+             
+            private var myMenu:FlexNativeMenu; 
+             
+            private function init():void 
+            { 
+                myMenu = new FlexNativeMenu(); 
+                myMenu.dataProvider = menuData; 
+                myMenu.labelField = "@label"; 
+                myMenu.showRoot = false; 
+            } 
+             
+            // Method to show the menu.  
+            private function show():void 
+            { 
+                myMenu.display(this.stage, 10, 10); 
+            } 
+        ]]> 
+    </fx:Script> 
+     
+     <fx:Declarations>
+        <!-- The XML data provider --> 
+        <fx:XML format="e4x" id="menuData"> 
+            <root> 
+                <menuitem label="MenuItem A"/> 
+                <menuitem label="MenuItem B" type="check" toggled="true"/> 
+                <menuitem label="MenuItem C" enabled="false"/> 
+                <menuitem type="separator"/> 
+                <menuitem label="MenuItem D"> 
+                    <menuitem label="SubMenuItem D-1"/> 
+                    <menuitem label="SubMenuItem D-2"/> 
+                    <menuitem label="SubMenuItem D-3"/> 
+                </menuitem> 
+            </root> 
+        </fx:XML> 
+     </fx:Declarations>
+     
+    <!-- Button control to create and open the menu. --> 
+    <s:Button x="300" y="10"  
+        label="Open Menu"  
+        click="show();"/>
+</s:WindowedApplication>

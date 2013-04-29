@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/TabNavExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()" 
+    height="250" 
+    width="500">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.events.BrowserChangeEvent;
+        import mx.managers.IBrowserManager;
+        import mx.managers.BrowserManager;
+        import mx.utils.URLUtil;
+
+        public var browserManager:IBrowserManager;
+
+        private function initApp():void {
+            browserManager = BrowserManager.getInstance();
+            browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL);
+            browserManager.init("", "Shipping");
+        }
+        private var parsing:Boolean = false;
+        private function parseURL(event:Event):void {
+            parsing = true;
+
+            var o:Object = URLUtil.stringToObject(browserManager.fragment);
+            if (o.view == undefined)
+                o.view = 0;
+            tn.selectedIndex = o.view;
+            browserManager.setTitle((tn.selectedIndex == 0) ? "Shipping" : "Receiving");
+            tn.validateNow();
+
+            var details:Boolean = o.details == true;
+            if (tn.selectedIndex == 0)
+                shipDetails.selected = details;
+            else
+                recvDetails.selected = details; 
+
+            parsing = false;        
+        }
+
+        private function updateURL():void {
+            if (!parsing)
+                callLater(actuallyUpdateURL);
+        }
+
+        private function actuallyUpdateURL():void {
+            var o:Object = {};
+            var t:String = "";
+
+            if (tn.selectedIndex == 1) {
+                t = "Receiving";
+                o.view = tn.selectedIndex;
+                if (recvDetails.selected)
+                    o.details = true;
+            } else {
+                t = "Shipping";
+                o.view = tn.selectedIndex;
+                if (shipDetails.selected)
+                    o.details = true;
+            }
+            var s:String = URLUtil.objectToString(o);
+            browserManager.setFragment(s);
+            browserManager.setTitle(t);
+        }
+    ]]>
+    </fx:Script>
+
+    <mx:TabNavigator id="tn" change="updateURL()" width="300">
+            <mx:Panel label="Shipping">
+                <mx:CheckBox id="shipDetails" label="Show Details" change="updateURL()" />
+            </mx:Panel>
+            <mx:Panel label="Receiving">
+                <mx:CheckBox id="recvDetails" label="Show Details" change="updateURL()" />
+            </mx:Panel>
+    </mx:TabNavigator>
+
+</s:Application>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sparktextcontrols/TextAreaTLF.mxml -->
+<s:Application name="RichEditableTextExample"
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:Panel title="TextArea TLF"
+            width="90%" height="90%"
+            horizontalCenter="0" verticalCenter="0">
+            <s:TextArea id="ta1" textAlign="left" percentWidth="90">
+                <s:textFlow>
+                    <s:TextFlow>
+                        <s:p fontSize="24">TextArea with TLF block</s:p>
+                        <s:p>1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s:p>
+                        <s:p>2) Cras posuere posuere sem, <s:span fontWeight="bold">eu congue orci mattis quis</s:span>.</s:p>
+                        <s:p>3) Curabitur <s:span textDecoration="underline">pulvinar tellus</s:span> venenatis ipsum tempus lobortis.<s:br/> 
+                            <s:span color="0x6600CC">Vestibulum eros velit</s:span>, bibendum at aliquet ut.
+                        </s:p>
+                    </s:TextFlow>
+                </s:textFlow>
+            </s:TextArea>
+    </s:Panel>
+
+</s:Application>

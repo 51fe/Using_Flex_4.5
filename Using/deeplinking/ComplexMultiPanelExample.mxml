@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/ComplexMultiPanelExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();parseURL(event)">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+   
+    <fx:Script>
+    <![CDATA[
+        import mx.events.BrowserChangeEvent;
+        import mx.managers.IBrowserManager;
+        import mx.managers.BrowserManager;
+        import mx.utils.URLUtil;
+
+        private var bm:IBrowserManager;
+
+        [Bindable]
+        private var agreeBoxFromURL:Boolean;
+        [Bindable]
+        private var personNameFromURL:String;
+        [Bindable]
+        private var hometownFromURL:String;
+        [Bindable]
+        private var cctypeFromURL:int;
+        [Bindable]
+        private var ccnumberFromURL:String;
+
+        private function init():void {
+            bm = BrowserManager.getInstance();
+            bm.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL);                
+            bm.init("", "Welcome!");
+        }
+
+        /* This method is called once when application starts up. It is also 
+           called when the browser's address bar changes, either due to user action 
+           or user navigation with the browser's Forward and Back buttons. */
+        private function parseURL(event:Event):void {
+
+            var o:Object = URLUtil.stringToObject(bm.fragment, "&");
+            if (o.panel == undefined)
+                o.panel = 0;
+
+            tn.selectedIndex = o.panel;
+            tn.validateNow();
+
+            personNameFromURL = o.personName;
+            hometownFromURL = o.hometown;
+            ccnumberFromURL = o.ccnumber;                
+            cctypeFromURL = o.cctype;
+            agreeBoxFromURL = o.agreeBox;
+        }
+
+        public function updateTitle(e:Event):void {
+            l1.text += "updateTitle()\n";
+            bm.setTitle("Welcome " + personName.text + " from " + hometown.text + "!");
+        }
+
+        private function updateURL():void {
+            /* Called when state changes in the application, such as when the panel changes,
+               or a checkbox is checked.
+
+               You must wrap the following assignments in a try/catch block, otherwise the 
+               application tries to access components that have not yet been created. 
+               You can circumvent this by setting the container's creationPolicy to "all", 
+               but that is not a good solution for performance reasons. */
+            try {
+                personNameFromURL = personName.text;
+                hometownFromURL = hometown.text;
+                ccnumberFromURL = ccnumber.text;                
+                cctypeFromURL = cctype.selectedIndex;
+                agreeBoxFromURL = agreeBox.selected;
+            } catch (e:Error) {
+            }
+
+            var o:Object = {};
+
+            try {
+                o.panel = tn.selectedIndex;
+                o.personName = personName.text;
+                o.hometown = hometown.text;
+                o.ccnumber = ccnumber.text;
+                o.cctype = cctype.selectedIndex;
+                o.agreeBox = agreeBox.selected;
+            } catch (e:Error) {
+            } finally {                
+                var s:String = URLUtil.objectToString(o, "&");
+                bm.setFragment(s);
+            }
+        }
+    ]]>
+    </fx:Script>
+
+    <mx:TabNavigator id="tn" width="300" change="updateURL()">            
+        <mx:Panel label="Personal Data">
+            <mx:Form>
+                <mx:FormItem label="Name:">
+                    <mx:TextInput id="personName" 
+                        text="{personNameFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/>
+                </mx:FormItem>
+                <mx:FormItem label="Hometown:">
+                    <mx:TextInput id="hometown" 
+                        text="{hometownFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/>
+                </mx:FormItem>
+                <mx:Button id="b1" click="updateTitle(event)" label="Submit"/>
+            </mx:Form>
+        </mx:Panel>
+
+        <mx:Panel label="Credit Card Info">
+            <mx:Form>
+                <mx:FormItem label="Type:">
+                    <mx:ComboBox id="cctype" 
+                        change="updateURL()" 
+                        selectedIndex="{cctypeFromURL}">
+                        <mx:dataProvider>
+                            <fx:String>Visa</fx:String>
+                            <fx:String>MasterCard</fx:String>
+                            <fx:String>American Express</fx:String>
+                        </mx:dataProvider>
+                    </mx:ComboBox>
+                </mx:FormItem>
+                <mx:FormItem label="Number:">
+                    <mx:TextInput id="ccnumber" 
+                        text="{ccnumberFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/>
+                </mx:FormItem>
+            </mx:Form>
+        </mx:Panel>
+
+        <mx:Panel label="Check Out">
+            <mx:TextArea id="ta2" text="You must agree to all the following conditions..."/>
+            <mx:CheckBox id="agreeBox" 
+                label="Agree" 
+                selected="{agreeBoxFromURL}" 
+                click="updateURL()"/>
+        </mx:Panel>            
+    </mx:TabNavigator>
+    <mx:TextArea id="l1" height="400" width="300"/>
+
+</s:Application>

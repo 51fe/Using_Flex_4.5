@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- sparktextcontrols/StylingWithConfig.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               creationComplete="initApp()"> 
+
+    <fx:Script>
+        <![CDATA[
+            import flashx.textLayout.conversion.TextConverter;
+            import flashx.textLayout.elements.Configuration;
+            import flashx.textLayout.elements.IConfiguration;
+            import flashx.textLayout.formats.ITextLayoutFormat;
+            import flashx.textLayout.formats.TextDecoration;
+            import flashx.textLayout.formats.TextLayoutFormat;
+
+            private function initApp():void {
+                var txt:String = "Check out our website at <a href='http://www.adobe.com/'>adobe.com</a>.";
+
+                var cfg:Configuration = new Configuration(true);
+
+                var normalFmt:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkNormalFormat);
+                normalFmt.color = 0xFF0000; // red
+                normalFmt.textDecoration = TextDecoration.NONE;
+
+                var hoverFmt:TextLayoutFormat = new TextLayoutFormat(cfg.defaultLinkHoverFormat);
+                hoverFmt.color = 0xFF00FF; // purple
+                hoverFmt.textDecoration = TextDecoration.UNDERLINE;
+
+                cfg.defaultLinkNormalFormat = normalFmt;
+                cfg.defaultLinkHoverFormat = hoverFmt;
+
+                rt.textFlow = TextConverter.importToFlow(txt, TextConverter.TEXT_FIELD_HTML_FORMAT, cfg);
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:RichEditableText id="rt" x="20" y="20" editable="false"/>
+    
+</s:Application> 

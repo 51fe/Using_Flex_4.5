@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDImageProxy.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            //Import classes so you don't have to use full names.
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.events.DragEvent;
+            import flash.events.MouseEvent;
+
+            // Embed icon image.
+            [Embed(source='assets/globe.jpg')]
+            public var globeImage:Class;
+
+            // The mouseMove event handler for the Image control
+            // initiates the drag-and-drop operation.
+            private function mouseOverHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget);
+                var ds:DragSource = new DragSource();
+                ds.addData(dragInitiator, "img");               
+
+                // The drag manager uses the Image control 
+                // as the drag indicator and sets the alpha to 1.0 (opaque),
+                // so it appears to be dragged across the Canvas.
+                var imageProxy:Image = new Image();
+                imageProxy.source = globeImage;
+                imageProxy.height=15;
+                imageProxy.width=15;                
+                DragManager.doDrag(dragInitiator, ds, event, 
+                    imageProxy, -15, -15, 1.00);
+            }
+            
+            // The dragEnter event handler for the Canvas container
+            // enables dropping.
+            private function dragEnterHandler(event:DragEvent):void {
+                if (event.dragSource.hasFormat("img"))
+                {
+                    DragManager.acceptDragDrop(Canvas(event.currentTarget));
+                }
+            }
+
+            // The dragDrop event handler for the Canvas container
+            // sets the Image control's position by 
+            // "dropping" it in its new location.
+            private function dragDropHandler(event:DragEvent):void {
+                Image(event.dragInitiator).x = 
+                    Canvas(event.currentTarget).mouseX;
+                Image(event.dragInitiator).y = 
+                    Canvas(event.currentTarget).mouseY;
+            }
+        ]]>
+    </fx:Script>
+    
+    <!-- The Canvas is the drag target --> 
+    <mx:Canvas id="v1" 
+        width="500" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD"
+        dragEnter="dragEnterHandler(event);" 
+        dragDrop="dragDropHandler(event);">
+        
+        <!-- The image is the drag initiator. -->
+        <s:Image id="myimg" 
+            source="@Embed(source='assets/globe.jpg')" 
+            mouseMove="mouseOverHandler(event);"/> 
+    </mx:Canvas>
+</s:Application>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkListCaret.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout paddingTop="5" paddingLeft="5"/>
+    </s:layout> 
+
+    <s:Label text="The selected item is: {myList.selectedIndex}" />
+    <s:Label text="The caret item is: {myList.caretIndex}" />
+
+    <s:List id="myList">
+        <s:dataProvider>
+            <s:ArrayCollection>
+                <fx:String>One</fx:String>
+                <fx:String>Two</fx:String>
+                <fx:String>Three</fx:String>
+                <fx:String>Four</fx:String>
+                <fx:String>Five</fx:String>
+                <fx:String>Six</fx:String>
+                <fx:String>Seven</fx:String>
+                <fx:String>Eight</fx:String>
+                <fx:String>Nine</fx:String>
+                <fx:String>Ten</fx:String>
+            </s:ArrayCollection>
+        </s:dataProvider>
+    </s:List>
+</s:Application>

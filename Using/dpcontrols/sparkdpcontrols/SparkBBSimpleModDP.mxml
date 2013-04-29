@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkBBarSimpleModDP.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            // Add data item, and button, to the ButtonBar.
+            private function addFlexToDP():void {
+                myBB.dataProvider.addItem("Flex");
+                addFlex.enabled=false;
+                removeFlex.enabled=true;
+            }
+
+            // Remove data item, and button, from the ButtonBar.
+            private function removeFlexToDP():void {
+                myBB.dataProvider.removeItemAt(4);
+                addFlex.enabled=true;
+                removeFlex.enabled=false;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:ButtonBar id="myBB">  
+        <mx:ArrayCollection>
+            <fx:String>Flash</fx:String> 
+            <fx:String>Director</fx:String> 
+            <fx:String>Dreamweaver</fx:String> 
+            <fx:String>ColdFusion</fx:String> 
+        </mx:ArrayCollection>
+    </s:ButtonBar>
+    
+    <s:Button id="addFlex" label="Add Flex"
+        click="addFlexToDP();"/>
+    <s:Button id="removeFlex" label="Remove Flex"
+        enabled="false"
+        click="removeFlexToDP();"/>
+</s:Application>

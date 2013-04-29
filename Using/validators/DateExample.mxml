@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- validators\DateExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <mx:DateValidator id="dateV" 
+            daySource="{dayInput}" dayProperty="text" 
+            monthSource="{monthInput}" monthProperty="text" 
+            yearSource="{yearInput}" yearProperty="text"/>
+            
+        <!-- Alternate method for a single field containing the date. -->
+        <fx:Model id="alternateDate">
+            <dateInfo>
+                <date>{dateInput.text}</date>
+            </dateInfo>
+        </fx:Model>
+    
+        <mx:DateValidator id="stringDateV" 
+            source="{dateInput}" property="text" 
+            inputFormat="dd/mm/yyyy"
+            allowedFormatChars="*#~/"/>
+    </fx:Declarations>            
+
+    <s:Form >
+        <s:FormItem label="Month">
+            <s:TextInput id="monthInput"/>
+        </s:FormItem>
+        <s:FormItem label="Day">
+            <s:TextInput id="dayInput"/>
+        </s:FormItem>
+        <s:FormItem label="Year">
+            <s:TextInput id="yearInput"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:Button label="Check Date" click="dateV.validate();"/>   
+        </s:FormItem>
+    </s:Form>
+
+    <s:Form>
+        <s:FormItem label="Date of Birth (dd/mm/yyyy)">
+            <s:TextInput id="dateInput"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:Button label="Check Date" click="stringDateV.validate();"/>   
+        </s:FormItem>
+    </s:Form>
+</s:Application>

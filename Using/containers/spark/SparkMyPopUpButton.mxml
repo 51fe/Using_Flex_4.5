@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- containers\spark\MyPopUpButton.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="600" width="600" >
+
+    <fx:Script>
+        <![CDATA[
+            import spark.components.TitleWindow;
+            import flash.events.*;
+            import mx.managers.PopUpManager;
+            import spark.components.Button;
+            import mx.core.IFlexDisplayObject;
+            
+            // The variable for the TitleWindow container
+            public var myTitleWindow:TitleWindow = new TitleWindow();
+
+            // Method to instantiate and display a TitleWindow container.
+            // This is the initial Button control's click event handler.
+            public function openWindow(event:MouseEvent):void {
+                // Set the TitleWindow container properties.
+                myTitleWindow = new TitleWindow();
+                myTitleWindow.title = "My Window Title";
+                myTitleWindow.width= 220;
+                myTitleWindow.height= 150;
+                // Call the method to add the Button control to the 
+                // TitleWindow container.
+                populateWindow();
+                // Use the PopUpManager to display the TitleWindow container.
+                PopUpManager.addPopUp(myTitleWindow, this, true);
+            }
+        
+            // The method to create and add the Button child control to the
+            // TitleWindow container.
+            public function populateWindow():void {
+                var btn1:Button = new Button();
+                btn1.label="close";
+                btn1.addEventListener(MouseEvent.CLICK, closeTitleWindow);
+                myTitleWindow.addElement(btn1);   
+            }
+            
+            // The method to close the TitleWindow container.
+            public function closeTitleWindow(event:MouseEvent):void {
+                PopUpManager.removePopUp(myTitleWindow);
+            }
+        ]]>
+    </fx:Script>
+    <s:Button label="Open Window" click="openWindow(event);"/>
+</s:Application>

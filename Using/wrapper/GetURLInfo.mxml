@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/GetURLInfo.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="getHostName()">
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[ 
+      import mx.core.FlexGlobals;
+
+      [Bindable] 
+      public var g_HostString:String; 
+      [Bindable] 
+      public var g_ContextRoot:String; 
+      [Bindable] 
+      public var g_BaseURL:String; 
+
+      private function getHostName():void { 
+         g_BaseURL = FlexGlobals.topLevelApplication.url; 
+         var pattern1:RegExp = new RegExp("http://[^/]*/"); 
+         if (pattern1.test(g_BaseURL) == true) { 
+            g_HostString = pattern1.exec(g_BaseURL).toString(); 
+         } else{ 
+            g_HostString = "http://localhost/" 
+         }   
+      } 
+      ]]>
+    </fx:Script> 
+ 
+  <mx:Form> 
+     <mx:FormItem label="Base URL:"> 
+        <mx:Label text="{g_BaseURL}"/> 
+     </mx:FormItem> 
+     <mx:FormItem label="Host Name:"> 
+        <mx:Label text="{g_HostString}"/> 
+     </mx:FormItem> 
+  </mx:Form> 
+</s:Application>

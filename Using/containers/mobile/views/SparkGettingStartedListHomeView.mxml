@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\SparkGettingStartedListHomeView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        title="Adobe Product List">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingLeft="10" paddingRight="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import spark.events.IndexChangeEvent;
+            
+            protected function myList_changeHandler(event:IndexChangeEvent):void {
+                navigator.pushView(views.ProductDetailView,myList.selectedItem);
+            }
+            
+        ]]>
+    </fx:Script>    
+
+    <s:List width="100%" id="myList"
+            change="myList_changeHandler(event);">
+        <s:dataProvider> 
+            <s:ArrayCollection> 
+                <fx:Object Product="Adobe AIR" Price="11.99" Image="@Embed(source='../assets/air_icon_sm.jpg')"/> 
+                <fx:Object Product="Adobe BlazeDS" Price="11.99" Image="@Embed(source='../assets/blazeds_icon_sm.jpg')"/> 
+                <fx:Object Product="Adobe ColdFusion" Price="11.99" Image="@Embed(source='../assets/coldfusion_icon_sm.jpg')"/> 
+                <fx:Object Product="Adobe Flash Player" Price="11.99" Image="@Embed(source='../assets/flashplayer_icon_sm.jpg')"/> 
+                <fx:Object Product="Adobe Flex" Price="Free" Image="@Embed(source='../assets/flex_icon_sm.jpg')" Description="Flex is a highly productive, free, open source framework for building expressive web applications that deploy consistently on all major browsers, desktops, and operating systems by leveraging the Adobe® Flash® Player and Adobe AIR® runtimes."/> 
+                <fx:Object Product="Adobe LiveCycleDS" Price="11.99" Image="@Embed(source='../assets/livecycleds_icon_sm.jpg')"/> 
+                <fx:Object Product="Adobe LiveCycle ES2" Price="11.99" Image="@Embed(source='../assets/livecyclees_icon_sm.jpg')"/> 
+                <fx:Object Product="Open Source Media Framework" Price="11.99" Image="@Embed(source='../assets/osmf_icon_sm.jpg')"/> 
+            </s:ArrayCollection> 
+        </s:dataProvider> 
+        <s:itemRenderer>
+            <fx:Component>
+                <s:IconItemRenderer 
+                    labelField="Product"
+                    iconField="Image"/>
+            </fx:Component>
+        </s:itemRenderer>
+    </s:List>
+</s:View>

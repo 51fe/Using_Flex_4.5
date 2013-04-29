@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/TreeAddRemoveNode.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.XMLListCollection;
+            
+            [Bindable]
+            private var company:XML =
+              <list>
+                <department title="Finance" code="200">
+                    <employee name="John H"/>
+                    <employee name="Sam K"/>
+                </department>
+                <department title="Operations" code="400">
+                    <employee name="Bill C"/>
+                    <employee name="Jill W"/>
+                </department>                    
+                <department title="Engineering" code="300">
+                    <employee name="Erin M"/>
+                    <employee name="Ann B"/>
+                </department>                                
+              </list>;
+              
+            [Bindable]
+            private var companyData:XMLListCollection = 
+                new XMLListCollection(company.department);
+            
+            private function treeLabel(item:Object):String {
+                var node:XML = XML(item);
+                if( node.localName() == "department" )
+                    return node.@title;
+                else
+                    return node.@name;
+            }
+
+            private function addEmployee():void {
+                var newNode:XML = <employee/>;
+                newNode.@name = empName.text;
+                var dept:XMLList =company.department.(@title == "Operations");
+                if( dept.length() > 0 ) {
+                    dept[0].appendChild(newNode);
+                    empName.text = "";
+                }
+            }
+
+            private function removeEmployee():void {
+                var node:XML = XML(tree.selectedItem);
+                if( node == null ) return;
+                if( node.localName() != "employee" ) return;
+            
+                var children:XMLList = XMLList(node.parent()).children();
+                for(var i:Number=0; i < children.length(); i++) {
+                    if( children[i].@name == node.@name ) {
+                        delete children[i];
+                    }
+                }
+            }
+        ]]>
+    </fx:Script>
+    
+    <mx:Tree id="tree" 
+        top="72" left="50" 
+        dataProvider="{companyData}"
+        labelFunction="treeLabel"
+        height="225" width="300"/>
+    
+    <mx:VBox>
+        <mx:HBox>           
+            <mx:Button label="Add Operations Employee" click="addEmployee();"/>
+            <mx:TextInput id="empName"/>            
+        </mx:HBox>
+        <mx:Button label="Remove Selected Employee" click="removeEmployee();"/>                     
+    </mx:VBox>
+</s:Application>

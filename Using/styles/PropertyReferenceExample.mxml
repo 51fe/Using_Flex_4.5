@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- styles/PropertyReferenceExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+  <!-- You can declare a property using this method, too: -->
+  <!-- 
+  <fx:Declarations>
+    <fx:Number id="mySize">20</fx:Number>
+  </fx:Declarations>
+  -->
+  
+  <fx:Script>
+    [Bindable]
+    private var mySize:Number = 20;    
+  </fx:Script>
+  
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+
+     s|Button {
+        fontSize: PropertyReference("mySize");
+     }     
+  </fx:Style>
+
+    <!--Notice that when you click the button, the value of mySize increases,
+         but the size of the font on the button's label does not. Style properties
+         must be explicitly set, even if the property is bindable. -->
+  <s:Button id="myButton" label="{mySize.toString()}" click="mySize+=2"/>
+
+</s:Application>

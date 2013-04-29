@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\validator\myComponents\EditorPhoneValidator.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[           
+            // Define a property for returning the new value to the cell.
+            [Bindable]
+            public var returnPN:String;
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <mx:PhoneNumberValidator id="pnV" 
+            source="{newPN}" 
+            property="text" 
+            trigger="{newPN}" 
+            triggerEvent="change" 
+            required="true"/>
+    </fx:Declarations>
+    
+    <mx:TextInput id="newPN" 
+        text="{data.phone}" 
+        updateComplete="returnPN=newPN.text;" 
+        change="returnPN=newPN.text;"/>            
+</mx:VBox> 

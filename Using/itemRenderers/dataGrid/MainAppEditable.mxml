@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\MainAppEditable.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="700" width="700">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {label1: "Order #2314", Contact: "John Doe", 
+                    Confirmed: false, Photo: "john_doe.jpg", Sent: false},
+                {label1: "Order #2315", Contact: "Jane Doe", 
+                    Confirmed: true, Photo: "jane_doe.jpg", Sent: false}
+            ]);
+        ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myDG" 
+        width="500" height="250" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"  
+        editable="true">
+        <mx:columns>
+            <mx:DataGridColumn dataField="Photo" 
+                editable="false"/>
+            <mx:DataGridColumn dataField="Contact" 
+                width="200" 
+                editable="true" 
+                rendererIsEditor="true" 
+                itemRenderer="myComponents.MyContactEditable" 
+                editorDataField="newContact"/>
+            <mx:DataGridColumn dataField="Confirmed" 
+                editable="true" 
+                rendererIsEditor="true" 
+                itemRenderer="mx.controls.CheckBox" 
+                editorDataField="selected"/>
+            <mx:DataGridColumn dataField="Sent" 
+                editable="true" 
+                rendererIsEditor="false" 
+                itemEditor="mx.controls.CheckBox" 
+                editorDataField="selected"/>
+        </mx:columns>
+    </mx:DataGrid>
+</s:Application>

@@ -1,0 +1,8 @@
+/* ../assets/LabelStyles.css */
+
+@namespace s "library://ns.adobe.com/flex/spark";
+
+s|Label {
+    fontSize:    24;
+    color: #FF9933;
+}

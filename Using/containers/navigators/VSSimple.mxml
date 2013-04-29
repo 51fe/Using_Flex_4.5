@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- containers\navigators\VSSimple.mxml  -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <!-- Create a VGroup container so the container for 
+        the buttons appears above the ViewStack container. -->
+    <s:VGroup>
+        <!-- Create an HBox container to hold the three buttons. -->
+        <mx:HBox borderStyle="solid">
+
+            <!-- Define the three buttons. 
+                Each uses the child container identifier 
+                to set the active child container. -->
+            <s:Button id="searchButton" 
+                label="Search Screen" 
+                click="myViewStack.selectedChild=search;"/>
+
+            <s:Button id="cInfoButton" 
+                label="Customer Info Screen" 
+                click="myViewStack.selectedChild=custInfo;"/>
+
+            <s:Button id="aInfoButton" 
+                label="Account Info Screen"
+                click="myViewStack.selectedChild=accountInfo;"/>
+        </mx:HBox>
+
+        <!-- Define the ViewStack and the three child containers and have it
+            resize up to the size of the container for the buttons. -->
+        <mx:ViewStack id="myViewStack" 
+            borderStyle="solid" width="100%">
+
+            <mx:Canvas id="search" label="Search">
+                <mx:Label text="Search Screen"/>
+            </mx:Canvas>
+
+            <mx:Canvas id="custInfo" label="Customer Info">
+                <mx:Label text="Customer Info"/>
+            </mx:Canvas>
+
+            <mx:Canvas id="accountInfo" label="Account Info">
+                <mx:Label text="Account Info"/>
+            </mx:Canvas>
+        </mx:ViewStack>
+    </s:VGroup>
+</s:Application>

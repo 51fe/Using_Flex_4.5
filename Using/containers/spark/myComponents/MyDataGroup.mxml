@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\myComponents\MyDataGroup.mxml -->
+<s:SkinnableDataContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[        
+            // Override to return the Object as a formatted String. 
+            override public function itemToLabel(item:Object):String {
+                var tempString:String; 
+
+                if (item == null)
+                    return " ";
+
+                tempString = item.firstName + " " + item.lastName 
+                    + " " + ", ID: " + item.companyID;
+                return tempString;
+            }
+        ]]>
+    </fx:Script>
+</s:SkinnableDataContainer>

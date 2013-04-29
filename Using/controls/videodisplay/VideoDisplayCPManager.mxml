@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- controls\videodisplay\VideoDisplayCPManager.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="450"
+    creationComplete="myVid.pause();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.CuePointEvent;
+
+            [Bindable]
+            private var myCuePoints:Array = [
+                { name: "first", time: 5},
+                { name: "second", time: 10} 
+            ];           
+            
+            // Set cue points using methods of the CuePointManager class.
+            private function initCP():void {
+                myVid.cuePointManager.setCuePoints(myCuePoints);
+            }
+
+            private var currentCP:Object=new Object();
+            private function cpHandler(event:CuePointEvent):void {
+                cp.text += "Got to " + event.cuePointName + " cuepoint @ " + 
+                    String(event.cuePointTime) + " seconds in.\n";
+
+                // Remove cue point.
+                currentCP.name=event.cuePointName;
+                currentCP.time=event.cuePointTime;
+                myVid.cuePointManager.removeCuePoint(currentCP);
+
+                // Display the number of remaining cue points. 
+                cp.text += "# cue points remaining: " + 
+                    String(myVid.cuePointManager.getCuePoints().length) + ".\n"; 
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox>
+        <mx:VideoDisplay id="myVid" 
+            cuePointManagerClass="mx.controls.videoClasses.CuePointManager"
+            source="../assets/MyVideo.flv"
+            cuePoint="cpHandler(event);"
+            height="250" 
+            width="250"
+        />
+        <mx:Label text="{myVid.playheadTime}"/>
+        <mx:TextArea id="cp" height="100" width="250"/>
+    </mx:VBox>
+    <mx:HBox>
+        <mx:Button label="&gt;" click="cp.text='';initCP();myVid.play();"/>         
+    </mx:HBox>
+</s:Application>

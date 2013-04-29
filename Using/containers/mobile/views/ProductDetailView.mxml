@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\ProductDetailView.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Adobe Product Details">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingLeft="10" paddingRight="10"/>
+    </s:layout>
+        
+    <s:Group width="461" height="670">
+        <s:Image source="{data.Image}" height="176" width="169" horizontalCenter="0" top="0"/>
+        <s:Label text="{data.Product}" fontSize="24" fontWeight="bold" top="100" left="0"/>
+        <s:Label text="Price: {data.Price}" top="125" left="0"/>
+        <s:TextArea y="174" width="452" height="440" contentBackgroundColor="0xCC6600"
+                    text="{data.Description}"/>
+        <s:Label text="Click for more information" color="#0000FF" bottom="0"/>
+    </s:Group>
+</s:View>

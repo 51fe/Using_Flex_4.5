@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/SetSelectionTest.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            private function selectText():void {
+                sparkTextArea.selectRange(0, 10);
+                sparkTextInput.selectRange(0, 10); 
+                sparkRET.selectRange(0, 10);                
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="sparkTextArea" 
+        selectionHighlighting="always" 
+        selectable="true" 
+        text="Spark TextArea control."/>
+    <s:TextInput id="sparkTextInput" 
+        selectionHighlighting="always" 
+        selectable="true" 
+        text="Spark TextInput control."/>
+    <s:RichEditableText id="sparkRET" 
+        selectionHighlighting="always" 
+        selectable="true" 
+        text="Spark RichEditableText control."/>
+    
+    <s:Button click="selectText()" label="Select Text"/>
+    
+</s:Application>

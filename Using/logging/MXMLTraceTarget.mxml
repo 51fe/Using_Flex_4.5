@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- charts/MXMLTraceTarget.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp();"
+    height="600">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- HTTPService is in the mx.rpc.http.* package -->
+        <mx:HTTPService id="srv" 
+            url="../assets/trace_example_data.xml" 
+            useProxy="false" 
+            result="myData=ArrayCollection(srv.lastResult.data.result)"/>
+
+        <mx:TraceTarget id="logTarget" 
+            includeDate="true" 
+            includeTime="true" 
+            includeCategory="true" 
+            includeLevel="true">
+            <mx:filters>
+                <fx:Array>
+                    <fx:String>mx.rpc.*</fx:String>
+                    <fx:String>mx.messaging.*</fx:String>
+                </fx:Array>
+            </mx:filters>
+            <!-- 0 is represents the LogEventLevel.ALL constant. -->
+            <mx:level>0</mx:level>
+        </mx:TraceTarget>
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+        import mx.collections.ArrayCollection;
+        import mx.logging.Log;
+
+        [Bindable]
+        public var myData:ArrayCollection;
+        
+        private function initApp():void {
+            Log.addTarget(logTarget);
+        }        
+        ]]>
+    </fx:Script>
+
+    <mx:LineChart id="chart" dataProvider="{myData}" showDataTips="true">
+        <mx:horizontalAxis>
+            <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+            <mx:LineSeries yField="apple" name="Apple"/>
+            <mx:LineSeries yField="orange" name="Orange"/>
+            <mx:LineSeries yField="banana" name="Banana"/>
+        </mx:series>
+    </mx:LineChart>
+
+    <s:Button id="b1" click="srv.send();" label="Load Data"/>
+
+</s:Application>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- controls\checkbox\CBSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <s:VGroup>
+        <s:CheckBox width="100" label="Employee?"/> 
+    </s:VGroup>
+</s:Application> 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/LineComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+   <Line xFrom="0" xTo="100" yFrom="0" yTo="100">
+         <stroke>
+              <SolidColorStroke color="#000000" weight="1"/>
+         </stroke>
+   </Line>
+</Graphic>

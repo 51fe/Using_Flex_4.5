@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- containers\intro\ContainerAddChild.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import spark.components.Button;
+
+            public function addButton():void {
+                var myButton:Button = new Button();
+                myButton.label = "New Button";
+                myGroup.addElement(myButton);
+            }
+        ]]>
+    </fx:Script> 
+
+    <s:Group id="myGroup" initialize="addButton();"/>
+</s:Application>

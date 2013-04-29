@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGPassedData.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="initData();"> 
+    
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.collections.*; 
+            private var dgArray:Array = [ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}]; 
+            
+            [Bindable] 
+            public var initDG:ArrayCollection; 
+            
+            // Initialize initDG variable from the Array. 
+            public function initData():void { 
+                initDG = new ArrayCollection(dgArray); 
+            } 
+        ]]> 
+    </fx:Script> 
+    
+    <s:DataGrid id="myGrid" 
+        width="350" height="200" 
+        dataProvider="{initDG}"/>
+</s:Application>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- controls\image\ImageBitmapImageExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="700">
+    
+    <s:Panel title="BitmapImage Examples" width="600">
+        <s:layout>
+            <s:HorizontalLayout horizontalAlign="center"/>
+        </s:layout>
+        <s:BorderContainer width="50%" height="100%">
+            <s:layout>
+                <s:VerticalLayout
+                   verticalAlign="middle"
+                   horizontalAlign="center"/>
+            </s:layout>
+            <s:Label text="BitmapImage embedded at compile time"/>
+            <s:BitmapImage id="embimg" source="@Embed(source='fblogo.jpg')"
+               height="50" width="50"/>
+        </s:BorderContainer>
+        <s:BorderContainer width="50%" height="100%">
+            <s:layout>
+                <s:VerticalLayout
+                   verticalAlign="middle"
+                   horizontalAlign="center"/>
+            </s:layout>
+            <s:Label text="BitmapImage loaded at runtime"/>
+            <s:BitmapImage id="runtimeimg" source="../assets/flexlogo.jpg"
+               height="50" width="50"/>
+        </s:BorderContainer>
+    </s:Panel>    
+</s:Application>

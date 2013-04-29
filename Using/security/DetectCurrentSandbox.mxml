@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- security/DetectCurrentSandbox.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+    
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script><![CDATA[
+        [Bindable]
+        private var mySandboxType:String;
+
+        private function initApp():void {
+            mySandboxType = String(Security.sandboxType);
+        }
+    ]]></fx:Script>
+
+    <s:HGroup>
+        <s:Label text="Sandbox Type: "/>                
+        <s:Label id="tb1" text="{mySandboxType}"/>              
+    </s:HGroup>
+</s:Application>

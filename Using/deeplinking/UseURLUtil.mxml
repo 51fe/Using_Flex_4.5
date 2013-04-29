@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/UseURLUtil.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()" 
+    height="250" width="500">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.utils.URLUtil;
+        import mx.managers.IBrowserManager;
+        import mx.managers.BrowserManager;
+        import mx.events.BrowserChangeEvent;
+
+        public var browserManager:IBrowserManager;
+
+        private function initApp():void {
+            browserManager = BrowserManager.getInstance();
+            browserManager.addEventListener(BrowserChangeEvent.URL_CHANGE, showURLDetails);            
+            browserManager.init("", "Welcome!");            
+        }
+
+        [Bindable]
+        private var fullURL:String;
+        [Bindable]
+        private var baseURL:String;
+        [Bindable]
+        private var fragment:String;
+        [Bindable]
+        private var protocol:String;
+        [Bindable]
+        private var port:int;
+        [Bindable]
+        private var serverName:String;
+        [Bindable]
+        private var isSecure:Boolean;
+        [Bindable]
+        private var previousURL:String;
+
+        private function showURLDetails(e:BrowserChangeEvent):void {
+            var url:String = browserManager.url;
+            baseURL = browserManager.base;
+            fragment = browserManager.fragment;                
+            previousURL = e.lastURL;                
+
+            fullURL = mx.utils.URLUtil.getFullURL(url, url);
+            port = mx.utils.URLUtil.getPort(url);
+            protocol = mx.utils.URLUtil.getProtocol(url);
+            serverName = mx.utils.URLUtil.getServerName(url);
+            isSecure = mx.utils.URLUtil.isHttpsURL(url);        
+        }
+    ]]>
+    </fx:Script>
+
+    <mx:Form>
+        <mx:FormItem label="Full URL:">
+            <mx:Label text="{fullURL}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Base URL:">
+            <mx:Label text="{baseURL}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Fragment:">
+            <mx:Label text="{fragment}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Protocol:">
+            <mx:Label text="{protocol}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Port:">
+            <mx:Label text="{port}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Server name:">
+            <mx:Label text="{serverName}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Is secure?:">
+            <mx:Label text="{isSecure}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Previous URL:">
+            <mx:Label text="{previousURL}"/>
+        </mx:FormItem>    
+    </mx:Form>
+
+</s:Application>

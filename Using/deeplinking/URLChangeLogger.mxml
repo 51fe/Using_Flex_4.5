@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/URLChangeLogger.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();">   
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.managers.BrowserManager;
+        import mx.managers.IBrowserManager;
+        import mx.events.BrowserChangeEvent;
+
+        private var bm:IBrowserManager;
+
+        private function init():void {
+            bm = BrowserManager.getInstance();
+
+            bm.addEventListener(BrowserChangeEvent.APPLICATION_URL_CHANGE, doEvent);
+            bm.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, doEvent);
+            bm.addEventListener(BrowserChangeEvent.URL_CHANGE, doEvent);
+
+            bm.init("", "Base title");
+        }
+
+        public function doEvent(evt:BrowserChangeEvent):void {
+            eventDG.dataProvider.addItem(evt);
+        }
+    ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <fx:Array id="dp">
+            <fx:Object label="one"/>
+            <fx:Object label="two"/>
+            <fx:Object label="three"/>
+        </fx:Array>
+    </fx:Declarations>
+
+    <mx:ComboBox id="cb" dataProvider="{dp}" 
+        change="bm.setFragment('selectedItem=' + cb.selectedItem.label);"/>
+    
+    <mx:DataGrid id="eventDG" 
+        dataProvider="[]" 
+        width="100%" 
+        variableRowHeight="true" 
+        wordWrap="true" 
+        height="500"/>
+</s:Application>

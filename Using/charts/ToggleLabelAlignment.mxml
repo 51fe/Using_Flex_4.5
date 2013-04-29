@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- charts/ToggleLabelAlignment.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600" width="750">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+    import mx.collections.ArrayCollection;
+        
+    [Bindable]
+    private var aligns:ArrayCollection = new ArrayCollection(["center", "left", "right"]);
+    [Bindable]
+    private var aligns2:ArrayCollection = new ArrayCollection(["center", "top", "bottom"]);
+
+    private function toggleLabelAlignment(s:String):void {
+        if ( s == 'hor' ) {
+            myHAR.setStyle("labelAlign", cb1.selectedItem);
+        } else if ( s == 'ver' ) {
+            myVAR.setStyle("labelAlign", cb2.selectedItem);        
+        }
+    }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Toggling Label Alignment">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout> 
+	 <s:VGroup>
+		 <mx:ColumnChart id="myChart" 
+			dataProvider="{srv.lastResult.data.result}" 
+			showDataTips="true">
+			<mx:horizontalAxis>
+			   <mx:CategoryAxis id="haxis" categoryField="month"/>
+			</mx:horizontalAxis>
+
+			<mx:verticalAxis>
+				<mx:LinearAxis id="vaxis"/>
+			</mx:verticalAxis>
+
+			<mx:horizontalAxisRenderers>
+				<mx:AxisRenderer id="myHAR" axis="{haxis}"/>
+			</mx:horizontalAxisRenderers>
+
+			<mx:verticalAxisRenderers>
+				<mx:AxisRenderer id="myVAR" axis="{vaxis}"/>
+			</mx:verticalAxisRenderers>
+
+			<mx:series>
+			   <mx:ColumnSeries xField="month" yField="profit" displayName="Profit"/>
+			   <mx:ColumnSeries xField="month" yField="expenses" displayName="Expenses"/>
+			</mx:series>
+		 </mx:ColumnChart>
+		 <mx:Legend dataProvider="{myChart}"/>
+	 </s:VGroup>
+     <s:Form>
+        <s:FormItem label="Horizontal Labels">
+            <s:ComboBox id="cb1" dataProvider="{aligns}" 
+                change="toggleLabelAlignment('hor')"/>
+        </s:FormItem>
+        <s:FormItem label="Vertical Labels">
+            <s:ComboBox id="cb2" dataProvider="{aligns2}" 
+                change="toggleLabelAlignment('ver')"/>
+        </s:FormItem>
+     </s:Form>     
+  </s:Panel>
+</s:Application>

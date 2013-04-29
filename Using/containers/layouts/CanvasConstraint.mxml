@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\CanvasConstraint.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    backgroundColor="gray"
+    height="200" width="200">
+
+    <mx:Canvas 
+        width="150" height="150" 
+        horizontalCenter="0" verticalCenter="0"
+        backgroundColor="#FFFFFF">
+
+        <mx:HBox id="hBox2"
+            left="30"
+            right="30" 
+            y="50" 
+            height="50" 
+            backgroundColor="#A9C0E7">
+        </mx:HBox>
+    </mx:Canvas>
+</s:Application>

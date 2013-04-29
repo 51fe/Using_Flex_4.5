@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppSalutation.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:MyComps="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            public var userName:String="SMG";
+            
+            public function getSalutation():String {
+                return "Hi, " + userName;
+            }
+        ]]>
+    </fx:Script>
+
+    <!-- Include the ButtonGetSalutation.mxml component. -->
+    <MyComps:ButtonGetSalutation/>    
+    
+</s:Application>

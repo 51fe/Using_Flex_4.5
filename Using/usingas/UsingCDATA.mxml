@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- usingas/UsingCDATA.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="doSomething()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        public var m:Number;
+        public var n:Number;
+        
+        public function doSomething():void {
+            n = 40;
+            m = 42;
+            label1.text = "40 < 42 = " + String(n < m);
+        }
+        ]]>
+    </fx:Script>
+    
+    <s:Label id="label1"/>
+    
+</s:Application>

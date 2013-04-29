@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- templating/myComponents/MyTemplateComponentDeferred.mxml -->
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="init();">
+
+    <fx:Script>
+        <![CDATA[
+        
+            import spark.components.HGroup;
+            import mx.core.UIComponent;
+                
+            // Define a deferred property for the top component.
+            public var topRow:IDeferredInstance;
+
+            // Define an Array of deferred properties 
+            // for a row of components.
+            [ArrayElementType("mx.core.IDeferredInstance")]
+            public var bottomRow:Array;
+    
+            private function init():void {  
+                // Add the top component to the VGroup container.
+                // Cast the IDeferredInstance object to UIComponent
+                // so that you can add it to the parent container.      
+                addElement(UIComponent(topRow.getInstance()));
+
+                // Create an HGroup container. This container 
+                // is the parent container of the bottom row of components.
+                var controlHGroup:HGroup = new HGroup();
+                
+                // Add the bottom row of components 
+                // to the HGroup container.              
+                for (var i:int = 0; i < bottomRow.length; i++)
+            controlHGroup.addElement(UIComponent(bottomRow[i].getInstance()));
+
+                // Add the HBox container to the VGroup container.
+                addElement(controlHGroup);
+            }
+        ]]>
+    </fx:Script>
+</s:VGroup>

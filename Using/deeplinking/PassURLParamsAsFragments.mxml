@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- deeplinking/PassURLParamsAsFragments.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init(event);">    
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+    <![CDATA[
+        import mx.managers.BrowserManager;
+        import mx.managers.IBrowserManager;
+        import mx.utils.URLUtil;
+
+        private var bm:IBrowserManager;
+        [Bindable]
+        private var fName:String;
+        [Bindable]
+        private var lName:String;            
+
+        private function init(e:Event):void {
+            bm = BrowserManager.getInstance();                
+            bm.init("", "Welcome!");
+
+            /* The following code will parse a URL that passes firstName and lastName as
+               query string parameters after the "#" sign; for example:
+               http://www.mydomain.com/MyApp.html#firstName=Nick&lastName=Danger */
+            var o:Object = URLUtil.stringToObject(bm.fragment, "&");                
+            fName = o.firstName;
+            lName = o.lastName;                
+        }
+    ]]>
+    </fx:Script>
+    
+    <mx:Form>
+        <mx:FormItem label="First name:">
+            <mx:Label id="ti1" text="{fName}"/>
+        </mx:FormItem>
+        <mx:FormItem label="Last name:">
+            <mx:Label id="ti2" text="{lName}"/>
+        </mx:FormItem>
+    </mx:Form>
+
+</s:Application>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" >
+    
+    <fx:Script>
+        <![CDATA[
+            private function preinitHandler(oName:String):void 
+            {
+                myTA.text += oName + " " + "preinit" + "\n";
+            } 
+
+            private function initHandler(oName:String):void 
+            {
+                myTA.text += oName + " " + "init" + "\n";
+            }
+
+            private function createCompHandler(oName:String):void 
+            {
+                myTA.text += oName + " " + "createComplete" + "\n";
+            }
+
+        ]]>
+    </fx:Script>
+
+    <mx:VBox id="OuterVBox" preinitialize="preinitHandler('OuterVBox');"
+        initialize="initHandler('OuterVBox');"
+        creationComplete="createCompHandler('OuterVBox');">
+        
+        <mx:VBox id="InnerVBox1" preinitialize="preinitHandler('InnerVBox1');"
+            initialize="initHandler('InnerVBox1');"
+            creationComplete="createCompHandler('InnerVBox1');">
+            
+            <mx:Label id="InnerLabel1" preinitialize="preinitHandler('InnerLabel1');"
+                initialize="initHandler('InnerLabel1');"
+                creationComplete="createCompHandler('InnerLabel1');"/>
+        </mx:VBox>
+
+        <mx:VBox id="InnerVBox2" preinitialize="preinitHandler('InnerVBox2');"
+            initialize="initHandler('InnerVBox2');"  
+            creationComplete="createCompHandler('InnerVBox2');">
+            
+            <mx:Label id="InnerLabel2" preinitialize="preinitHandler('InnerLabel2');"
+                initialize="initHandler('InnerLabel2');"
+                creationComplete="createCompHandler('InnerLabel2');"/>
+        </mx:VBox>
+    </mx:VBox>
+
+    <mx:TextArea id="myTA" height="75%" width="75%"/>
+
+</mx:Application>

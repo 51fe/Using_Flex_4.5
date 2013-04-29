@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- controls\swfloader\FlexApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="100" width="200">
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var varOne:String = "This is a public variable.";
+
+            public function setVarOne(newText:String):void {
+                varOne=newText;
+            }
+        ]]>
+    </fx:Script>
+    <s:VGroup>
+        <s:Label id="lblOne" text="I am here."/>
+        <s:Label text="{varOne}"/>
+        <s:Button label="Nested Button" click="setVarOne('Nested button pressed.');"/>
+    </s:VGroup>
+</s:Application>

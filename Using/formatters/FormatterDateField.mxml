@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- formatters\FormatterDateField.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Declare a DateFormatter and define formatting parameters.-->
+        <mx:DateFormatter id="dateFormatter" 
+            formatString="month: MM, day: DD, year: YYYY"/>
+    </fx:Declarations>
+
+    <s:Label text="Enter date (mm/dd/yyyy):"/>
+    <s:TextInput id="dob" text=""/>
+
+    <s:Label text="Formatted date: "/>
+    <s:TextInput id="formattedDate" 
+        text="" 
+        editable="false"/>
+        
+    <!-- Format and update the date.-->
+    <s:Button label="Format Input" 
+        click="formattedDate.text=dateFormatter.format(dob.text);"/>
+</s:Application>

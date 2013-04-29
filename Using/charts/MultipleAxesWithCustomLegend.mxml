@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!-- charts/MultipleAxesWithCustomLegend.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv_fe.send();srv_strk.send();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+
+        <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv_fe" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=FE"/>
+        <mx:HTTPService id="srv_strk" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx?tickerSymbol=STRK"/>
+
+          <mx:SolidColorStroke id="h1Stroke" 
+                color="{feColor}" 
+                weight="8" alpha=".75"
+                caps="square"/>
+
+          <mx:SolidColorStroke id="h2Stroke" 
+                color="{strkColor}" 
+                weight="8" alpha=".75"
+                caps="square"/>
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+    [Bindable]
+    public var strkColor:Number = 0x224488;
+
+    [Bindable]
+    public var feColor:Number = 0x884422;
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart With Multiple Axes">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="myChart" showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis id="h1" dataUnits="days"/>
+        </mx:horizontalAxis>
+
+        <mx:horizontalAxisRenderers>
+            <mx:AxisRenderer placement="bottom" axis="{h1}"/>
+        </mx:horizontalAxisRenderers>
+
+        <mx:verticalAxisRenderers>
+            <mx:AxisRenderer placement="left" axis="{v1}">
+                <mx:axisStroke>{h1Stroke}</mx:axisStroke>
+            </mx:AxisRenderer>
+            <mx:AxisRenderer placement="left" axis="{v2}">
+                <mx:axisStroke>{h2Stroke}</mx:axisStroke>
+            </mx:AxisRenderer>
+        </mx:verticalAxisRenderers>
+
+        <mx:series>
+           <mx:ColumnSeries id="cs1" 
+                horizontalAxis="{h1}" 
+                dataProvider="{srv_fe.lastResult.data.result}" 
+                yField="close" 
+                xField="date"
+                displayName="FE">
+                <mx:fill>
+                    <mx:SolidColor color="{feColor}"/>
+                </mx:fill>                
+                <mx:verticalAxis>
+                   <mx:LinearAxis id="v1"/>
+                </mx:verticalAxis>           
+           </mx:ColumnSeries>           
+           <mx:LineSeries id="cs2" 
+                horizontalAxis="{h1}" 
+                dataProvider="{srv_strk.lastResult.data.result}" 
+                yField="close" 
+                xField="date"
+                displayName="STRK">
+                <mx:verticalAxis>
+                    <mx:LinearAxis id="v2"/>           
+                </mx:verticalAxis>
+
+                <mx:lineStroke>
+                    <mx:SolidColorStroke 
+                        color="{strkColor}" 
+                        weight="4" 
+                        alpha="1"/>
+                </mx:lineStroke>
+           </mx:LineSeries>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend>
+        <mx:LegendItem label="FE" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="{feColor}"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0xCCCCCC" weight="2"/>
+           </mx:stroke>
+        </mx:LegendItem>
+        <mx:LegendItem label="STRK" fontWeight="bold">
+           <mx:fill>
+            <mx:SolidColor color="{strkColor}"/>
+           </mx:fill>
+           <mx:stroke>
+            <mx:SolidColorStroke color="0xCCCCCC" weight="2"/>
+           </mx:stroke>
+         </mx:LegendItem>
+     </mx:Legend>
+  </s:Panel>
+</s:Application>

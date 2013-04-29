@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleGroupADG.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+      <![CDATA[   
+        import mx.collections.GroupingField;
+        import mx.collections.Grouping;
+        import mx.collections.GroupingCollection2;
+        import mx.collections.ArrayCollection;
+                  
+        include "SimpleFlatData.as";
+
+        [Bindable]
+        public var myGColl:GroupingCollection2 = new GroupingCollection2();
+        
+        private var myGrp:Grouping = new Grouping();
+
+        private function initDG():void {     
+
+            // Initialize the GroupingCollection2 instance.
+            myGColl.source = dpFlat;
+                        
+            // The Grouping instance defines the grouping fields
+            // in the collection, and the order of the groups 
+            // in the hierarchy.
+            myGrp.fields = 
+              [new GroupingField("Region"), new GroupingField("Territory")];
+            myGrp.label = "Region";  
+            
+            // The grouping property contains a Grouping instance.
+            myGColl.grouping = myGrp;
+
+            // Specify the GroupedCollection as the data provider for 
+            // the AdvancedDataGrid control.
+            myADG.dataProvider=myGColl;
+            
+            // Refresh the display.
+            myGColl.refresh();
+        }        
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid id="myADG" 
+        width="100%" height="100%" 
+        creationComplete="initDG();">
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Region"/>
+            <mx:AdvancedDataGridColumn dataField="Territory"/>
+            <mx:AdvancedDataGridColumn dataField="Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="Estimate"/>
+        </mx:columns>
+   </mx:AdvancedDataGrid>
+</s:Application>

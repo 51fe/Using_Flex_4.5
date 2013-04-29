@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkShaderBitmap.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        
+        import mx.core.BitmapAsset;
+        
+        [Embed(source='assets/logo.jpg')]
+        [Bindable]
+        public var beforeImage:Class;
+        [Bindable]
+        public var beforeImageBitmap:BitmapAsset = new beforeImage();
+
+        [Embed(source='assets/flexLogo.jpg')] 
+        [Bindable]
+        public var afterImage:Class;
+        [Bindable]
+        public var afterImageBitmap:BitmapAsset = new afterImage();
+        
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <s:CrossFade id="forwardCF" 
+            target="{myImage}"
+            bitmapFrom="{beforeImageBitmap.bitmapData}" 
+            bitmapTo="{afterImageBitmap.bitmapData}"
+            effectEnd="myImage.source=afterImage;"/>
+
+        <s:CrossFade id="backwardCF" 
+            target="{myImage}"
+            bitmapFrom="{afterImageBitmap.bitmapData}" 
+            bitmapTo="{beforeImageBitmap.bitmapData}"
+            effectEnd="myImage.source=beforeImage;"/>
+    </fx:Declarations>
+
+    <s:Image id="myImage" 
+        source="{beforeImage}"/>
+    <s:Button id="fwd" label="Forward"
+        click="forwardCF.end();forwardCF.play();"/> 
+    <s:Button id="bwd" label="Backward"
+        click="backwardCF.end();backwardCF.play();"/> 
+</s:Application>

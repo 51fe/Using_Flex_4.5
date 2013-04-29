@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- styles/ClassSelectorStyleManager.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        .myFontStyle { 
+            fontSize: 15;
+            color: #9933FF;
+        }
+    </fx:Style>
+
+    <fx:Script>
+        <![CDATA[     
+            public function changeStyles(e:Event):void {
+                styleManager.getStyleDeclaration(".myFontStyle").setStyle("color",0x3399CC);
+            }     
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton" label="Click Here" styleName="myFontStyle" click="changeStyles(event)"/>
+  
+</s:Application>

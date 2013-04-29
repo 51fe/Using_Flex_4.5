@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMArray.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="init();"> 
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.controls.FlexNativeMenu; 
+             
+            private var myMenu:FlexNativeMenu; 
+             
+            private function init():void { 
+                myMenu = new FlexNativeMenu(); 
+                myMenu.dataProvider = menuData; 
+                myMenu.showRoot = false; 
+            } 
+             
+            // Method to show the menu.  
+            private function show():void { 
+                myMenu.display(this.stage, 10, 10); 
+            } 
+             
+            // The Array data provider 
+            [Bindable] 
+            public var menuData:Array = [ 
+                {label: "MenuItem A"}, 
+                {label: "MenuItem B", type: "check", toggled: true}, 
+                {label: "MenuItem C", enabled: false}, 
+                {type: "separator"}, 
+                {label: "MenuItem D", children: [ 
+                    {label: "SubMenuItem D-1"}, 
+                    {label: "SubMenuItem D-2"},  
+                    {label: "SubMenuItem D-3"}  
+                    ]}  
+                ]; 
+        ]]> 
+    </fx:Script> 
+     
+    <!-- Button control to create and open the menu. --> 
+    <s:Button x="300" y="10"  
+        label="Open Menu"  
+        click="show();"/>
+</s:WindowedApplication>

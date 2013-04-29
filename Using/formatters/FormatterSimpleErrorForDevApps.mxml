@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- formatters\FormatterSimpleErrorForDevApps.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            private function formatWithError(value:Object):String {
+                var formatted:String = myFormatter.format(value);
+                if (formatted == "") {
+                    if (myFormatter.error != null ) {
+                        if (myFormatter.error == "Invalid value") {
+                            formatted = ": The value is not valid.";
+                        }
+                        else {
+                            formatted = ": The formatString is not valid.";
+                        }
+                    }
+                }
+                return formatted;
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Declare a formatter and specify formatting properties.-->
+        <mx:DateFormatter id="myFormatter" 
+            formatString="MXXXMXMXMXMXM"/>
+    </fx:Declarations>
+
+    <!-- Trigger the formatter while populating a string with data.-->
+    <s:TextInput id="myTI"
+        width="75%"
+        text="Your order shipped on {formatWithError('May 23, 2005')}"/> 
+</s:Application>

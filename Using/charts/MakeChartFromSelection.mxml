@@ -1,0 +1,127 @@
+<?xml version="1.0" ?> 
+<!--  charts/MakeChartFromSelection.mxml --> 
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();initApp();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx" result="resultHandler()"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+
+        <mx:SeriesInterpolate id="interpol" 
+            duration="1000" 
+            elementOffset="0" 
+            minimumElementDuration="200"/>    
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[ 
+        import mx.collections.ArrayCollection;
+        import mx.charts.chartClasses.ChartBase;
+        import mx.charts.ChartItem;
+        import mx.charts.series.items.ColumnSeriesItem;        
+        import mx.charts.PieChart;
+        import mx.charts.series.PieSeries;
+        import mx.charts.events.ChartItemEvent;
+        import mx.charts.Legend;
+
+        [Bindable]
+        public var expensesAC:ArrayCollection;
+
+        [Bindable]
+        public var newDataProviderAC:ArrayCollection;
+        
+        private function resultHandler():void {
+               expensesAC = ArrayCollection(srv.lastResult.data.result);
+        }
+        
+        private function initApp():void {
+            myColumnChart.addEventListener(ChartItemEvent.CHANGE, createNewChart);
+            setupPieChart();
+        }
+        
+        private function getNewDataProvider():ArrayCollection {            
+            newDataProviderAC = new ArrayCollection();
+            
+            for (var i:int=0; i<series1.selectedItems.length; i++) {
+                var o:Object = new Object();                
+                o.Month = expensesAC.getItemAt(series1.selectedIndices[i]).month;
+                o.Expenses = expensesAC.getItemAt(series1.selectedIndices[i]).expenses;
+                newDataProviderAC.addItem(o);
+            }
+            return newDataProviderAC;
+        }
+
+        private var newChart:PieChart;
+        private var newSeries:PieSeries;
+        
+        [Bindable]
+        private var explodedPiece:Array;
+
+        private function explodePiece(e:Event):void {
+            explodedPiece = new Array();           
+            explodedPiece[newSeries.selectedIndex] = .2;
+            newSeries.perWedgeExplodeRadius = explodedPiece;
+        }
+
+        private function setupPieChart():void {     
+            newChart  = new PieChart();
+            newChart.showDataTips = true;            
+            newChart.selectionMode = "single";
+
+            newSeries = new PieSeries();
+            newSeries.field = "Expenses";
+            newSeries.nameField = "Month";
+            newSeries.setStyle("labelPosition", "callout");
+            newSeries.setStyle("showDataEffect", "interpol");
+
+            var newSeriesArray:Array = new Array();
+            newSeriesArray.push(newSeries);
+            newChart.series = newSeriesArray;
+
+            newChart.addEventListener(ChartItemEvent.CHANGE, explodePiece);
+
+            // Create a legend for the new chart.
+            var newLegend:Legend = new Legend();
+            newLegend.dataProvider = newChart;
+
+            p1.addElement(newChart);
+            p1.addElement(newLegend);
+        }
+
+        private function createNewChart(e:Event):void {
+            newChart.dataProvider = getNewDataProvider();
+        }
+    ]]> 
+    </fx:Script>   
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel id="p1" title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myColumnChart" 
+            height="207" 
+            width="350" 
+            showDataTips="true" 
+            dataProvider="{srv.lastResult.data.result}" 
+            selectionMode="multiple">
+            <mx:series>
+                <mx:ColumnSeries id="series1" 
+                    yField="expenses" 
+                    displayName="Expenses" 
+                    selectable="true"/> 
+            </mx:series>            
+            <mx:horizontalAxis>
+                <mx:CategoryAxis categoryField="month"/>
+            </mx:horizontalAxis>                        
+        </mx:ColumnChart>
+    </s:Panel>
+</s:Application>

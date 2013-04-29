@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkKeyFrame.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <fx:Vector id="kf" type="spark.effects.animation.MotionPath">
+            <s:MotionPath property="scaleX">
+                <s:Keyframe time="250" value="0.5"/>
+                <s:Keyframe time="500" value="1.0"/>
+                <s:Keyframe time="750" value="0.5"/>
+                <s:Keyframe time="1000" value="1.0"/> 
+                <s:Keyframe time="1250" value="0.5"/>
+                <s:Keyframe time="1500" value="1.0"/>
+            </s:MotionPath> 
+            <s:MotionPath property="scaleY">
+                <s:Keyframe time="250" value="0.5"/>
+                <s:Keyframe time="500" value="1.0"/>
+                <s:Keyframe time="750" value="0.5"/>
+                <s:Keyframe time="1000" value="1.0"/>
+                <s:Keyframe time="1250" value="0.5"/>
+                <s:Keyframe time="1500" value="1.0"/>
+            </s:MotionPath>
+        </fx:Vector>
+        
+        <s:Animate id="shrinkEffect"
+            motionPaths="{kf}"
+            target="{myImage}"/>
+    </fx:Declarations>
+
+    <s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"
+        click="shrinkEffect.end();shrinkEffect.play();"/>
+</s:Application>

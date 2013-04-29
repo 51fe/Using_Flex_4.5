@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCNoServer.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:HTTPService
+        id="yahoo_web_search"
+        url="http://api.search.yahoo.com/WebSearchService/V1/webSearch"/>
+
+    <mx:WebService
+        id="macr_news"
+        wsdl="http://ws.invesbot.com/companysearch.asmx?wsdl"/>
+</mx:Application>

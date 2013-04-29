@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- mxml/LayoutExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="My Application">
+        <s:HGroup>
+            <!-- List with three items -->
+            <s:List>
+                <s:dataProvider>
+                    <mx:ArrayCollection>
+                        <fx:String>Item 1</fx:String>
+                        <fx:String>Item 2</fx:String>
+                        <fx:String>Item 3</fx:String>
+                    </mx:ArrayCollection>
+                </s:dataProvider>
+            </s:List>
+
+            <!-- First pane of TabNavigator -->
+            <mx:TabNavigator borderStyle="solid">
+                <s:NavigatorContent label="Pane1" width="300">
+                    <s:layout>
+                        <s:VerticalLayout/>
+                    </s:layout>
+                    <s:TextArea text="Hello World"/>
+                    <s:Button label="Submit"/>
+                </s:NavigatorContent>
+
+                <!-- Second pane of TabNavigator -->
+                <s:NavigatorContent label="Pane2" width="300" height="150">
+                    <!-- Stock view goes here -->
+                </s:NavigatorContent>
+            </mx:TabNavigator>
+        </s:HGroup>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- fonts/DetectingEmbeddedFonts.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+     creationComplete="determineIfFontFaceIsEmbedded()">
+     
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+     
+  <fx:Style>
+     @font-face {
+        src: url(../assets/MyriadWebPro.ttf);
+        fontFamily: myPlainFont;
+        embedAsCFF: true;
+     }
+     
+     .myStyle1 {
+        fontFamily: myPlainFont; 
+        fontSize:12pt
+     }
+  </fx:Style>
+  
+  <fx:Script><![CDATA[
+     import mx.managers.SystemManager;
+     import mx.core.FlexGlobals;
+     import flash.text.TextFormat;
+     
+    [Bindable]
+     private var b1:Boolean;
+    [Bindable]
+     private var b2:Boolean;
+     
+     public function determineIfFontFaceIsEmbedded():void {
+        var tf1:TextFormat = new TextFormat();
+        tf1.font = "myPlainFont";
+        
+        var tf2:TextFormat = new TextFormat();
+        tf2.font = "Arial";
+        
+        b1 = FlexGlobals.topLevelApplication.systemManager.
+           isFontFaceEmbedded(tf1);
+        b2 = FlexGlobals.topLevelApplication.systemManager.
+           isFontFaceEmbedded(tf2);
+     }
+  ]]></fx:Script>
+
+  <s:Form>
+     <s:FormItem label="isFontFaceEmbedded (myPlainFont):">
+        <s:Label id="l1" text=" {b1}"/>
+     </s:FormItem>         
+     <s:FormItem label="isFontFaceEmbedded (Arial):">
+        <s:Label id="l2" text="{b2}"/>
+     </s:FormItem>         
+  </s:Form>    
+</s:Application>

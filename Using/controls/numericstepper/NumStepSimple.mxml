@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- controls\numericstepper\NumStepSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:NumericStepper id="nstepper1"
+        value="6" 
+        stepSize="2" 
+        maximum="100"/>
+    
+</s:Application>

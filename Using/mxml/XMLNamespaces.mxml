@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- mxml/XMLNamespaces.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:MyComps="myComponents.boxes.*">
+     
+    <s:Panel title="My Application" 
+        height="150">
+        <MyComps:CustomBox/>
+    </s:Panel>
+</s:Application>

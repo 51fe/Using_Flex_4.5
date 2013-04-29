@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- formatters\MainPhoneFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            // Define variable to hold the phone number.        
+            [Bindable]
+            private var newNumber:Number = 1234567;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Declare a PhoneFormatter and define formatting parameters.-->
+        <mx:PhoneFormatter id="PhoneDisplay" 
+            areaCode="415" 
+            formatString="###-####"/>
+    </fx:Declarations>
+
+    <!-- Trigger the formatter while populating a string with data-->
+    <s:TextInput id="myTI" 
+        initialize="myTI.text=PhoneDisplay.format(newNumber);"/> 
+</s:Application>

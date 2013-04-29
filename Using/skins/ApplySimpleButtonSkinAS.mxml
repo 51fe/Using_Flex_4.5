@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- skins/ApplySimpleButtonSkinAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Button {
+            upSkin: ClassReference("ButtonUpSkinAS");
+        }
+    </fx:Style>
+
+    <mx:Button id="b1" label="Click Me"/>
+</s:Application>

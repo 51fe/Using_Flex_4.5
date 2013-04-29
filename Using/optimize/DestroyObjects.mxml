@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- optimize/DestroyObjects.mxml -->
+<s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        private function destroyButtons(e:Event):void {
+            myVBox.removeChild(b1);
+            myVBox.removeChild(b2);
+            myVBox.removeChild(b3);
+            
+            myGroup.removeElement(b4);
+        }
+    ]]></fx:Script>
+
+    <s:Panel title="VBox and Group">
+        <s:VGroup>        
+            <mx:VBox id="myVBox" height="100" width="125">
+                <s:Button id="b1" label="Hurley"/>
+                <s:Button id="b2" label="Jack"/>
+                <s:Button id="b3" label="Sawyer"/>
+            </mx:VBox>
+
+            <s:Group id="myGroup">
+                <s:Button id="b4" label="Other"/>
+            </s:Group>
+        </s:VGroup>        
+
+    </s:Panel>
+    
+    <s:Button id="myButton2" click="destroyButtons(event)" label="Destroy Buttons"/>
+
+</s:Application>

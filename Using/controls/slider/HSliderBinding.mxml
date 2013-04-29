@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- controls\slider\HSliderBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:Group>
+        <s:layout>
+            <s:HorizontalLayout paddingTop="10" 
+                paddingLeft="10"/>
+            </s:layout>
+        <s:HSlider id="mySlider" 
+            liveDragging="true"
+            dataTipPrecision="0"/>
+        <s:Label text="The slider value is: {Math.round(mySlider.value)}"/>
+    </s:Group>
+        
+</s:Application>

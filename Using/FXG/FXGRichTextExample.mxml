@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/FXGRichTextExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*" height="100%" width="100%">
+    
+     <mx:Panel title="RichText Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <s:HGroup>
+            <s:Group>
+                <comps:TextComp/>
+            </s:Group>
+            <s:Group>
+                <comps:JustifiedTextComp/>
+            </s:Group>
+            <s:Group>
+                <comps:FormattedTextComp/>
+            </s:Group>
+        </s:HGroup>
+
+     </mx:Panel>
+</s:Application>

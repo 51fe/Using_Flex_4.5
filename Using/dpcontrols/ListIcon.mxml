@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ListIcon.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+            [Embed(source="assets/radioIcon.jpg")] 
+            public var iconSymbol1:Class; 
+
+            [Embed(source="assets/topIcon.jpg")] 
+            public var iconSymbol2:Class; 
+        ]]>
+    </fx:Script>
+
+   <mx:List iconField="myIcon"> 
+      <mx:dataProvider>
+         <fx:Array>
+            <fx:Object label="AL" data="Montgomery" myIcon="iconSymbol1"/>
+            <fx:Object label="AK" data="Juneau" myIcon="iconSymbol2"/>
+            <fx:Object label="AR" data="Little Rock" myIcon="iconSymbol1"/>
+         </fx:Array>     
+      </mx:dataProvider>
+   </mx:List>
+</s:Application>

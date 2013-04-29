@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkGroupContainerSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Group>
+        <s:Button label="Button 1" 
+            left="10" top="13" bottom="10"/>
+        <s:Button label="Button 2"
+            left="110" top="13" bottom="10"/>
+        <s:Button label="Button 3"
+            left="210" top="13" bottom="10"/>
+        <s:Button label="Button 4"
+            left="310" top="13" bottom="10" right="10"/>
+    </s:Group>
+</s:Application>

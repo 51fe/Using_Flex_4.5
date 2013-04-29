@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- skins/ApplyButtonStatesSkin.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Button {
+            overSkin: ClassReference("ButtonStatesSkin");
+            upSkin: ClassReference("ButtonStatesSkin");
+            downSkin: ClassReference("ButtonStatesSkin");
+        }
+    </fx:Style>
+
+    <mx:Button id="b1" label="Click Me"/>
+
+</s:Application>

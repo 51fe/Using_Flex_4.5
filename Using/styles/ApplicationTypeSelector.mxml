@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- styles/ApplicationTypeSelector.mxml -->
+<!-- Compile this with theme=halo.swc -->
+<mx:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Application {
+            paddingLeft: 0px;
+            paddingRight: 0px;
+            paddingTop: 0px;
+            paddingBottom: 0px;
+            horizontalAlign: "left";
+            backgroundColor: #FFFFFF; /* Change color of background to white. */
+            backgroundImage: " "; /* The empty string sets the image to nothing. */
+        }
+    </fx:Style>
+
+    <mx:Button id="myButton" styleName="myFontStyle" label="Click Me"/>
+
+</mx:Application>

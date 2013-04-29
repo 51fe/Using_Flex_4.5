@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\UseBookmarks.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="run();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            import mx.collections.IViewCursor;
+            import mx.collections.CursorBookmark;
+            import spark.collections.Sort;
+            import spark.collections.SortField;
+            private var myCursor:IViewCursor;
+
+            // Initialize variables.
+            public function run():void {
+                // Initialize the cursor.
+                myCursor=myAC.createCursor();
+                // The findFirst() method, used in 
+                // countFromSelection() requires a
+                // sorted view.
+                var sort:Sort = new Sort();
+                sort.fields=[new SortField("label")];
+                myAC.sort=sort;
+                //You must refresh the view to apply the sort.
+                myAC.refresh();
+            }
+
+            // Count the items following the current
+            // cursor location.
+            public function countLast(theCursor:IViewCursor):int {
+                var counter:int=0;
+                // Set a bookmark at the current cursor location.
+                var mark:CursorBookmark=theCursor.bookmark;
+                // Move the cursor to the end of the Array.
+                // The moveNext() method returns false when the cursor
+                // is after the last item.
+                    while (theCursor.moveNext()) {
+                    counter++;
+                }
+                // Return the cursor to the initial location.
+                theCursor.seek(mark);
+                return counter;
+            }
+
+            // Function triggered by ComboBox change event.
+            // Calls the countLast() function to count the
+            // number of items to the end of the collection.
+            public function countFromSelection():void {
+                myCursor.findFirst(myCB.selectedItem);
+                var count:int = countLast(myCursor);
+                ta1.text += myCursor.current.label + " is " + count +
+                                " from the last item.\n";
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- The data provider, an ArrayCollection with an array of objects. --> 
+        <mx:ArrayCollection id="myAC">
+            <fx:Object label="MA" data="Boston"/>
+            <fx:Object label="ME" data="Augusta"/>
+            <fx:Object label="MI" data="Lansing"/>
+            <fx:Object label="MN" data="Saint Paul"/>
+            <fx:Object label="MO" data="Jefferson City"/>
+            <fx:Object label="MS" data="Jackson"/>
+            <fx:Object label="MT" data="Helena"/>
+        </mx:ArrayCollection>
+    </fx:Declarations>
+
+    <s:ComboBox id="myCB" 
+        dataProvider="{myAC}" change="countFromSelection();"/>
+    <s:TextArea id="ta1" height="200" width="175"/>
+</s:Application>

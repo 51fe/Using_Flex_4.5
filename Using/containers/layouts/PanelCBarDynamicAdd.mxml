@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\PanelCBarDynamicAdd.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[        
+            import mx.containers.ControlBar;
+            import mx.controls.*;
+            import flash.events.MouseEvent;
+            
+            private var myCB:ControlBar=new ControlBar();
+            private var myLabel:Label=new Label();
+            private var myNS:NumericStepper=new NumericStepper();
+            private var mySpacer:Spacer=new Spacer();
+            private var myButton:Button=new Button();
+        
+            private var canAddChild:Boolean = true;
+        
+            private function addCBHandler():void {
+                if (canAddChild) {
+                    /* Create Controlbar control. */
+                    myLabel.text="Quantity";
+                    mySpacer.percentWidth=100;
+                    myButton.label="Add to Cart";
+                    myButton.addEventListener('click', addToCart);                
+                    
+                    myCB.percentWidth=100;
+                    myCB.addChild(myLabel);
+                    myCB.addChild(myNS);
+                    myCB.addChild(mySpacer);
+                    myCB.addChild(myButton);
+                    
+                    /* Add the ControlBar as the last child of the
+                       Panel container. 
+                       The ControlBar appears in the normal content area 
+                       of the Panel container. */
+                    myPanel.addChildAt(myCB, myPanel.numChildren);              
+                    
+                    /* Call createComponentsFromDescriptors() to make the
+                       ControlBar appear in the bottom border area 
+                       of the Panel container. The ControlBar must be the
+                       last child in the Panel container. */
+                    myPanel.createComponentsFromDescriptors();
+    
+                    /* Prevents more than one ControlBar control from being added. */
+                    canAddChild = false;                
+                }
+            }
+
+            private function addToCart(event:MouseEvent):void {
+                Alert.show("ControlBar Button clicked.");
+            }
+        ]]>
+    </fx:Script>
+ 
+    <mx:Panel id="myPanel"
+        title="My Application" 
+        paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10" 
+        width="300">
+    
+        <mx:HBox width="100%">
+            <!-- Area for your catalog. -->
+        </mx:HBox>
+
+        <mx:Button label="Add ControlBar" 
+            click="addCBHandler();"/>
+    </mx:Panel>
+</s:Application>

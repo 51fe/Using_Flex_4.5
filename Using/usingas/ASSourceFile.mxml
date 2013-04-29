@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- usingas/ASSourceFile.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="700">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <!-- Specify the ActionScript file that contains the function. -->
+    <fx:Script source="includes/Sample3Script.as"/>
+
+    <s:Panel title="Temperature Application" width="90%">
+        <s:HGroup>
+            <s:Label text="Temperature in Fahrenheit:"/>
+            <s:TextInput id="fahrenheit" width="120"/>
+            <s:Button label="Convert" click="celsius.text=calculate(fahrenheit.text);"/>
+            <s:Label text="Temperature in Celsius:"/>
+            <s:Label id="celsius" width="120" fontSize="24"/>
+        </s:HGroup>
+    </s:Panel>
+</s:Application>

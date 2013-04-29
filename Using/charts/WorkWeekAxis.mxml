@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- charts/WorkWeekAxis.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+        <!-- View source of the following pages to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx"/>
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     /* Create an Array that specifies which days to exclude.
+        0 is Sunday and 6 is Saturday. */
+     [Bindable]
+     private var offDays:Array = [0,6];
+     
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="WorkWeekAxis Example">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:LineChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis dataUnits="days" 
+            disabledDays="{offDays}"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:LineSeries 
+                yField="close" xField="date" 
+                displayName="FRED"/>
+        </mx:series>
+     </mx:LineChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

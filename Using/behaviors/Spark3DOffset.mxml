@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- behaviors\Spark3DOffset.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.geom.TransformOffsets;
+            
+            // Define an instance of TransformOffsets.
+            private var myXForm:TransformOffsets = new TransformOffsets();
+            
+            // Initialize the postLayoutTransformOffsets property of the target.
+            private function initOffsets():void {
+                targetImg.postLayoutTransformOffsets = myXForm; 
+            }
+            
+            // Move the target 20 pixels to the left and 
+            // increase its x and y scale by 0.1.
+            private function nudgeImageLeft():void {
+                targetImg.postLayoutTransformOffsets.x = 
+                    targetImg.postLayoutTransformOffsets.x - 20;
+                targetImg.postLayoutTransformOffsets.scaleX = 
+                    targetImg.postLayoutTransformOffsets.scaleX + 0.1;
+                targetImg.postLayoutTransformOffsets.scaleY = 
+                    targetImg.postLayoutTransformOffsets.scaleY + 0.1;
+            }
+
+            // Move the target 20 pixels to the right and 
+            // decrease its x and y scale by 0.1.
+            private function nudgeImageRight():void {
+                targetImg.postLayoutTransformOffsets.x = 
+                    targetImg.postLayoutTransformOffsets.x + 20;
+                targetImg.postLayoutTransformOffsets.scaleX = 
+                    targetImg.postLayoutTransformOffsets.scaleX - 0.1;
+                targetImg.postLayoutTransformOffsets.scaleY = 
+                    targetImg.postLayoutTransformOffsets.scaleY - 0.1;
+            }
+
+            // Reset the transform.
+            private function resetImage():void {
+                targetImg.postLayoutTransformOffsets.x = 0;
+                targetImg.postLayoutTransformOffsets.scaleX = 1.0;
+                targetImg.postLayoutTransformOffsets.scaleY = 1.0;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Panel title="Offset Example"
+        width="75%" height="75%" >
+        
+        <s:HGroup 
+            horizontalCenter="0"
+            verticalCenter="0">
+            <s:Image 
+                source="@Embed(source='assets/Nokia_6630.png')"/>
+            <s:Image id="targetImg" 
+                source="@Embed(source='assets/Nokia_6630.png')"
+                creationComplete="initOffsets();"/>
+            <s:Image  
+                source="@Embed(source='assets/Nokia_6630.png')"/>
+        </s:HGroup>
+
+        <s:HGroup left="5" bottom="5">
+            <s:Button id="nudgeLeftButton"
+                label="Nudge Left" 
+                click="nudgeImageLeft();"/>
+             <s:Button id="nudgeRightButton"
+                label="Nudge Right" 
+                click="nudgeImageRight();"/>
+             <s:Button id="resetButton"
+                label="Reset" 
+                click="resetImage();"/>
+        </s:HGroup>
+    </s:Panel>  
+</s:Application>

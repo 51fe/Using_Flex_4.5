@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- charts/CharacterRangeDetection.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="checkCharacterSupport();"
+>
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Style>
+        @font-face {
+            font-family: myABFont;
+            src:url("../assets/MyriadWebPro.ttf");
+            /* 
+            * Limit range to the characters A and B. 
+            */
+            unicodeRange: U+0041-0042; 
+            embedAsCFF: true;
+        }
+
+        @font-face {
+            font-family: myWideRangeFont;
+            src:url("../assets/MyriadWebPro.ttf");
+            /* 
+            * Set range to the 128 characters in 
+            * the Basic Latin block. 
+            */
+            unicodeRange: U+0041-007F;
+            embedAsCFF: true;
+        }
+    </fx:Style>
+
+    <fx:Script><![CDATA[
+        public function checkCharacterSupport():void {
+            var fontArray:Array = Font.enumerateFonts(false);
+            for(var i:int = 0; i < fontArray.length; i++) {
+                var thisFont:Font = fontArray[i];
+                if (thisFont.hasGlyphs("DHARMA")) {
+                    ta1.text += "The font '" + thisFont.fontName + 
+                        "' supports these glyphs.\n";
+                } else {
+                    ta1.text += "The font '" + thisFont.fontName + 
+                        "' does not support these glyphs.\n"; 
+                }
+            }
+        }
+    ]]></fx:Script>
+
+    <s:VGroup>
+        <s:RichText>
+            <s:text>myABFont unicodeRange: U+0041-0042 (characters A and B)</s:text>
+        </s:RichText>
+        <s:RichText>
+            <s:text>myWideRangeFont unicodeRange: U+0041-007F (Basic Latin chars)</s:text>
+        </s:RichText>
+
+        <s:Label text="Glyphs: DHARMA"/>
+
+        <s:RichText id="ta1" height="150" width="300"/>
+    </s:VGroup>
+
+</s:Application>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCNoServerAS.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            // Import required packages.
+            import mx.rpc.http.HTTPService;
+            import mx.rpc.soap.WebService;
+            
+            private var yahoo_web_search:mx.rpc.http.HTTPService;           
+
+            private var macr_news:mx.rpc.soap.WebService;
+        
+            public function declareServices():void {
+            // Create an HTTPService component.
+            yahoo_web_search = new HTTPService();
+            yahoo_web_search.url =
+                "http://api.search.yahoo.com/WebSearchService/V1/webSearch";             
+            // Create a WebService component.           
+            macr_news = new WebService();           
+            macr_news.wsdl =
+                "http://ws.invesbot.com/companysearch.asmx?wsdl";          
+            }
+        ]]>
+    </mx:Script>
+
+</mx:Application>

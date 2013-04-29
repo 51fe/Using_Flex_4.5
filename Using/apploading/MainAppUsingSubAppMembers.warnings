@@ -1,0 +1,1 @@
+Warning: SubApp2 is a module or application that is directly referenced. This will cause SubApp2 and all of its dependencies to be linked in with MainAppUsingSubAppMembers. Using an interface is the recommended practice to avoid this.

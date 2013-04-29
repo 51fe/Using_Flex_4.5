@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- formatters\MainDateFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            // Define variable to hold the date.        
+            [Bindable]
+            private var today:Date = new Date();        
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Declare a DateFormatter and define parameters.-->
+        <mx:DateFormatter id="DateDisplay" 
+            formatString="MMMM D, YYYY"/>
+    </fx:Declarations>
+
+    <!-- Display the date in a TextArea control.-->
+    <s:TextInput id="myTA" text="{DateDisplay.format(today)}"/> 
+</s:Application>

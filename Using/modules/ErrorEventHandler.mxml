@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- modules/ErrorEventHandler.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:layout> 
+        <s:VerticalLayout
+                paddingTop="10" 
+                paddingLeft="10" 
+                paddingRight="10" 
+                paddingBottom="10"/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.events.ModuleEvent;
+        import spark.modules.ModuleLoader;
+        import spark.modules.Module;
+        import mx.controls.Alert;
+        
+        private function errorHandler(e:ModuleEvent):void {
+            Alert.show("There was an error loading the module." + 
+                " Please contact the Help Desk.\n" + 
+                e.errorText);
+        }
+  
+        public function createModule():void {
+            if (chartModuleLoader.url == ti1.text) {
+                /* If they are the same, call the loadModule() method. */
+                chartModuleLoader.loadModule();
+            } else {
+                /* If they are not the same, then change the url, 
+                   which then triggers a call to the loadModule() method. */
+                chartModuleLoader.url = ti1.text;
+            }
+        }
+        
+        public function removeModule():void {
+            chartModuleLoader.unloadModule();
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Panel title="Module Example" height="90%" width="90%">
+        <s:layout> 
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:HGroup>
+            <s:Label text="URL:"/>
+            <s:TextInput width="200" id="ti1" text="ColumnChartModule.swf"/>
+            <s:Button label="Load" click="createModule()"/>
+            <s:Button label="Unload" click="removeModule()"/>
+        </s:HGroup>
+        <s:ModuleLoader id="chartModuleLoader" error="errorHandler(event)"/>
+    </s:Panel>
+</s:Application>

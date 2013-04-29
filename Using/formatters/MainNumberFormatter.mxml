@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- formatters\MainNumberFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            // Define variable to hold the number.        
+            [Bindable]
+            private var bigNumber:Number = 6000000000.65;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Declare and define parameters for the NumberFormatter.-->
+        <mx:NumberFormatter id="PrepForDisplay"
+            precision="0" 
+            rounding="up"
+            decimalSeparatorTo="."
+            thousandsSeparatorTo=","
+            useThousandsSeparator="true"
+            useNegativeSign="true"/>
+    </fx:Declarations>
+
+    <!-- Trigger the formatter while populating a string with data.-->
+    <s:TextInput text="{PrepForDisplay.format(bigNumber)}"/>  
+</s:Application>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- modules/FormModule.mxml -->
+<s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%" >    
+    <s:Form left="47" top="136">
+        <s:FormHeading label="Heading 1"/>
+        <s:FormItem label="Item 1a">
+            <s:TextInput id="a1" width="200" />
+        </s:FormItem>
+        <s:FormItem label="Item 1b">
+            <s:TextInput id="b1" width="200" />
+        </s:FormItem>
+        <s:FormItem label="Item 1c">
+            <s:TextInput id="c1" width="200" />
+        </s:FormItem>
+    </s:Form>
+</s:Module>

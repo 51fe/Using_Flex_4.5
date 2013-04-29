@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormDataSubmitNoArg.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            private function processValues():void {
+                var inputZip:String = zipCode.text;
+                var inputPhone:String = phoneNumber.text;
+                // Check to see if pn is a number.
+                // Check to see if zip is less than 4 digits.
+                // Process data.
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Form id="myForm" defaultButton="{mySubmitButton}">
+
+        <mx:FormItem label="ZIP Code">
+            <mx:TextInput id="zipCode"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone Number">
+            <mx:TextInput id="phoneNumber"/>
+        </mx:FormItem>
+    
+        <mx:FormItem>
+            <mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues();"/>
+        </mx:FormItem>
+    
+    </mx:Form>
+</s:Application>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- containers\intro\ContainerComponentsExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+      <![CDATA[
+
+        // Import the CheckBox class.
+        import spark.components.CheckBox;
+
+        // Define a variable to hold the new CheckBox control.
+        private var myCheckBox:CheckBox;
+        
+        // Define a variable to track if the CheckBox control 
+        // is in the display list.
+        private var checkBoxDisplayed:Boolean = false;
+        
+        public function addCB():void {
+            // Make sure the check box isn't being displayed.
+            if(checkBoxDisplayed==false){
+                // Create the check box if it does not exist.
+                if (!myCheckBox) {
+                    myCheckBox = new CheckBox();
+                }
+
+                // Add the check box.
+                myCheckBox.label = "New CheckBox";
+                myGroup.addElement(myCheckBox);
+                checkBoxDisplayed=true;
+            }
+        }
+    
+        public function delCB():void {
+            // Make sure a CheckBox control exists.
+            if(checkBoxDisplayed){
+                myGroup.removeElement(myCheckBox);
+                checkBoxDisplayed=false;
+            }
+        }        
+      ]]>
+    </fx:Script>
+
+    <s:VGroup id="myGroup">
+        <s:Button label="Add CheckBox" 
+            click="addCB();"/>          
+        <s:Button label="Remove CheckBox" 
+            click="delCB();"/>
+    </s:VGroup>
+</s:Application>

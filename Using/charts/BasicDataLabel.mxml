@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- charts/BasicDataLabel.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();setStartLabelLocation();"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     private function setStartLabelLocation():void {
+        cs1.setStyle("labelPosition", "inside");
+        cs2.setStyle("labelPosition", "inside");
+     }
+     
+     private function changeLabelLocation():void {
+        var pos:String = cs1.getStyle("labelPosition");
+        if (pos == "inside") {
+            pos = "outside";
+        } else {
+            pos = "inside";
+        }   
+        cs1.setStyle("labelPosition", pos);
+        cs2.setStyle("labelPosition", pos);
+     }
+     
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        
+        <mx:verticalAxis>
+            <mx:LinearAxis minimum="0" maximum="2500"/>
+        </mx:verticalAxis>
+        
+        <mx:series>
+           <mx:ColumnSeries id="cs1"
+                xField="month" 
+                yField="profit" 
+                displayName="Profit"/>
+           <mx:ColumnSeries id="cs2"
+                xField="month" 
+                yField="expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>          
+  </s:Panel>
+
+  <s:Button id="b1" label="Change Label Location" 
+    click="changeLabelLocation()"/>
+
+</s:Application>

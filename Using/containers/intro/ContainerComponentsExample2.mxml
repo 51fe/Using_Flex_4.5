@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- containers\intro\ContainerComponentsExample2.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+
+            /* Import HBox class. */
+            import mx.containers.HBox;
+    
+            /* Array of created containers. */
+            private var myHBoxes:Array = [];
+
+            public function addHBox():void {
+                /* Create new HBox container. */
+                var newHBox:HBox = new HBox();
+                newHBox.label="Label: " + String(myHBoxes.length);
+
+                /* Add it to the Accordion container, and to the 
+                   Array of HBox containers. */
+                myHBoxes.push(myAcc.addChild(newHBox));
+            }
+
+            public function delHBox():void {
+                /* If there is at least one HBox container in the Array, 
+                   remove it. */
+                if (myHBoxes.length>= 1) {
+                    myAcc.removeChild(myHBoxes.pop());
+                }
+            }
+      ]]>
+    </fx:Script>
+
+    <s:VGroup>
+        <mx:Accordion id="myAcc" height="150" width="150">
+            <mx:HBox/>
+        </mx:Accordion>
+        
+        <s:Button label="Add HBox" click="addHBox();"/>
+        <s:Button label="Remove HBox" click="delHBox();"/>       
+    </s:VGroup>
+</s:Application>

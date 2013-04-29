@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- states\StatesSimple2Buttons.mxml -->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:states>
+        <s:State name="default"/>
+        <s:State name="NewButton"/>
+    </mx:states>    
+
+    <mx:VBox id="v1">
+        <!-- Disable Button in the NewButton view state. -->
+        <mx:Button id="b1" label="Click Me"
+        	enabled.NewButton="false"/>
+
+        <!-- Add a new child control to the VBox. -->
+		<mx:Button id="b2" label="New Button"
+			includeIn="NewButton"/>
+        	
+        <!-- Define Button control to switch to NewButton view state. -->
+        <mx:Button label="Change to NewButton state" 
+            click="currentState='NewButton';"
+            enabled.NewButton="false"/>            
+
+        <!-- Define Button control to switch to default view state. -->
+        <mx:Button label="Change to default view state" 
+            click="currentState='default';"
+            enabled="false"
+			enabled.NewButton="true"/>
+
+    </mx:VBox>    
+</mx:Application>

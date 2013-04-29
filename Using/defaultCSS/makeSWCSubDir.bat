@@ -1,0 +1,1 @@
+C:\a\flex\flex\sdk\bin\compc -source-path . -include-classes myComponents.StateComboBox -include-file defaults.css defaults.css -o MyComponentsSWCSubDir.swc

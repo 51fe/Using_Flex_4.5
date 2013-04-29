@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/FilteredRectComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+   <Group>
+        <filters>
+            <DropShadowFilter distance="12" alpha=".5" strength=".33"/>
+        </filters>
+        <Rect height="100" width="200">                              
+             <stroke>
+                  <SolidColorStroke color="#000000" weight="1"/>
+             </stroke>
+             <fill>
+                  <SolidColor color="#FF0000"/>                
+             </fill>
+        </Rect>
+   </Group>
+</Graphic>

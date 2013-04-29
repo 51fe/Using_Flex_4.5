@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- styles/SmallFont.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+  <fx:Style>    
+     .smallFont {
+        fontFamily: Arial, Helvetica, "_sans";
+        fontSize: x-small;
+     }
+  </fx:Style>
+
+  <s:Button id="myButton" styleName="smallFont" label="Click Here"/>
+
+</s:Application>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- behaviors\MxmlTypeSel.mxml-->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Style>
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        mx|TextArea {mouseDownEffect: slowWipe;}
+    </fx:Style>
+
+    <fx:Declarations>
+        <mx:WipeLeft id="slowWipe" duration="5000"/>
+    </fx:Declarations>
+
+    <mx:TextArea id="myTA" 
+        text="This TextArea slowly wipes in on mouseDown."/>
+
+    <mx:TextArea id="myTA2" 
+        text="This TextArea control has no effect." 
+        mouseDownEffect="none"/>
+</s:Application>

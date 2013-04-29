@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flex-config xmlns="http://www.adobe.com/2006/flex-config">
+
+    <compiler>        
+        <source-path>
+            <path-element>C:\flex\frameworks\projects\framework\src</path-element> 
+        </source-path>           
+
+        <namespaces>    
+            <namespace>
+                <uri>http://www.adobe.com/2006/mxml</uri>
+                <manifest>C:\flex\frameworks\projects\framework\manifest.xml</manifest>
+            </namespace>
+        </namespaces>    
+    </compiler>
+
+    <doc-classes>
+        <class>FrameworkClasses</class>
+    </doc-classes>
+        
+    <doc-namespaces>
+        <uri>http://www.adobe.com/2006/mxml</uri>
+    </doc-namespaces>
+</flex-config>

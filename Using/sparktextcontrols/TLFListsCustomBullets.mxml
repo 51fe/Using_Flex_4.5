@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TLFListsCustomBullets.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+  
+    <!-- Custom bullets lists. -->
+    <s:RichEditableText id="myRET1" width="200">
+        <s:p>Lists with custom bullets:</s:p>
+        <s:p>Box:</s:p>
+        <s:list id="list1" listStyleType="box">
+            <s:li>Quart of milk</s:li>
+            <s:li>Loaf of bread</s:li>
+        </s:list>
+        <s:p>Decimal:</s:p>
+        <s:list id="list2" listStyleType="decimal">
+            <s:li>Quart of milk</s:li>
+            <s:li>Loaf of bread</s:li>
+        </s:list>
+        <s:p>Check:</s:p>
+        <s:list id="list3" listStyleType="check">
+            <s:li>Quart of milk</s:li>
+            <s:li>Loaf of bread</s:li>
+        </s:list>
+        <s:p>Nested Roman:</s:p>
+        <s:list id="list4" listStyleType="upperRoman">
+            <s:li>Item 1
+                <s:list id="list41" listStyleType="lowerRoman">
+                    <s:li>Quart of milk</s:li>
+                    <s:li>Loaf of bread</s:li>
+                </s:list>            
+            </s:li>
+            <s:li>Item 2</s:li>
+        </s:list>
+    </s:RichEditableText>   
+    
+    <!-- List with custom increment. -->
+    <s:RichEditableText id="myRET2" width="200">
+        <s:p>List with countdown:</s:p>
+        <s:list id="list5" listStyleType="decimal">
+            <s:listMarkerFormat>
+                <!-- Increments the list by 2s rather than 1s. -->
+                <s:ListMarkerFormat counterIncrement="ordered 2"/>
+            </s:listMarkerFormat>
+            <s:li>Quart of milk
+                <s:listMarkerFormat>
+                    <!-- Causes counter to start at 10. -->
+                    <s:ListMarkerFormat counterReset="ordered 9"/>
+                </s:listMarkerFormat>            
+            </s:li>
+            <s:li>Loaf of bread</s:li>
+            <s:li>Stick of butter</s:li>
+        </s:list>
+    </s:RichEditableText>       
+
+</s:Application>

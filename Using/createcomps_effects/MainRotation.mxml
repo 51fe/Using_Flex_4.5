@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- createcomps_effects/MainRotation.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myEffects.*"
+    height="450"> 
+
+    <fx:Declarations>
+        <MyComp:Rotation id="Rotate90" 
+            angleFrom="0" angleTo="360" 
+            duration="1000"
+            target="{myImage}"/>
+    </fx:Declarations>
+ 
+    <mx:Image id="myImage" 
+        x="250" y="200"
+        source="@Embed(source='../assets/myRotationImage.jpg')" 
+        mouseDown="Rotate90.end();Rotate90.play();"/>
+</s:Application>

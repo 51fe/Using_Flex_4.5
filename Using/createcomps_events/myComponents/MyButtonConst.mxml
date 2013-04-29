@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- createcomps_events\myComponents\MyButtonConst.mxml -->
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    click="dispatchEvent(new EnableChangeEventConst(EnableChangeEventConst.ENABLE_CHANGE));">
+
+    <fx:Script>
+        <![CDATA[
+            import myEvents.EnableChangeEventConst;
+        ]]>
+    </fx:Script>
+
+    <fx:Metadata>
+        [Event(name="myEnable", type="myEvents.EnableChangeEventConst")]
+    </fx:Metadata>
+</s:Button>

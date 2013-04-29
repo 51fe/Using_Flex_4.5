@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\MainArrayEntryFormEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            import flash.events.Event;
+            import myComponents.ArrayEntryFormEvents;
+            
+            public var pop1:ArrayEntryFormEvents; 
+    
+            public function displayForm():void {
+                // Array with data for the custom control ComboBox control.
+                var doctypes:Array = ["*.as", "*.mxml", "*.swc"]
+                
+                // Create the pop-up and cast the return value 
+                // of the createPopUp()
+                // method to the ArrayEntryFormEvents custom component.
+                pop1 = ArrayEntryFormEvents(
+              PopUpManager.createPopUp(this, ArrayEntryFormEvents, true));
+                // Set TitleWindow properties.
+                pop1.title="Select File Type";
+                pop1.showCloseButton=true;
+    
+                // Set the event listeners for 
+                // the ArrayEntryFormEvents component.
+                pop1.addEventListener("close", removeMe);
+                pop1["cancelButton"].addEventListener("click", removeMe);   
+                pop1["okButton"].addEventListener("click", submitData); 
+    
+                // Set properties of the ArrayEntryFormEvents custom control.
+                pop1.myArray = doctypes;
+                PopUpManager.centerPopUp(pop1);
+            }
+            
+            // OK button click event listener.
+            // Sets the target component in the application to the 
+            // selected ComboBox item value.
+            private function submitData(event:Event):void {
+                ti1.text = String(pop1.cb1.selectedItem);
+                removeMe(event);
+            }
+
+            // Cancel button click event listener.
+            private function removeMe(event:Event):void {
+                PopUpManager.removePopUp(pop1);
+            }           
+        ]]>
+    </fx:Script>
+
+    <mx:VBox> 
+        <mx:TextInput id="ti1" text=""/>
+    </mx:VBox>
+    <mx:Button id="b1" label="Select File Type" click="displayForm();"/>
+</s:Application>

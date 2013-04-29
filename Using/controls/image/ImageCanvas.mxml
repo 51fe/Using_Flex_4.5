@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- controls\image\ImageCanvas.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <mx:Canvas id="canvas0" 
+        borderStyle="solid"
+        width="200"
+        height="200">
+        <s:Image id="img0" 
+            source="@Embed('logo.jpg')" 
+            x="40" y="40"/>
+    </mx:Canvas>
+</s:Application>

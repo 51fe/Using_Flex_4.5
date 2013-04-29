@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns="*" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+    <mx:WebService
+        id="nwCL"
+        wsdl="http://localhost/data/CustomerList.asmx?wsdl"
+        result="onResult(event)"
+        fault="onFault(event)" />
+    <mx:Button label="Get Single DataTable" click="nwCL.getSingleDataTable()"/>
+    <mx:Button label="Get MultiTable DataSet" click="nwCL.getMultiTableDataSet()"/>
+    <mx:Panel id="dataPanel" width="100%" height="100%" title="Data Tables"/>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.controls.DataGrid;
+            import mx.rpc.events.FaultEvent;
+            import mx.rpc.events.ResultEvent;
+
+            private function onResult(event:ResultEvent):void {
+                // A DataTable or DataSet returned from a .NET webservice is
+                // automatically converted to an object with a "Tables" property,
+                // which contains a map of one or more dataTables.
+                if (event.result.Tables != null)
+                {
+                    // clean up panel from previous calls.
+                    dataPanel.removeAllChildren();
+
+                    for each (var table:Object in event.result.Tables)
+                    {
+                        displayTable(table);
+                    }
+
+                    // Alternatively, if a table's name is known beforehand,
+                    // it can be accessed using this syntax:
+                    var namedTable:Object = event.result.Tables.Customers;
+                    //displayTable(namedTable);
+                }
+            }
+
+            private function displayTable(tbl:Object):void {
+                var dg:DataGrid = new DataGrid();
+                dataPanel.addChild(dg);
+                // Each table object from the "Tables" map contains two properties:
+                // "Columns" and "Rows". "Rows" is where the data is, so we can set
+                // that as the dataProvider for a DataGrid.
+                dg.dataProvider = tbl.Rows;
+            }
+
+            private function onFault(event:FaultEvent):void {
+                Alert.show(event.fault.toString());
+            }
+        ]]>
+    </mx:Script>
+
+</mx:Application>

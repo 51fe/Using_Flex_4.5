@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- tooltips/DynamicToolTipText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initApp()">
+
+  <fx:Script>
+    <![CDATA[
+     import mx.managers.ToolTipManager;
+     import mx.controls.ToolTip;
+     import mx.events.ToolTipEvent;
+     import mx.core.FlexGlobals;
+
+     public function initApp():void {
+        b1.addEventListener(ToolTipEvent.TOOL_TIP_SHOW, myToolTipChanger)
+     }
+     
+     public function myToolTipChanger(event:ToolTipEvent):void {
+        /* Pass the value of myName in to your application as a flashVars variable. 
+           For example, on the query string. */
+        ToolTipManager.currentToolTip.text = "Click the button, " + 
+           FlexGlobals.topLevelApplication.parameters.myName;
+     }
+    ]]>
+  </fx:Script>
+
+  <s:Button id="b1" label="Click Me" toolTip="Click the button."/>
+
+</s:Application>

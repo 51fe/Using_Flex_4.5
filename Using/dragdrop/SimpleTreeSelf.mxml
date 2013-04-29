@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- dragdrop\SimpleTreeSelf.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            // Initialize the data provider for the Tree.
+            private function initApp():void {
+                firstList.dataProvider = treeDP;
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <fx:XML id="treeDP">
+            <node label="Mail">
+                <node label="Inbox"/>
+                <node label="Personal Folder">
+                    <node label="Demo"/>
+                    <node label="Personal"/>
+                    <node label="Saved Mail"/>
+                    <node label="bar"/>
+                </node>
+                <node label="Calendar"/>
+                <node label="Sent"/>
+                <node label="Trash"/>
+            </node>
+        </fx:XML>
+    </fx:Declarations>
+
+    <mx:Tree id="firstList" 
+        showRoot="false"
+        labelField="@label"
+        dragEnabled="true" 
+        dropEnabled="true" 
+        allowMultipleSelection="true"
+        creationComplete="initApp();"/>
+</s:Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/YellowShape.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+     <Library>
+          <Definition name="YellowRect">
+               <Group>
+                   <Rect height="10" width="10">                              
+                         <stroke>
+                              <SolidColorStroke color="#000000" weight=".5"/>
+                         </stroke>
+                         <fill>
+                              <SolidColor color="#FFFF00"/>
+                         </fill>
+                   </Rect>
+                </Group>          
+          </Definition>
+     </Library> 
+
+     <YellowRect x="0" y="0"/>
+     <YellowRect x="0" y="12"/>
+     <YellowRect x="12" y="0"/>
+     <YellowRect x="12" y="12"/>     
+</Graphic>
+     

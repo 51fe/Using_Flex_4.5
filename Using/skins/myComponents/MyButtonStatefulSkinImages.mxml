@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- skins/myComponents/MyButtonStatefulSkinImages.mxml -->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:Script>
+        <![CDATA[
+            // Embed the skin images.
+            [Bindable]
+            [Embed(source="../../assets/orb_up_skin.gif")]
+            private var buttonUp:Class;
+
+            [Bindable]
+            [Embed(source="../../assets/orb_over_skin.gif")]
+            private var buttonOver:Class;
+
+            [Bindable]
+            [Embed(source="../../assets/orb_down_skin.gif")]
+            private var buttonDown:Class;
+
+            [Bindable]
+            [Embed(source="../../assets/orb_disabled_skin.gif")]
+            private var buttonDisabled:Class;
+        ]]>
+    </mx:Script>
+
+    <mx:states>
+        <mx:State name="up"/>
+        <mx:State name="notBase">
+            <mx:RemoveChild target="{baseButton}"/>
+        </mx:State>
+        <mx:State name="over" basedOn="notBase">
+            <mx:AddChild creationPolicy="all">
+                <mx:Image source="{buttonOver}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/> 
+            </mx:AddChild>
+        </mx:State>
+        <mx:State name="down" basedOn="notBase">
+            <mx:AddChild creationPolicy="all">
+                <mx:Image source="{buttonDown}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/> 
+            </mx:AddChild>
+        </mx:State>
+        <mx:State name="disabled" basedOn="notBase">
+            <mx:AddChild creationPolicy="all">
+                <mx:Image source="{buttonDisabled}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/> 
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+    
+    <mx:Image id="baseButton" 
+        width="100%" height="100%"
+        source="{buttonUp}" 
+        maintainAspectRatio="false"/>    
+</mx:Canvas>

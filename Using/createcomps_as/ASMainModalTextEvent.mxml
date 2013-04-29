@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- as/ASMainModalTextEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComps="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+
+            import flash.events.Event;
+
+            private function handleEnableChanged(event:Event):void {
+                myTA.text="Got Event";
+            }
+        ]]>
+    </fx:Script>
+
+    <MyComps:ModalTextEvent id="myMT"
+        enableChanged="handleEnableChanged(event);"/> 
+    
+    <s:Button click="myMT.enableInput(true);"/>
+    <s:TextArea id="myTA"/>
+</s:Application>

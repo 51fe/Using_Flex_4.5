@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- textcontrols/HTMLFormattedText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="500">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+  <fx:Script><![CDATA[
+     //The following is on one line.
+     [Bindable]
+     public var myHtmlText:String="This string contains <b>less than </b>, &lt;, <b>greater than</b>, &gt;, <b>ampersand</b>, &amp;, and <b>double quotation mark</b>, &quot;, characters.";
+  ]]></fx:Script>
+
+  <mx:Text id="htmltext2" width="450" htmlText="{myHtmlText}" />
+  <mx:Text width="450">
+     <mx:htmlText>
+        <!-- The following is on one line. Line breaks would appear in the output. -->
+        <![CDATA[
+           This string contains <b>less than</b>, &lt;, <b>greater than </b>, &gt;, <b>ampersand</b>, &amp;, and <b>double quotation mark</b>,&quot;, characters.
+        ]]>
+     </mx:htmlText>
+  </mx:Text>
+</s:Application>

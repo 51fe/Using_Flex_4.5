@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- controls\bar\LBarBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var linkData:ArrayCollection = new ArrayCollection([
+                {label:'Flash', url:'http://www.adobe.com/products/flash/'},
+                {label:'Director', url:'http://www.adobe.com/products/director/'},
+                {label:'Dreamweaver', url:'http://www.adobe.com/products/dreamweaver/'},
+                {label:'ColdFusion', url:'http://www.adobe.com/products/coldfusion/'}]);
+        ]]>
+    </fx:Script>
+    
+    <mx:LinkBar 
+        dataProvider="{linkData}"
+        horizontalAlign="right" 
+        borderStyle="solid" 
+        itemClick="navigateToURL(new URLRequest(event.item.url), '_blank');">
+    </mx:LinkBar>
+</s:Application>

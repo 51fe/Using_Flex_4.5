@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- controls\image\ImageResize.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <fx:Script>
+        <![CDATA[
+            import mx.effects.Resize;
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <s:Resize id="resizeBig" 
+            widthFrom="22" widthTo="44" 
+            heightFrom="27" heightTo="54"/>
+        <s:Resize id="resizeSmall" 
+            widthFrom="44" widthTo="22" 
+            heightFrom="54" heightTo="27"/>
+    </fx:Declarations>
+
+    <s:Image width="22" height="27"
+        source="@Embed('logo.jpg')" 
+        rollOverEffect="{resizeBig}" 
+        rollOutEffect="{resizeSmall}"/>
+        
+</s:Application>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\myComponents\MyLoginForm.mxml -->
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            
+            private function processLogin():void {
+                // Check credentials (not shown) then remove pop up.
+                PopUpManager.removePopUp(this);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Form>
+        <mx:FormItem label="User Name">
+            <mx:TextInput id="username" width="100%"/>
+        </mx:FormItem> 
+        <mx:FormItem label="Password">
+            <mx:TextInput id="password" 
+                displayAsPassword="true" 
+                width="100%"/>
+        </mx:FormItem> 
+    </mx:Form>
+    <mx:HBox> 
+        <mx:Button click="processLogin();" label="OK"/> 
+        <mx:Button 
+            label="Cancel"
+            click="PopUpManager.removePopUp(this);"/> 
+    </mx:HBox> 
+</mx:TitleWindow>

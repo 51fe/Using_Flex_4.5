@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- states\LoginExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <!-- The Application class states property defines the view states.-->
+    <s:states>
+        <s:State name="default"/>    
+        <s:State name="Register"/>
+    </s:states>
+
+    <!-- Set title of the Panel container based on the view state.-->
+    <s:Panel id="loginPanel" 
+        title="Login" title.Register="Register">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>        
+
+        <s:Form id="loginForm">
+            <s:FormItem label="Username:">
+                <s:TextInput/>
+            </s:FormItem>
+            
+            <s:FormItem label="Password:">
+                <s:TextInput/>
+            </s:FormItem>
+            
+            <s:FormItem id="confirm" label="Confirm:" includeIn="Register">
+                <!-- Add a TextInput control to the form for the Register view state. -->           
+                <s:TextInput/>
+            </s:FormItem>            
+            
+            <s:FormItem>            
+                <!-- Use the LinkButton to change view state.-->
+                <s:HGroup>
+                    <!-- Set label of the control based on the view state.-->
+                    <mx:LinkButton id="registerLink"
+                        label="Need to Register?" 
+                        label.Register="Return to Login"
+                        click="currentState='Register'"
+                        click.Register="currentState=''"/>
+                    <s:Button id="loginButton" 
+                        label="Login" label.Register="Register"/>
+                </s:HGroup>
+            </s:FormItem>            
+        </s:Form>
+    </s:Panel>
+</s:Application>

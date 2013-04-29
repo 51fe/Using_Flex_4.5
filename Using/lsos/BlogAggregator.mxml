@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!-- lsos/BlogAggregator.mxml -->
+<s:Application 
+    xmlns:local="*" 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import mx.collections.ArrayCollection;
+        import mx.utils.ObjectUtil;
+        import flash.net.SharedObject;
+
+        [Bindable]
+        public var welcomeMessage:String;
+        
+        [Bindable]
+        public var localFeeds:ArrayCollection = new ArrayCollection();
+
+        [Bindable]
+        public var localSites:ArrayCollection = new ArrayCollection();
+
+        public var lsofeeds:LSOHandler;
+        public var lsosites:LSOHandler;
+
+        private function initApp():void {
+            lsofeeds = new LSOHandler("feeds");
+            lsosites = new LSOHandler("sites");
+            
+            if (lsofeeds.getObjects()) {
+                localFeeds = lsofeeds.getObjects();
+            }
+            if (lsosites.getObjects()) {
+                localSites = lsosites.getObjects();
+            }
+        }
+        
+        // Adds a new feed to the feeds DataGrid.
+        private function addFeed():void {
+            // Construct an object you want to store in the 
+            // LSO. This object can contain any number of fields.
+            var o:Object = {name:ti1.text, url:ti2.text, date:new Date()};
+            lsofeeds.addObject(o);
+    
+            // Because the DataGrid's dataProvider property is 
+            // bound to the ArrayCollection, Flex updates the
+            // DataGrid when you call this method. 
+            localFeeds = lsofeeds.getObjects();
+            
+            // Clear the text fields.
+            ti1.text = '';        
+            ti2.text = '';
+        }
+        
+        // Removes feeds from the feeds DataGrid.
+        private function removeFeed():void {
+            // Use a method of ArrayCollection to remove a feed.
+            // Because the DataGrid's dataProvider property is 
+            // bound to the ArrayCollection, Flex updates the
+            // DataGrid when you call this method. You do not need
+            // to update it manually.
+            if (myFeedsGrid.selectedIndex > -1) {
+                localFeeds.removeItemAt(myFeedsGrid.selectedIndex);
+             }
+        }
+        
+        private function addSite():void {
+            var o:Object = {name:ti3.text, date:new Date()};
+            lsosites.addObject(o);
+            localSites = lsosites.getObjects();
+            ti3.text = '';                
+        }
+        
+        private function removeSite():void {
+            if (mySitesGrid.selectedIndex > -1) {
+                localSites.removeItemAt(mySitesGrid.selectedIndex);
+            }       
+        }
+
+        ]]>
+    </fx:Script>
+        
+    <s:Label text="Blog aggregator" fontSize="28"/>
+    
+    <mx:Panel title="Blogs">
+        <mx:Form id="blogForm">
+            <mx:HBox>
+                <mx:FormItem label="Name:">
+                    <mx:TextInput id="ti1" width="100"/>
+                </mx:FormItem>
+                <mx:FormItem label="Location:">
+                    <mx:TextInput id="ti2" width="300"/>
+                </mx:FormItem>
+                <mx:Button id="b1" label="Add Feed" click="addFeed()"/>
+            </mx:HBox>
+
+            <mx:FormItem label="Existing Feeds:">
+                <mx:DataGrid 
+                    id="myFeedsGrid" 
+                    dataProvider="{localFeeds}" 
+                    width="400"
+                />
+            </mx:FormItem>
+            <mx:Button id="b2" label="Remove Feed" click="removeFeed()"/>
+        </mx:Form>
+    </mx:Panel>
+    
+    <mx:Panel title="Sites">
+        <mx:Form id="siteForm">
+            <mx:HBox>
+                <mx:FormItem label="Site:">
+                    <mx:TextInput id="ti3" width="400"/>
+                </mx:FormItem>
+                <mx:Button id="b3" label="Add Site" click="addSite()"/>
+            </mx:HBox>
+
+            <mx:FormItem label="Existing Sites:">
+                <mx:DataGrid 
+                    id="mySitesGrid" 
+                    dataProvider="{localSites}" 
+                    width="400"
+                />
+            </mx:FormItem>
+            <mx:Button id="b4" label="Remove Site" click="removeSite()"/>
+        </mx:Form>
+    </mx:Panel>
+    
+</s:Application>

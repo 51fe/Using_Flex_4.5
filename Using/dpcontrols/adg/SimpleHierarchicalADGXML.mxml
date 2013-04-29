@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleHierarchicalADGXML.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.HierarchicalData;
+            import mx.collections.XMLListCollection;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <fx:XMLList id="dpHierarchyXML" >
+            <Region Region="Southwest">
+                <Region Region="Arizona">
+                    <Territory_Rep Territory_Rep="Barbara Jennings" 
+                        Actual="38865" Estimate="40000"/>
+                    <Territory_Rep Territory_Rep="Dana Binn" 
+                        Actual="29885" Estimate="30000"/>
+                </Region>
+                <Region Region="Central California">
+                    <Territory_Rep Territory_Rep="Joe Smith" 
+                        Actual="29134" Estimate="30000"/>
+                </Region>
+                <Region Region="Nevada">
+                    <Territory_Rep Territory_Rep="Bethany Pittman" 
+                        Actual="52888" Estimate="45000"/>
+                </Region>
+                <Region Region="Northern California">
+                    <Territory_Rep Territory_Rep="Lauren Ipsum" 
+                        Actual="38805" Estimate="40000"/>
+                    <Territory_Rep Territory_Rep="T.R. Smith" 
+                        Actual="55498" Estimate="40000"/>
+                </Region>
+                <Region Region="Southern California">
+                    <Territory_Rep Territory_Rep="Alice Treu" 
+                        Actual="44985" Estimate="45000"/>
+                    <Territory_Rep Territory_Rep="Jane Grove" 
+                        Actual="44913" Estimate="45000"/>
+                </Region>
+            </Region>  
+        </fx:XMLList>
+    </fx:Declarations>
+
+    <mx:AdvancedDataGrid width="100%" height="100%" 
+        dataProvider="{new HierarchicalData(dpHierarchyXML)}">
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="@Region" 
+                headerText="Region"/>
+            <mx:AdvancedDataGridColumn dataField="@Territory_Rep"
+                headerText="Territory Rep"/>
+            <mx:AdvancedDataGridColumn dataField="@Actual" 
+                headerText="Actual"/>
+            <mx:AdvancedDataGridColumn dataField="@Estimate" 
+                headerText="Estimate"/>
+        </mx:columns>
+    </mx:AdvancedDataGrid>    
+</s:Application>

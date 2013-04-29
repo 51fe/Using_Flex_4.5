@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- controls\button\RBGroupSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[   
+            import mx.events.ItemClickEvent;
+
+            private function handleCard(event:ItemClickEvent):void {
+                //Print the value of the selected RadioButton in the Text Area
+                var cardValue:Object = cardtype.selectedValue;
+                myTA.text="You selected " + cardValue;
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <s:RadioButtonGroup id="cardtype" 
+            itemClick="handleCard(event);"/>
+    </fx:Declarations>
+    
+    <s:VGroup>
+        <s:RadioButton group="{cardtype}" 
+            id="americanExpress" 
+            label="American Express" 
+            width="150"/>
+        <s:RadioButton group="{cardtype}"
+            id="masterCard" 
+            label="MasterCard" 
+            width="150"/>
+        <s:RadioButton group="{cardtype}"
+            id="visa" 
+            label="Visa" 
+            width="150"/>
+        <s:TextArea id="myTA"/>
+    </s:VGroup>
+</s:Application>

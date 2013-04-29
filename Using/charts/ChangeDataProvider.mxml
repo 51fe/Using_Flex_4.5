@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- charts/ChangeDataProvider.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+    <fx:Script>
+        <![CDATA[
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        public var expenses:ArrayCollection = new ArrayCollection([
+            {Month:"Jan", Profit:2000, Expenses:1500, Amount:450},
+            {Month:"Feb", Profit:1000, Expenses:200, Amount:600},
+            {Month:"Mar", Profit:1500, Expenses:500, Amount:300}
+        ]);
+
+        [Bindable]
+        public var expenses2:ArrayCollection = new ArrayCollection([
+            {Month:"Jan", Profit:2400, Expenses:1509, Amount:950},
+            {Month:"Feb", Profit:3000, Expenses:2200, Amount:400},
+            {Month:"Mar", Profit:3500, Expenses:1200, Amount:200}
+        ]);
+
+        [Bindable]
+        public var dp:ArrayCollection = expenses;
+
+        public function changeDataProvider():void {
+            if (dp==expenses) {
+                dp = expenses2;
+            } else {
+                dp = expenses;
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Line Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:LineChart id="myChart" dataProvider="{dp}" showDataTips="true">
+            <mx:horizontalAxis>
+                <mx:CategoryAxis 
+                    dataProvider="{dp}" 
+                    categoryField="Month"/>
+            </mx:horizontalAxis>
+            <mx:series>
+                <mx:LineSeries 
+                    yField="Profit" 
+                    displayName="Profit"/>
+                <mx:LineSeries 
+                    yField="Expenses" 
+                    displayName="Expenses"/>
+                <mx:LineSeries 
+                    yField="Amount" 
+                    displayName="Amount"/>
+            </mx:series>
+        </mx:LineChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+
+    <s:Button id="b1"
+        label="Change Data Provider" 
+        click="changeDataProvider()"/>
+</s:Application>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- behaviors\PanelDissolve.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="init();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+           import mx.geom.*;
+
+            // Define a bounding box for the target area of the effect.
+           [Bindable]
+           public var tArea:RoundedRectangle;
+
+            // Size the bounding box to the size of Panel 2.
+           private function init():void 
+           {
+              tArea = new RoundedRectangle(0,0, panel2.width, panel2.height, 5);
+           }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:Dissolve id="dissolveP1"
+            duration="1000"
+            target="{panel1}" 
+            alphaFrom="1.0" alphaTo="0.0"/>
+
+        <!-- Apply the effect to the bounding box, not to Panel 2. -->
+        <mx:Dissolve id="dissolveP2"
+            duration="1000"
+            target="{panel2}" 
+            alphaFrom="1.0" alphaTo="0.0" 
+            targetArea="{tArea}"/>
+    </fx:Declarations>
+
+    <mx:Panel id="panel1" title="Panel 1" 
+        width="100" height="140" >
+       <mx:Button label="Orange" />
+    </mx:Panel>
+
+    <mx:Panel id="panel2" title="Panel 2" 
+        width="100" height="140" >
+       <mx:Button label="Red" />
+    </mx:Panel>
+
+    <mx:Button label="Dissolve Panel 1" 
+        click="dissolveP1.end();dissolveP1.play();"/>
+    <mx:Button label="Dissolve Panel 2" 
+        click="dissolveP2.end();dissolveP2.play();"/>
+</s:Application>

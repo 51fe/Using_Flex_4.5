@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/SimplestNavigateToURL.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     <s:layout> 
+      <s:HorizontalLayout/> 
+     </s:layout>
+  <fx:Script><![CDATA[
+     import flash.net.*;
+     public function openNewWindow(event:MouseEvent):void {
+        var u:URLRequest = new URLRequest("http://www.adobe.com/flex");
+        navigateToURL(u,"_blank");
+     }
+  ]]></fx:Script>
+  <s:Button label="Open New Window" click="openNewWindow(event)"/>
+</s:Application>

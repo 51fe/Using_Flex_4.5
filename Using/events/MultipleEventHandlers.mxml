@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- events/MultipleEventHandlers.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        private function openEvt():void {
+            forChange.text="";
+        }
+
+        private function changeEvt(e:Event):void {
+            forChange.text = 
+            "Value: " + e.currentTarget.selectedItem + "\n" +
+            "Index: " + e.currentTarget.selectedIndex;
+        }
+    ]]></fx:Script>
+
+    <s:ComboBox open="openEvt()" change="changeEvt(event)">
+        <s:dataProvider>
+            <s:ArrayList>
+                <fx:String>AK</fx:String>
+                <fx:String>AL</fx:String>
+                <fx:String>AR</fx:String>
+            </s:ArrayList>
+        </s:dataProvider>
+    </s:ComboBox>
+
+    <s:TextArea id="forChange" width="150" height="100"/>
+
+</s:Application>

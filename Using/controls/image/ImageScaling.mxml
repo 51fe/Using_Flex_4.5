@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- controls\image\ImageScaling.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <s:controlBarContent>
+        <s:Form>
+            <s:FormItem label="scaleMode:">
+                <s:DropDownList id="ddl" selectedItem="letterbox">
+                    <s:dataProvider>
+                        <s:ArrayList source="[letterbox,scale]" />
+                    </s:dataProvider>
+                </s:DropDownList>
+            </s:FormItem>
+        </s:Form>
+    </s:controlBarContent>
+    
+    <s:Image id="image"
+       source="assets/flexlogo.jpg"
+       height="20" width="20"
+       fillMode="scale"
+       scaleMode="{ddl.selectedItem}"
+       left="20" right="20" top="20" bottom="20" />
+</s:Application>

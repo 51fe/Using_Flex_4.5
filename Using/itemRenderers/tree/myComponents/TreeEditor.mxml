@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- itemRenderers/tree/myComponents/TreeEditor.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+
+            // Define variables for the new data.
+            public var newPhone:String;
+            public var newConfirmed:Boolean;
+
+        ]]>     
+    </fx:Script>
+
+    <!-- Display item label.-->
+    <mx:Label text="{data.label}"/>
+
+    <!-- Display the text 'Phone:' and let the user edit it.-->
+    <mx:HBox>
+        <mx:Text text="Phone:"/>
+        <mx:TextInput id="contactPhone" 
+            width="150" 
+            text="{data.phone}"
+            change="newPhone=contactPhone.text;"/>
+    </mx:HBox>
+
+    <!-- Display the status using a CheckBox control 
+        and let the user edit it.-->
+    <mx:CheckBox id="confirmed" 
+        label="Confirmed"
+        selected="{data.status}" 
+        click="newConfirmed=confirmed.selected;"/>
+</mx:VBox>

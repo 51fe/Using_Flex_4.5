@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ComboBoxEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+            import mx.events.DropdownEvent;
+
+            // Display the type of event for open and close events.
+            private function dropEvt(event:DropdownEvent):void {
+                forChange.text+=event.type + "\n";
+            }
+
+            // Display a selected item's label field and index for change events.
+            private function changeEvt(event:Event):void {
+                forChange.text+=event.currentTarget.selectedItem.label + " " + 
+                event.currentTarget.selectedIndex + "\n";
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:ComboBox open="dropEvt(event)" close="dropEvt(event)"
+        change="changeEvt(event)" > 
+        <mx:ArrayList>
+            <fx:Object label="AL" data="Montgomery"/>
+            <fx:Object label="AK" data="Juneau"/>
+            <fx:Object label="AR" data="Little Rock"/>
+        </mx:ArrayList>
+    </mx:ComboBox>
+    <mx:TextArea id="forChange" width="150" height="150"/>
+</s:Application>

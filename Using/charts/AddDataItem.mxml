@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- charts/AddDataItem.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns="*" height="600" width="700">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script><![CDATA[
+        import mx.collections.ArrayCollection;
+        [Bindable]
+        public var dpac:ArrayCollection =  new ArrayCollection([
+           {A:2000},
+           {A:3000},
+           {A:4000},
+           {A:4000},
+           {A:3000},
+           {A:2000},
+           {A:6000}
+        ]);
+    
+        public function addDataItem():void {
+            var o:Object = {"A":2000};
+            dpac.addItem(o);
+        }
+        
+        private function removeItem():void {
+            var i:int = dpac.length;
+            if (i > 0) {
+                dpac.removeItemAt(i - 1);
+            }
+        }
+    ]]></fx:Script>
+    
+  <s:Panel title="Column Chart">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+     <mx:ColumnChart id="myChart" 
+        showDataTips="true"
+        height="400" 
+        width="600" 
+        dataProvider="{dpac}">
+        <mx:series> 
+            <mx:ColumnSeries yField="A" displayName="Series 1"/>
+        </mx:series>
+     </mx:ColumnChart>  
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+  <s:HGroup>
+      <s:Button label="Add Data Item" click="addDataItem();"/>
+      <s:Button label="Remove Data Item" click="removeItem();"/>
+  </s:HGroup>
+</s:Application>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- components\SpacerHBox.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            [Embed(source="assets/flexlogo.jpg")]
+            [Bindable]
+            public var imgCls:Class;
+        ]]>
+    </fx:Script> 
+    
+    <s:SkinnableContainer width="400">
+        <s:layout>
+            <s:HorizontalLayout/>
+        </s:layout>
+        <mx:Image source="{imgCls}"/>
+        <s:Label  text="Company XYZ"/>
+        <mx:Spacer width="100%"/>
+        <s:Button label="Close"/> 
+    </s:SkinnableContainer>
+</s:Application>

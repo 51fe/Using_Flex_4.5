@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/SparkThemeColorExample.mxml -->
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <fx:Script>
+        <![CDATA[
+            import mx.core.FlexGlobals;
+            import mx.events.IndexChangedEvent;
+            
+            private function changeStyleSettings(e:Event):void {
+                if (e.currentTarget.selectedItem == "Gray") {                    
+                    FlexGlobals.topLevelApplication.setStyle("backgroundColor", 0x333333);                    
+                    FlexGlobals.topLevelApplication.setStyle("baseColor", 0x4C4C4C);
+                    FlexGlobals.topLevelApplication.setStyle("color", 0xCCCCCC);
+                    FlexGlobals.topLevelApplication.setStyle("contentBackgroundColor", 0x555555);
+                    FlexGlobals.topLevelApplication.setStyle("symbolColor", 0xFFFFFF);
+                    FlexGlobals.topLevelApplication.setStyle("rollOverColor", 0x666666);
+                    FlexGlobals.topLevelApplication.setStyle("selectionColor", 0x999999);
+                    FlexGlobals.topLevelApplication.setStyle("focusColor", 0xEEEEEE);
+                } else {
+                    FlexGlobals.topLevelApplication.setStyle("backgroundColor", 0xCCCC99);                                        
+                    FlexGlobals.topLevelApplication.setStyle("baseColor", 0x999966);
+                    FlexGlobals.topLevelApplication.setStyle("color", 0x996600);
+                    FlexGlobals.topLevelApplication.setStyle("contentBackgroundColor", 0xFFFFCC);
+                    FlexGlobals.topLevelApplication.setStyle("symbolColor", 0x663300);
+                    FlexGlobals.topLevelApplication.setStyle("rollOverColor", 0xFFEE88);
+                    FlexGlobals.topLevelApplication.setStyle("selectionColor", 0xFFCC66);
+                    FlexGlobals.topLevelApplication.setStyle("focusColor", 0xCC9900);                    
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Button label="Button"/>
+    <s:ToggleButton label="Toggle Button"/>
+    <s:CheckBox label="CheckBox" selected="true"/>
+    <s:RadioButton label="RadioButton" selected="true"/>
+    <s:NumericStepper/>
+    <s:TextInput/>
+    <s:TextArea/>
+    <s:DropDownList id="myDropDown" selectedIndex="0" 
+        change="changeStyleSettings(event);">
+        <s:dataProvider>
+            <s:ArrayList source="[Gray,Brown]"/>
+        </s:dataProvider>
+    </s:DropDownList>    
+</s:Application>

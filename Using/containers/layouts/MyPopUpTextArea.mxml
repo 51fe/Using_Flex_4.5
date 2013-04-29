@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\MyPopUpTextArea.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            import mx.controls.TextArea;
+            import mx.core.IFlexDisplayObject;
+ 
+            public var myPopUp:TextArea
+            
+            public function openWindow(event:MouseEvent):void {
+                myPopUp = new TextArea();
+                myPopUp.width= 220;
+                myPopUp.height= 150;
+                myPopUp.text = "Hold down the Shift key, and " + 
+                    "click in the TextArea to close it.";
+                myPopUp.addEventListener(MouseEvent.CLICK, closeWindow);
+                PopUpManager.addPopUp(myPopUp, this, true);
+                PopUpManager.centerPopUp(myPopUp);
+            }
+    
+            public function closeWindow(event:MouseEvent):void {
+                if (event.shiftKey) {
+                    label1.text = myPopUp.text;
+        PopUpManager.removePopUp(IFlexDisplayObject(event.currentTarget));
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox>
+        <mx:Button id="b1" label="Create TextArea Popup"
+            click="openWindow(event);"/>
+        <mx:Label id="label1"/>
+    </mx:VBox>
+</s:Application>

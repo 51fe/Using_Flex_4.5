@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- controls\button\PopUpButtonMenu.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="600" width="600">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.*;
+            import mx.events.*;
+
+            private var myMenu:Menu;
+
+            // Initialize the Menu control, 
+            // and specify it as the pop up object
+            // of the PopUpButton control. 
+            private function initMenu():void {
+                myMenu = new Menu();
+                var dp:Object = [
+                  {label: "New Folder"}, 
+                  {label: "Sent Items"}, 
+                  {label: "Inbox"}
+                ];        
+                myMenu.dataProvider = dp;
+                myMenu.addEventListener("itemClick", changeHandler);
+                popB.popUp = myMenu;
+            }
+
+            // Define the event listener for the Menu control's change event. 
+            private function changeHandler(event:MenuEvent):void {
+                var label:String = event.label;        
+                popTypeB.text=String("Moved to " + label);
+                popB.label = "Put in: " + label;
+                popB.close();
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:VBox>
+        <mx:Label text="Main button mimics the last selected menuItem."/>
+        <mx:PopUpButton id="popB" 
+            label="Edit"  
+            width="135"
+            creationComplete="initMenu();"/>
+        
+        <mx:Spacer height="50"/>
+        <mx:TextInput id="popTypeB"/>
+    </mx:VBox>
+</s:Application>

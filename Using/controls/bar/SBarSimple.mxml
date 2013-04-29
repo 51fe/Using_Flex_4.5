@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- controls\bar\SBarSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+     <fx:Script>
+        <![CDATA[
+    
+            import mx.events.ScrollEvent;
+    
+            // Event handler function to display the scroll location.
+            private function myScroll():void {
+                showPosition.text = "VScrollBar properties summary:" + '\n' +
+                    "------------------------------------" + '\n' +
+                    "Current scroll position: " + 
+                    bar.value  + '\n' +
+                    "The maximum scroll position: " + 
+                    bar.maximum + '\n' +
+                    "The minimum scroll position: " + 
+                    bar.minimum;
+            }
+        ]]>
+    </fx:Script> 
+    <s:VGroup>
+        <s:Label 
+            width="100%" 
+            text="Click on the ScrollBar control to view its properties."/>
+        
+    <s:VScrollBar id="bar" 
+                   height="100%" 
+                   minimum="0" 
+                   maximum="{this.width - 20}"
+                   stepSize="50" 
+                   pageSize="100"  
+                   repeatDelay="1000" 
+                   repeatInterval="500" 
+                   change="myScroll();"/>
+        
+    <s:TextArea id="showPosition" 
+                 height="100%" 
+                 width="100%" />
+    </s:VGroup>
+</s:Application>

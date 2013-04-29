@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- mxml/TriggerCodeExample2.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[
+            private function hello():void {
+                textarea1.text="Hello World";
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Panel title="My Application">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:TextArea id="textarea1"/>
+        <s:Button label="Submit" 
+            click="hello();"/>
+    </s:Panel>
+</s:Application>

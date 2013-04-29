@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- dragdrop\DandDListToDGSpark.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.DragEvent;
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.collections.IList;
+            import mx.collections.ArrayCollection;
+    
+            private function initApp():void {
+                srcList.dataProvider = new ArrayCollection([
+                    {label:"First", data:"1"},
+                    {label:"Second", data:"2"},
+                    {label:"Third", data:"3"},
+                    {label:"Fourth", data:"4"},
+                ]);
+                
+                destDG.dataProvider = new ArrayCollection([]);
+            }
+
+            private function dragDropHandler(event:DragEvent):void {
+                if (event.dragSource.hasFormat("itemsByIndex"))
+                {
+                    // Explicitly handle the dragDrop event.            
+                    event.preventDefault();
+                    
+                    // Since you are explicitly handling the dragDrop event,
+                    // call hideDropFeedback(event) to have the drop target
+                    // hide the drop indicator. 
+                    // The drop indicator is created
+                    // automatically for the list controls by the built-in 
+                    // event handler for the dragOver event.
+                    event.currentTarget.hideDropFeedback(event);                    
+                    
+                    // Get drop target.
+                    var dropTarget:DataGrid = 
+                        DataGrid(event.currentTarget);
+                    
+                    var itemsVector:Vector.<Object> = 
+                        event.dragSource.dataForFormat('itemsByIndex') as Vector.<Object>;
+                    var tempItem:Object = 
+                        { label: itemsVector[0].label, 
+                            data: itemsVector[0].data, 
+                            date: new Date()
+                        };
+                    
+                    // Get the drop location in the destination.
+                    var dropLoc:int = dropTarget.calculateDropIndex(event);
+                    
+                    IList(dropTarget.dataProvider).addItemAt(tempItem, dropLoc);
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:List  id="srcList" 
+            dragEnabled="true"
+            dragMoveEnabled="true"/>
+
+        <mx:DataGrid  id="destDG" 
+            dropEnabled="true"
+            dragDrop="dragDropHandler(event);">
+            <mx:columns>
+                <mx:DataGridColumn dataField="label"/>
+                <mx:DataGridColumn dataField="data"/>            
+                <mx:DataGridColumn dataField="date"/>            
+            </mx:columns>                
+        </mx:DataGrid>            
+    </s:HGroup>
+
+    <s:Button id="b1" 
+        label="Reset"
+        click="initApp();"/>
+</s:Application>

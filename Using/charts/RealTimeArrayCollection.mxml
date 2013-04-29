@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- charts/RealTimeArrayCollection.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initTimer()"
+    height="600">
+  
+  <fx:Script><![CDATA[
+      import flash.utils.Timer;
+      import flash.events.TimerEvent;
+      import mx.collections.ArrayCollection;
+
+      [Bindable]
+      public var memoryUsage:ArrayCollection = new ArrayCollection();
+
+      public function initTimer():void {
+         // The first parameter in the Timer constructor
+         // is the interval, in milliseconds.
+         // The second parameter is how many times to run (0 is
+         // infinity).
+         var myTimer:Timer = new Timer(1000, 0);
+
+         // Add the listener for the timer event.
+         myTimer.addEventListener("timer", timerHandler);
+         myTimer.start();
+      }
+
+      public function timerHandler(event:TimerEvent):void {
+         var o:Object = new Object();
+
+         // Get the number of milliseconds since Flash Player or AIR started.
+         o.time = getTimer();
+
+         // Get the total memory Flash Player or AIR is using.
+         o.memory = flash.system.System.totalMemory;
+         trace(o.time + ":" + o.memory);
+
+         // Add new object to the ArrayCollection, which is bound 
+         // to the chart's data provider.
+         memoryUsage.addItem(o);
+      }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Memory Usage">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+      <mx:LineChart id="chart" 
+        dataProvider="{memoryUsage}"
+         showDataTips="true">
+         <mx:horizontalAxis>
+            <mx:LinearAxis/>
+         </mx:horizontalAxis>
+         <mx:verticalAxis>
+            <mx:LinearAxis minimum="5000000"/>
+         </mx:verticalAxis>
+         <mx:series>
+            <mx:LineSeries yField="memory"/>
+         </mx:series>
+      </mx:LineChart>
+    </s:Panel>
+</s:Application>

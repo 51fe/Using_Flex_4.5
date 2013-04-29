@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- controls\button\LBViewStack.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <mx:VBox>
+
+        <!-- Put the links in an HBox container across the top. -->
+        <mx:HBox>
+            <mx:LinkButton label="Link1" 
+                click="viewStack.selectedIndex=0;"/>
+            <mx:LinkButton label="Link2" 
+                click="viewStack.selectedIndex=1;"/>
+            <mx:LinkButton label="Link3" 
+                click="viewStack.selectedIndex=2;"/>
+        </mx:HBox>
+
+        <!-- This ViewStack container has three children. -->
+        <mx:ViewStack id="viewStack">
+            <mx:VBox width="150">
+                <mx:Label text="One"/>
+            </mx:VBox>
+            <mx:VBox width="150">
+                <mx:Label text="Two"/>
+            </mx:VBox>          
+            <mx:VBox width="150">
+                <mx:Label text="Three"/>
+            </mx:VBox>
+        </mx:ViewStack>
+    </mx:VBox>
+</s:Application>

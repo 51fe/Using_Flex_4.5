@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\spark\SparkDataGroupContainerSimpleStates.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:SkinnableDataContainer itemRenderer="myComponents.MySimpleItemRendererWithStates"> 
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ArrayList>
+            <fx:Object firstName="Bill" lastName="Smith" 
+                companyID="11233" phone="617-555-1212"/>
+            <fx:Object firstName="Dave" lastName="Jones" 
+                companyID="13455" phone="617-555-1213"/>
+            <fx:Object firstName="Mary" lastName="Davis" 
+                companyID="11543" phone="617-555-1214"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" 
+                companyID="14266" phone="617-555-1215"/>
+        </mx:ArrayList>
+    </s:SkinnableDataContainer> 
+</s:Application>

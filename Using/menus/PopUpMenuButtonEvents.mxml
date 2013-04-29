@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- menus/PopUpMenuButtonEvents.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="600" width="600" 
+    creationComplete="initData();">
+
+    <fx:Script>
+        <![CDATA[
+        import mx.events.*;
+        import mx.controls.*;
+            
+        // Set the Inbox (fourth) item in the menu as the button item.
+        private function initData():void {
+            Menu(p1.popUp).selectedIndex=3;
+        }
+            
+        // itemClick event handler, invoked when you select from the menu.
+        // Shows the event's label, index properties, and the values of the 
+        // label and data fields of the data provider entry specified by 
+        // the event's item property.
+        public function itemClickHandler(event:MenuEvent):void {
+            Alert.show("itemClick event label: " + event.label
+                + "  \nindex: " + event.index
+                + "  \nitem.label: " + event.item.label 
+                + "  \nitem.data: " + event.item.data); 
+        }
+        
+        //Click event handler for the main button.
+        public function clickHandler(event:MouseEvent):void {
+            Alert.show(" Click Event currentTarget.label: " 
+                + event.currentTarget.label);
+        }
+            
+        //The menu data provider
+        [Bindable] 
+        public var menuDP:Array = [
+            {label: "Inbox", data: "inbox"},
+            {label: "Calendar", data: "calendar"}, 
+            {label: "Sent", data: "sent"},
+            {label: "Deleted Items", data: "deleted"},
+            {label: "Spam", data: "spam"}
+        ];
+    ]]></fx:Script>
+
+    <mx:PopUpMenuButton  id="p1"
+        showRoot="true"
+        dataProvider="{menuDP}"
+        click="clickHandler(event);"
+        itemClick="itemClickHandler(event);"/>
+</s:Application>

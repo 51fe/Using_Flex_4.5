@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- wrapper/AddCallbackExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="initApp()">
+    <fx:Script>
+        import flash.external.*;
+
+         public function initApp():void {
+            ExternalInterface.addCallback("myFlexFunction",myFunc);
+         }  
+
+         public function myFunc(s:String):void {
+            l1.text = s;
+         }
+    </fx:Script>
+
+    <s:Label id="l1"/>
+  
+</s:Application>

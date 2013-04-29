@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCParamPassing.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    verticalGap="10">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            [Bindable]
+            public var empList:Object;
+        ]]>
+    </mx:Script>
+
+    <mx:RemoteObject
+        id="employeeRO"
+        destination="SalaryManager"
+        result="empList=event.result"
+        fault="Alert.show(event.fault.faultString, 'Error');"/>
+
+    <mx:ComboBox id="dept" width="150">
+        <mx:dataProvider>
+            <mx:ArrayCollection>
+                <mx:source>
+                    <mx:Object label="Engineering" data="ENG"/>
+                    <mx:Object label="Product Management" data="PM"/>
+                    <mx:Object label="Marketing" data="MKT"/>
+                </mx:source>
+            </mx:ArrayCollection>
+        </mx:dataProvider>
+    </mx:ComboBox>
+
+    <mx:Button label="Get Employee List" click="employeeRO.getList(dept.selectedItem.data);"/>
+</mx:Application>

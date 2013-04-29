@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- charts/RendererSample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+     <s:Panel title="Axis titles with custom text renderers">   
+         <s:layout>
+             <s:VerticalLayout/>
+         </s:layout>
+         <mx:ColumnChart id="bc1" 
+             showDataTips="true" 
+             dataProvider="{srv.lastResult.data.result}">
+             <mx:series>
+                 <mx:ColumnSeries xField="month" yField="profit"/>
+             </mx:series>
+             <mx:verticalAxis>
+                 <mx:LinearAxis id="va1" title="Dollars"/>
+             </mx:verticalAxis>
+             <mx:horizontalAxis >
+                 <mx:CategoryAxis id="ha1" 
+                     categoryField="month" 
+                     title="FY 2009"/> 
+             </mx:horizontalAxis>
+             <mx:horizontalAxisRenderers>
+                 <mx:AxisRenderer 
+                     axis="{ha1}" 
+                     canDropLabels="true" 
+                     titleRenderer="MyTextRenderer"/>
+             </mx:horizontalAxisRenderers>
+             <mx:verticalAxisRenderers>
+                 <mx:AxisRenderer 
+                     axis="{va1}" 
+                     canDropLabels="true" 
+                     titleRenderer="MyTextRenderer" 
+                     verticalAxisTitleAlignment="vertical"/>
+             </mx:verticalAxisRenderers>
+         </mx:ColumnChart>   
+
+         <mx:Spacer width="50"/>
+
+         <mx:BarChart id="bc2" 
+             showDataTips="true" 
+             dataProvider="{srv.lastResult.data.result}">
+             <mx:series>
+                 <mx:BarSeries xField="expenses" yField="month"/>
+             </mx:series>
+             <mx:horizontalAxis>
+                 <mx:LinearAxis id="ha2" title="Dollars"/>
+             </mx:horizontalAxis>
+             <mx:verticalAxis>
+                 <mx:CategoryAxis id="va2" 
+                     categoryField="month" 
+                     title="FY 2009"/>
+             </mx:verticalAxis>
+             <mx:horizontalAxisRenderers>
+                 <mx:AxisRenderer 
+                     axis="{ha2}" 
+                     canDropLabels="false" 
+                     titleRenderer="MyTextRenderer"/>
+             </mx:horizontalAxisRenderers>
+             <mx:verticalAxisRenderers>
+                 <mx:AxisRenderer 
+                     axis="{va2}" 
+                     canDropLabels="true" 
+                     titleRenderer="MyTextRenderer"/> 
+             </mx:verticalAxisRenderers>          
+         </mx:BarChart>
+     </s:Panel>
+        
+</s:Application>

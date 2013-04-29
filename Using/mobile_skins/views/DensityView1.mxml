@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/views/DensityView1.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        title="Home" 
+        creationComplete="initView()">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.core.FlexGlobals;
+
+            [Bindable]
+            public var imagePath:String;
+
+            private function initView():void {
+                label0.text = "App DPI:" + FlexGlobals.topLevelApplication.appDPI;
+                label1.text = "Cur Density:" + FlexGlobals.topLevelApplication.curDensity;
+                label2.text = "Scale Factor:" + FlexGlobals.topLevelApplication.curScaleFactor;         
+
+                imagePath = FlexGlobals.topLevelApplication.densityDependentDir + "bulldog.jpg";
+                
+                ta1.text = myImage.source.toString();
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Image id="myImage" source="{imagePath}"/>
+
+    <s:Label id="label0"/>
+    <s:Label id="label1"/>
+    <s:Label id="label2"/>
+
+    <s:TextArea id="ta1" width="100%"/>
+</s:View>

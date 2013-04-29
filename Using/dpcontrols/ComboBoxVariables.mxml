@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ComboBoxVariables.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="initData();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.*
+            private var COLOR_ARRAY:Array= 
+                [{label:"Red", data:"#FF0000"},
+                {label:"Green", data:"#00FF00"},
+                {label:"Blue", data:"#0000FF"}];
+
+            // Declare an ArrayList variable for the colors.
+            // Make it Bindable so it can be used in bind 
+            // expressions ({colorAL}).
+            [Bindable]
+            public var colorAL:ArrayList;
+
+            // Initialize colorAL ArrayList variable from the Array.
+            // Use an initialize event handler to initialize data variables
+            // that do not rely on components, so that the initial values are
+            // available when the controls that use them are constructed.
+            //See the mx:ArrayList tag, below, for a second way to
+            //initialize an ArrayList.
+            private function initData():void {
+                colorAL=new ArrayList(COLOR_ARRAY);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- This example shows two different ways to 
+            structure a Model. -->
+        <fx:Model id="myDP">
+            <obj>
+                <item label="AL" data="Montgomery"/>
+                <item>
+                    <label>AK</label>
+                    <data>Juneau</data>
+                </item>
+                <item>
+                    <label>AR</label>
+                    <data>Little Rock</data>
+                </item>
+            </obj>
+        </fx:Model>
+      
+       <!-- Create a stateAL ArrayList that uses as its source an Array of
+             the item elements from the myDP model. 
+             This technique and the declaration and initialization code used for
+             the colorAL variable are alternative methods of creating and
+             initializing the ArrayList. -->
+       <mx:ArrayList id="stateAL" source="{myDP.item}"/>
+    </fx:Declarations>
+
+   <mx:ComboBox dataProvider="{colorAL}"/>
+   <mx:ComboBox dataProvider="{stateAL}"/>
+</s:Application>

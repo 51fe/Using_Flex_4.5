@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- containers\intro\Panel3Children.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Group>
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:TextInput id="myinput" text="enter zip code"/>
+        <s:Button id="mybutton" label="GetWeather"/>
+        <s:TextArea id="mytext" height="20"/>
+    </s:Group>
+</s:Application>

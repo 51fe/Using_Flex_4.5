@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\events\EndEditEventAccessEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[
+        
+            import mx.controls.TextInput;
+            import mx.events.DataGridEvent;
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            private var initDG:ArrayCollection = new ArrayCollection([
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99},
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99 }
+            ]);
+            
+            // Define event listener for the itemEditEnd event.
+            private function getCellInfo(event:DataGridEvent):void {
+                
+                // Get the cell editor and cast it to TextInput.
+                var myEditor:TextInput = 
+                    TextInput(event.currentTarget.itemEditorInstance);
+                
+                // Get the new value from the editor.
+                var newVal:String = myEditor.text;
+                
+                // Get the old value.
+                var oldVal:String = 
+            event.currentTarget.editedItemRenderer.data[event.dataField]; 
+            
+                // Write out the cell coordinates, new value, 
+                // and old value to the TextArea control.
+                cellInfo.text = "cell edited.\n";
+                cellInfo.text += "Row, column: " + event.rowIndex + ", " + 
+                    event.columnIndex + "\n";
+                cellInfo.text += "New value: " + newVal + "\n";
+                cellInfo.text += "Old value: " + oldVal;
+            }                               
+        ]]>
+    </fx:Script>
+
+    <mx:TextArea id="cellInfo" width="300" height="150" />
+    
+    <mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        editable="true" 
+        itemEditEnd="getCellInfo(event);" >    
+        <mx:columns>
+            <mx:DataGridColumn dataField="Artist"/>
+            <mx:DataGridColumn dataField="Album"/>
+            <mx:DataGridColumn dataField="Price"/>
+        </mx:columns>       
+    </mx:DataGrid>  
+</s:Application>

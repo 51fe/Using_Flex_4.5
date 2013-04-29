@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- validators\DateAndCC.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Define the data model. -->
+        <fx:Model id="date">
+            <dateInfo>
+                <month>{monthInput.text}</month>
+                <day>{dayInput.text}</day>
+                <year>{yearInput.text}</year>
+            </dateInfo>
+        </fx:Model>
+    
+        <!-- Define the validators. -->
+        <mx:DateValidator id="dayV" 
+            triggerEvent="" 
+            daySource="{dayInput}" 
+            dayProperty="text" 
+            monthSource="{monthInput}" 
+            monthProperty="text" 
+            yearSource="{yearInput}" 
+            yearProperty="text"/>
+    </fx:Declarations>
+    
+    <!-- Define the form to populate the model. -->
+    <s:Form>
+        <s:TextInput id="monthInput"/>
+        <s:TextInput id="dayInput"/>
+        <s:TextInput id="yearInput"/>
+    </s:Form>
+
+    <!-- Define the button to trigger validation. -->
+    <s:Button label="Submit"
+        click="dayV.validate();"/>
+</s:Application>

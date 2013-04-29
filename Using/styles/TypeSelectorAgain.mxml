@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- styles/TypeSelectorAgain.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        s|Button { 
+            fontSize: 15;
+            color: #9933FF;
+        }
+    </fx:Style>
+
+    <s:VGroup>
+        <s:Button id="myButton" label="Click Me"/>
+        <s:Button id="myButton2" label="Click Me"/>
+    </s:VGroup>
+
+</s:Application>

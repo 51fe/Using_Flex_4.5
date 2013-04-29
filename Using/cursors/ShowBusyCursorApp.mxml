@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- cursors\ShowBusyCursorApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <s:VGroup>
+        <!-- MX Image control to load the image. Note that the Spark 
+            Image control does not support the showBusyCursor property. -->
+        <mx:Image id="image1" 
+            height="50"
+            width="100"
+            scaleContent="true"
+            showBusyCursor="true"/>
+    
+        <!-- Button triggers the load. --> 
+        <s:Button id="myButton" label="Show" 
+            click="image1.load('../assets/DSC00034.JPG');"/>    
+    </s:VGroup>
+</s:Application>

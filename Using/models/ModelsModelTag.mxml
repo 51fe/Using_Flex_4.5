@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Models\ModelsModelTag.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Declarations>
+        <fx:Model id="employeemodel">
+            <employee>
+                <name>
+                    <first/>
+                    <last/>
+                </name>
+                <department/>
+                <email/>
+            </employee>
+        </fx:Model>    
+    </fx:Declarations>
+</s:Application>

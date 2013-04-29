@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- mxml\DefPropMixed.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:RichText  fontFamily="Verdana" fontWeight="bold">
+        <s:content>
+            <fx:String>Hello World!</fx:String><s:br/>
+            <fx:String>Hello Universe</fx:String><s:br/>
+            Hello Flex!
+        </s:content>
+    </s:RichText>
+</s:Application>

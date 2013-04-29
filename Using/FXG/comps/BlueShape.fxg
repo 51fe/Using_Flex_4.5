@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/BlueShape.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+     <Library>
+          <Definition name="BlueRect">
+               <Group>
+                   <Rect height="10" width="10">                              
+                         <stroke>
+                              <SolidColorStroke color="#000000" weight=".5"/>
+                         </stroke>
+                         <fill>
+                              <SolidColor color="#66CCFF"/>
+                         </fill>
+                   </Rect>
+                </Group>          
+          </Definition>
+     </Library> 
+
+     <BlueRect x="0" y="0"/>
+     <BlueRect x="12" y="0"/>
+     <BlueRect x="24" y="0"/>
+     <BlueRect x="36" y="0"/>
+
+</Graphic>
+     

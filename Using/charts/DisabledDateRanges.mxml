@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!-- charts/DisabledDateRanges.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init()"
+    height="600">
+  
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection
+     [Bindable]
+     public var deck:ArrayCollection = new ArrayCollection([
+        {date:"08/01/2007", close:42},
+        {date:"08/02/2007", close:43},
+        {date:"08/03/2007", close:43},
+        {date:"08/06/2007", close:42},
+        {date:"08/07/2007", close:38},
+        {date:"08/08/2007", close:37},
+        {date:"08/09/2007", close:39},
+        {date:"08/10/2007", close:41},
+        {date:"08/13/2007", close:45},
+        {date:"08/14/2007", close:47},
+        {date:"08/15/2007", close:48},
+        {date:"08/16/2007", close:42},
+        {date:"08/17/2007", close:43},
+        {date:"08/20/2007", close:45},
+        {date:"08/21/2007", close:50},
+        {date:"08/22/2007", close:51},
+        {date:"08/23/2007", close:55},
+        {date:"08/24/2007", close:51},
+        {date:"08/27/2007", close:49},
+        {date:"08/28/2007", close:51},
+        {date:"08/29/2007", close:50},
+        {date:"08/30/2007", close:49},
+        {date:"08/31/2007", close:54}
+     ]);
+     
+     private function myParseFunction(s:String):Date {
+        var a:Array = s.split("/");
+        var newDate:Date = new Date(a[2],a[0]-1,a[1]);
+        return newDate;
+     }    
+
+     private var d1:Date, d2:Date, d3:Date;
+
+     [Bindable]
+     private var offRanges:Array = new Array ([]);
+
+     private function init():void {
+        d1 = new Date("08/13/2007");
+        d2 = new Date("08/27/2007");
+        d3 = new Date("08/31/2007");
+        offRanges = [ {rangeStart:d1, rangeEnd:d1},{rangeStart:d2, rangeEnd:d3} ];
+     }     
+     
+     private var series1:LineSeries;
+
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Disabled Date Ranges">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:LineChart id="myChart" 
+        dataProvider="{deck}" 
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:DateTimeAxis 
+            dataUnits="days" 
+            parseFunction="myParseFunction" 
+            disabledRanges="{offRanges}"/>
+        </mx:horizontalAxis>
+        
+        <mx:series>
+           <mx:LineSeries id="mySeries"
+                yField="close" 
+                xField="date" 
+                displayName="DECK"/>
+        </mx:series>
+    </mx:LineChart>
+    <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

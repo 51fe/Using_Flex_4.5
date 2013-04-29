@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- binding/ASFunction.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+            
+            // Define a function that gets invoked 
+            // in response to the myFlagChanged event.
+            [Bindable(event="myFlagChanged")]
+            private function isEnabled():String {
+                if (myFlag)
+                    return 'true';
+                else
+                    return 'false';
+            }
+
+            private var _myFlag:Boolean = false;
+
+            // Define a setter method that dispatches the 
+            // myFlagChanged event to trigger the data binding.
+            public function set myFlag(value:Boolean):void {
+                _myFlag = value;
+                dispatchEvent(new Event("myFlagChanged"));
+            }
+
+            public function get myFlag():Boolean {
+                return _myFlag;
+            }
+        ]]>    
+    </fx:Script>
+
+    <!-- Use the function as the source of a data binding expression. -->
+    <s:TextArea id="myTA" text="{isEnabled()}"/>
+
+    <!-- Modify the property, causing the setter method to 
+        dispatch the myFlagChanged event to trigger data binding. -->
+    <s:Button label="Clear MyFlag" click="myFlag=false;"/>
+    <s:Button label="Set MyFlag" click="myFlag=true;"/>
+</s:Application>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/SimpleADGRowFormatter.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+      <![CDATA[
+          import mx.collections.ArrayCollection;
+          import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+          
+          // Include the data for the AdvancedDataGrid control.
+          include "StyleData.as"
+            
+          // Artist name to highlight.    
+          protected var artistName:String;
+        
+          // Event handler to set the selected artist's name
+          // based on the selected Button control.
+          public function setArtistName(event:Event):void
+          {
+             artistName=Button(event.currentTarget).label; 
+             // Refresh row display.
+             myADG.invalidateList();
+          }
+        
+          // Callback function that hightlights in red 
+          // all rows for the selected artist.
+          public function myStyleFunc(data:Object, 
+            col:AdvancedDataGridColumn):Object
+          {
+             if (data["Artist"] == artistName) 
+                return {color:0xFF0000}; 
+            
+             // Return null if the Artist name does not match.
+             return null;      
+          }
+      ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid id="myADG"
+        width="100%" height="100%"
+        dataProvider="{dpADG}"
+        styleFunction="myStyleFunc">
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Artist"/>
+            <mx:AdvancedDataGridColumn dataField="Album"/>
+            <mx:AdvancedDataGridColumn width="75" dataField="Price">
+                <mx:formatter>
+                    <s:CurrencyFormatter useCurrencySymbol="true"/>
+               </mx:formatter>
+            </mx:AdvancedDataGridColumn>
+        </mx:columns>
+    </mx:AdvancedDataGrid>        
+   
+    <s:HGroup>
+       <s:Button label="Pavement" click="setArtistName(event);"/>
+       <s:Button label="Saner" click="setArtistName(event);"/>
+       <s:Button label="The Doors" click="setArtistName(event);"/>
+    </s:HGroup>
+</s:Application>

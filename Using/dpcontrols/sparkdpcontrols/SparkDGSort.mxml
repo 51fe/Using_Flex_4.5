@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGSort.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    initialize="initDP();" 
+    width="550" height="400"> 
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout> 
+    
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.collections.ArrayCollection;
+            import spark.collections.Sort;
+            import spark.collections.SortField;
+            import spark.events.GridEvent;
+             
+            /* Declare storage variables and initialize the simple variables. 
+                The data provider collection. */
+            private var myDPColl:ArrayCollection; 
+            
+            /* The Sort object used to sort the collection. */
+            [Bindable] 
+            private var sortA:Sort; 
+            
+            private var tmpSortFields:Array;
+            
+            /* The sort fields used to determine the sort. */
+            private var sortByInStock:SortField; 
+            private var sortByArtist:SortField; 
+            private var sortByAlbum:SortField; 
+            private var sortByPrice:SortField; 
+            
+            /* The data source that populates the collection. */
+            private var myDP:Array = [ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, InStock: true}, 
+                {Artist:'Pavement', Album:'Crooked Rain, Crooked Rain', 
+                    Price:10.99, InStock: false}, 
+                {Artist:'Pavement', Album:'Wowee Zowee', 
+                    Price:12.99, InStock: true}, 
+                {Artist:'Asphalt', Album:'Brighten the Corners', 
+                    Price:11.99, InStock: false}, 
+                {Artist:'Asphalt', Album:'Terror Twilight', 
+                    Price:11.99, InStock: true}, 
+                {Artist:'Asphalt', Album:'Buildings Meet the Sky', 
+                    Price:14.99, InStock: true}, 
+                {Artist:'Other', Album:'Other', 
+                    Price:5.99, InStock: true} 
+            ]; 
+            
+            /* Initialize the DataGrid control with sorted data. */
+            private function initDP():void {                 
+                myGrid.columnHeaderGroup.addEventListener(GridEvent.GRID_MOUSE_UP, headRelEvt);
+                
+                /* Create an ArrayCollection backed by the myDP array of data. */
+                myDPColl = new ArrayCollection(myDP); 
+                
+                /* Create a Sort object to sort the ArrrayCollection. */
+                sortA = new Sort(); 
+               
+               /* Initialize SortField objects for all valid sort fields: 
+                    A true second parameter specifies descending sort order. 
+                    A true third parameter specifies a numeric sort. */
+                sortByInStock = new SortField("InStock", true); 
+                sortByArtist = new SortField("Artist", true); 
+                sortByAlbum = new SortField("Album", true); 
+                sortByPrice = new SortField("Price", false, true); 
+                
+                /* Sort the grid using the InStock, Artist, and Album fields. */
+                sortA.fields=[sortByInStock, sortByArtist, sortByAlbum]; 
+                tmpSortFields = sortA.fields;
+                myDPColl.sort=sortA; 
+                
+                /* Refresh the collection view to show the sort. */
+                myDPColl.refresh(); 
+                
+                /* Initial display of sort fields. */
+                tSort0.text = "First Sort Field: InStock"; 
+                tSort1.text = "Second Sort Field: Artist"; 
+                tSort2.text = "Third Sort Field: Album"; 
+                
+                /* Set the ArrayCollection as the DataGrid data provider. */
+                myGrid.dataProvider=myDPColl; 
+                
+                /* Set the DataGrid row count to the array length, 
+                    plus one for the header. */
+//                myGrid.rowCount=myDPColl.length +1; 
+            }  
+            
+            /* Re-sort the DataGrid control when the user clicks a header. */
+            private function headRelEvt(event:GridEvent):void { 
+                sortA.fields = tmpSortFields;
+                
+                /* The new third priority was the old second priority. */
+                sortA.fields[2] = sortA.fields[1]; 
+                tSort2.text = "Third Sort Field: " + sortA.fields[2].name; 
+                
+                /* The new second priority was the old first priority. */
+                sortA.fields[1] = sortA.fields[0]; 
+                tSort1.text = "Second Sort Field: " + sortA.fields[1].name; 
+                
+                /* The clicked column determines the new first priority. */
+                
+                if (event.columnIndex==0) { 
+                    sortA.fields[0] = sortByArtist; 
+                } else if (event.columnIndex==1) { 
+                    sortA.fields[0] = sortByAlbum; 
+                } else if (event.columnIndex==2) { 
+                    sortA.fields[0] = sortByPrice; 
+                } else { 
+                    sortA.fields[0] = sortByInStock;} 
+                tSort0.text = "First Sort Field: " + sortA.fields[0].name; 
+                
+                /* Apply the updated sort fields and re-sort. */
+                myDPColl.sort=sortA; 
+                
+                /* Refresh the collection to show the sort in the grid. */
+                myDPColl.refresh(); 
+                
+                /* Prevent the DataGrid from doing a default column sort. */
+                event.preventDefault(); 
+            } 
+        ]]> 
+    </fx:Script> 
+    
+    <!-- The Data Grid control. 
+    By default the grid and its columns can be sorted by clicking. 
+    The headerRelease event handler overrides the default sort 
+    behavior. --> 
+    <s:DataGrid id="myGrid" width="100%"> 
+        <s:columns>
+            <s:ArrayCollection>
+                <s:GridColumn minWidth="120" dataField="Artist" /> 
+                <s:GridColumn minWidth="200" dataField="Album" /> 
+                <s:GridColumn width="75" dataField="Price" /> 
+                <s:GridColumn width="75" dataField="InStock" 
+                    headerText="In Stock"/> 
+            </s:ArrayCollection>
+        </s:columns> 
+    </s:DataGrid> 
+    <s:VGroup> 
+        <s:Label id="tSort0" text="First Sort Field: "/> 
+        <s:Label id="tSort1" text="Second Sort Field: "/> 
+        <s:Label id="tSort2" text="Third Sort Field: "/> 
+    </s:VGroup> 
+    <s:TextArea id="myTA"/>
+</s:Application>

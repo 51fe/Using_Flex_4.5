@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- binding/BasicBindingAS.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+      <![CDATA[
+        import mx.binding.utils.*;
+
+        // Define data binding.
+        public function initBindingHandler():void {
+            BindingUtils.bindProperty(myText, "text", myTI, "text");
+        }
+      ]]>    
+    </fx:Script>
+
+    <s:TextInput id="myTI"/>
+    <s:Label id="myText" preinitialize="initBindingHandler();"/>
+</s:Application>

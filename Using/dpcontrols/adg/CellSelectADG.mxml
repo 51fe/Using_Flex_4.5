@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/CellSelectADG.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+      <![CDATA[
+        import mx.collections.ArrayCollection;
+        import flash.events.KeyboardEvent;
+        import flash.system.System;
+                  
+        include "StyleData.as"
+        
+        // Event handler to recognize when Ctrl-C is pressed,
+        // and copy the selected cells to the system clipboard. 
+        private function myKeyUpHandler(event:KeyboardEvent):void
+        {
+          var keycode_c:uint = 67;
+          if (event.ctrlKey && event.keyCode == keycode_c)
+          {
+              // Separator used between Strings sent to clipboard
+              // to separate selected cells.
+              var separator:String = ",";
+              // The String sent to the clipboard
+              var dataString:String = "";
+
+              // Loop over the selectedCells property.
+              // Data in selectedCells is ordered so that 
+              // the last selected cell is at the head of the list.
+              // Process the data in reverse so
+              // that it appears in the correct order in the clipboard.
+              var n:int = event.currentTarget.selectedCells.length;
+              for (var i:int = 0; i < n; i++)
+              {
+                  var cell:Object = event.currentTarget.selectedCells[i];
+
+                  // Get the row for the selected cell.
+                  var data:Object = 
+                    event.currentTarget.dataProvider[cell.rowIndex];
+
+                  // Get the name of the field for the selected cell.
+                  var dataField:String = 
+                    event.currentTarget.columns[cell.columnIndex].dataField;
+
+                  // Get the cell data using the field name.
+                  dataString = data[dataField] + separator + dataString;
+              }
+
+              // Remove trailing separator.
+              dataString = 
+                dataString.substr(0, dataString.length - separator.length);
+
+              // Write dataString to the clipboard.
+              System.setClipboard(dataString);
+          }
+        }
+     ]]>
+    </fx:Script>
+
+    <mx:AdvancedDataGrid width="100%" height="100%"
+        dataProvider="{dpADG}"
+        selectionMode="multipleCells"
+        allowMultipleSelection="true"
+        keyUp="myKeyUpHandler(event);">
+        <mx:columns>
+            <mx:AdvancedDataGridColumn dataField="Artist"/>
+            <mx:AdvancedDataGridColumn dataField="Album"/>
+            <mx:AdvancedDataGridColumn dataField="Price"/>
+        </mx:columns>
+   </mx:AdvancedDataGrid> 
+   
+   <mx:TextArea id="myTA"/>
+</s:Application>

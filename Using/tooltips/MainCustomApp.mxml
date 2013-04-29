@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- tooltips/MainCustomApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import ToolTipComponents.PanelToolTip;
+            import mx.events.ToolTipEvent;
+
+            private function createCustomTip(title:String, body:String, event:ToolTipEvent):void {
+               var ptt:PanelToolTip = new PanelToolTip();
+               ptt.title = title;
+               ptt.bodyText = body;
+               event.toolTip = ptt;
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Button id="b1" 
+        label="Delete" 
+        toolTip=" " 
+        toolTipCreate="createCustomTip('DELETE','Click this button to delete the report.', event)"
+    /> 
+
+    <s:Button id="b2" 
+        label="Generate" 
+        toolTip=" " 
+        toolTipCreate="createCustomTip('GENERATE','Click this button to generate the report.', event)"
+    /> 
+    
+    <s:Button id="b3"
+        label="Stop"
+        toolTip="Click this button to stop the creation of the report. This button uses a standard ToolTip style."
+    />
+
+</s:Application>

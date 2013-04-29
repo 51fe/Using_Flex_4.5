@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- styles/ResetStyles.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+
+    <fx:Script> 
+        <![CDATA[
+        public function toggleStyle():void {
+            if (cb1.selected == true) {
+                b1.setStyle("color","blue");
+                b1.setStyle("fontSize", 8);
+            } else {
+                b1.setStyle("color", null);
+                b1.setStyle("fontSize", null);
+            }                       
+        }
+        ]]>
+    </fx:Script>   
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";    
+
+        s|Button {
+            color: red;
+            fontSize: 25;
+        }    
+    </fx:Style>
+
+    <s:Button id="b1" label="Click Me"/>
+
+    <s:CheckBox id="cb1" label="Set Style/Unset Style" 
+        click="toggleStyle()" selected="false" color="Black"/>
+</s:Application>

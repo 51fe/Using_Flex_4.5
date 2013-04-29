@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!-- charts/MultipleFilters.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();createFilters();"
+    height="600">
+     
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import spark.filters.*;
+     import flash.filters.BitmapFilterType;
+     import flash.filters.BitmapFilterQuality;
+  
+     private var myBlurFilter:BlurFilter;
+     private var myGlowFilter:GlowFilter;
+     private var myBevelFilter:BevelFilter;
+     private var myDropShadowFilter:DropShadowFilter;
+
+     private var color:Number = 0xFF33FF;
+
+     public function applyFilters():void {
+        // Apply filters to series, grid lines, legend, and axis.
+        myGridlines.filters = [myBlurFilter];
+        myLegend.filters = [myGlowFilter];
+        myAxisRenderer.filters = [myBevelFilter];
+        s1.filters = [myDropShadowFilter];
+        s2.filters = [myDropShadowFilter];
+     }
+
+     public function createFilters():void {
+        // Define filters.
+        myBlurFilter = new BlurFilter(4,4,1);
+
+        myGlowFilter = new GlowFilter(color, .8, 6, 6, 
+            2, 1, false, false);
+
+        myDropShadowFilter = new DropShadowFilter(15, 45, 
+            color, 0.8, 8, 8, 0.65, 1, false, false);
+
+        myBevelFilter = new BevelFilter(5, 45, color, 0.8, 
+            0x333333, 0.8, 5, 5, 1, BitmapFilterQuality.HIGH,               
+            BitmapFilterType.INNER, false);
+
+        applyFilters();
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Applying Multiple Filters">
+     <s:layout>
+         <s:VerticalLayout/>
+     </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        showDataTips="true">
+        <mx:backgroundElements>
+            <mx:GridLines id="myGridlines" 
+                horizontalChangeCount="1"
+                verticalChangeCount="1"
+                gridDirection="both"/>
+        </mx:backgroundElements>
+        
+        <mx:horizontalAxis>
+            <mx:CategoryAxis id="a1" categoryField="month"/>
+        </mx:horizontalAxis>
+
+        <mx:horizontalAxisRenderers>
+            <mx:AxisRenderer 
+                id="myAxisRenderer" 
+                placement="bottom"
+                canDropLabels="true"
+                axis="{a1}">
+                <mx:axisStroke>
+                    <mx:SolidColorStroke color="#000080" weight="10"/>
+                </mx:axisStroke>
+                <mx:tickStroke>
+                    <mx:SolidColorStroke color="#000060" weight="5"/>
+                </mx:tickStroke>
+                <mx:minorTickStroke>
+                    <mx:SolidColorStroke color="#100040" weight="5"/>
+                </mx:minorTickStroke>
+            </mx:AxisRenderer>
+        </mx:horizontalAxisRenderers>
+
+        <mx:series>
+           <mx:ColumnSeries id="s1" 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries id="s2" 
+                xField="month" 
+                yField="expenses" 
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend id="myLegend" dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

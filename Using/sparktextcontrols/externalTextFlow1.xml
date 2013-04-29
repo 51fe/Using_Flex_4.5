@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://blog.flexexamples.com/2009/08/11/setting-text-in-a-spark-richtext-control-in-flex-4/ -->
+<TextFlow xmlns="http://ns.adobe.com/textLayout/2008" whiteSpaceCollapse="preserve">
+    <p><span>The quick brown </span> <span fontWeight="bold">fox jumps over</span> <span> the lazy dogg.</span></p>
+</TextFlow>

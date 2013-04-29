@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!-- fonts/EnumerateFonts.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="listFonts()">
+    
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     @font-face {
+        src:url("../assets/MyriadWebPro.ttf");
+        fontFamily: myFont;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        src:url("../assets/MyriadWebPro-Bold.ttf");
+        fontFamily: myFont;
+        fontWeight: bold;
+        embedAsCFF: true;
+     }
+
+     @font-face {
+        src:url("../assets/MyriadWebPro-Italic.ttf");
+        fontFamily: myFont;
+        fontStyle: italic;
+        embedAsCFF: true;
+     }
+     
+     .myPlainStyle {
+        fontSize: 20;
+        fontFamily: myFont;
+     }
+     
+     .myBoldStyle {
+        fontSize: 20;
+        fontFamily: myFont;
+        fontWeight: bold;
+     }
+
+     .myItalicStyle {
+        fontSize: 20;
+        fontFamily: myFont;
+        fontStyle: italic;
+     }
+  </fx:Style>
+
+  <fx:Script><![CDATA[
+     private function listFonts():void {
+        var fontArray:Array = Font.enumerateFonts(true);
+        ta1.text += "Fonts: \n";
+        for(var i:int = 0; i < fontArray.length; i++) {
+            var thisFont:Font = fontArray[i];
+            ta1.text += "FONT " + i + ":: name: " + thisFont.fontName + "; typeface: " + 
+                thisFont.fontStyle + "; type: " + thisFont.fontType;
+            if (thisFont.fontType == "embeddedCFF"||thisFont.fontType == "embedded") {
+                ta1.text += "*";              
+            }            
+            ta1.text +=  "\n";
+            
+        }
+        
+     }
+  ]]></fx:Script>
+
+  <s:VGroup> 
+     <s:RichText text="Plain Label" styleName="myPlainStyle"/> 
+     <s:RichText text="Bold Label" styleName="myBoldStyle"/> 
+     <s:RichText text="Italic Label" styleName="myItalicStyle"/> 
+     <s:TextArea id="ta1" height="200" width="400"/>
+     <s:RichText text="* Embedded" styleName="myItalicStyle"/> 
+  </s:VGroup>
+</s:Application>

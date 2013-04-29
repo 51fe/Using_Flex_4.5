@@ -1,0 +1,52 @@
+    <mx:OLAPCube name="FlatSchemaCube" 
+        dataProvider="{flatData}" 
+        id="myMXMLCube"
+        complete="runQuery(event);">
+ 
+        <mx:OLAPDimension name="CustomerDim">
+            <mx:OLAPAttribute name="Customer" dataField="customer"/>
+            <mx:OLAPHierarchy name="CustomerHier" 
+                hasAll="true">
+                <mx:OLAPLevel attributeName="Customer"/>
+            </mx:OLAPHierarchy>
+        </mx:OLAPDimension>
+    
+        <mx:OLAPDimension name="ProductDim">
+            <mx:OLAPAttribute name="Product" dataField="product"/>
+            <mx:OLAPHierarchy name="ProductHier" 
+                hasAll="true">
+                <mx:OLAPLevel attributeName="Product"/>
+            </mx:OLAPHierarchy>
+        </mx:OLAPDimension>
+
+        <mx:OLAPDimension name="TimeDim">
+            <mx:OLAPAttribute name="Year" dataField="year"/>
+            <mx:OLAPAttribute name="Quarter" dataField="quarter"/>
+            <mx:OLAPAttribute name="Month" dataField="month"/>
+            <mx:OLAPHierarchy name="Time-Period" 
+                hasAll="true">
+                <mx:OLAPLevel attributeName="Year"/>
+                <mx:OLAPLevel attributeName="Quarter"/>
+                <mx:OLAPLevel attributeName="Month"/>
+            </mx:OLAPHierarchy> 
+        </mx:OLAPDimension>
+
+        <mx:OLAPDimension name="GeographyDim">  
+            <mx:OLAPAttribute name="Country" dataField="country"/>
+            <mx:OLAPAttribute name="Region" dataField="region"/>
+            <mx:OLAPAttribute name="State" dataField="state"/>
+            <mx:OLAPHierarchy name="Country-Region-State" 
+                hasAll="true">
+                <mx:OLAPLevel attributeName="Country"/>
+                <mx:OLAPLevel attributeName="Region"/>
+                <mx:OLAPLevel attributeName="State"/>
+            </mx:OLAPHierarchy> 
+        </mx:OLAPDimension>
+
+        <mx:OLAPMeasure name="Revenue" 
+            dataField="revenue" 
+            aggregator="SUM"/>
+        <mx:OLAPMeasure name="Cost" 
+         dataField="cost" 
+         aggregator="SUM"/>
+    </mx:OLAPCube>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\WebServiceSOAPRequest.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="10">
+    <mx:WebService id="ws" wsdl="http://api.google.com/GoogleSearch.wsdl"
+        useProxy="true">
+        <mx:operation name="doGoogleSearch" resultFormat="xml">
+            <mx:request format="xml">
+                <ns1:doGoogleSearch xmlns:ns1="urn:GoogleSearch" 
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <key xsi:type="xsd:string">XYZ123</key>
+                    <q xsi:type="xsd:string">Balloons</q>
+                    <start xsi:type="xsd:int">0</start>
+                    <maxResults xsi:type="xsd:int">10</maxResults>
+                    <filter xsi:type="xsd:boolean">true</filter>
+                    <restrict xsi:type="xsd:string"/>
+                    <safeSearch xsi:type="xsd:boolean">false</safeSearch>
+                    <lr xsi:type="xsd:string" />
+                    <ie xsi:type="xsd:string">latin1</ie>
+                    <oe xsi:type="xsd:string">latin1</oe>
+                </ns1:doGoogleSearch>
+            </mx:request>
+        </mx:operation>
+    </mx:WebService>
+</mx:Application>

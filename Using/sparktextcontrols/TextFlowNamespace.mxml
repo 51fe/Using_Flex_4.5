@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TextFlowNamespace.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:RichEditableText id="richTxt1" textAlign="justify" percentWidth="100"  xmlns="library://ns.adobe.com/flex/spark">
+        <textFlow>
+            <TextFlow>
+                <p fontSize="24">TextFlow Child Tag</p>
+                <p>1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>2) Cras posuere posuere sem, eu congue orci mattis quis.</p>
+                <p>3) Curabitur pulvinar tellus venenatis ipsum tempus lobortis.</p>
+            </TextFlow>
+        </textFlow>
+    </s:RichEditableText>
+
+</s:Application>

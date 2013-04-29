@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- agent/CustomButtonApp.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:ns1="*" initialize="doInit()">
+    <fx:Script>
+        <![CDATA[
+            import mx.automation.*;
+
+            public function doInit():void {             
+                b1.addEventListener(MouseEvent.MOUSE_MOVE, dispatchLowLevelEvent);
+            }
+
+            public function dispatchLowLevelEvent(e:MouseEvent):void {
+                var help:IAutomationManager = Automation.automationManager;
+                help.recordAutomatableEvent(b1,e,false);
+            }
+        ]]>
+    </fx:Script>
+
+    <ns1:CustomButton id="b1" 
+        toolTip="Mouse moved over" 
+        label="CustomButton"/>
+    
+</s:Application>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- optimize/UnusedClasses.mxml -->
+<s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="checkChildType()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        import spark.components.Button;
+
+        [Bindable]
+        private var s:String;
+
+        public function checkChildType():void {
+            var child:DisplayObject = getChildAt(0);
+            var childIsButton:Boolean = child is spark.components.Button;
+            s = "child is spark.components.Button: " + childIsButton.toString(); // False.
+        }
+    ]]></fx:Script>
+
+    <!-- This control is here so that the getChildAt() method succeeds. -->
+    <s:DataGrid/>
+
+    <s:Group>
+        <s:Label text="{s}"/>
+    </s:Group>
+</s:Application>

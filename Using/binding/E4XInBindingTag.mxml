@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- binding/E4XInBindingTag.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600" height="900">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            [Bindable]
+            public var xdata:XML = 
+                <order>
+                    <item id = "3456">
+                        <description>Big Screen Television</description>
+                        <price>1299.99</price><quantity>1</quantity>
+                    </item>
+                    <item id = "56789">
+                        <description>DVD Player</description>
+                        <price>399.99</price>
+                        <quantity>1</quantity>
+                    </item>
+                </order>;        
+        ]]>
+    </fx:Script>
+
+    <mx:Label text="Using .. notation."/>
+
+    <!-- This will update because what is 
+        binded is actually the String and XMLList. -->
+    <mx:List width="75%" id="txts"/>
+
+    <mx:Label text="Using . notation."/>
+    <mx:List width="75%" id="txt2s"/>
+
+    <mx:Label text="Using || (or) notation."/>
+    <mx:List width="75%" id="txt3s"/>
+
+    <fx:Binding 
+        source="xdata..description" 
+        destination="txts.dataProvider"/>
+    <fx:Binding 
+        source="xdata.item.description" 
+        destination="txt2s.dataProvider"/>
+    <fx:Binding 
+        source="xdata.item.(@id=='3456'||@id=='56789').description" 
+        destination="txt3s.dataProvider"/>
+</s:Application>

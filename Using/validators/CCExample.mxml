@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- validators\CCExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+
+    <fx:Declarations>
+        <mx:CreditCardValidator id="ccV" 
+            cardTypeSource="{cardTypeCombo.selectedItem}"  
+            cardTypeProperty="data"
+            cardNumberSource="{cardNumberInput}"  
+            cardNumberProperty="text"/>
+    </fx:Declarations>
+  
+    <s:Form id="creditCardForm">
+        <s:FormItem label="Card Type">    
+            <s:ComboBox id="cardTypeCombo">
+                <s:dataProvider>
+                    <s:ArrayList>
+                        <fx:Object label="American Express" 
+                            data="American Express"/>
+                        <fx:Object label="Diners Club" 
+                            data="Diners Club"/>
+                        <fx:Object label="Discover" 
+                            data="Discover"/>
+                        <fx:Object label="MasterCard" 
+                            data="MasterCard"/>
+                        <fx:Object label="Visa" 
+                            data="Visa"/>
+                    </s:ArrayList>
+                </s:dataProvider>
+            </s:ComboBox>
+        </s:FormItem>
+        <s:FormItem label="Credit Card Number">
+            <s:TextInput id="cardNumberInput"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:Button label="Check Credit" click="ccV.validate();"/>
+        </s:FormItem>
+    </s:Form>  
+</s:Application>

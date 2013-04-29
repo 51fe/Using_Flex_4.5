@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- embed/EmbedAccessClassObject.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Script>
+        <![CDATA[        
+            import mx.core.BitmapAsset;
+        
+            [Embed(source="logo.gif")]
+            [Bindable]
+            public var imgCls:Class;
+
+            private function modImage():void {            
+                // Create an object from the embed class. 
+                // Since the embedded image is a GIF file, 
+                // the data type is BitmapAsset.
+                var imgObj:BitmapAsset = new imgCls() as BitmapAsset;
+                
+                // Modify the object.
+                imgObj.bitmapData.noise(4);
+
+                // Write the modified object to the Image control.
+                myImage.source=imgObj;
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:HGroup>
+        <s:Image id="myImageRaw" source="{imgCls}"/>
+        <s:Image id="myImage" creationComplete="modImage();"/>
+    </s:HGroup>
+</s:Application>

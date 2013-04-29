@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- containers\application\AppBackgroundGradientCompliment.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+    backgroundGradientColors="[0x0000FF, 0xCCCCCC]" 
+    backgroundColor="0x0000FF">
+    
+    <!-- ... -->
+</mx:Application>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- mxmlAdvanced/MainPropSetGetBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <MyComp:StateComboBoxSetGetBinding id="myStateCB" 
+        shortNames="false"/>
+    
+    <s:TextArea 
+        text="The value of shortNames is {myStateCB.shortNames}"/>
+    <s:Button label="Toggle Short Names"
+        click="myStateCB.shortNames=!myStateCB.shortNames;"/>
+</s:Application>

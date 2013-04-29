@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- tooltips/BoundToolTipText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:TextInput id="txtTo" width="300"/>
+    <s:Button label="Send" toolTip="Send e-mail to {txtTo.text}"/>
+
+</s:Application>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/RepeatedBitmapGraphicComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <BitmapImage 
+         source="@Embed('../../assets/AirIcon12x12.gif')" 
+         width="120" 
+         height="120" 
+         fillMode="repeat"/>
+</Graphic>

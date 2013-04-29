@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- components\ConstraintLayout.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:SkinnableContainer width="100%" height="100%">
+         <!-- Anchor the top of the form at the top of the canvas.
+            Anchor the form sides 20 pixels from the canvas sides. -->
+        <s:Form id="myForm" 
+                backgroundColor="#DDDDDD"
+                top="0" 
+                left="20" 
+                right="20">
+                
+            <s:FormItem label="Product:" width="100%">
+                <!-- Specify a fixed width to keep the ComboBox control from 
+                    resizing as you change the application size. -->
+                <s:ComboBox width="200"/>
+            </s:FormItem>
+
+            <s:FormItem label="User" width="100%">
+                <s:ComboBox width="200"/>
+            </s:FormItem>
+
+            <s:FormItem label="Date">
+                <mx:DateField/>
+            </s:FormItem>
+
+            <s:FormItem width="100%" 
+                    label="Hours:">
+                <s:TextInput width="75"/>
+            </s:FormItem>
+
+            <s:FormItem width="100%" 
+                    label="Minutes:">
+                <s:TextInput width="75"/>
+            </s:FormItem>
+        </s:Form>
+
+        <!-- Anchor the box with the buttons 20 pixels from the canvas
+            right edge and 10 pixels from the bottom. -->
+        <s:SkinnableContainer id="okCancelBox" 
+                right="20" 
+                bottom="10">
+            <s:layout>
+                <s:HorizontalLayout/>
+            </s:layout>
+            <s:Button label="OK"/>
+            <s:Button label="Cancel"/>
+        </s:SkinnableContainer>
+    </s:SkinnableContainer>
+</s:Application>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/AddingContentAsXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        import spark.utils.TextFlowUtil;
+        import flashx.textLayout.elements.*;
+        import flashx.textLayout.conversion.*;
+        import mx.utils.*;
+
+        private var xml:XML = <TextFlow xmlns='http://ns.adobe.com/textLayout/2008'><p><span>This is a span</span></p></TextFlow>;
+        
+        private function addContent():void {
+            myRET.textFlow= TextConverter.importToFlow(xml, TextConverter.TEXT_LAYOUT_FORMAT);
+        }
+        ]]>
+    </fx:Script>
+  
+    <s:RichEditableText id="myRET" height="100" width="200"/>
+    
+    <s:Button click="addContent()" label="Add Content"/>
+</s:Application>

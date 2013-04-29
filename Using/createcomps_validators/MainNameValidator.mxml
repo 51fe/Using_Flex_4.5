@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!-- createcomps_validators/MainNameValidator.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myValidators.*"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <fx:Model id="person">
+            <name>
+              <custName>
+                 <first>{firstInput.text}</first>
+                 <middle>{middleInput.text}</middle>
+                 <last>{lastInput.text}</last>
+              </custName>
+            </name>
+        </fx:Model>
+
+        <MyComp:NameValidator id="nameVal" 
+            source="{person}" property="custName" 
+            listener="{firstInput}"/>   
+    </fx:Declarations>
+
+    <mx:TextInput id="firstInput"/>
+    <mx:TextInput id="middleInput"/>
+    <mx:TextInput id="lastInput"/>
+
+    <mx:Button label="Validate" 
+        click="nameVal.validate();"/>
+</s:Application> 

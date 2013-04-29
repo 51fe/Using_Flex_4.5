@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- skins/EmbedWithStyleManager.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" initialize="init()">
+
+    <fx:Script>
+        <![CDATA[
+            [Embed("../assets/orb_over_skin.gif")]
+            public var os:Class;
+
+            [Embed("../assets/orb_down_skin.gif")]
+            public var ds:Class;
+
+            [Embed("../assets/orb_up_skin.gif")]
+            public var us:Class;
+
+            private function init():void {
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("upSkin", us);
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("overSkin", os);
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("downSkin", ds);
+            }
+        ]]>
+    </fx:Script>
+  
+    <mx:Button label="Click Me" id="b1"/>
+  
+</s:Application>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- datarep\Format.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <!-- Declare a DateTimeFormatter and define the dateStyle.-->
+        <s:DateTimeFormatter id="dateTimeFormatter" dateStyle="long"/>
+    </fx:Declarations>
+
+    <s:Label text="Enter date (mm/dd/yyyy):"/>
+    <s:TextInput id="dob" text="12/08/1980" width="300"/>
+
+    <s:Label text="Formatted date: "/>
+    <s:TextInput id="formattedDate" 
+        text="" editable="false" width="300"/>
+        
+    <!-- Format and update the date.-->
+    <s:Button label="Format Input" 
+        click="formattedDate.text=dateTimeFormatter.format(dob.text);"/>
+</s:Application>

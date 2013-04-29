@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- styles/SelectorPrecedence.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        .myclass { 
+            color: Red;
+        }
+
+        s|Button { 
+            fontSize: 10pt; 
+            color: Yellow;
+        }
+    </fx:Style>
+
+    <s:VGroup width="500" height="200">
+        <s:Button styleName="myclass" label="Red Button"/>
+        <s:Button label="Yellow Button"/>
+    </s:VGroup>
+
+</s:Application>

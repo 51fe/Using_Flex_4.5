@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\list\MainListStateRendererEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="700" width="700">
+
+    <fx:Script>
+        <![CDATA[
+
+            import mx.events.ListEvent;
+            import myComponents.EditorStateInfo;
+                        
+            // Define the event listener.
+            public function processData(event:ListEvent):void {                 
+
+                // Disable copying data back to the control.
+                event.preventDefault();
+
+                // Get new label from editor.
+                myList.editedItemRenderer.data.label =
+    EditorStateInfo(event.currentTarget.itemEditorInstance).newLabel.text;
+
+                // Get new data from editor.
+                myList.editedItemRenderer.data.data = 
+    EditorStateInfo(event.currentTarget.itemEditorInstance).newData.text;
+
+                // Get new webPage from editor.
+                myList.editedItemRenderer.data.webPage = 
+    EditorStateInfo(event.currentTarget.itemEditorInstance).newWebPage.text;
+
+                // Close the cell editor.
+                myList.destroyItemEditor(); 
+                    
+                // Notify the list control to update its display.
+        myList.dataProvider.itemUpdated(myList.editedItemRenderer);
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:List id="myList" 
+        height="180" width="250" 
+        editable="true" 
+        itemRenderer="myComponents.RendererState" 
+        itemEditor="myComponents.EditorStateInfo" 
+        variableRowHeight="true" 
+        itemEditEnd="processData(event);"> 
+        <mx:dataProvider>
+            <fx:Object label="Alaska" 
+                data="Juneau" 
+                webPage="http://www.state.ak.us/"/>
+            <fx:Object label="Alabama" 
+                data="Montgomery" 
+                webPage="http://www.alabama.gov/" />
+            <fx:Object label="Arkansas" 
+                data="Little Rock" 
+                webPage="http://www.state.ar.us/"/> 
+        </mx:dataProvider>
+    </mx:List>
+</s:Application>

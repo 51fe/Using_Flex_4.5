@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- containers\intro\MousePosition.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script>
+        <![CDATA[
+          import mx.controls.Alert;
+
+          // Handle the mouseDown event generated 
+          // by clicking in the application.
+          private function handleMouseDown(event:MouseEvent):void {
+                 
+            // Convert the mouse position to global coordinates.
+            // The localX and localY properties of the mouse event contain
+            // the coordinates at which the event occurred relative to the
+            // event target, typically one of the 
+            // colored internal Canvas containers.
+            // A production version of this example could use the stageX 
+            // and stageY properties, which use the global coordinates, 
+            // and avoid this step.
+            // This example uses the localX and localY properties only to
+            // illustrate conversion between different frames of reference.
+            var pt:Point = new Point(event.localX, event.localY);
+            pt = event.target.localToGlobal(pt);
+                
+            // Convert the global coordinates to the content coordinates 
+            // inside the outer c1 Canvas container.
+            pt = c1.globalToContent(pt);
+               
+            // Figure out which quadrant was clicked.
+            var whichColor:String = "border area";
+              
+            if (pt.x < 150) {
+                if (pt.y < 150)
+                    whichColor = "red";
+                else
+                    whichColor = "blue";
+            }
+            else {
+                if (pt.y < 150)
+                    whichColor = "green";
+                else
+                    whichColor = "magenta";
+            }
+                
+            Alert.show("You clicked on the " + whichColor);
+          }
+        ]]>
+    </fx:Script>
+
+    <!-- Canvas container with four child Canvas containers -->
+    <mx:Canvas id="c1" 
+        borderStyle="none" 
+        width="300" height="300" 
+        mouseDown="handleMouseDown(event);">
+        
+        <mx:Canvas 
+            width="150" height="150" 
+            x="0" y="0" 
+            backgroundColor="red">
+            <mx:Button label="I'm in Red"/>
+        </mx:Canvas>
+        <mx:Canvas 
+            width="150" height="150" 
+            x="150" y="0"
+            backgroundColor="green">
+            <mx:Button label="I'm in Green"/>
+        </mx:Canvas>
+        <mx:Canvas 
+            width="150" height="150" 
+            x="0" y="150"
+            backgroundColor="blue">
+            <mx:Button label="I'm in Blue"/>
+        </mx:Canvas>
+        <mx:Canvas 
+            width="150" height="150" 
+            x="150" y="150"
+            backgroundColor="magenta">
+            <mx:Button label="I'm in Magenta"/>
+        </mx:Canvas>
+    </mx:Canvas>
+</s:Application>

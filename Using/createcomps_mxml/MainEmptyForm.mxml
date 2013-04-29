@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- mxml/MainEmptyForm.mxml-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*">
+
+    <MyComp:EmptyForm>    
+        <s:FormItem label="Name">
+            <s:TextInput/>
+        </s:FormItem>
+    </MyComp:EmptyForm>
+</s:Application>

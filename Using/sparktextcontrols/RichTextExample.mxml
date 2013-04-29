@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/RichTextExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+  
+    <!-- You can display simple text with the text property. -->  
+    <s:RichText text="Hello World!"/>
+
+    <!-- Or the text child tag. -->  
+    <s:RichText>
+        <s:text>
+            Hello World!
+        </s:text>        
+    </s:RichText>
+
+    <!-- You can display formatted text with the default property. -->  
+    <s:RichText>
+        Hello <s:span fontSize='16'>BIG NEW</s:span> World!
+    </s:RichText>
+
+    <!-- Or the TextFlow child tag. -->  
+    <s:RichText>
+        <s:textFlow>
+            <s:TextFlow>
+                Hello <s:span fontSize='16'>BIG NEW</s:span> World!
+            </s:TextFlow>
+        </s:textFlow>
+    </s:RichText>
+
+</s:Application>

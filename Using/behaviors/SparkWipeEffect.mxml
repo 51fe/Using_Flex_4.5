@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- behaviors\SparkWipeEffect.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <!-- Define two view states.-->
+    <s:states>
+        <s:State name="default"/>
+        <s:State name="red"/>
+    </s:states>
+
+    <!-- Define the transition that applies the Wipe effect
+        whenever the view state changes.-->
+    <s:transitions> 
+        <s:Transition fromState="*" toState="*"> 
+            <s:Sequence target="{myB}">
+                <s:Wipe id="wipeEffect"  
+                    direction="right"
+                    duration="1000"/> 
+            </s:Sequence>
+        </s:Transition> 
+    </s:transitions>
+
+    <s:Button id="myB" label="Wipe" 
+        color="black" color.red="red"/>
+
+    <!-- Define two buttons to change the view state. -->
+    <s:Button label="Set Default State" 
+        click="currentState='default'"/>
+    <s:Button label="Set Red State" 
+        click="currentState='red'"/>
+</s:Application>

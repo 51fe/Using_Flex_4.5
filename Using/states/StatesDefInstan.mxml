@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- states\StatesDefInstan.mxml  -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    
+    <mx:Script>
+        <![CDATA[
+            import mx.core.*;
+            import mx.states.*;
+
+            [Bindable]
+            public var defInst:DeferredInstanceFromFunction = 
+                new DeferredInstanceFromFunction(createMyButton);
+                       
+            // Function to create a new Button control.
+            public function createMyButton():Object {
+                var newButton:Button = new Button();
+                newButton.label = "New Dynamic Button";
+                return newButton;
+            }            
+        ]]>
+    </mx:Script>
+
+    <mx:states>
+        <mx:State name="deferredButton">
+            <mx:AddChild relativeTo="{myPanel}" targetFactory="{defInst}"/>
+        </mx:State>
+    </mx:states>    
+    
+    <mx:Panel id="myPanel" 
+        title="Static and dynamic states" 
+        width="300" height="150">
+        
+        <mx:Button id="myButton2" 
+            label="Toggle Deferred Button" 
+            click="currentState = 
+                currentState == 'deferredButton' ? '' : 'deferredButton';"/>
+    </mx:Panel>
+</mx:Application>

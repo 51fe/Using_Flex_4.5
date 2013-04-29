@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\CBarSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+            private function addToCart():void {
+                // Handle event.
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Panel title="My Application" 
+        paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10">
+
+        <mx:HBox width="250" height="200">
+            <!-- Area for your catalog. -->
+        </mx:HBox>
+    
+        <mx:ControlBar width="250">
+            <mx:Label text="Quantity"/>
+            <mx:NumericStepper/>
+            <!-- Use Spacer to push Button control to the right. -->
+            <mx:Spacer width="100%"/>
+            <mx:Button label="Add to Cart" 
+                click="addToCart();"/>
+        </mx:ControlBar>
+    </mx:Panel>
+</s:Application>

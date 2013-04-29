@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- modules/interfaceexample/MainModuleApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns="*"> 
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.ModuleEvent;
+            import mx.modules.ModuleManager;
+        
+            [Bindable]
+            public var selectedItem:Object;
+
+            [Bindable]
+            public var currentModuleName:String;
+            
+            private function applyModuleSettings(e:Event):void {
+                /* Cast the ModuleLoader's child to the interface.
+                   This child is an instance of the module.
+                   You can now call methods on that instance. */
+                var ichild:* = mod.child as IModuleInterface;                
+                if (mod.child != null) {                    
+                    /* Call setters in the module to adjust its
+                       appearance when it loads. */
+                    ichild.setAdjusterID(myId.text);
+                    ichild.setBackgroundColor(myColor.selectedColor);
+                } else {                
+                    trace("Uh oh. The mod.child property is null");                 
+                }
+                /* Set the value of a local variable by calling a method
+                   on the interface. */
+                currentModuleName = ichild.getModuleName();
+            }
+            
+            private function reloadModule():void {
+                // Reset the ColorPicker control:
+                myColor.selectedColor = 0xFFFFFF;
+                
+                // Reload the module:
+                mod.unloadModule();
+                mod.loadModule();            
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Form>
+        <s:FormItem label="Current Module:">
+            <s:Label id="l1" text="{currentModuleName}"/>
+        </s:FormItem>
+        <s:FormItem label="Adjuster ID:">
+            <s:TextInput id="myId" text="Enter your ID"/>
+        </s:FormItem>
+        <s:FormItem label="Background Color:">
+            <mx:ColorPicker id="myColor" 
+                selectedColor="0xFFFFFF" 
+                change="applyModuleSettings(event)"/>
+        </s:FormItem>
+    </s:Form>
+    
+    <s:Label text="Long Shot Insurance" fontSize="24"/>
+    <s:ComboBox labelField="label" prompt="Select Module"
+        close="selectedItem=ComboBox(event.target).selectedItem">
+        <s:dataProvider>
+            <s:ArrayList>
+                <fx:Object label="Auto Insurance" module="AutoInsurance2.swf"/>          
+            </s:ArrayList>
+        </s:dataProvider>
+    </s:ComboBox>
+
+    <s:Panel width="100%" height="100%">
+        <s:ModuleLoader id="mod" 
+            width="80%" height="80%"
+            url="{selectedItem.module}" 
+            ready="applyModuleSettings(event)"/>
+    </s:Panel>    
+    <s:Button id="b1" label="Reload Module" click="reloadModule()"/>
+</s:Application>

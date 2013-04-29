@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/SimpleRectComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+   <Rect height="100" width="200">                              
+         <stroke>
+              <SolidColorStroke color="#000000" weight="1"/>
+         </stroke>
+   </Rect>
+</Graphic>

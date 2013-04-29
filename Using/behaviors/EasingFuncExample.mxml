@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- behaviors\EasingFuncExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="550">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        import mx.effects.easing.*;
+    </fx:Script>
+
+    <mx:Accordion 
+        openEasingFunction="{Bounce.easeOut}" 
+        openDuration="2000">
+        <mx:VBox label="Pane 1" width="400" height="400"/>
+        <mx:VBox label="Pane 2" width="400" height="400"/> 
+    </mx:Accordion>
+</s:Application>

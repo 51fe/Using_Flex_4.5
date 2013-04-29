@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrapper/SimpleNavigateToURL.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout> 
+        <s:HorizontalLayout/> 
+    </s:layout>
+  
+    <fx:Script>
+        <![CDATA[
+            import flash.net.*;
+            public function executeSearch(event:MouseEvent):void {
+                var u:URLRequest = new URLRequest("http://www.google.com/search?hl=en&q=" + ta1.text);
+                navigateToURL(u,"_blank");
+            }
+        ]]>
+    </fx:Script>
+
+    <s:TextArea id="ta1"/>
+    <s:Button label="Search" click="executeSearch(event)"/>
+
+</s:Application>

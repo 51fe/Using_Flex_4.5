@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- textcontrols/HTMLTags2.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="500">
+
+  <mx:Text width="100%">
+     <mx:htmlText><![CDATA[<p>This string contains a <b>less than</b>, &lt;.
+        </p><p>This text is in a new paragraph.<br>This is a new line.</p>]]>
+     </mx:htmlText>
+  </mx:Text>
+</s:Application>

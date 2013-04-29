@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- styles/StylesEventApp.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init()">
+    
+    <fx:Script>
+        <![CDATA[
+        import mx.events.StyleEvent;
+        
+        public function init():void {
+            var myEvent:IEventDispatcher = styleManager.loadStyleDeclarations("../assets/ACBStyles.swf");
+            myEvent.addEventListener(StyleEvent.COMPLETE, getImage);
+        }
+
+        private function getImage(event:StyleEvent):void {
+            map1.source = acb.getStyle("dottedMap");
+        }        
+        ]]>
+    </fx:Script>    
+    
+    <mx:ApplicationControlBar id="acb" width="100%">
+        <s:Image id="map1"/>
+    </mx:ApplicationControlBar>
+    
+</s:Application>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- fxg/star.fxg -->
+<fxg:Graphic xmlns:fxg="http://ns.adobe.com/fxg/2008" version="2">    
+	<fxg:Path x="9.399" y="10.049" data="M 82.016 78.257 L 51.895 69.533 L 27.617 89.351 L 26.621 58.058 L 0.231 41.132 L 29.749 30.52 L 37.714 0.241 L 56.944 24.978 L 88.261 23.181 L 70.631 49.083 Z">
+		<fxg:fill>
+			<fxg:SolidColor color="#FFFFFF"/>
+		</fxg:fill>
+		<fxg:stroke>
+			<fxg:SolidColorStroke 
+                caps="none" 
+                color="#4769C4" 
+                joints="miter" 
+                miterLimit="4" 
+                weight="20"/>
+		</fxg:stroke>
+	</fxg:Path>
+</fxg:Graphic>

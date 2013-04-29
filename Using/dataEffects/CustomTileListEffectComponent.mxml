@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- dataEffects\CustomTileListEffectComponent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            import myComponents.MyDataEffect;
+            
+            [Bindable]
+            private var myDP:ArrayCollection = new ArrayCollection(
+                ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q']);
+            
+            private function deleteItem():void {
+                // As each item is removed, the index of the other items changes.
+                // So first get the items to delete, then determine their indices
+                // as you remove them.
+                var toRemove:Array = [];
+                for (var i:int = 0; i < tlist0.selectedItems.length; i++)
+                    toRemove.push(tlist0.selectedItems[i]);
+                for (i = 0; i < toRemove.length; i++)
+                    myDP.removeItemAt(myDP.getItemIndex(toRemove[i]));
+            }
+
+            private var zcount:int = 0;
+            private function addItem():void {
+                // Always add the new item after the third item,
+                // or after the last item if the length is less than 3.
+                myDP.addItemAt("Z"+zcount++,Math.min(3,myDP.length));
+            }                        
+        ]]>
+    </fx:Script>
+
+    <!-- This TileList uses a custom data change effect -->
+    <mx:TileList id="tlist0" 
+        height="400" width="400" 
+        fontSize="30" fontStyle="italic"
+        columnCount="4" rowCount="4" 
+        direction="horizontal" 
+        dataProvider="{myDP}" 
+        allowMultipleSelection="true" 
+        offscreenExtraRowsOrColumns="4" 
+        itemsChangeEffect="{MyDataEffect}"/>
+
+    <mx:Button 
+        label="Delete selected item(s)" 
+        click="deleteItem();"/>
+    <mx:Button 
+        label="Add item" 
+        click="addItem();"/>
+</s:Application>

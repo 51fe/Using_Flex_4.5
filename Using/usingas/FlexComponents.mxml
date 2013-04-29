@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- usingas/FlexComponents.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script><![CDATA[
+        private var newFontStyle:String;
+        private var newFontSize:int;
+
+        public function changeLabel(s:String):void {
+            s = "myButton" + s;
+
+            if (this[s].getStyle("fontStyle")=="normal") {
+                newFontStyle = "italic";
+                newFontSize = 18;
+            } else {
+                newFontStyle = "normal";
+                newFontSize = 10;     
+            }
+
+            this[s].setStyle("fontStyle",newFontStyle);
+            this[s].setStyle("fontSize",newFontSize);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="myButton1" 
+        click="changeLabel('2')" 
+        label="Change Other Button's Styles"/>
+    <s:Button id="myButton2" 
+        click="changeLabel('1')" 
+        label="Change Other Button's Styles"/>
+</s:Application>

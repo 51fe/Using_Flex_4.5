@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- containers\navigators\TNEffect.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <mx:WipeRight id="myWR"/>
+    </fx:Declarations>
+
+    <mx:TabNavigator>
+        <mx:VBox label="Accounts" 
+            width="300" 
+            height="150"
+            showEffect="{myWR}">
+            <!-- Accounts view goes here. -->
+            <mx:Text text="This is a text control."/>
+        </mx:VBox>
+
+        <mx:VBox label="Stocks" 
+            width="300" 
+            height="150"
+            showEffect="{myWR}">
+            <!-- Stocks view goes here. -->
+            <mx:Text text="This is a text control."/>
+        </mx:VBox>
+
+        <mx:VBox label="Futures" 
+            width="300" 
+            height="150"
+            showEffect="{myWR}">
+            <!-- Futures view goes here. -->
+            <mx:Text text="This is a text control."/>
+        </mx:VBox>   
+    </mx:TabNavigator>  
+</s:Application>

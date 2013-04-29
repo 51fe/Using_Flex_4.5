@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- behaviors\CompositeEffectsEnable.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            private function showHandler():void {
+                myButton2.enabled=true;
+                myButton1.enabled=false;
+            }
+
+            private function hideHandler():void {
+                myButton2.enabled=false;
+                myButton1.enabled=true;
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <s:Sequence id="fadeResizeHide"
+            target="{aTextArea}"
+            duration="1000"
+            effectEnd="hideHandler();">
+            <s:Fade id="fadeHide" 
+                alphaFrom="1.0"
+                alphaTo="0.0"/>
+            <s:Resize id="resizeHide" 
+                widthTo="0" 
+                heightTo="0"/>
+        </s:Sequence>        
+
+        <s:Parallel id="fadeResizeShow"
+            target="{aTextArea}"
+            duration="1000"
+            effectEnd="showHandler();">
+            <s:Resize id="resizeShow" 
+                widthTo="100" 
+                heightTo="50"/>
+            <s:Fade id="fadeShow" 
+                alphaFrom="0.0"
+                alphaTo="1.0"/>
+        </s:Parallel>
+    </fx:Declarations>
+
+    <s:TextArea id="aTextArea" 
+        width="100" height="50" 
+        text="Hello world."/>
+
+    <s:Button id="myButton2" 
+        label="Hide!"
+        click="fadeResizeHide.end();fadeResizeHide.play();"/>
+    <s:Button id="myButton1"
+        label="Show!" 
+        enabled="false"
+        click="fadeResizeShow.end();fadeResizeShow.play();"/>
+</s:Application>

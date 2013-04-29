@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Models\myComponents\TentDetail.mxml-->
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    title="Tent Details">
+  
+    <fx:Script> 
+        <![CDATA[ 
+            [Bindable] 
+            public var tent:Object; 
+        ]]> 
+    </fx:Script> 
+  
+    <fx:Style> 
+        .title{fontFamily:Arial;fontWeight:bold;color:#3D3D3D;fontSize:16pt;} 
+        .flabelColor 
+            {fontFamily:Arial;fontWeight:bold;color:#3D3D3D;fontSize:11pt} 
+        .productSpec{fontFamily:Arial;color:#5B5B5B;fontSize:10pt} 
+    </fx:Style> 
+  
+    <s:VGroup paddingLeft="10" paddingTop="10" paddingRight="10"> 
+        <s:Form verticalGap="0" paddingLeft="10" paddingTop="10" 
+            paddingRight="10" paddingBottom="0"> 
+  
+            <s:VGroup width="209" height="213"> 
+                <s:Image width="207" height="211" 
+                    source="./images/{tent.sku}_detail.jpg"/> 
+            </s:VGroup> 
+  
+            <s:FormHeading label="{tent.name}" paddingTop="1" 
+                styleName="title"/> 
+  
+            <mx:HRule width="209"/> 
+  
+            <s:FormItem label="Capacity" styleName="flabelColor"> 
+                <s:Label text="{tent.capacity} person" 
+                    styleName="productSpec"/> 
+            </s:FormItem> 
+            <s:FormItem label="Season" 
+                styleName="flabelColor"> 
+                <s:Label text="{tent.season}" 
+                    styleName="productSpec"/> 
+            </s:FormItem> 
+            <s:FormItem label="Type" styleName="flabelColor"> 
+                <s:Label text="{tent.type}" 
+                    styleName="productSpec"/> 
+            </s:FormItem> 
+            <s:FormItem label="Floor Area" styleName="flabelColor"> 
+                <s:Label text="{tent.floorarea} 
+                    square feet" styleName="productSpec"/> 
+            </s:FormItem> 
+            <s:FormItem label="Weather" styleName="flabelColor"> 
+                <s:Label text="{tent.waterproof}" 
+                    styleName="productSpec"/> 
+            </s:FormItem> 
+            <s:FormItem label="Weight" styleName="flabelColor"> 
+                <s:Label text="{tent.weight}" 
+                    styleName="productSpec"/> 
+            </s:FormItem> 
+        </s:Form> 
+    </s:VGroup> 
+</s:Panel>

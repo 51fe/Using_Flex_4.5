@@ -1,0 +1,1 @@
+For PBarSimple.mxml, you need to be running a web server to serve up DSC00034.JPG.

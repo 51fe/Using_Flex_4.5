@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!-- fonts/EmbeddedFontFaceActionScriptByLocation.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="700">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Style>
+     .mystyle1 {
+        fontFamily:myMyriadFont;
+        fontSize: 32pt;
+     }
+     .mystyle2 {
+        fontFamily:myBoldMyriadFont;
+        fontSize: 32pt;
+        fontWeight: bold;
+     }
+  </fx:Style>
+  
+  <fx:Script>
+     /* 
+      * Embed a font by location. 
+      */
+     [Embed(source='../assets/MyriadWebPro.ttf', 
+        fontName='myMyriadFont', 
+        mimeType='application/x-font',
+        embedAsCFF='true'
+     )] 
+     // You do not use this variable directly. It exists so that 
+     // the compiler will link in the font.
+     private var font1:Class;
+     
+     /* 
+      * Embed a font with bold typeface by location. 
+      */
+     [Embed(source='../assets/MyriadWebPro-Bold.ttf', 
+        fontWeight='bold', 
+        fontName='myBoldMyriadFont', 
+        mimeType='application/x-font', 
+        embedAsCFF='true'
+     )] 
+     private var font2:Class;
+     
+  </fx:Script>
+
+  <s:Panel title="Embedded Fonts Using ActionScript">
+     <s:VGroup>
+        <s:RichText 
+            width="100%" 
+            height="75" 
+            styleName="mystyle1" 
+            text="This text uses the MyriadWebPro font." 
+        />
+        <s:RichText 
+            width="100%" 
+            height="75" 
+            styleName="mystyle2" 
+            text="This text uses the MyriadWebPro-Bold font." 
+        />
+     </s:VGroup>
+  </s:Panel>
+</s:Application>

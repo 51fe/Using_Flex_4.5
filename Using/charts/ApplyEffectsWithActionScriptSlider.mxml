@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!-- charts/ApplyEffectsWithActionScriptSlider.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();srv.send();"
+    height="750">
+    
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/widgets-xml.aspx" result="resultHandler(event)"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/widgets.aspx -->  
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <fx:Script><![CDATA[
+     import mx.collections.ArrayCollection;
+     import mx.charts.effects.SeriesInterpolate;
+     import mx.binding.utils.BindingUtils;
+
+     public var rearrangeData:SeriesInterpolate;
+     
+     [Bindable]
+     public var items:ArrayCollection;
+
+     public function initApp():void {
+        rearrangeData = new SeriesInterpolate();
+
+        // Bind effect properties to slider controls
+        BindingUtils.bindProperty(rearrangeData, "duration", durationSlider, "value");
+        BindingUtils.bindProperty(rearrangeData, "minimumElementDuration", 
+            minimumElementDurationSlider, "value");
+        BindingUtils.bindProperty(rearrangeData, "elementOffset", 
+            elementOffsetSlider, "value");
+     }
+
+     public function addDataItem():void {
+        // Add a randomly generated value to the data provider.
+        var n:Number = Math.random() * 3000;
+        var o:Object = {item: n};
+        items.addItem(o);
+     }
+
+     public function resetSliders():void {
+        durationSlider.value = 1000;
+        minimumElementDurationSlider.value = 200;
+        elementOffsetSlider.value = 0;
+     }
+
+     private function resultHandler(e:Event):void {
+          items = ArrayCollection(srv.lastResult.data.result);
+     }
+  ]]></fx:Script>
+
+  <s:Panel title="Column Chart with Series Interpolate Effect">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" dataProvider="{items}">
+        <mx:series>
+           <mx:ColumnSeries id="mySeries"
+            yField="item" displayName="Quantity"
+            showDataEffect="rearrangeData"/>
+        </mx:series>
+     </mx:ColumnChart>
+  </s:Panel>
+
+  <s:Button id="b1" click="addDataItem()" label="Add Data Item"/>
+
+  <s:Panel title="Effects">
+     <s:Form>
+        <s:FormItem label="Duration">
+           <mx:HSlider id="durationSlider"
+            minimum="1"
+            maximum="10000"
+            value="1000"
+            dataTipPlacement="top"
+            tickColor="black"
+            snapInterval="500"
+            tickInterval="500"
+            labels="['0','10000']"
+            allowTrackClick="true"
+            liveDragging="true"/>
+        </s:FormItem>
+        <s:FormItem label="Minimum Element Duration">
+           <mx:HSlider id="minimumElementDurationSlider"
+            minimum="0"
+            maximum="1000"
+            value="200"
+            dataTipPlacement="top"
+            tickColor="black"
+            snapInterval="50"
+            tickInterval="50"
+            labels="['0','1000']"
+            allowTrackClick="true"
+            liveDragging="true"/>
+        </s:FormItem>
+        <s:FormItem label="Element Offset">
+           <mx:HSlider id="elementOffsetSlider"
+            minimum="0"
+            maximum="1000"
+            value="0"
+            dataTipPlacement="top"
+            tickColor="black"
+            snapInterval="50"
+            tickInterval="50"
+            labels="['0','1000']"
+            allowTrackClick="true"
+            liveDragging="true"/>
+        </s:FormItem>
+     </s:Form>
+  </s:Panel>
+
+  <s:Button id="b2" label="Reset Sliders" click="resetSliders()"/>
+
+</s:Application>

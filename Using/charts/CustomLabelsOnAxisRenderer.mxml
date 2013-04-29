@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!-- charts/CustomLabelsOnAxisRenderer.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">  
+    
+    <fx:Script>  
+    <![CDATA[
+        import spark.formatters.NumberFormatter;
+        import mx.charts.chartClasses.IAxisRenderer;   
+        import mx.collections.ArrayCollection;  
+        
+        private function CMstoInches(ar:IAxisRenderer, strCMs:String):String {
+            var n:NumberFormatter = new NumberFormatter();
+            // Set precision to 1 decimal place:
+            n.fractionalDigits = 1;
+            return n.format((Number(strCMs) * 0.393700787).toString());
+        }
+        
+        [Bindable]
+        private var SampleHeightData:ArrayCollection = new ArrayCollection([
+            { Age: "Birth", height: 53},
+            { Age: "3", height: 57 },
+            { Age: "6", height: 64 },
+            { Age: "9", height: 70 },
+            { Age: "12", height: 82 },
+            { Age: "15", height: 88 }
+        ]);
+            
+        [Bindable]
+        private var HeightData:ArrayCollection = new ArrayCollection([
+            { Age: "Birth", 5: 52, 10: 53, 25:54, 50:58, 75:60, 90:62, 95:63 },
+            { Age: "3", 5: 56, 10: 57, 25:58, 50:62, 75:64, 90:66, 95:67 },
+            { Age: "6", 5: 62, 10: 63, 25:64, 50:68, 75:70, 90:72, 95:73 },
+            { Age: "9", 5: 66, 10: 67, 25:68, 50:72, 75:74, 90:76, 95:77 },
+            { Age: "12", 5: 70, 10: 71, 25:72, 50:76, 75:80, 90:82, 95:83 },
+            { Age: "15", 5: 74, 10: 75, 25:76, 50:80, 75:84, 90:86, 95:87 }
+        ]);
+    ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <mx:SolidColorStroke id="s1" weight="1"  />
+    </fx:Declarations>
+     
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Multiple Axis Example, Boys: Age - Height percentiles" 
+        height="100%" width="100%">          
+        <s:layout>
+            <s:HorizontalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="linechart" height="100%" width="100%"
+            paddingLeft="5" 
+            paddingRight="5" 
+            showDataTips="true" 
+            dataProvider="{HeightData}">
+
+            <mx:seriesFilters>
+                <fx:Array/>
+            </mx:seriesFilters> 
+
+            <mx:backgroundElements>
+                <mx:GridLines gridDirection="both"/>
+            </mx:backgroundElements>    
+
+            <mx:horizontalAxis>
+                <mx:CategoryAxis id="h1"
+                    categoryField="Age" 
+                    title="Age in Months" 
+                    ticksBetweenLabels="false"/>
+            </mx:horizontalAxis>
+
+            <mx:verticalAxis>
+                <mx:LinearAxis id="v1" 
+                    title="Height" 
+                    baseAtZero="false"/>
+            </mx:verticalAxis>
+
+            <mx:verticalAxisRenderers>                
+                <mx:AxisRenderer 
+                    axis="{v1}" 
+                    placement="right"/>
+                <mx:AxisRenderer 
+                    axis="{v1}" 
+                    placement="right" 
+                    labelFunction="CMstoInches" 
+                    highlightElements="true"/>
+            </mx:verticalAxisRenderers>
+
+            <mx:horizontalAxisRenderers>
+                <mx:AxisRenderer axis="{h1}" placement="bottom"/>
+                <mx:AxisRenderer axis="{h1}" placement="top"/>
+            </mx:horizontalAxisRenderers>
+
+            <mx:series>
+                <mx:LineSeries yField="5"  form="curve" displayName="5%"/>
+                <mx:LineSeries yField="10" form="curve" displayName="10%"/>
+                <mx:LineSeries yField="25" form="curve" displayName="25%"/>
+                <mx:LineSeries yField="50" form="curve" displayName="50%"/>
+                <mx:LineSeries yField="75" form="curve" displayName="75%"/>
+                <mx:LineSeries yField="90" form="curve" displayName="90%"/>
+                <mx:LineSeries yField="95" form="curve" displayName="95%"/>
+                <mx:ColumnSeries displayName="Height of Child X" 
+                    dataProvider="{SampleHeightData}" 
+                    yField="height" 
+                    fills="{[0xCC6600]}"/>
+            </mx:series>
+        </mx:ColumnChart>
+        <mx:Legend dataProvider="{linechart}"/>
+    </s:Panel>
+</s:Application>

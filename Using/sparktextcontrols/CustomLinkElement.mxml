@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/CustomLinkElement.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import flashx.textLayout.events.FlowElementMouseEvent; 
+            import mx.collections.ArrayCollection;
+        
+            [Bindable]
+            public var myArray:ArrayCollection = new ArrayCollection(["Flex", "Flash", "ActionScript"]);
+
+            private function handleClickEvent(e:FlowElementMouseEvent):void {
+                var url:String = "http://www.google.com/search?q=" + productList.selectedItem;
+                navigateToURL(new URLRequest(url), '_blank');
+            }    
+        ]]>
+    </fx:Script>
+
+    <s:RichEditableText id="richTxt" 
+        editable="false" 
+        focusEnabled="false">
+        <s:textFlow>
+            <s:TextFlow>
+                <s:p>
+                    Search for product info on <s:a click="handleClickEvent(event)">Google</s:a>
+                </s:p>
+            </s:TextFlow>
+        </s:textFlow>
+    </s:RichEditableText>
+
+    <s:ComboBox id="productList" dataProvider="{myArray}" prompt="Select one"/> 
+    
+</s:Application>

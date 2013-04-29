@@ -1,0 +1,30 @@
+<?xml version="1.0"?> 
+<!-- skinstyle\MainRectWithFillStyles.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+ 
+    <!-- Set style by using a CSS type selector. -->
+    <fx:Style>
+        @namespace "myComponents.*";
+        StyledRectangle {fillColors: #FF00FF, #00FFFF}
+    </fx:Style>
+
+    <!-- By default, use the style defined by the CSS type selector. -->
+    <MyComp:StyledRectangle id="mySR1"/>
+
+    <!-- By default, use the style defined by the CSS type selector. -->
+    <MyComp:StyledRectangle id="mySR2"/>
+
+    <!-- Change the default style by using the setStyle() method. -->
+    <mx:Button label="Set gradient" 
+        click="mySR2.setStyle('fillColors', [0x000000, 0xFFFFFF]);"/>
+
+    <!-- Set fillColors in MXML. -->
+    <MyComp:StyledRectangle id="mySR3" fillColors="[0x00FF00, 0xFFFFFF]"/>
+
+</s:Application>

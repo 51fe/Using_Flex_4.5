@@ -1,0 +1,1 @@
+The EmbeddedFontFaceCSSByName.mxml example application requires that you put be able to access the Myriad Web Pro font as a local font. The easiest way to do this is to copy the assets/MyriadWebPro.ttf file to your windows/fonts directory. You can also register the font with your JRE or operating system, although this process is JRE/OS dependent.

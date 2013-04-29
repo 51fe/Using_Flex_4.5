@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCServerMXML.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <!-- Declare a RemoteObject component. --> 
+    <mx:RemoteObject
+        id="employeeRO"
+        destination="SalaryManager"/>
+
+    <!-- Declare an HTTPService component. --> 
+    <mx:HTTPService
+        id="employeeHTTP"
+        destination="SalaryManager"
+        useProxy="true"/> 
+
+    <!-- Declare a WebService component. --> 
+    <mx:WebService
+        id="employeeWS"
+        destination="SalaryManager"
+        useProxy="true"/>
+</mx:Application>

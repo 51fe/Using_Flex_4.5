@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/ListChangeEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+
+            public function changeEvt(event:Event):void {
+                forChange.text=event.currentTarget.selectedItem.label + " " +
+                event.currentTarget.selectedIndex;
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:List width="35" change="changeEvt(event)"> 
+        <fx:Object label="AL" data="Montgomery"/>
+        <fx:Object label="AK" data="Juneau"/>
+        <fx:Object label="AR" data="Little Rock"/>
+    </mx:List>
+    <mx:TextArea id="forChange" width="150"/>
+</s:Application>

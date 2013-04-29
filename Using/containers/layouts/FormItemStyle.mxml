@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- containers\layouts\FormItemStyle.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Style>
+        .myFormItemLabelStyle {
+            color: #333399;
+            fontSize: 20;
+         }
+         
+    </fx:Style>
+
+    <fx:Script>
+        <![CDATA[
+            private function processValues(zip:String, pn:String):void {
+                // Validate and process data.
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Form id="myForm" defaultButton="{mySubmitButton}">
+
+        <mx:FormItem label="Zip Code" 
+            labelStyleName="myFormItemLabelStyle">
+            <mx:TextInput id="zipCode"/>
+        </mx:FormItem>
+        <mx:FormItem label="Phone Number">
+            <mx:TextInput id="phoneNumber"/>
+        </mx:FormItem>
+    
+        <mx:FormItem>
+            <mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues(zipCode.text, phoneNumber.text);"/>
+        </mx:FormItem>
+    
+    </mx:Form>
+</s:Application>

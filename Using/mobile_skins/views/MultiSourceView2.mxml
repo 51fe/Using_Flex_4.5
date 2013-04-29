@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/views/MultiSourceView2.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="Icons Inline">
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.core.FlexGlobals;
+            
+            private function doSomething():void {                
+                /* The MultiDPIBitmapSource's source data. */
+                myTA.text = dogButton.getStyle("icon").getSource(FlexGlobals.topLevelApplication.applicationDPI).toString();
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="dogButton" click="doSomething()">
+        <s:icon>
+            <s:MultiDPIBitmapSource id="dogIcons"
+                    source160dpi="@Embed('../../assets/low-res/bulldog.jpg')"
+                    source240dpi="@Embed('../../assets/med-res/bulldog.jpg')"
+                    source320dpi="@Embed('../../assets/high-res/bulldog.jpg')"/>
+        </s:icon>
+    </s:Button>       
+    <s:TextArea id="myTA" width="100%"/>
+
+</s:View>

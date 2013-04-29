@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\myComponents\RendererDGListData.mxml -->
+<mx:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    preinitialize="initTA();">
+
+    <fx:Script>
+        <![CDATA[
+        
+            import mx.controls.dataGridClasses.DataGridListData;
+            import flash.events.Event;
+        
+            public function initTA():void {         
+                addEventListener("dataChange", handleDataChanged);
+            }   
+
+            public function handleDataChanged(event:Event):void {       
+                // Cast listData to DataGridListData. 
+                var myListData:DataGridListData = 
+                    DataGridListData(listData);
+                
+                // Access information about the data passed 
+                // to the cell renderer.
+                text="row index: " + String(myListData.rowIndex) + 
+                    " column index: " + String(myListData.columnIndex);
+            }   
+        ]]>
+    </fx:Script>
+</mx:TextArea>

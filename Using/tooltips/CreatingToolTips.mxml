@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<!-- tooltips/CreatingToolTips.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.ToolTipManager;
+            import mx.controls.ToolTip;
+            import mx.core.IUIComponent;
+
+            public var myTip:ToolTip;
+
+            private function createBigTip(event:Event):void {
+                var s:String = "These buttons let you save, exit, or continue with the current operation."
+                myTip = ToolTipManager.createToolTip(s,75,75,null,IUIComponent(event.currentTarget)) as ToolTip;
+                myTip.setStyle("backgroundColor",0xFFCC00);
+                myTip.width = 125;
+                myTip.height = 75;
+            }
+
+            private function destroyBigTip():void {
+                ToolTipManager.destroyToolTip(myTip);
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+
+        s|Panel {
+            paddingLeft: 5;
+            paddingRight: 5;
+            paddingTop: 5;
+            paddingBottom: 5;
+        }
+    </fx:Style>
+
+    <s:Panel title="ToolTips" height="200" width="200" rollOver="createBigTip(event)" rollOut="destroyBigTip()">
+        <s:Button label="OK" y="20" toolTip="Save your changes and exit."/>
+        <s:Button label="Apply" y="50" toolTip="Apply changes and continue."/>
+        <s:Button label="Cancel" y="80" toolTip="Cancel and exit."/>
+    </s:Panel>
+
+</s:Application>

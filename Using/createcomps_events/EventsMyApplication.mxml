@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- createcomps_events/EventsMyApplication.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"> 
+
+    <fx:Script>
+        <![CDATA[
+            import flash.events.Event;
+
+            // Event listener for the click event. 
+            private function handleClick(eventObj:Event):void {
+                // Define event listener.
+            }
+
+            // Event listener for the initialize event. 
+            private function handleInit(eventObj:Event):void {
+                // Define event listener.
+            }
+        ]]>
+    </fx:Script>
+
+    <MyComp:MyButton 
+        click="handleClick(event);" 
+        initialize="handleInit(event);"/>
+
+</s:Application>

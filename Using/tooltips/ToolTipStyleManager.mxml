@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- tooltips/ToolTipStyleManager.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="setToolTipStyle()">
+
+    <fx:Script>
+        <![CDATA[
+            private function setToolTipStyle():void {
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontStyle","italic");
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize","19");
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontFamily","Arial");
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("color","#FF6699");
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("backgroundColor","#33CC99");
+            }
+        ]]>
+    </fx:Script>
+
+  <s:Button id="b1" label="Click Me" toolTip="This Button does nothing."/>
+
+</s:Application>

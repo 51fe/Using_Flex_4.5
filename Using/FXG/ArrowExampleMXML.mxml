@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/ArrowExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*">
+    
+     <mx:Panel title="Arrow MXML Graphics Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+          <s:HGroup>
+              <!-- Use absolute coordinates. -->
+                <s:Graphic>    
+                    <!-- Use Use compact syntax with absolute coordinates. -->
+                    <s:Path data="
+                         M 20 0 
+                         C 50 0 50 35 20 35
+                         L 15 35 
+                         L 15 45 
+                         L 0 32 
+                         L 15 19 
+                         L 15 29 
+                         L 20 29 
+                         C 44 29 44 6 20 6">
+                         <!-- Define the border color of the arrow. -->
+                         <s:stroke>
+                              <s:SolidColorStroke color="0x888888"/>
+                         </s:stroke>
+                         <!-- Define the fill for the arrow. -->
+                         <s:fill>
+                              <s:LinearGradient rotation="90">
+                                   <s:GradientEntry color="0x000000" alpha="0.8"/>
+                                   <s:GradientEntry color="0xFFFFFF" alpha="0.8"/>
+                              </s:LinearGradient>
+                         </s:fill>
+                    </s:Path>
+                </s:Graphic>
+
+              <!-- Use relative coordinates. -->
+                <s:Graphic>    
+                    <!-- Use compact syntax with relative coordinates. -->
+                    <s:Path data="   
+                              m 20 0 
+                              c 30 0 30 35 0 35 
+                              l -5 0
+                              l 0 10
+                              l -15 -13
+                              l 15 -13
+                              l 0 10
+                              l 5 0
+                              c 24 0 24 -23 0 -23">
+                         <!-- Define the border color of the arrow. -->
+                         <s:stroke>
+                              <s:SolidColorStroke color="0x888888"/>
+                         </s:stroke>
+                         <!-- Define the fill for the arrow. -->
+                         <s:fill>
+                              <s:LinearGradient rotation="90">
+                                   <s:GradientEntry color="0x000000" alpha="0.8"/>
+                                   <s:GradientEntry color="0xFFFFFF" alpha="0.8"/>
+                              </s:LinearGradient>
+                         </s:fill>
+                    </s:Path>
+                </s:Graphic>
+          </s:HGroup>
+     </mx:Panel>
+</s:Application>

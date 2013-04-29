@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\application\AppSparkCB.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="600">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <s:controlBarContent>
+        <mx:MenuBar height="100%" 
+            dataProvider="{menuXML}" 
+            labelField="@label" 
+            showRoot="true"/>
+        <mx:HBox paddingBottom="5" 
+            paddingTop="5">
+            <mx:ComboBox dataProvider="{cmbDP}"/>
+            <mx:Spacer width="100%"/>
+            <mx:TextInput id="myTI" text=""/>
+            <mx:Button id="srch1" 
+                label="Search" 
+                click="Alert.show('Searching');"/>
+        </mx:HBox>
+    </s:controlBarContent>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <fx:XMLList id="menuXML">
+            <fx:menuitem label="File">
+                <fx:menuitem label="New" data="New"/>
+                <fx:menuitem label="Open" data="Open"/>
+                <fx:menuitem label="Save" data="Save"/>
+                <fx:menuitem label="Exit" data="Exit"/>
+            </fx:menuitem>
+            <fx:menuitem label="Edit">
+                <fx:menuitem label="Cut" data="Cut"/>
+                <fx:menuitem label="Copy" data="Copy"/>
+                <fx:menuitem label="Paste" data="Paste"/>
+            </fx:menuitem>
+            <fx:menuitem label="View"/>
+        </fx:XMLList>
+        
+        <fx:Array id="cmbDP">
+            <fx:String>Item 1</fx:String>
+            <fx:String>Item 2</fx:String>
+            <fx:String>Item 3</fx:String>
+        </fx:Array>
+    </fx:Declarations>
+    
+    <s:Button label="Button"/>
+    <mx:TextArea width="300" height="200"/>        
+</s:Application>

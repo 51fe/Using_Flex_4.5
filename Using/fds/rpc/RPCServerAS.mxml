@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\RPCNoServerAS.mxml --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            // Import required packages.
+            import mx.rpc.remoting.RemoteObject;        
+            import mx.rpc.http.HTTPService;
+            import mx.rpc.soap.WebService;
+            private var employeeRO:RemoteObject;
+            private var employeeHTTP:HTTPService;
+            private var employeeWS:WebService;  
+                        
+            public function declareServices():void{
+                // Create a RemoteObject component.
+                employeeRO = new RemoteObject();
+                employeeRO.destination = "SalaryManager";
+                // Create an HTTPService component.
+                employeeHTTP = new HTTPService();
+                employeeHTTP.destination = "SalaryManager";
+                // Create a WebService component.
+                employeeWS = new WebService();
+                employeeWS.destination = "SalaryManager";
+            }
+        ]]>
+    </mx:Script>
+
+</mx:Application>

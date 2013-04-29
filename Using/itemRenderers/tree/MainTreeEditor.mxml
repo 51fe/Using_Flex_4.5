@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\tree\MainTreeEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600" height="600">
+
+    <fx:Script>
+        <![CDATA[
+        
+        import mx.events.ListEvent;     
+        import myComponents.TreeEditor;
+ 
+        private var contacts1:Object = 
+          {label: "top", children: [
+            {label: "Acme", status: true, phone: "243-333-5555", children: [
+              {label: "Sales", status: true, phone: "561-256-5555"},
+              {label: "Support", status: false, phone: "871-256-5555"}
+            ]},
+            {label: "Ace", status: true, phone: "444-333-5555", children: [
+              {label: "Sales", status: true, phone: "232-898-5555"},
+              {label: "Support", status: false, phone: "977-296-5555"},
+            ]},
+            {label: "Platinum", status: false, phone: "521-256-5555"}
+        ]};
+            
+        private function initCatalog(cat:Object):void {
+            myTree.dataProvider = cat;
+        }
+            
+        // Define the event listener for the itemEditBeginning event 
+        // to disable editing when the user selects 
+        // the top node in the tree.
+        private function disableEditing(event:ListEvent):void {
+            if(event.rowIndex==0) {  
+                event.preventDefault(); 
+            }
+        }                                       
+            
+        // Define the event listener for the itemEditEnd event 
+        // to copy the updated data back to the data provider 
+        // of the Tree control.
+        public function processData(event:ListEvent):void {    
+                            
+            // Disable copying data back to the control.
+            event.preventDefault();
+
+            // Get new phone number from editor.
+            myTree.editedItemRenderer.data.phone =
+    TreeEditor(event.currentTarget.itemEditorInstance).contactPhone.text;
+
+            // Get new status from editor.
+            myTree.editedItemRenderer.data.status =
+    TreeEditor(event.currentTarget.itemEditorInstance).confirmed.selected;
+
+            // Close the cell editor.
+            myTree.destroyItemEditor(); 
+                    
+            // Notify the list control to update its display.
+    myTree.dataProvider.itemUpdated(myTree.editedItemRenderer);
+        }                       
+        ]]>     
+    </fx:Script>
+    
+    <mx:Tree id="myTree" 
+        width="400" height="400" 
+        editable="true"  
+        itemEditor="myComponents.TreeEditor" 
+        editorHeightOffset="75" editorWidthOffset="-100" 
+        editorXOffset="40" editorYOffset="30" 
+        creationComplete="initCatalog(contacts1);" 
+        itemEditBeginning="disableEditing(event);" 
+        itemEditEnd="processData(event);"/>
+</s:Application>

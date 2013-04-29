@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- skins\ButtonUpMXMLSkin.mxml -->
+<skins:ProgrammaticSkin 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:skins="mx.skins.*">
+
+  <fx:Script>
+    <![CDATA[       
+      override protected function updateDisplayList(unscaledWidth:Number, 
+        unscaledHeight:Number):void 
+      {
+        graphics.lineStyle(1, 0x0066FF);
+        graphics.beginFill(0x00FF00, 0.50);
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10);
+      }
+    ]]>
+  </fx:Script>
+
+</skins:ProgrammaticSkin>

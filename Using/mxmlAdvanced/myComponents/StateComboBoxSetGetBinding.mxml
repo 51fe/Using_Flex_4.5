@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- mxmlAdvanced/myComponents/StateComboBoxSetGetBinding.mxml -->
+<s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[               
+            import mx.collections.ArrayList;
+            import flash.events.Event;
+
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]);
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]);
+
+            private var __shortNames:Boolean = true;
+            
+            public function set shortNames(val:Boolean):void {
+                __shortNames = val;
+                if (__shortNames) {
+                    dataProvider=stateArrayShort; }
+                else {
+                    dataProvider=stateArrayLong; }
+                    // Create and dispatch event. 
+                    dispatchEvent(new Event("changeShortNames"));
+            }
+
+            // Include the [Bindable] metadata tag.
+            [Bindable(event="changeShortNames")] 
+            public function get shortNames():Boolean {
+                return __shortNames;
+            }                                         
+        ]]>
+    </fx:Script>
+</s:ComboBox>    

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- menus/PopUpMenuButtonLabel.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.events.MenuEvent;
+            
+            public function itemClickHandler(event:MenuEvent):void {
+                event.currentTarget.label= "Send to: " + event.label;
+            }
+
+            [Bindable] 
+            public var menuData:Array = [
+                {label: "Inbox", data: "inbox"},
+                {label: "Calendar", data: "calendar"}, 
+                {label: "Sent", data: "sent"},
+                {label: "Deleted Items", data: "deleted"},
+                {label: "Spam", data: "spam"}
+            ];
+        ]]>
+    </fx:Script>
+
+    <mx:PopUpMenuButton id="p1" 
+        showRoot="true" 
+        dataProvider="{menuData}" 
+        label="Send to: Inbox" 
+        itemClick="itemClickHandler(event);"/> 
+</s:Application>

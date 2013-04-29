@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- repeater\RefNestedComponents.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+  <fx:Script>
+    <![CDATA[
+    
+      public function labelTrace():void {
+        for (var i:int = 0; i < nameLabel.length; i++)
+         for (var j:int = 0; j < nameLabel[i].length; j++)
+          trace(nameLabel[i][j].text);
+      }
+    ]]>
+  </fx:Script>
+
+  <fx:Declarations>    
+      <fx:Model id="data">
+        <color>
+          <colorName>Red</colorName>
+          <colorName>Yellow</colorName>
+          <colorName>Blue</colorName>
+        </color>
+      </fx:Model>
+
+      <fx:Model id="catalog" source="../assets/repeater/catalog.xml"/>
+      <s:ArrayCollection id="myAC1" source="{catalog.product}"/>
+      <s:ArrayCollection id="myAC2" source="{data.colorName}"/>
+  </fx:Declarations>    
+
+  <s:Label id="title" text="Products:"/>
+
+  <mx:VBox>
+      <mx:Repeater id="r" dataProvider="{myAC1}" startingIndex="1">
+        <mx:Repeater id="r2" dataProvider="{myAC2}">
+          <mx:Label id="nameLabel" text="{r2.currentItem} {r.currentItem.name}: ${r.currentItem.price}" width="250"/>
+        </mx:Repeater>
+      </mx:Repeater>
+  </mx:VBox>
+
+  <s:Button label="Trace" click="labelTrace();"/>
+</s:Application>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- containers\intro\ContainerComponentsReorder.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+     
+    <fx:Script>
+      <![CDATA[
+
+        // Import the CheckBox and Alert classes.
+        import spark.components.CheckBox;
+        import mx.controls.Alert;
+
+        // Define a variable to hold the new CheckBox control.
+        private var myCheckBox:CheckBox;
+        
+        // Define a variable to track if the CheckBox control 
+        // is in the display list.
+        private var checkBoxDisplayed:Boolean = false;
+        
+        public function addCB():void {  
+            // Make sure the check box isn't being displayed.
+            if(checkBoxDisplayed==false){
+                // Create the check box if it does not exist.
+                if (!myCheckBox) {
+                    myCheckBox = new CheckBox();
+                }
+                // Add the check box as the first child of the container.
+                myCheckBox.label = "New CheckBox";
+                myGroup.addElementAt(myCheckBox, 0);
+                checkBoxDisplayed=true;
+            }
+        }
+    
+        public function delCB():void {
+            // Make sure a CheckBox control exists.
+            if(checkBoxDisplayed){
+                myGroup.removeElement(myCheckBox);
+                checkBoxDisplayed=false;
+            }
+        }
+        
+        public function reorder():void {
+        // Make sure a CheckBox control exists.
+            if(checkBoxDisplayed==true)
+            {
+                // Don't try to move the check box past the end 
+                // of the children. Because indexes are 0 based, 
+                // the last child index is one less
+                // than the number of children.
+                if (myGroup.getElementIndex(myCheckBox) < myGroup.numElements-1)
+                {
+                    // Increment the checkBoxIndex variable and use it to 
+                    // set the index of the check box among the VBox children. 
+                    myGroup.setElementIndex(myCheckBox,
+                        myGroup.getElementIndex(myCheckBox) + 1);
+                }
+            }
+            else {
+                Alert.show("Add the check box before you can move it");
+            }
+        }
+      ]]>
+    </fx:Script>
+
+    <s:VGroup id="myGroup">
+        <s:Button label="Add CheckBox" click="addCB();"/>
+        <s:Button label="Remove CheckBox" click="delCB();"/>
+        <s:Button label="Reorder children" click="reorder();"/>
+    </s:VGroup>
+</s:Application>

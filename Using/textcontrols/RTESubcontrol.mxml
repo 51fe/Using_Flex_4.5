@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- textcontrols/RTESubcontrol.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="420">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+  <!-- The RichTextEditor control. To set the a subcomponent's style or property, 
+  fully qualify the control ID. The footerColors style sets the ControlBar colors. -->
+  <mx:RichTextEditor id="rte1" 
+     backgroundColor="#ccffcc" 
+     headerColors="[#88bb88, #bbeebb]" 
+     footerColors="[#bbeebb, #88bb88]" 
+     title="Rich Text Editor" 
+     creationComplete="rte1.textArea.setStyle('backgroundColor','0xeeffee')" 
+     text="Simple sample text"/>
+
+  <!-- Button to set a white TextArea background. -->
+  <s:Button 
+     label="Change appearance" 
+     click="rte1.textArea.setStyle('backgroundColor', '0xffffff');rte1.colorPicker.selectedIndex=27;"/>
+
+  <!-- Button to reset the display to its original appearance. --> 
+  <s:Button 
+     label="Reset Appearance" 
+     click="rte1.textArea.setStyle('backgroundColor', '0xeeffee');rte1.colorPicker.selectedIndex=0;"/>
+</s:Application>

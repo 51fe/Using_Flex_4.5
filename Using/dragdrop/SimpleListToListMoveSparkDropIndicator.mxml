@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- dragdrop\SimpleListToListMoveSparkDropIndicator.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayList;             
+            import myComponents.MyListSkin;
+
+            private function initApp():void {
+                srclist.dataProvider = 
+                    new ArrayList(['Reading', 'Television', 'Movies']);
+                destlist.dataProvider = new ArrayList([]);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:VGroup>
+            <s:Label text="Available Activities"/>
+            <s:List id="srclist" 
+                allowMultipleSelection="true"
+                dragEnabled="true"
+                dragMoveEnabled="true"/>
+        </s:VGroup>
+
+        <s:VGroup>
+            <s:Label text="Activities I Like"/>
+            <s:List id="destlist" 
+                dropEnabled="true"
+                skinClass="myComponents.MyListSkin"/>
+        </s:VGroup>
+    </s:HGroup>
+
+    <s:Button id="b1" 
+        label="Reset"
+        click="initApp();"/>
+</s:Application>

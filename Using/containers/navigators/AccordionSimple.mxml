@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- containers\navigators\AccordionSimple.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <mx:Accordion id="accordion1" height="250">
+        <mx:Form id="shippingAddress" label="1. Shipping Address">
+
+            <mx:FormItem id="sfirstNameItem" label="First Name">
+                <mx:TextInput id="sfirstName"/>
+            </mx:FormItem>
+
+            <!-- Additional contents goes here. -->
+
+        </mx:Form>
+
+        <mx:Form id="billingAddress" label="2. Billing Address">
+            <!-- Form contents goes here. -->
+        </mx:Form>
+
+        <mx:Form id="creditCardInfo" label="3. Credit Card Information">
+            <!-- Form contents goes here. -->
+        </mx:Form>
+
+        <mx:Form id="submitOrder"   label="4. Submit Order">
+            <!-- Form contents goes here. -->
+        </mx:Form>
+    </mx:Accordion>
+</s:Application>

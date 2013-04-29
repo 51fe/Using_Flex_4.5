@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/BitmapGraphicExampleMXML.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:comps="comps.*">
+    
+     <mx:Panel title="Bitmap MXML Graphic Example"
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+               
+        <s:HGroup>
+           <!-- Single image, not resized, not repeated. -->
+            <s:Graphic>    
+                <s:BitmapImage
+                     width="120" 
+                     height="120" 
+                     fillMode="clip"
+                     source="@Embed('../assets/AirIcon12x12.gif')"/>
+            </s:Graphic>
+
+           <!-- Single image, scaled to fit specified dimensions. -->
+            <s:Graphic>    
+                <s:BitmapImage 
+                     source="@Embed('../assets/AirIcon12x12.gif')" 
+                     width="120" 
+                     height="120" 
+                     fillMode="scale"
+                 />
+            </s:Graphic>
+
+           <!-- Repeated image to fit specified dimensions. -->
+            <s:Graphic>    
+                <s:BitmapImage 
+                     source="@Embed('../assets/AirIcon12x12.gif')" 
+                     width="120" 
+                     height="120" 
+                     fillMode="repeat"/>
+            </s:Graphic>
+        </s:HGroup>
+     </mx:Panel>
+</s:Application>

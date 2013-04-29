@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- resourcebundles/LocalizedForm.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:Form>
+        <s:FormItem label="@Resource(key='personname', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='street_address', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='city', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='state', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="@Resource(key='zip', bundle='RegistrationForm')">
+            <s:TextInput/>
+        </s:FormItem>
+    </s:Form>
+</s:Application>

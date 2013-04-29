@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\EmployeeMainViewLabelFunction -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Employees View Main">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            public function myLabelFunction(item:Object):String {
+                return item.lastName + ', ' + item.firstName;;
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Label text="Select an employee name"/>
+    <s:List id="myList"
+        width="100%" height="100%"
+        labelFunction="myLabelFunction">
+        <s:ArrayCollection>
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/>
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/>
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/>
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/>
+        </s:ArrayCollection>
+    </s:List>
+</s:View>

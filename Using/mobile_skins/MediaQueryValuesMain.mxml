@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mobile_skins/MediaQueryValuesMain.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+     xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="320">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        /* Every os-platform @ 160dpi */
+        @media (application-dpi: 160) {
+            s|Button {
+                fontSize: 10;
+            }
+        }
+
+        /* IOS only @ 240dpi */
+        @media (application-dpi: 240) and (os-platform: "IOS") {
+            s|Button {
+                fontSize: 11;
+            }
+        }
+
+        /* IOS at 160dpi or Android @ 160dpi */
+        @media (os-platform: "IOS") and (application-dpi:160), (os-platform: "ANDROID") and (application-dpi: 160) {
+            s|Button {
+                fontSize: 13;        
+            }
+        }
+
+        /* Every os-platform except Android @ 240dpi */
+        @media not all and (application-dpi: 240) and (os-platform: "Android") {
+            s|Button {
+                fontSize: 12;
+            }
+        }    
+
+        /* Every os-platform except IOS @ any DPI */
+        @media not all and (os-platform: "IOS") {
+            s|Button {
+                fontSize: 14;        
+            }
+        }
+    </fx:Style>
+    
+</s:ViewNavigatorApplication>

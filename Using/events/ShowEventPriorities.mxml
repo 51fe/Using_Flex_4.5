@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- events/ShowEventPriorities.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+        private function returnResult(e:Event):void {
+            ta1.text += "returnResult() method called last (priority 1)\n";  
+        }
+
+        private function verifyInputData(e:Event):void {
+            ta1.text += "verifyInputData() method called first (priority 3)\n";  
+        }
+
+        private function saveInputData(e:Event):void {
+            ta1.text += "saveInputData() method called second (priority 2)\n";  
+        }
+
+        private function initApp():void {
+            b1.addEventListener(MouseEvent.CLICK, returnResult, false, 1);
+            b1.addEventListener(MouseEvent.CLICK, saveInputData, false, 2);
+            b1.addEventListener(MouseEvent.CLICK, verifyInputData, false, 3);
+        }
+        ]]>
+    </fx:Script>
+
+    <s:Button id="b1" label="Click Me"/>
+    
+    <s:TextArea id="ta1" height="200" width="300"/>
+    
+</s:Application>

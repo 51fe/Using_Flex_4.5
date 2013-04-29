@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- fds\rpc\HttpServiceInAS.mxml. Compiles --> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="10">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.rpc.http.HTTPService;
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+            
+            private var service:HTTPService 
+
+            public function useHttpService(parameters:Object):void {
+                service = new HTTPService();
+                service.url = "catalog.jsp";
+                service.method = "POST";
+                service.addEventListener("result", httpResult);
+                service.addEventListener("fault", httpFault);
+                service.send(parameters);
+            }
+
+            public function httpResult(event:ResultEvent):void {
+                var result:Object = event.result;
+            //Do something with the result.
+            }
+
+            public function httpFault(event:FaultEvent):void {
+                var faultstring:String = event.fault.faultString;
+                Alert.show(faultstring);
+            }
+        ]]>
+    </mx:Script>
+</mx:Application>

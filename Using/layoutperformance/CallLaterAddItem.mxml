@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- layoutperformance/CallLaterAddItem.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="initData()">
+
+    <fx:Script><![CDATA[
+        import mx.collections.*;
+        private var DGArray:Array = [
+            {Artist:'Pavement', Album:'Charred Walls', Price:11.99},
+            {Artist:'Pavement', Album:'Good For You', Price:11.99}];
+            
+        [Bindable]
+        public var initDG:ArrayCollection;
+        //Initialize initDG ArrayCollection variable from the Array.
+        
+        public function initData():void {
+            initDG=new ArrayCollection(DGArray);
+        }
+        
+        public function addNewItem():void {
+            var o:Object;
+            o = {Artist:'Pavement', Album:'Tradio', Price:11.99};
+            initDG.addItem(o);
+            callLater(focusNewRow);
+        }
+
+        public function focusNewRow():void {
+            myGrid.editedItemPosition = { 
+                columnIndex:0,rowIndex:myGrid.dataProvider.length-1
+            };
+        }
+        
+    ]]></fx:Script>
+
+    <s:VGroup>
+        <mx:DataGrid id="myGrid" width="350" height="200" dataProvider="{initDG}"  editable="true">
+            <mx:columns>
+                <fx:Array>
+                    <mx:DataGridColumn dataField="Album" />
+                    <mx:DataGridColumn dataField="Price" />
+                </fx:Array>
+            </mx:columns> 
+        </mx:DataGrid>
+
+        <s:Button id="b1" label="Add New Item" click="addNewItem()"/>
+    </s:VGroup>
+    
+</s:Application>

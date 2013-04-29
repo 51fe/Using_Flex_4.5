@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- binding/ASInBindingTags.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            public function whatDogAte():String {
+                return "homework";
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Binding 
+        source="'The dog ate my '+ whatDogAte()" 
+        destination="field1.text"/>
+    <fx:Binding 
+        source="{'The dog ate my '+ whatDogAte()}" 
+        destination="field2.text"/>
+    <fx:Binding 
+        source="The dog ate my {whatDogAte()}" 
+        destination="field3.text"/>
+
+    <s:TextArea id="field1"/>
+    <s:TextArea id="field2"/>
+    <s:TextArea id="field3"/>
+</s:Application>

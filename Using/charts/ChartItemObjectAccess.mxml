@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!-- charts/ChartItemObjectAccess.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();init()"
+    height="600">
+
+    <fx:Declarations>
+         <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+         <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+         <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Style>
+     @namespace mx "library://ns.adobe.com/flex/mx";
+     
+     mx|ToolTip {
+        fontSize:24;
+     }
+     mx|ColumnChart {
+        gutterLeft: 54;
+     }
+  </fx:Style>
+
+  <fx:Script><![CDATA[
+     import mx.core.IFlexDisplayObject;
+     import mx.charts.events.ChartItemEvent;
+     import mx.charts.series.items.ColumnSeriesItem;
+     import mx.charts.series.ColumnSeries;
+     import mx.effects.Move;
+     import mx.charts.HitData;
+
+     public var m:mx.effects.Move;
+     public var hitData:mx.charts.HitData;
+     public var chartItem:ColumnSeriesItem;
+     public var renderer:IFlexDisplayObject;
+     public var series:ColumnSeries;
+
+     public var chartItemPoint:Point;
+     public var highlightBoxPoint:Point;
+     public var leftAdjust:Number;
+
+     private function init():void {
+        m = new Move(highlightBox);
+
+        /* This is used to adjust the x location of
+           highlightBox to account for the left gutter width. */
+        leftAdjust = myChart.getStyle("gutterLeft") - 14;
+        trace("leftAdjust: " + leftAdjust);
+     }
+
+     private function overData(event:ChartItemEvent):void {
+
+        hitData = event.hitData;
+        chartItem = ColumnSeriesItem(hitData.chartItem);
+        renderer = chartItem.itemRenderer;
+        series = ColumnSeries(hitData.element);
+
+        /* Add 10 pixels to give it horizontal overlap. */
+        highlightBox.width = renderer.width * 2 + 10;
+
+        /* Add 20 pixels to give it vertical overlap. */
+        highlightBox.height = renderer.height + 20;
+
+        highlightBoxPoint = new Point(highlightBox.x,
+            highlightBox.y);
+
+        /* Convert the ChartItem's pixel values from local 
+           (relative to the component) to global (relative 
+           to the stage). This enables you to place the Canvas 
+           container using the x and y values of the stage. */
+        chartItemPoint = myChart.localToGlobal(new Point(chartItem.x, chartItem.y));
+
+        /* Define the parameters of the move effect and play the effect. */
+        m.xTo = chartItemPoint.x + leftAdjust;
+        m.yTo = chartItemPoint.y;
+        m.duration = 500;
+        m.play();
+
+        highlightBox.toolTip = "$" + chartItem.yValue.toString();
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel id="p1" title="Highlighted Columns">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        itemClick="overData(event)" 
+        mouseSensitivity="0">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                displayName="Expenses" 
+                yField="expenses"/>
+           <mx:ColumnSeries 
+                displayName="Profit"  
+                yField="profit"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+
+  <!-- Define the canvas control that will be used as a highlight. -->
+  <mx:Canvas id="highlightBox" 
+        y="0" x="0" 
+        backgroundColor="0xFFFF00"
+        alpha=".5"/>
+</s:Application>

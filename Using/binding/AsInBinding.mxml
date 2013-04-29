@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- binding/AsInBinding.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <fx:Declarations>
+        <fx:Model id="myModel">
+            <myModel>
+              <!-- Perform simple property binding. -->
+              <a>{nameInput.text}</a>
+              <!-- Perform string concatenation. -->
+              <b>This is {nameInput.text}</b>
+              <!-- Perform a calculation. -->
+              <c>{(Number(numberInput.text)) * 6 / 7}</c>
+              <!-- Perform a conditional operation using a ternary operator. -->
+              <d>{(isMale.selected) ? "Mr." : "Ms."} {nameInput.text}</d> 
+            </myModel>
+        </fx:Model>
+    </fx:Declarations>
+
+    <s:Form>
+        <s:FormItem label="Last Name:">
+            <s:TextInput id="nameInput"/>
+        </s:FormItem>            
+        <s:FormItem label="Select sex:">
+            <s:RadioButton id="isMale" 
+                label="Male" 
+                groupName="gender"
+                selected="true"/>
+            <s:RadioButton id="isFemale" 
+                label="Female" 
+                groupName="gender"/>
+        </s:FormItem>
+        <s:FormItem label="Enter a number:">
+            <s:TextInput id="numberInput" text="0"/>
+        </s:FormItem>            
+    </s:Form>
+        
+    <s:Label 
+        text="{'Calculation: '+numberInput.text+' * 6 / 7 = '+myModel.c}"/>        
+    <s:Label text="{'Conditional: '+myModel.d}"/>
+</s:Application>

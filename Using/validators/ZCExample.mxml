@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- validators\ZCExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Form id="addressForm">
+        <s:FormItem id="zipCodeItem" label="Zip Code">
+            <s:TextInput id="zipInput"/>
+        </s:FormItem>
+        <s:FormItem id="submitArea">  
+            <s:Button label="Submit"/>
+        </s:FormItem>   
+    </s:Form>
+
+    <fx:Declarations>
+        <mx:ZipCodeValidator id="zipV" 
+            source="{zipInput}" property="text" 
+            domain="US or Canada"/>
+    </fx:Declarations>
+</s:Application>

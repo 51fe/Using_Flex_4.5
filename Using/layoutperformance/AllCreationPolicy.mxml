@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- layoutperformance/AllCreationPolicy.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:Panel title="Accordion">
+        <mx:Accordion id="myAccordion" creationPolicy="all">
+            <mx:VBox label="Accordion Button for Panel 1">
+                <mx:Label text="Accordion container panel 1"/>
+                <s:Button label="Click Me"/>
+            </mx:VBox>
+            <mx:VBox label="Accordion Button for Panel 2">
+                <mx:Label text="Accordion container panel 2"/>
+                <s:Button label="Click Me"/>
+            </mx:VBox>
+            <mx:VBox label="Accordion Button for Panel 3">
+                <mx:Label text="Accordion container panel 3"/>
+                <s:Button label="Click Me"/>
+            </mx:VBox>
+        </mx:Accordion>
+    </s:Panel>
+</s:Application>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- controls\image\ImageCaching.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+    
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        
+        s|Image {
+            enableLoadingState: true;
+        }
+    </fx:Style>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayList;
+            
+            protected var arrList:ArrayList = new ArrayList();
+            
+            protected function init():void {
+                var rand:String = new Date().time.toString()
+                var arr:Array = [];
+                arr.push({src:"http://localhost:8100/flex/assets/fblogo.jpg?" + rand, cache:ldr});
+                arr.push({src:"http://localhost:8100/flex/assets/flexlogo.jpg?" + rand, cache:ldr});
+                
+                arrList = new ArrayList(arr);
+                dataGrp.dataProvider = arrList;
+            }
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <s:ContentCache id="ldr" enableQueueing="true"
+           maxActiveRequests="1" maxCacheEntries="10"/>
+    </fx:Declarations>
+    
+    <s:Panel title="Loading images using the caching-queuing mechanism" x="20" y="20">
+        <s:controlBarContent>
+            <s:Button label="Load Images" click="init();"/>
+        </s:controlBarContent>
+        <s:DataGroup id="dataGrp">
+            <s:layout>
+                <s:TileLayout />
+            </s:layout>
+            <s:itemRenderer>
+                <fx:Component>
+                    <s:ItemRenderer dataChange="imageDisplay.source = data.src;">
+                        <s:Image id="imageDisplay" contentLoaderGrouping="gr1"
+                           contentLoader="{data.cache}" width="200" height="200" />
+                    </s:ItemRenderer>
+                </fx:Component>
+            </s:itemRenderer>
+        </s:DataGroup>
+    </s:Panel>    
+</s:Application>

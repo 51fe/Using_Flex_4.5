@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- styles/ApplyFilterAS.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Script><![CDATA[
+        import spark.filters.*;
+
+        private var dsf:DropShadowFilter;
+
+        public function toggleFilter():void {  
+            trace(label1.filters.length);
+            if (label1.filters.length == 0) {                        
+                /* 
+                    The first four properties of the DropShadowFilter constructor are 
+                    distance, angle, color, and alpha. 
+                */
+                dsf = new DropShadowFilter(5,30,0x000000,.8);
+                label1.filters = [dsf];
+            } else {
+                label1.filters = null;
+            }
+        }
+    ]]></fx:Script>
+    
+    <s:VGroup>
+        <s:Label id="label1" text="ActionScript-applied filter."/>        
+        <s:Button id="b1" label="Toggle Filter" click="toggleFilter()"/>
+    </s:VGroup>
+
+</s:Application>

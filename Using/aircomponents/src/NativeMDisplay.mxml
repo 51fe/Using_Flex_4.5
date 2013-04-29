@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- aircomponents/src/NativeMDisplay.mxml -->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+     
+    <fx:Script> 
+        <![CDATA[ 
+            import mx.controls.FlexNativeMenu; 
+             
+            private function createAndShow():void 
+            { 
+                var myMenu:FlexNativeMenu = new FlexNativeMenu(); 
+                myMenu.dataProvider = menuData; 
+                myMenu.labelField = "@label"; 
+                myMenu.showRoot = false; 
+                // calling display() here has no result, because the data provider 
+                // has been set but the underlying NativeMenu hasn't been created yet. 
+                myMenu.display(this.stage, 10, 10); 
+            } 
+        ]]> 
+    </fx:Script> 
+     
+     <fx:Declarations>
+        <!-- The XML data provider --> 
+        <fx:XML format="e4x" id="menuData"> 
+            <root> 
+                <menuitem label="MenuItem A"/> 
+                <menuitem label="MenuItem B"/> 
+                <menuitem label="MenuItem C"/> 
+            </root> 
+        </fx:XML> 
+     </fx:Declarations>
+
+    <!-- Button control to create and open the menu. --> 
+    <s:Button x="300" y="10"  
+        label="Open Menu"  
+        click="createAndShow();"/>
+</s:WindowedApplication>

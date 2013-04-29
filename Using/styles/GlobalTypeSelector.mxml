@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- styles/GlobalTypeSelector.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Style>
+        global {
+            fontSize:22;
+            textDecoration: underline;
+        }
+    </fx:Style>
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+
+    <s:Button id="myButton" label="Click Me"/>
+    <s:Label id="myLabel" text="This is a Label control."/> 
+
+</s:Application>

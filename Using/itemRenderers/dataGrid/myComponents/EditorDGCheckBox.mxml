@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\myComponents\EditorDGCheckBox.mxml -->
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    backgroundColor="yellow">
+
+    <fx:Script>
+        <![CDATA[
+            // Define a property for returning the new value to the cell.
+            public var cbSelected:Boolean;            
+        ]]>
+    </fx:Script>
+   
+    <mx:CheckBox id="followUpCB" label="Follow up needed" 
+        height="100%" width="100%" 
+        selected="{data.FollowUp}" 
+        click="cbSelected=followUpCB.selected" 
+        updateComplete="cbSelected=followUpCB.selected;"/>
+</mx:VBox>

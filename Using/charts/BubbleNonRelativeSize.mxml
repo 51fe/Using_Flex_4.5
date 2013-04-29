@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- charts/BubbleNonRelativeSize.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="600">
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            [Bindable]
+            private var s1:ArrayCollection = new ArrayCollection( [
+                {"x": 20, "y": 10, "r":10 },
+                {"x": 40, "y": 5, "r":20 } ,
+                {"x": 60, "y": 0, "r":30 }]);
+                
+            [Bindable]
+            private var s2:ArrayCollection = new ArrayCollection( [
+                {"x": 20, "y": 50, "r":1 },
+                {"x": 40, "y": 75, "r":2 },
+                {"x": 60, "y": 100, "r":3 } ]);
+    ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Bubble Chart (Bubbles not relative across series)">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:BubbleChart id="myChart" 
+            showDataTips="true">
+            <mx:series>
+                <mx:BubbleSeries 
+                    dataProvider="{s1}" 
+                    displayName="series1" 
+                    xField="x" 
+                    yField="y" 
+                    radiusField="r">
+                    <mx:radiusAxis>
+                        <mx:LinearAxis/>
+                    </mx:radiusAxis>
+                </mx:BubbleSeries>
+                <mx:BubbleSeries 
+                    dataProvider="{s2}" 
+                    displayName="series2" 
+                    xField="x" 
+                    yField="y" 
+                    radiusField="r">
+                    <mx:radiusAxis>
+                        <mx:LinearAxis/>
+                    </mx:radiusAxis>
+                </mx:BubbleSeries>                  
+            </mx:series>   
+        </mx:BubbleChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+</s:Application>

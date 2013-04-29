@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkSingleSection.mxml -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+        firstView="views.EmployeeMainView">
+ 
+    <fx:Script>
+        <![CDATA[
+            protected function button1_clickHandler(event:MouseEvent):void {
+                // Switch to the first view in the section.
+                navigator.popToFirstView();
+            }
+        ]]>
+    </fx:Script>
+ 
+    <s:navigationContent>
+        <s:Button icon="@Embed(source='assets/Home.png')" 
+            click="button1_clickHandler(event)"/>
+    </s:navigationContent>
+</s:ViewNavigatorApplication>

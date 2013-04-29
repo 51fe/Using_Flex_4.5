@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- styles/FilterChange.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createFilters()"
+    height="700">
+    
+  <fx:Script><![CDATA[ 
+     import spark.filters.*;
+     import flash.filters.BitmapFilterQuality;
+     import flash.filters.BitmapFilterType;
+  
+     private var myBlurFilter:BlurFilter;
+     private var myGlowFilter:GlowFilter;
+     private var myBevelFilter:BevelFilter;
+     private var myDropShadowFilter:DropShadowFilter;
+  
+     private var color:Number = 0xFF33FF;
+  
+     public function createFilters():void {
+        
+        myBlurFilter = new BlurFilter(4, 4, 1);
+
+        myGlowFilter = new GlowFilter(color, .8, 6, 6, 2, 1, 
+            false, false);
+
+        myDropShadowFilter = new DropShadowFilter(15, 45, 
+            color, 0.8, 8, 8, 0.65, 1, false, false);
+
+        myBevelFilter = new BevelFilter(5, 45, color, 0.8, 0x333333, 
+            0.8, 5, 5, 1, BitmapFilterQuality.HIGH, BitmapFilterType.INNER, 
+            false);
+  
+        applyFilters();
+     }
+  
+     public function applyFilters():void {
+        rte1.filters = [myGlowFilter];
+        b1.filters = [myDropShadowFilter];
+        dc1.filters = [myBevelFilter];
+        hs1.filters = [myBlurFilter];
+     }
+
+     public function changeFilters():void {
+        color = 0x336633;
+        createFilters();
+     }
+  ]]></fx:Script>
+
+    <s:VGroup>
+        <mx:RichTextEditor id="rte1"/>
+        <mx:DateChooser id="dc1"/>
+        <mx:HSlider id="hs1"/>
+        <mx:Button id="b1" label="Click me" click="changeFilters()"/>
+    </s:VGroup>
+</s:Application>

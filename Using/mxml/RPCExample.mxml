@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- mxml/RPCExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+    
+    <fx:Declarations>
+        <!-- Define the web service connection
+            (the specified WSDL URL is not functional). -->
+        <s:WebService id="WeatherService"       
+            wsdl="http:/example.com/ws/WeatherService?wsdl" 
+            useProxy="false">
+
+            <!-- Bind the value of the ZIP code entered in the TextInput control
+                to the ZipCode parameter of the GetWeather operation. -->
+            <s:operation name="GetWeather">
+                <s:request>
+                    <ZipCode>{zip.text}</ZipCode>
+                </s:request>
+            </s:operation>
+        </s:WebService>
+    </fx:Declarations>
+    
+    <s:Panel title="My Application">
+        <s:VGroup left="10" right="10" top="10" bottom="10">
+            <!-- Provide a ZIP code in a TextInput control. -->
+            <s:TextInput id="zip" width="200" text="Zipcode please?"/>
+
+            <!-- Call the web service operation with a Button click. -->
+            <s:Button width="60" label="Get Weather"
+                click="WeatherService.GetWeather.send();"/>
+
+            <!-- Display the location for the specified ZIP code. -->
+            <s:Label text="Location:"/>
+            <s:TextArea text="{WeatherService.GetWeather.lastResult.Location}"/>
+
+            <!-- Display the current temperature for the specified ZIP code. -->
+            <s:Label text="Temperature:"/>
+            <s:TextArea
+                text="{WeatherService.GetWeather.lastResult.CurrentTemp}"/>
+        </s:VGroup>
+    </s:Panel>
+</s:Application>

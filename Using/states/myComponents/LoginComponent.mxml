@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- states\myComponents\LoginComponent.mxml -->
+<!-- Set title of the Panel container based on the view state.-->
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Login" title.Register="Register">
+        
+    <!-- The states property defines the view states.-->
+    <s:states>
+        <s:State name="Login"/>    
+        <s:State name="Register"/>
+    </s:states>
+
+    <s:Form id="loginForm">
+        <s:FormItem label="Username:">
+            <s:TextInput/>
+        </s:FormItem>
+        <s:FormItem label="Password:">
+            <s:TextInput/>
+        </s:FormItem>
+        <!-- Add a TextInput control to the form for the Register view state. -->           
+        <s:FormItem id="confirm" label="Confirm:" includeIn="Register">
+            <s:TextInput/>
+        </s:FormItem>            
+        <s:FormItem>            
+            <s:HGroup>
+                <!-- Use the LinkButton to change to the Register view state.-->                   
+                <!-- Exclude the LinkButton from the Register view state.-->                   
+                <mx:LinkButton id="registerLink"
+                    includeIn="Login" 
+                    label="Need to Register?" 
+                    click="currentState='Register'"/>
+                <!-- Add a LinkButton to the form for the Register view state. -->           
+                <mx:LinkButton label="Return to Login" 
+                    includeIn="Register"
+                    click="currentState=''"/>
+                <mx:Spacer width="100%" id="spacer1"/>
+                <!-- Set label of the control based on the view state.-->
+                <s:Button id="loginButton" 
+                    label="Login" label.Register="Register" />
+            </s:HGroup>
+        </s:FormItem>            
+    </s:Form>
+</s:Panel>

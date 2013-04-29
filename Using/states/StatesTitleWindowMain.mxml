@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- states\StatesTitleWindowMain.mxml -->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*">
+  
+    <MyComp:StateTitleWindow id="myP" title="My Application" currentState="default">
+        <mx:HBox width="100%">
+            <mx:Button label="Click Me"/>
+            <mx:TextArea text="{myP.currentState}"/>
+        </mx:HBox>
+    
+        <mx:ControlBar width="100%">
+            <mx:Label text="Quantity"/>
+            <mx:NumericStepper/>
+            <!-- Use Spacer to push Button control to the right. -->
+            <mx:Spacer width="100%"/>
+            <mx:Button label="Add to Cart"/>
+        </mx:ControlBar>    
+    </MyComp:StateTitleWindow>
+</mx:Application>

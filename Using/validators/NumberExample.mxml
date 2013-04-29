@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- validators\NumberExample.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"> 
+
+    <s:Form >
+        <s:FormItem 
+            label="Number of Widgets (max 10 per customer)">
+            <s:TextInput id="quantityInput"/>
+        </s:FormItem>   
+        <s:FormItem >  
+            <s:Button label="Submit"/>
+        </s:FormItem>   
+    </s:Form>
+
+    <fx:Declarations>
+        <mx:NumberValidator id="numV" 
+            source="{quantityInput}" property="text" 
+            minValue="1" maxValue="10" domain="int"/>
+    </fx:Declarations>
+</s:Application>

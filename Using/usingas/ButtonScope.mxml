@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- usingas/ButtonScope.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:BasicLayout/> 
+    </s:layout>
+
+    <s:Panel width="250" height="100" x="65" y="24">
+        <s:Button id="myButton" 
+            label="Click Me" 
+            click="myButton.label='Clicked'" 
+            x="79.5" y="20"/>
+    </s:Panel>
+    <s:Button label="Reset" 
+        x="158" y="149" 
+        click="myButton.label='Click Me'"/>    
+</s:Application>

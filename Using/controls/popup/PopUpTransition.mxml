@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+    
+    <fx:Style>
+    .popUpBox
+    {
+        backgroundColor : #e9e9e9; 
+        borderStyle : "solid";
+        paddingTop : 2;
+        paddingBottom : 2; 
+        paddingLeft : 2; 
+        paddingRight : 2;
+    }
+    </fx:Style>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="emailOpen" />
+    </s:states>
+
+    <s:transitions>
+        <mx:Transition fromState="*" toState="*">
+            <mx:Sequence>
+                <s:Fade target="{emailPopUp.popUp}"
+                    duration="250"/>
+            </mx:Sequence>
+        </mx:Transition> 
+    </s:transitions>
+
+    <s:Group x="60">
+        <s:Button label="Send email" 
+            click="currentState = 'emailOpen'"/>
+        <s:PopUpAnchor id="emailPopUp" 
+            left="0" bottom="0" 
+            popUpPosition="below" 
+            styleName="popUpBox" 
+            includeIn="emailOpen" 
+            displayPopUp.normal="false" 
+            displayPopUp.emailOpen="true">
+            <mx:Form>
+                <mx:FormItem label="From :">
+                    <s:TextInput/>
+                </mx:FormItem>
+                <mx:FormItem label="To :">
+                    <s:TextInput/>
+                </mx:FormItem>
+                <mx:FormItem label="Subject :">
+                    <s:TextInput/>
+                </mx:FormItem>
+                <mx:FormItem label="Message :">
+                    <s:TextArea width="100%" 
+                        height="100" 
+                        maxChars="120"/>
+                </mx:FormItem>
+                <mx:FormItem direction="horizontal">
+                    <s:Button label="Send" 
+                        click="currentState = 'normal'"/>  
+                    <s:Button label="Cancel" 
+                        click="currentState = 'normal'" />
+                </mx:FormItem>
+            </mx:Form>
+        </s:PopUpAnchor>
+    </s:Group>
+</s:Application>

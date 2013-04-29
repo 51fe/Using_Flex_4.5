@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- styles/InlineOverride.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+    
+  <fx:Style>
+     @namespace s "library://ns.adobe.com/flex/spark";
+
+     s|Button { 
+        fontSize: 10pt; 
+        fontStyle: italic;
+        color: #FF0000;
+     }
+  </fx:Style>  
+  
+  <s:Button label="Button Type Selector Color"/>
+  <s:Button color="0x999942" label="Inline Color"/>
+</s:Application>

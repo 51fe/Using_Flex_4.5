@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- styles/SelectorsTest.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">    
+    <fx:Style>
+        .unusedStyleTest {
+            fontSize:17;
+            color:green;
+        }
+    </fx:Style>
+
+     <s:layout>
+        <s:VerticalLayout/>
+     </s:layout>
+        
+    <fx:Script>
+        <![CDATA[
+            private var stylesList:Array = [
+                'fontSize', 'color', 'fontWeight', 'fontFamily', 'fontStyle'
+            ];
+            
+            public function showSelectors():void {            
+                msg.text = "List all selectors, and show when they explicitly define the following:\n";
+                msg.text += stylesList.toString();
+
+                var selectors:Array = styleManager.selectors;
+                for (var i:int = 0; i < selectors.length; i++) {
+                    msg.text += "\n\n" + selectors[i] + " {"      
+                    for (var j:int = 0; j < stylesList.length; j++) {
+                        var s:String = CSSStyleDeclaration(styleManager.getStyleDeclaration(selectors[i])).getStyle(stylesList[j]);
+                        if (s != null) {
+                            msg.text += "\n    " + stylesList[j] + ":" + s + ";";
+                        }
+                    }
+                    msg.text += "\n}";
+                }
+            }
+        ]]>
+    </fx:Script>    
+    <s:Button label="Show Selectors" click="showSelectors()"/>    
+    <s:TextArea id="msg" width="100%" height="100%"/>
+</s:Application>

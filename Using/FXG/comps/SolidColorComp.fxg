@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/SolidColorComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <!-- Draw rectangle that is filled with a SolidColor. -->
+   <Rect height="100" width="200">                              
+         <stroke>
+              <SolidColorStroke color="#000000" weight="2"/>
+         </stroke>
+         <fill>
+              <SolidColor color="#00FF00" alpha=".5"/>
+         </fill>
+   </Rect>
+</Graphic>

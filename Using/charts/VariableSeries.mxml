@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!-- charts/VariableSeries.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initApp();"
+    height="600">
+    
+  <fx:Script><![CDATA[
+        import mx.charts.series.LineSeries;
+        import mx.charts.DateTimeAxis;
+
+        [Bindable]
+        private var myXML:XML =
+            <dataset>
+            <item>
+                <who>Tom</who>
+                <when>08/22/2006</when>
+                <hours>5.5</hours>
+            </item>
+            <item>
+                <who>Tom</who>
+                <when>08/23/2006</when>
+                <hours>6</hours>
+            </item>
+            <item>
+                <who>Tom</who>
+                <when>08/24/2006</when>
+                <hours>4.75</hours>
+            </item>
+            <item>
+                <who>Dick</who>
+                <when>08/22/2006</when>
+                <hours>6</hours>
+            </item>
+            <item>
+                <who>Dick</who>
+                <when>08/23/2006</when>
+                <hours>8</hours>
+            </item>
+            <item>
+                <who>Dick</who>
+                <when>08/24/2006</when>
+                <hours>7.25</hours>
+            </item>
+            <item>
+                <who>Jane</who>
+                <when>08/22/2006</when>
+                <hours>6.5</hours>
+            </item>
+            <item>
+                <who>Jane</who>
+                <when>08/23/2006</when>
+                <hours>9</hours>
+            </item>
+            <item>
+                <who>Jane</who>
+                <when>08/24/2006</when>
+                <hours>3.75</hours>
+            </item>
+            </dataset>;
+
+        public function initApp():void {
+            var wholist:Array = new Array();
+            for each(var property:XML in myXML.item.who) {
+                // Create an Array of unique names.
+                if (wholist[property] != property)
+                    wholist[property] = property;
+            }
+
+            // Iterate over names and create a new series 
+            // for each one.
+            for (var s:String in wholist) {
+                // Use all items whose name matches s.
+                var localXML:XMLList = myXML.item.(who==s);
+
+                // Create the new series and set its properties.
+                var localSeries:LineSeries = new LineSeries();
+                localSeries.dataProvider = localXML;
+                localSeries.yField = "hours";
+                localSeries.xField = "when";
+
+                // Set values that show up in dataTips and Legend.
+                localSeries.displayName = s;
+
+                // Back up the current series on the chart.
+                var currentSeries:Array = myChart.series;
+                // Add the new series to the current Array of series.
+                currentSeries.push(localSeries);
+                // Add the new Array of series to the chart.
+                myChart.series = currentSeries;
+            }
+
+            // Create a DateTimeAxis horizontal axis.
+            var hAxis:DateTimeAxis = new DateTimeAxis();
+            hAxis.dataUnits = "days";
+            // Set this to false to display the leftmost label.
+            hAxis.alignLabelsToUnits = false;
+            // Take the date in its current format and create a Date
+            // object from it.
+            hAxis.parseFunction = createDate;
+            myChart.horizontalAxis = hAxis;
+        }
+
+        public function createDate(s:String):Date {
+            // Reformat the date input to create Date objects
+            // for the axis.
+            var a:Array = s.split("/");
+            
+            // The existing String s is in the format "MM/DD/YYYY". 
+            // To create a Date object, you pass "YYYY,MM,DD", 
+            // where MM is zero-based, to the Date() constructor.
+            var newDate:Date = new Date(a[2],a[0]-1,a[1]);
+            return newDate;
+        }
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Line Chart with Variable Number of Series">
+     <s:layout>
+         <s:HorizontalLayout/>
+     </s:layout>
+     <mx:LineChart id="myChart" showDataTips="true"/>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

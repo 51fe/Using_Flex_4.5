@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/TLFStylesProperties.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        import flashx.textLayout.elements.*;
+    
+        private function initApp():void {
+            // You cannot set these properties in CSS.
+        
+            // Set color of first paragraph to red with the setStyle() method.
+            myRET.textFlow.getChildAt(0).setStyle("color", 0xFF0000);
+
+            // Set color of second paragraph to green with a property assignment.
+            myRET.textFlow.getChildAt(1).color = 0x00FF00;
+        }
+    </fx:Script>
+  
+    <s:RichEditableText id="myRET" height="100" width="200">
+        <s:p id="p1">This is paragraph 1.</s:p>
+        <s:p id="p2">This is paragraph 2.</s:p>
+    </s:RichEditableText>
+    
+    <s:Button click="initApp()" label="Apply Styles"/>
+</s:Application>

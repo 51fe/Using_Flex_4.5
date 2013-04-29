@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\views\SelectFont.mxml -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Select Font Size"
+    add="addHandler(event);">
+    <s:layout>
+        <s:VerticalLayout paddingTop="10"
+            paddingLeft="10" paddingRight="10"/>
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+
+            // Define return Number object.
+            protected var fontSize:Number;
+            
+            // Initialize the return object with the passed in font size. 
+            // If you do not set a value, 
+            // return this value for the font size. 
+            protected function addHandler(event:FlexEvent):void {
+                fontSize = data.fontSize;
+            }
+            
+            // Save the value of the specified font.
+            protected function changeHandler(event:Event):void {
+                fontSize=Number(ns.text);
+                navigator.popView();
+            }
+            
+            // Override createReturnObject() to return the new font size.
+            override public function createReturnObject():Object {
+                return fontSize;
+            }
+        ]]>
+    </fx:Script>
+        
+    <s:Label text="Select Font Size"/>
+    <!-- Set the initlial value of the TextInput to the passed fontSize -->
+    <s:TextInput id="ns" 
+        text="{data.fontSize}"/>
+    <s:Button label="Save" click="changeHandler(event);"/> 
+</s:View>

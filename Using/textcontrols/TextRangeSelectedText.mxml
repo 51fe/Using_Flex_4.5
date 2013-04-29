@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- textcontrols/TextRangeSelectedText.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    width="600" height="500">
+    
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+  <fx:Script><![CDATA[
+     import mx.controls.textClasses.TextRange;
+
+     //The following text must be on a single line.
+     [Bindable]
+     public var htmlData:String="<textformat leading='2'><p align='center'><b><font size='20'>HTML Formatted Text</font></b></p></textformat><br><textformat leading='2'><p align='left'><font face='_sans' size='12' color='#000000'>This paragraph contains <b>bold</b>, <i>italic</i>, <u>underlined</u>, and <b><i><u>bold italic underlined </u></i></b>text. </font></p></textformat><br><p><u><font face='arial' size='14' color='#ff0000'>This a red underlined 14-point arial font with no alignment set.</font></u></p><p align='right'><font face='verdana' size='12' color='#006666'><b>This a teal bold 12-pt. Verdana font with alignment set to right.</b></font></p>";
+
+     public function changeSelectionText():void {
+        //Get a TextRange with the selected text and find its length.
+        var sel:TextRange = rte1.selection;
+        var selLength:int = sel.endIndex - sel.beginIndex;
+        //Do the following only if the user made a selection.
+        if (selLength) {
+           //Display the selection size and font color, size, and family.
+           t1.text="Number of characters selected: " + String(selLength);
+           t1.text+="\n\nOriginal Font Family: " + sel.fontFamily;
+           t1.text+="\nOriginal Font Size: " + sel.fontSize;
+           t1.text+="\nOriginal Font Color: " + sel.color;
+           //Change font color, size, and family and replace selected text.
+           sel.text="This is replacement text. "
+           sel.color="fuchsia";
+           sel.fontSize=20;
+           sel.fontFamily="courier"
+           //Show the new font color, size, and family.
+           t1.text+="\n\nNew text length: " + String(sel.endIndex - sel.beginIndex);
+           t1.text+="\nNew Font Family: " + sel.fontFamily;
+           t1.text+="\nNew Font Size: " + sel.fontSize;
+           t1.text+="\nNew Font Color: " + sel.color;
+        }
+     }
+  ]]></fx:Script>
+
+  <!-- The text area. When you release the mouse after selecting text, 
+     it calls the func1 function. -->
+  <mx:RichTextEditor id="rte1" 
+    htmlText="{htmlData}" 
+    width="100%" height="100%" 
+    mouseUp="changeSelectionText()"/>
+  
+  <mx:TextArea id="t1" 
+    editable="false" 
+    fontSize="12" 
+    fontWeight="bold" 
+    width="300" height="180"/>
+
+</s:Application>

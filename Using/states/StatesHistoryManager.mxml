@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- states\StatesBrowserManager.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();">
+ 
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.BrowserManager;
+            import mx.managers.IBrowserManager;
+            import mx.events.BrowserChangeEvent;
+            import mx.utils.URLUtil;
+        
+            // The search string value.
+            [Bindable]
+            public var searchString:String;
+
+            // The BrowserManager instance.
+            private var browserManager:IBrowserManager;
+        
+            // Initialize the BrowserManager when the application is created.
+            public function initApp():void {
+                browserManager = BrowserManager.getInstance();
+                browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL);
+                browserManager.init("", "Browser Manager for View States");
+                // Set the default state as a name/value pair in the URL.
+                updateURL('default');                
+            }
+            
+            // Handle the event when the user clicks the Forward or Back button
+            // in the browser. This event handler retrieves the value of the 
+            // state property from the new URL, and uses it to set currentState property.
+            private var stateFromURL:String;
+            private function parseURL(e:Event):void {
+                var o:Object = URLUtil.stringToObject(browserManager.fragment);
+                stateFromURL = o.state;
+                currentState=stateFromURL;
+            }           
+
+            // On a state change, save the value of the new 
+            // currentState property as name/value pair of the URL.
+            private function updateURL(myCurrentState:String):void {
+                var s:String = "state=" + myCurrentState;
+                browserManager.setFragment(s);
+            }            
+        
+            // The method for doing the search.
+            // For the sake of simplicity it doesn't do any searching.
+            // It does change the state to display the results box, 
+            // and save the new state in the URL.
+            public function doSearch():void {
+                currentState = "results";
+                updateURL('results');
+                searchString = searchInput.text;
+            }
+
+            // Method to revert the state to the default state.
+            // Saves the new state in in the URL.
+            public function reset():void {
+                currentState = '';
+                searchInput.text = "";
+                searchString = "";
+                updateURL('default');
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:states>
+        <!-- The state for displaying the search results -->
+        <s:State name="default"/>
+        <s:State name="results"/>
+    </s:states>
+
+    <!-- In the default state, just show a panel 
+        with a search text input and button. -->
+    <s:Panel id="panel1" 
+        title="Search" title.results="Results" 
+        resizeEffect="Resize"
+        width="10%" height="10%"
+        width.results="100%" height.results="100%">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:SkinnableContainer id="searchFields" defaultButton="{b}">
+            <s:layout>
+                <s:HorizontalLayout/>
+            </s:layout>
+            <mx:TextInput id="searchInput"/>
+            <s:Button id="b" 
+                label="Go" 
+                click="doSearch();"/>
+            <s:Button includeIn="results"
+                label="Reset" 
+                click="reset();"/>
+        </s:SkinnableContainer>
+        <mx:Label includeIn="results"
+            text="Search results for {searchString}"/> 
+    </s:Panel>
+</s:Application>

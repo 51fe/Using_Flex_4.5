@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dpcontrols\sparkdpcontrols\SparkDGCaret.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    height="450" width="450"> 
+    <s:layout> 
+        <s:VerticalLayout paddingTop="5" paddingLeft="5"/> 
+    </s:layout> 
+    <fx:Script>
+        <![CDATA[
+            import spark.events.GridCaretEvent;
+            import spark.events.GridSelectionEvent;
+            import spark.components.Grid;
+
+            protected function selectionChangeHandler(event:GridSelectionEvent):void {
+                const eventGrid:Grid = event.currentTarget.grid;
+                selLabel.text = "The selected row is: " + 
+                    String(eventGrid.selectedIndex); 
+                caretLabel.text = "The caret row is: " + 
+                    String(eventGrid.caretRowIndex); 
+            }
+
+            protected function caretChangeHandler(event:GridCaretEvent):void {
+                const eventGrid:Grid = event.currentTarget.grid;
+                selLabel.text = "The selected row is: " + 
+                    String(eventGrid.selectedIndex); 
+                caretLabel.text = "The caret row is: " + 
+                    String(eventGrid.caretRowIndex); 
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:Label id="selLabel"/> 
+    <s:Label id="caretLabel"/> 
+    
+    <s:DataGrid id="myDG" width="100%"
+        selectionChange="selectionChangeHandler(event);"
+        caretChange="caretChangeHandler(event);"> 
+        <s:ArrayCollection> 
+            <fx:Object firstName="Bill" lastName="Smith" companyID="11233"/> 
+            <fx:Object firstName="Dave" lastName="Jones" companyID="13455"/> 
+            <fx:Object firstName="Mary" lastName="Davis" companyID="11543"/> 
+            <fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/> 
+        </s:ArrayCollection> 
+    </s:DataGrid> 
+</s:Application>

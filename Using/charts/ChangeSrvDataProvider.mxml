@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- charts/ChangeSrvDataProvider.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/stocks.aspx -->  
+    </fx:Declarations>
+
+    <fx:Script><![CDATA[
+        public function changeDataProvider(event:Event):void {
+            srv.url = "http://aspexamples.adobe.com/chart_examples/stocks-xml.aspx" +
+                "?" + "tickerSymbol=" + event.currentTarget.selectedItem;
+                srv.send();
+        }
+    ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+    <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <mx:ColumnChart id="myChart" dataProvider="{srv.lastResult.data.result}" showDataTips="true">
+            <mx:horizontalAxis>
+                <mx:DateTimeAxis dataUnits="days"/>
+            </mx:horizontalAxis>
+            <mx:series>
+                <mx:ColumnSeries 
+                    yField="close" xField="date"
+                    displayName="Closing Price of {cb1.selectedItem}"/>
+            </mx:series>
+        </mx:ColumnChart>
+        <mx:Legend dataProvider="{myChart}"/>
+    </s:Panel>
+
+    <s:ComboBox id="cb1" change="changeDataProvider(event)">
+        <s:ArrayCollection>
+            <fx:String>FRED</fx:String>
+            <fx:String>STRK</fx:String>
+            <fx:String>FE</fx:String>
+        </s:ArrayCollection>
+    </s:ComboBox>
+</s:Application>

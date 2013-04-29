@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!-- config/ContextRootTest.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="l1.text='url='+s1.url">
+    <mx:HTTPService id="s1" url="@ContextRoot()/service.jsp"/>
+    <mx:Label id="l1"/>
+</mx:Application>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- states\StatesSimpleEvent.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    height="450">
+
+    <s:states>
+        <!-- Define the new view states. -->
+        <s:State name="default"
+            enterState="MyEnterTA.text = 'Enter state: default';"
+            exitState="MyExitTA.text = 'Exit state: default';"/>
+        <s:State name="NewButton"
+            enterState="MyEnterTA.text = 'Enter state: NewButton';"
+            exitState="MyExitTA.text = 'Exit state: NewButton';"/>
+    </s:states>    
+
+    <s:VGroup id="g1">
+        <s:HGroup>
+            <s:Button id="b1" label="Click Me"
+                enabled.NewButton="false"/>
+            <s:Button id="b2" label="New Button"
+                includeIn="NewButton"/>
+        </s:HGroup>
+
+        <s:Button label="Change to NewButton state" 
+            click="currentState='NewButton';"/>            
+        <s:Button label="Change to default view state" 
+            click="currentState='default';"/>
+
+        <s:TextArea id="MyEnterTA"/>
+        <s:TextArea id="MyExitTA"/>
+        
+    </s:VGroup>    
+</s:Application>

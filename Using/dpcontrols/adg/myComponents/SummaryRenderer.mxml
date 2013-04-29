@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- dpcontrols/adg/myComponents/SummaryRenderer.mxml -->
+<mx:Label xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" textAlign="center">
+    <fx:Script>
+        <![CDATA[
+
+        override public function set data(value:Object):void
+        {
+            // Calculate the difference.
+            var diff:Number = 
+                Number(value["Actual"]) - Number(value["Estimate"]);
+            if (diff < 0)
+            {
+                // If Estimate was greater than Actual, 
+                // display results in red.
+                setStyle("color", "red");
+                text = "Undersold by " + usdFormatter.format(diff);
+            }
+            else
+            {
+                // If Estimate was less than Actual, 
+                // display results in green.
+                setStyle("color", "green");
+                text = "Exceeded estimate by " + usdFormatter.format(diff);
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:CurrencyFormatter id="usdFormatter" 
+            useCurrencySymbol="true" negativeCurrencyFormat="1"/>
+    </fx:Declarations>
+</mx:Label>

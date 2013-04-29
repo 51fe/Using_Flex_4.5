@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\events\BeginEditEventAccessEditor.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+      <![CDATA[
+        import mx.events.DataGridEvent;
+        import mx.controls.NumericStepper;
+        import mx.collections.ArrayCollection;
+        import mx.controls.listClasses.IDropInListItemRenderer;
+    
+        [Bindable]                
+        private var myDP:ArrayCollection = new ArrayCollection([
+            {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99},
+            {Artist:'Pavement', Album:'Crooked Rain, Crooked Rain', Price:10.99},
+            {Artist:'Pavement', Album:'Wowee Zowee', Price:12.99},
+            {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99},
+            {Artist:'Pavement', Album:'Terror Twilight', Price:11.99}
+        ]);               
+            
+        // Handle the itemEditBegin event.
+        private function modifyEditedData(event:DataGridEvent):void
+        {
+            // Get the name of the column being editted.
+            var colName:String = myDataGrid.columns[event.columnIndex].dataField;
+    
+            if(colName=="Price")
+            {
+                // Handle the event here.
+                event.preventDefault();
+        
+                // Creates an item editor.                
+                myDataGrid.createItemEditor(event.columnIndex,event.rowIndex);
+                
+                // All item editors must implement the IDropInListItemRenderer interface
+                // and the listData property. 
+                // Initialize the listData property of the editor. 
+                IDropInListItemRenderer(myDataGrid.itemEditorInstance).listData =
+                    IDropInListItemRenderer(myDataGrid.editedItemRenderer).listData;
+                
+                // Copy the cell value to the NumericStepper control.
+                myDataGrid.itemEditorInstance.data = myDataGrid.editedItemRenderer.data;
+
+                // Add 20 percent to the current price.
+                NumericStepper(myDataGrid.itemEditorInstance).value += 
+                    0.2 * NumericStepper(myDataGrid.itemEditorInstance).value;    
+           }
+        }
+      ]]>
+    </fx:Script>
+
+    <mx:DataGrid id="myDataGrid" dataProvider="{myDP}"
+        editable="true" 
+        itemEditBegin="modifyEditedData(event);" 
+        rowHeight="60">
+        <mx:columns>
+            <mx:DataGridColumn dataField="Artist" />
+            <mx:DataGridColumn dataField="Album" width="130" />
+            <mx:DataGridColumn dataField="Price" editorDataField="value">
+                <mx:itemEditor>
+                    <fx:Component>
+                        <mx:NumericStepper stepSize="0.01" maximum="500"/>
+                    </fx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid>
+</s:Application>

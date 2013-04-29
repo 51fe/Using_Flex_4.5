@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- charts/GridLinesFormatActionScript.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.graphics.SolidColor;
+     import mx.graphics.SolidColorStroke;
+     import mx.charts.GridLines;
+
+     [Bindable]
+     public var bge:GridLines;
+
+     public function addGridLines():void {
+        bge = new GridLines();
+
+        var s:SolidColorStroke = new SolidColorStroke(0xff00ff, 2);
+        bge.setStyle("horizontalStroke", s);
+
+        var f:SolidColor = new SolidColor(0x990033, .3);
+        bge.setStyle("horizontalFill",f);
+
+        var f2:SolidColor = new SolidColor(0x336699, .3);
+        bge.setStyle("horizontalAlternateFill",f2);
+
+        myChart.backgroundElements = [bge];
+     }
+  ]]></fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Column Chart">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        showDataTips="true"
+        dataProvider="{srv.lastResult.data.result}"
+        creationComplete="addGridLines()">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="profit"
+                displayName="Profit"/>
+           <mx:ColumnSeries 
+                xField="month" 
+                yField="expenses"
+                displayName="Expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <mx:Legend dataProvider="{myChart}"/>
+  </s:Panel>
+</s:Application>

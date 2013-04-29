@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- styles/PseudoSelectorExample.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:custom="*">
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        
+        s|Button:up {
+            baseColor: black;
+            color: #FFFFFF;
+        }
+
+        s|Button:over {
+            baseColor: gray;
+            fontWeight: "bold";
+            color: #FFFFFF;
+        }
+
+        s|Button:down {
+            baseColor: blue;
+            fontWeight: "bold";
+            color: #FFFF66;
+        }
+    </fx:Style>
+
+    <s:Button label="Click Me" x="10" y="35"/>
+</s:Application>

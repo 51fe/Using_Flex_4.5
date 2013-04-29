@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fxg/comps/TransformedTextComp.fxg -->
+<Graphic xmlns="http://ns.adobe.com/fxg/2008" version="2">    
+    <TextGraphic>
+        <content>This text is being transformed.</content>
+        <transform>
+            <Transform>
+                <colorTransform>
+                    <ColorTransform redMultiplier="0.5" redOffset="20" />
+                </colorTransform>
+            </Transform>
+        </transform>
+    </TextGraphic>
+</Graphic>

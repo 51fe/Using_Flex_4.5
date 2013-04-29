@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- createcomps_mxml/MyApplicationAddressForm.mxml-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"  
+    xmlns:MyComp="*" >
+
+    <MyComp:AddressForm/> 
+
+</s:Application>

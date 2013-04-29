@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- charts/HitDataOnClick.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="srv.send();init()"
+    height="600">
+
+    <fx:Declarations>
+        <!-- View source of the following page to see the structure of the data that Flex uses in this example. -->
+        <mx:HTTPService id="srv" url="http://aspexamples.adobe.com/chart_examples/expenses-xml.aspx"/>
+        <!-- To see data in an HTML table, go to http://aspexamples.adobe.com/chart_examples/expenses.aspx -->  
+    </fx:Declarations>
+
+  <fx:Script><![CDATA[
+     import mx.charts.events.ChartItemEvent;
+
+     // Define the event handler.
+     public function myListener(e:ChartItemEvent):void {
+        ti1.text = e.hitData.item.expenses;
+        ti2.text = String(e.hitData.x) + ", " + String(e.hitData.y);
+     }
+
+     // Define event listeners when the application initializes.
+     public function init():void {
+        myChart.addEventListener(ChartItemEvent.ITEM_DOUBLE_CLICK, myListener);
+     }
+  ]]></fx:Script>
+  
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+
+  <s:Panel title="Accessing HitData Object in Event Handlers">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+     <mx:ColumnChart id="myChart" 
+        dataProvider="{srv.lastResult.data.result}" 
+        doubleClickEnabled="true"
+        showDataTips="true">
+        <mx:horizontalAxis>
+           <mx:CategoryAxis categoryField="month"/>
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:ColumnSeries yField="expenses"/>
+        </mx:series>
+     </mx:ColumnChart>
+     <s:Form width="100%">
+        <!--Define a form to display the event information.-->
+        <s:FormItem label="Expenses:">
+           <s:TextInput id="ti1" width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="x/y:">
+           <s:TextInput id="ti2" width="100%"/>
+        </s:FormItem>
+     </s:Form>
+  </s:Panel>
+</s:Application>

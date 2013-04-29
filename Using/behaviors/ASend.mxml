@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- behaviors\ASend.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Declarations>
+        <s:Resize id="resizeLarge"
+            heightTo="150"
+            widthTo="150"
+            duration="5000"
+            target="{myTA}"/>
+    </fx:Declarations>
+    
+    <s:Group height="228" width="328">
+        <s:Button label="Start"
+            x="10" y="10" 
+            click="resizeLarge.end();resizeLarge.play();"/>
+        <s:Button label="End" 
+            x="86" y="10" 
+            click="resizeLarge.end();"/>
+        <s:Button label="Reset"
+            click="myTA.height=100;myTA.width=100;"
+            x="162" y="10"/>
+        <s:TextArea id="myTA" 
+            x="10" y="40"
+            height="100"
+            width="100" 
+            text="Here is some text."/>
+    </s:Group>
+</s:Application>

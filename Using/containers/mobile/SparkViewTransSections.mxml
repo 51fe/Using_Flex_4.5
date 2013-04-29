@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- containers\mobile\SparkViewTransSections.mxml -->
+<s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="tabbedviewnavigatorapplication1_creationCompleteHandler(event)">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            import spark.transitions.FlipViewTransition;
+            
+            // Define a flip transition.
+            public var flipTrans:FlipViewTransition = new FlipViewTransition(); 
+            
+            protected function button1_clickHandler(event:MouseEvent):void {
+                // Switch to the first section in the application.
+                tabbedNavigator.selectedIndex = 0;
+                // Switch to the first view in the section.
+                ViewNavigator(tabbedNavigator.selectedNavigator).popToFirstView();
+            }
+            
+            // Set the default pop transition of the navigator for this view
+            // to use the flip transition.
+            protected function tabbedviewnavigatorapplication1_creationCompleteHandler(event:FlexEvent):void {
+                flipTrans.transitionControlsWithContent = false;
+                ViewNavigator(navigators[0]).defaultPopTransition = flipTrans;
+                ViewNavigator(navigators[0]).defaultPushTransition = flipTrans;            
+    //            ViewNavigator(navigators[1]).defaultPopTransition = flipTrans;
+      //          ViewNavigator(navigators[1]).defaultPushTransition = flipTrans;            
+        //        ViewNavigator(navigators[2]).defaultPopTransition = flipTrans;
+          //      ViewNavigator(navigators[2]).defaultPushTransition = flipTrans;            
+            }
+        ]]>
+    </fx:Script>
+    
+    <s:navigators>
+        <s:ViewNavigator label="Employees" firstView="views.EmployeeMainViewTrans">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')" 
+                          click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+        <s:ViewNavigator label="Contacts" firstView="views.ContactsMainView">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')"
+                          click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+        <s:ViewNavigator label="Search" firstView="views.SearchView">
+            <s:navigationContent>
+                <s:Button icon="@Embed(source='assets/Home.png')"
+                          click="button1_clickHandler(event)"/>
+            </s:navigationContent>
+        </s:ViewNavigator>
+    </s:navigators>
+    
+</s:TabbedViewNavigatorApplication>

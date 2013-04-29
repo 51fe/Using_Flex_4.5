@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- containers\spark\SparkMainMyLoginFormRemove.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+          import mx.managers.PopUpManager;
+          import myComponents.MyLoginForm;
+          import mx.core.IFlexDisplayObject;
+
+          private var helpWindow:IFlexDisplayObject;
+
+          private function showLogin():void {
+            // Create the TitleWindow container.
+            helpWindow = PopUpManager.createPopUp(this, MyLoginForm, false);
+          }
+
+          private function removeForm():void {
+            PopUpManager.removePopUp(helpWindow);
+          }
+        ]]>
+    </fx:Script>
+    
+    <s:VGroup width="300" height="300">  
+        <s:Button click="showLogin();" label="Login"/>
+        <s:Button id="b2" label="Remove Form" click="removeForm();"/>
+    </s:VGroup>
+</s:Application>

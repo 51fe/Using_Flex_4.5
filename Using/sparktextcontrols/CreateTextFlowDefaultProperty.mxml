@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/CreateTextFlowDefaultProperty.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+  
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <s:RichEditableText id="richTxt1" textAlign="justify" percentWidth="100">
+        <s:p fontSize="24">Default MXML Property</s:p>
+        <s:p>1) Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s:p>
+        <s:p>2) Cras posuere posuere sem, eu congue orci mattis quis.</s:p>
+        <s:p>3) Curabitur pulvinar tellus venenatis ipsum tempus lobortis.</s:p>
+    </s:RichEditableText>
+
+</s:Application>

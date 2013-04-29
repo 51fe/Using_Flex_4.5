@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- events/CustomHandler.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    initialize="createHandler()">
+
+    <fx:Script>
+        <![CDATA[
+            private var myListener:MyEventHandler = new MyEventHandler();
+
+            private function createHandler():void {
+                b1.addEventListener(MouseEvent.CLICK, myListener.handleAllEvents);
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Button label="Submit" id="b1"/>
+
+</s:Application>

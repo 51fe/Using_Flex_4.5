@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- sparktextcontrols/CustomLinkElementHandling.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+
+    <fx:Script>
+        import flashx.textLayout.events.FlowElementMouseEvent;
+        import flashx.textLayout.elements.LinkElement;
+        import mx.controls.Alert;
+        import mx.events.CloseEvent;
+    
+        private var linkTarget:String;
+    
+        private function doSomething(e:FlowElementMouseEvent):void {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
+            var le:LinkElement = e.flowElement as LinkElement;
+            linkTarget = le.href;
+
+            Alert.show("You are about to navigate away from this page.","Alert",Alert.OK | Alert.CANCEL, this, alertListener, null, Alert.OK);
+        }
+
+        private function alertListener(e:CloseEvent):void {
+            if (e.detail == Alert.OK) {
+                navigateToURL(new URLRequest(linkTarget), '_self')        
+            }
+        }
+
+    </fx:Script>
+
+        <s:RichEditableText id="richTxt" 
+            editable="false" 
+            focusEnabled="false">
+            <s:textFlow>
+                <s:TextFlow>
+                    <s:p>
+                        The following link takes you to: <s:a href="http://www.adobe.com" target="_blank" click="doSomething(event)">Adobe.com</s:a>
+                    </s:p>
+                </s:TextFlow>
+            </s:textFlow>
+        </s:RichEditableText>
+        
+</s:Application>

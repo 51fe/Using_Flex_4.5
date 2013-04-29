@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- itemRenderers\dataGrid\DGDefaultRenderer.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" >
+    
+    <fx:Script>
+        <![CDATA[
+          import mx.collections.ArrayCollection;
+        
+          [Bindable]
+          private var initDG:ArrayCollection = new ArrayCollection([
+            {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99},
+            {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}
+          ]);            
+        ]]>
+    </fx:Script>
+
+    <mx:Panel paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10">
+
+        <mx:DataGrid id="myGrid" dataProvider="{initDG}" 
+            width="100%" editable="true"> 
+            <mx:columns>
+                <mx:DataGridColumn dataField="Artist" resizable="true"/>
+                <mx:DataGridColumn dataField="Album" resizable="true"/>
+                <mx:DataGridColumn dataField="Price" resizable="true"/>
+            </mx:columns>       
+        </mx:DataGrid>  
+    </mx:Panel>    
+</s:Application>

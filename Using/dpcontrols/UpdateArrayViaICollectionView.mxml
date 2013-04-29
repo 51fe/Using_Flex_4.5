@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!-- dpcontrols\UpdateArrayViaICollectionView.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+        
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            import mx.collections.CursorBookmark;
+            import mx.collections.IViewCursor;
+            import spark.collections.Sort;
+            import spark.collections.SortField;            
+            
+            // The data provider is an array of Strings.
+            public var myArray:Array = ["AZ", "MA", "MZ", "MN", "MO", "MS"];
+            // Declare an ArrayCollection that represents the Array.
+            // The variable must be bindable so the ComboBox can update properly.
+            [Bindable]
+            public var myAC:ArrayCollection;
+            //Boolean flag to ensure the update routine hasn't been run before.
+            public var runBefore:Boolean=false; 
+
+            //Initialize the ArrayCollection the application initializes.
+            public function initData():void {
+                myAC = new ArrayCollection(myArray); 
+            }
+
+            // The function to change the collection.
+            public function changeCollection():void {
+                //Running this twice without resetting causes an error.
+                if (! runBefore) {
+                    runBefore=true; 
+                    // Get an IViewCursor object for accessing the collection data.
+                    var myCursor:IViewCursor=myAC.createCursor();
+                    // Get the original collection length. 
+                    var oldLength:int=myAC.length;
+
+                    // The cursor is initially at the first item; delete it.
+                    var removedItem:String=String(myCursor.remove());
+
+                    // Add ME as the second item.
+                    // The cursor is at the (new) first item; 
+                    // move it to the second item.
+                    myCursor.moveNext();
+                    // Insert ME before the second item.
+                    myCursor.insert("ME");
+
+                    // Add MT at the end of the collection.
+                    //Use the LAST bookmark property to go to the end of the view.
+                    // Add an offset of 1 to position the cursor after the last item.
+                    myCursor.seek(CursorBookmark.LAST, 1);
+                    myCursor.insert("MT");
+                    // Change MZ to MI.
+                    // The findFirst() method requires a sorted view.
+                    var sort:Sort = new Sort();
+                    myAC.sort=sort;
+                    // Refresh the collection view to apply the sort.
+                    myAC.refresh();
+                    // Make sure there is a MZ item, and no MI in the array.
+                     if (myCursor.findFirst("MZ") && !myCursor.findFirst("MI")) {
+                        // The IViewCursor does not have a replace operation.
+                        // First, remove "MZ".
+                        myCursor.remove();
+                        // Because the view is now sorted, the insert puts this item 
+                        // in the right place in the sorted view, but at the end of 
+                        // the underlying Array data provider.
+                        myCursor.insert("MI");
+                    }
+
+                    // Get the updated collection length. 
+                    var newLength:int=myAC.length;
+
+                    // Set a bookmark at the item with the value ME,
+                    myCursor.findFirst("ME");
+                    var MEMark:CursorBookmark=myCursor.bookmark;
+                    // Move the cursor to the last item in the Array.
+                    myCursor.seek(CursorBookmark.LAST);
+                    // Get the last item in the collection.
+                    var lastItem:String=String(myCursor.current);
+                    // Return the cursor to the bookmark position.
+                    myCursor.seek(MEMark);
+                    // Get the item at the cursor location.
+                    var MEItem:String=String(myCursor.current);
+
+                    // Display the information in the TextArea control.
+                    ta1.text="Start Length: " + oldLength + ". End Length: " 
+                                    + newLength;
+                    ta1.text+=".\nRemoved " + removedItem;
+                    ta1.text+=".\nLast Item is " + lastItem;
+                    ta1.text+=".\nItem at MEMark is " + MEItem;
+                    // Show that the base Array has been changed.
+                    // Notice that the Array is NOT in sorted order.
+                    ta1.text+="\nThe base Array is: " + myArray.join(); 
+                } // End runBefore condition
+            }
+
+            // Filter function used in the sortICV method to limit the range.
+            public function MEMOFilter(item:Object):Boolean {
+                return item >= "ME" && item <= "MO";
+            }
+            
+            // Sort the collection view in descending order, 
+            // and limit the items to the range ME - MO.
+            public function sortICV():void {
+                var sort:Sort = new Sort();
+                sort.fields=[new SortField(null, false, true)];
+                myAC.filterFunction=MEMOFilter;
+                myAC.sort=sort;
+                // Refresh the ArrayCollection to apply the sort and filter
+                // function.
+                myAC.refresh();
+                //Call the ComboBox selectedIndex() method to replace the "MA"
+                //in the display with the first item in the sorted view.
+                myCB.selectedIndex=0;
+                ta1.text="Sorted";
+            }
+
+            //Reset the Array and update the display to run the example again.
+            public function resetView():void {
+                myArray = ["AZ", "MA", "MZ", "MN", "MO", "MS"];
+                myAC = new ArrayCollection(myArray);
+                ta1.text="Reset";
+                runBefore=false;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:ComboBox id="myCB" dataProvider="{myAC}"/>
+    <s:TextArea id="ta1" height="75" width="300"/>
+    <s:HGroup> 
+        <s:Button label="Update View" click="changeCollection();"/>
+        <s:Button label="Sort View" click="sortICV();"/> 
+        <s:Button label="Reset View" click="resetView();"/> 
+    </s:HGroup>
+</s:Application>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- apploading/SubApp1.mxml -->
+<s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:custom="*"
+    creationComplete="initApp()" 
+    applicationComplete="mx.core.FlexGlobals.topLevelApplication.createClassInstance()">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+     <fx:Script>
+          <![CDATA[
+               private function initApp():void {
+                    var child:DisplayObject = getChildAt(0);
+                    var childClassName:String = getQualifiedClassName(child);
+                    
+                    // Show that the qualified class name of the custom button is MyRedButton.
+                    trace(childClassName);
+               }
+          ]]>
+     </fx:Script>
+
+     <custom:MyRedButton id="myRedButtonId" label="Click Me"/>
+
+</s:Application>

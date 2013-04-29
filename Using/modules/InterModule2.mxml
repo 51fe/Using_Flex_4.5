@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- modules/InterModule2.mxml -->
+<s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%">
+
+    <s:layout> 
+        <s:VerticalLayout/> 
+    </s:layout>
+    
+    <fx:Script>
+        <![CDATA[    
+            [Bindable]
+            private var title:String = "Original Title";
+
+            // Call method of another module.
+            private function changeTitle():void {
+                title = parentApplication.m1.child.getNewTitle();
+            }        
+        ]]>
+    </fx:Script>
+
+    <s:HGroup>
+        <s:Label id="l1" text="Title: "/>
+        <s:Label id="myTitle" text="{title}"/>
+    </s:HGroup>    
+
+    <s:Button id="b1" label="Change Title" click="changeTitle()"/>    
+
+</s:Module>
